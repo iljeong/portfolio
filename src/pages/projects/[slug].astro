@@ -10,6 +10,8 @@ export const getStaticPaths = (() => {
 
 const { project } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const basePath = base.endsWith('/') ? base : `${base}/`;
+const assetPath = (src: string) => `${basePath}${src.replace(/^\/+/, '')}`;
 const idx  = projects.findIndex(p => p.slug === project.slug);
 const next = projects[(idx + 1) % projects.length];
 ---
@@ -119,13 +121,13 @@ const next = projects[(idx + 1) % projects.length];
             <p class="label label--accent cs-sec-label">05 · 산출물</p>
             <div class="cs-shots">
               {project.screenshots.map(s => (
-                <figure class="cs-shot">
+                <figure class={`cs-shot${s.wide ? ' cs-shot--wide' : ''}`}>
                   {s.url ? (
                     <a href={s.url} target="_blank" rel="noopener noreferrer" class="cs-shot-link">
-                      <img src={`${base}${s.src}`} alt={s.caption ?? ''} loading="lazy" />
+                      <img src={assetPath(s.src)} alt={s.caption ?? ''} loading="lazy" />
                     </a>
                   ) : (
-                    <img src={`${base}${s.src}`} alt={s.caption ?? ''} loading="lazy" />
+                    <img src={assetPath(s.src)} alt={s.caption ?? ''} loading="lazy" />
                   )}
                   {s.caption && (
                     <figcaption class="cs-shot-cap">
@@ -368,6 +370,10 @@ const next = projects[(idx + 1) % projects.length];
     border-radius: var(--r-lg);
     overflow: hidden;
     background: var(--surface);
+  }
+
+  .cs-shot--wide {
+    grid-column: 1 / -1;
   }
 
   .cs-shot-link { display: block; }

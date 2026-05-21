@@ -14,7 +14,7 @@ export type Project = {
     results: { label: string; desc: string }[];
     contribution: { role: string; scope: string; output: string };
   };
-  screenshots?: { src: string; caption?: string; url?: string }[];
+  screenshots?: { src: string; caption?: string; url?: string; wide?: boolean }[];
 };
 
 export const projects: Project[] = [
@@ -49,6 +49,28 @@ export const projects: Project[] = [
         output: '고객 여정 기반 이탈 구조 분석 보고서, 3개 우선 개선 방향 제안서',
       },
     },
+    screenshots: [
+      {
+        src: '/images/gcar-voc/slide_tmp_8-08.png',
+        caption: '앱 평점 비교 — Gcar의 평균 평점과 1점 리뷰 비율이 경쟁사 대비 유의하게 낮은 구간 확인',
+        wide: true,
+      },
+      {
+        src: '/images/gcar-voc/slide_tmp_11-11.png',
+        caption: '부정 리뷰 키워드 분석 — 고객센터, 앱 오류, 로그인, 반납 관련 불만 키워드가 반복적으로 등장',
+        wide: true,
+      },
+      {
+        src: '/images/gcar-voc/slide_tmp_21-21.png',
+        caption: '반납 장소 혼잡도 사전 안내 제안 — 시간대별 혼잡도 예측으로 반납 실패와 CS 문의를 줄이는 흐름',
+        wide: true,
+      },
+      {
+        src: '/images/gcar-voc/slide_tmp_22-22.png',
+        caption: '고객센터·이용가이드 재설계 — 문제 상황에서 FAQ와 반납 관련 기능까지 도달하는 시간을 줄이는 IA 개선안',
+        wide: true,
+      },
+    ],
   },
   {
     slug: 'fastcampus',
