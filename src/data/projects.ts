@@ -115,7 +115,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'pullsize',
-    name: 'pullsize AI 자동화',
+    name: 'Pullsize 콘텐츠 자동화',
     title: 'AI 파이프라인으로 콘텐츠 제작 시간을 83% 단축했다',
     subtitle: 'Claude AI + Figma MCP 연동 → 29개 피드 자동 생성',
     period: '2026.03 — 현재',
@@ -144,9 +144,41 @@ export const projects: Project[] = [
         output: '29개+ 피드 자동 생성 파이프라인, 캡션 v4 전략 문서, 운영 대시보드',
       },
     },
+  },
+  {
+    slug: 'sizefit',
+    name: '사이즈핏 AI 추천 서비스',
+    title: '신체 정보와 상품 URL로 의류 사이즈를 추천하는 서비스를 만들었다',
+    subtitle: '온라인 쇼핑 사이즈 불안을 줄이는 AI 추천 MVP',
+    period: '2026.03 — 현재',
+    category: 'AI 서비스 기획 · MVP',
+    tags: ['AI 서비스', 'MVP', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계'],
+    isMain: true,
+    highlight: 'AI 사이즈 추천 MVP',
+    content: {
+      problem:
+        '온라인 의류 구매자는 브랜드마다 다른 실측 기준과 착용감 차이 때문에 사이즈 선택에 불안을 느낀다. 상품 상세페이지의 치수표만으로는 내 체형에 맞는 사이즈와 여유도를 판단하기 어렵고, 이는 구매 망설임과 교환·반품으로 이어질 수 있다.',
+      approach: [
+        { num: '01', step: '입력 흐름 설계', desc: '상품 URL과 키·몸무게·평소 착용 사이즈 등 최소 입력만으로 추천을 시작하는 폼 구성' },
+        { num: '02', step: '상품 정보 해석', desc: '상품 페이지의 사이즈 정보와 사용자의 신체 정보를 비교할 수 있도록 추천에 필요한 데이터 구조 정의' },
+        { num: '03', step: '추천 로직 설계', desc: '사이즈 후보별 적합도와 여유도를 계산해 추천 사이즈와 판단 근거를 함께 제공하는 흐름 설계' },
+        { num: '04', step: '결과 UI 구현', desc: '추천 사이즈, 여유도, 신체 부위별 핏 정보를 한 화면에서 이해할 수 있도록 시각화' },
+        { num: '05', step: 'MVP 검증', desc: '실제 쇼핑 상황에서 사용자가 입력 → 추천 → 판단까지 이어질 수 있는 최소 기능 제품으로 구현' },
+      ],
+      results: [
+        { label: 'MVP', desc: '상품 URL 입력, 신체 정보 입력, AI 사이즈 추천 결과까지 이어지는 핵심 사용자 플로우 구현' },
+        { label: 'UX', desc: '단순 사이즈명 추천이 아니라 여유도와 판단 근거를 함께 보여줘 사용자가 추천을 납득할 수 있도록 설계' },
+        { label: '확장성', desc: '향후 브랜드별 실측 데이터, 후기 기반 핏 데이터, 개인 선호 핏을 반영할 수 있는 서비스 구조로 정리' },
+      ],
+      contribution: {
+        role: '서비스 기획자 · MVP 설계자',
+        scope: '문제 정의·사용자 입력 플로우·추천 결과 UX·MVP 화면 설계',
+        output: '사이즈 추천 서비스 MVP, 메인 입력 화면, AI 추천 결과 화면',
+      },
+    },
     screenshots: [
-      { src: '/images/pullsize/service-main.png',   caption: '사이즈핏 서비스 메인 화면 — 상품 URL 입력 및 신체 정보 입력 UI' },
-      { src: '/images/pullsize/service-result.png', caption: '사이즈핏 서비스 결과 화면 — AI 사이즈 추천 및 여유도 시각화' },
+      { src: '/images/sizefit/service-main.png', caption: '서비스 메인 화면 — 상품 URL 입력 및 신체 정보 입력 UI' },
+      { src: '/images/sizefit/service-result.png', caption: '추천 결과 화면 — AI 사이즈 추천 및 여유도 시각화' },
     ],
   },
   {
