@@ -144,6 +144,13 @@ export const projects: Project[] = [
         output: '29개+ 피드 자동 생성 파이프라인, 캡션 v4 전략 문서, 운영 대시보드',
       },
     },
+    screenshots: [
+      {
+        src: '/images/ai-content-automation/figma-overview.png',
+        caption: 'Figma 작업 전체 현황 — 스트릿·컨템포러리·캐주얼 3개 카테고리, 29개+ 브랜드 피드를 AI 파이프라인으로 자동 생성한 결과물',
+        wide: true,
+      },
+    ],
   },
   {
     slug: 'pullsize',
