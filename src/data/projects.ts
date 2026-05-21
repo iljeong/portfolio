@@ -146,6 +146,11 @@ export const projects: Project[] = [
     },
     screenshots: [
       {
+        src: '/images/ai-content-automation/instagram-feed.png',
+        caption: '실제 게시된 인스타그램 피드 — AI가 생성한 카드뉴스가 @pull_size 계정에 발행된 결과물',
+        wide: true,
+      },
+      {
         src: '/images/ai-content-automation/figma-overview.png',
         caption: 'Figma 작업 전체 현황 — 스트릿·컨템포러리·캐주얼 3개 카테고리, 29개+ 브랜드 피드를 AI 파이프라인으로 자동 생성한 결과물',
         wide: true,
