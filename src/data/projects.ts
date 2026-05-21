@@ -81,6 +81,14 @@ export const projects: Project[] = [
         output: '신규 강의 상품 4개+ 출시, 표준 제작 프로세스 Notion 문서',
       },
     },
+    screenshots: [
+      { src: '/images/fastcampus/minshortform.png',   caption: '민숏폼 — 숏폼 영상 기획·편집 실무 강의' },
+      { src: '/images/fastcampus/memil.png',          caption: '메밀 작가 이모티콘 클래스' },
+      { src: '/images/fastcampus/editman.png',        caption: '에디트맨 — 영상 편집 실무 강의' },
+      { src: '/images/fastcampus/figure.jpg',         caption: '피규어 디자인 클래스' },
+      { src: '/images/fastcampus/cinematicclip.webp', caption: '시네마틱 클립 영상 제작 강의' },
+      { src: '/images/fastcampus/apeai.jpg',          caption: 'APE AI — AI 영상 제작 실무 강의' },
+    ],
   },
   {
     slug: 'pullsize',
