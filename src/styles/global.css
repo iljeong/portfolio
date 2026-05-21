@@ -69,7 +69,7 @@
 
   /* ── Layout ──────────────────────────────── */
   --max-w: 1080px;
-  --px: clamp(1.25rem, 5vw, 4rem);
+  --px: clamp(1.5rem, 5vw, 4rem);
 }
 
 /* ===== Reset ===== */
