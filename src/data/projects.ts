@@ -149,6 +149,8 @@ export const projects: Project[] = [
       { src: '/images/salmidalla/location-front.jpg', caption: '시즌 룩북 촬영 — 브랜드 콘셉트와 제품 스타일링 기획', wide: true },
       { src: '/images/salmidalla/location-lookbook.jpg', caption: '로케이션 룩북 컷 — 시즌 무드와 그래픽 티셔츠 착장 시각화', wide: true },
       { src: '/images/salmidalla/location-graphic-tee.jpg', caption: '브랜드 그래픽 티셔츠 착장 — 상품 기획부터 촬영 콘텐츠까지 운영', wide: true },
+      { src: '/images/salmidalla/quality-check.png', caption: '의류 검수 현장 — 납품 전 봉제·프린팅 품질 직접 검수', wide: true },
+      { src: '/images/salmidalla/sample-spec.png', caption: '21SS 샘플 작업의뢰서 — 봉제 스펙·사이즈 그레이딩 직접 작성', wide: true },
       { src: '/images/salmidalla/21ss-product.jpg', caption: '21SS 상품 — 자체 제작 의류 140벌 완판' },
       { src: '/images/salmidalla/21fw-product-1.gif', caption: '21FW 컬렉션 — 21SS 완판에 이어 가을/겨울 라인 출시' },
       { src: '/images/salmidalla/22ss-cloth-1.jpg', caption: '22SS 의류 라인 — 네 종 출시, ACC·굿즈백·키링으로 품목 확장' },
