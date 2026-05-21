@@ -132,20 +132,15 @@ const next = projects[(idx + 1) % projects.length];
               {project.screenshots.map(s => (
                 <figure class={`cs-shot${s.wide ? ' cs-shot--wide' : ''}`}>
                   {s.url ? (
-                    <a href={s.url} target="_blank" rel="noopener noreferrer" class="cs-shot-link">
+                    <a href={s.url} target="_blank" rel="noopener noreferrer" class="cs-shot-inner">
                       <img src={assetPath(s.src)} alt={s.caption ?? ''} loading="lazy" />
+                      {s.caption && <div class="cs-shot-overlay"><span>{s.caption} ↗</span></div>}
                     </a>
                   ) : (
-                    <img src={assetPath(s.src)} alt={s.caption ?? ''} loading="lazy" />
-                  )}
-                  {s.caption && (
-                    <figcaption class="cs-shot-cap">
-                      {s.url ? (
-                        <a href={s.url} target="_blank" rel="noopener noreferrer" class="cs-shot-cap-link">
-                          {s.caption} ↗
-                        </a>
-                      ) : s.caption}
-                    </figcaption>
+                    <div class="cs-shot-inner">
+                      <img src={assetPath(s.src)} alt={s.caption ?? ''} loading="lazy" />
+                      {s.caption && <div class="cs-shot-overlay"><span>{s.caption}</span></div>}
+                    </div>
                   )}
                 </figure>
               ))}
@@ -415,36 +410,42 @@ const next = projects[(idx + 1) % projects.length];
     align-self: start;
   }
 
-  .cs-shot--wide {
-    grid-column: 1 / -1;
+  .cs-shot--wide { grid-column: 1 / -1; }
+
+  .cs-shot-inner {
+    display: block;
+    position: relative;
+    overflow: hidden;
   }
 
-  .cs-shot-link { display: block; }
-
-  .cs-shot-link img,
-  .cs-shot img {
+  .cs-shot-inner img {
     width: 100%;
     height: auto;
     display: block;
+    transition: transform var(--dur) var(--ease);
+  }
+
+  .cs-shot:hover .cs-shot-inner img { transform: scale(1.03); }
+
+  .cs-shot-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.125rem 1rem;
+    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.62) 100%);
+    opacity: 0;
     transition: opacity var(--dur-fast) var(--ease);
   }
 
-  .cs-shot-link:hover img { opacity: 0.88; }
+  .cs-shot:hover .cs-shot-overlay { opacity: 1; }
 
-  .cs-shot-cap {
+  .cs-shot-overlay span {
     font-size: var(--text-caption);
-    color: var(--ink-3);
-    padding: 0.625rem 0.875rem;
+    color: #fff;
     line-height: 1.5;
-    border-top: 1px solid var(--line);
+    letter-spacing: 0.01em;
   }
-
-  .cs-shot-cap-link {
-    color: var(--ink-3);
-    transition: color var(--dur-fast) var(--ease);
-  }
-
-  .cs-shot-cap-link:hover { color: var(--ink); }
 
   /* Next project */
   .cs-next {
