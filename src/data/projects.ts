@@ -8,6 +8,7 @@ export type Project = {
   tags: string[];
   isMain: boolean;
   highlight: string;
+  links?: { label: string; url: string }[];
   content: {
     problem: string;
     approach: { num: string; step: string; desc: string }[];
@@ -158,6 +159,7 @@ export const projects: Project[] = [
     tags: ['PM', '출판', 'InDesign', '크라우드펀딩', '영상 편집', '콘텐츠 기획'],
     isMain: false,
     highlight: '텀블벅 177%',
+    links: [{ label: '텀블벅 페이지 보기', url: 'https://tumblbug.com/areunsight' }],
     content: {
       problem:
         '창업동아리 인터뷰 콘텐츠가 영상 단독으로만 소비되고 있었다. 인터뷰 데이터를 더 많은 포맷으로 확장해 더 넓은 독자에게 도달하는 방법이 필요했다.',
@@ -197,6 +199,7 @@ export const projects: Project[] = [
     tags: ['브랜드 기획', 'MD', '영상 편집', 'Premiere Pro', 'Photoshop', '팝업스토어'],
     isMain: false,
     highlight: '팔로워 464→863 · +86%',
+    links: [{ label: '브랜드 사이트 보기', url: 'https://www.sixshop.com/salmidollar/home' }],
     content: {
       problem:
         '패션 브랜드를 처음 창업해 원단 선정부터 샘플, 생산, 판매, 마케팅까지 MD 전 과정을 혼자 운영해야 했다. 시즌마다 사이즈·원단 품질 피드백을 반영해 상품과 프로세스를 개선해야 했다.',

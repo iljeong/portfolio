@@ -38,6 +38,15 @@ const next = projects[(idx + 1) % projects.length];
         <div class="cs-tag-row">
           {project.tags.map(t => <span class="chip">{t}</span>)}
         </div>
+        {project.links && project.links.length > 0 && (
+          <div class="cs-link-row">
+            {project.links.map(link => (
+              <a href={link.url} target="_blank" rel="noopener noreferrer" class="cs-link-cta">
+                {link.label} ↗
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </header>
 
@@ -213,6 +222,38 @@ const next = projects[(idx + 1) % projects.length];
     gap: 0.375rem;
   }
 
+  .cs-link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    margin-top: 1rem;
+  }
+
+  .cs-link-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.25rem;
+    padding: 0.625rem 0.875rem;
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: var(--text-caption);
+    font-weight: 700;
+    line-height: 1;
+    transition:
+      border-color var(--dur-fast) var(--ease),
+      background var(--dur-fast) var(--ease),
+      color var(--dur-fast) var(--ease);
+  }
+
+  .cs-link-cta:hover {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: #fff;
+  }
+
   /* Stat bar */
   .cs-stat-bar {
     background: var(--ink);
@@ -363,6 +404,7 @@ const next = projects[(idx + 1) % projects.length];
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.25rem;
+    align-items: start;
   }
 
   .cs-shot {
@@ -370,6 +412,7 @@ const next = projects[(idx + 1) % projects.length];
     border-radius: var(--r-lg);
     overflow: hidden;
     background: var(--surface);
+    align-self: start;
   }
 
   .cs-shot--wide {
