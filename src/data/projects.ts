@@ -14,6 +14,7 @@ export type Project = {
     results: { label: string; desc: string }[];
     contribution: { role: string; scope: string; output: string };
   };
+  screenshots?: { src: string; caption?: string }[];
 };
 
 export const projects: Project[] = [
@@ -40,10 +41,10 @@ export const projects: Project[] = [
       results: [
         { label: '핵심 발견', desc: '부정 리뷰 원인의 68%가 개별 버그가 아닌 반납·과금 프로세스의 구조적 결함 (클러스터링 분석 기준)' },
         { label: '분석 규모', desc: 'Google Play · App Store 리뷰 37,923건 수집·분석, 감정 분류 정확도 F1 0.84' },
-        { label: '개선 영향 예측', desc: '반납 UI 개선 시 해당 클러스터 1점 리뷰 비율 약 30% 감소 효과 추산 (현재 비율 대비)' },
+        { label: '개선 여지 추산', desc: '반납 UI 개선 시 해당 클러스터 내 1점 리뷰 발생 요인이 해소될 경우, 최대 30% 개선 여지가 있다고 추산' },
       ],
       contribution: {
-        role: '데이터 분석가 · 서비스 기획자 (1인 프로젝트)',
+        role: '데이터 분석가 · 서비스 기획자 (공개 리뷰 데이터 기반 개인 분석 프로젝트)',
         scope: '크롤링·전처리·감정분석·이슈 구조화·여정 맵 작성·개선안 설계 전 과정',
         output: '고객 여정 기반 이탈 구조 분석 보고서, 3개 우선 개선 방향 제안서',
       },
@@ -112,6 +113,10 @@ export const projects: Project[] = [
         output: '29개+ 피드 자동 생성 파이프라인, 캡션 v4 전략 문서, 운영 대시보드',
       },
     },
+    screenshots: [
+      { src: '/images/pullsize/service-main.png',   caption: '사이즈핏 서비스 메인 화면 — 상품 URL 입력 및 신체 정보 입력 UI' },
+      { src: '/images/pullsize/service-result.png', caption: '사이즈핏 서비스 결과 화면 — AI 사이즈 추천 및 여유도 시각화' },
+    ],
   },
   {
     slug: 'areun-sai',
@@ -144,6 +149,11 @@ export const projects: Project[] = [
         output: '출판물 3권, 텀블벅 177% 달성, 인스타 콘텐츠 운영',
       },
     },
+    screenshots: [
+      // 아른 사이 자료 복사 후 추가 — 아래 명령어 실행:
+      // ! cp "/Users/seojeong-il/Desktop/내문서/02 일/04 아른 사이/<파일명>" \
+      //   "/Users/seojeong-il/projects/06 portfolio-web/public/images/areun-sai/"
+    ],
   },
   {
     slug: 'salmidalla',

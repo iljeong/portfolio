@@ -111,6 +111,24 @@ const next = projects[(idx + 1) % projects.length];
         </dl>
       </section>
 
+      <!-- 05 Screenshots -->
+      {project.screenshots && project.screenshots.length > 0 && (
+        <>
+          <hr class="line" />
+          <section class="cs-sec">
+            <p class="label label--accent cs-sec-label">05 · 산출물</p>
+            <div class="cs-shots">
+              {project.screenshots.map(s => (
+                <figure class="cs-shot">
+                  <img src={`${base}${s.src}`} alt={s.caption ?? ''} loading="lazy" />
+                  {s.caption && <figcaption class="cs-shot-cap">{s.caption}</figcaption>}
+                </figure>
+              ))}
+            </div>
+          </section>
+        </>
+      )}
+
     </div>
 
     <!-- Next project -->
@@ -322,6 +340,34 @@ const next = projects[(idx + 1) % projects.length];
     font-size: var(--text-body);    /* 15px */
     color: var(--ink-2);
     line-height: 1.6;
+  }
+
+  /* Screenshots */
+  .cs-shots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .cs-shot {
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .cs-shot img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .cs-shot-cap {
+    font-size: var(--text-caption);
+    color: var(--ink-3);
+    padding: 0.625rem 0.875rem;
+    line-height: 1.5;
+    border-top: 1px solid var(--line);
   }
 
   /* Next project */
