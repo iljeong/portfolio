@@ -120,8 +120,22 @@ const next = projects[(idx + 1) % projects.length];
             <div class="cs-shots">
               {project.screenshots.map(s => (
                 <figure class="cs-shot">
-                  <img src={`${base}${s.src}`} alt={s.caption ?? ''} loading="lazy" />
-                  {s.caption && <figcaption class="cs-shot-cap">{s.caption}</figcaption>}
+                  {s.url ? (
+                    <a href={s.url} target="_blank" rel="noopener noreferrer" class="cs-shot-link">
+                      <img src={`${base}${s.src}`} alt={s.caption ?? ''} loading="lazy" />
+                    </a>
+                  ) : (
+                    <img src={`${base}${s.src}`} alt={s.caption ?? ''} loading="lazy" />
+                  )}
+                  {s.caption && (
+                    <figcaption class="cs-shot-cap">
+                      {s.url ? (
+                        <a href={s.url} target="_blank" rel="noopener noreferrer" class="cs-shot-cap-link">
+                          {s.caption} ↗
+                        </a>
+                      ) : s.caption}
+                    </figcaption>
+                  )}
                 </figure>
               ))}
             </div>
@@ -356,11 +370,17 @@ const next = projects[(idx + 1) % projects.length];
     background: var(--surface);
   }
 
+  .cs-shot-link { display: block; }
+
+  .cs-shot-link img,
   .cs-shot img {
     width: 100%;
     height: auto;
     display: block;
+    transition: opacity var(--dur-fast) var(--ease);
   }
+
+  .cs-shot-link:hover img { opacity: 0.88; }
 
   .cs-shot-cap {
     font-size: var(--text-caption);
@@ -369,6 +389,13 @@ const next = projects[(idx + 1) % projects.length];
     line-height: 1.5;
     border-top: 1px solid var(--line);
   }
+
+  .cs-shot-cap-link {
+    color: var(--ink-3);
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .cs-shot-cap-link:hover { color: var(--ink); }
 
   /* Next project */
   .cs-next {

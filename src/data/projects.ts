@@ -14,7 +14,7 @@ export type Project = {
     results: { label: string; desc: string }[];
     contribution: { role: string; scope: string; output: string };
   };
-  screenshots?: { src: string; caption?: string }[];
+  screenshots?: { src: string; caption?: string; url?: string }[];
 };
 
 export const projects: Project[] = [
@@ -59,7 +59,7 @@ export const projects: Project[] = [
     category: '콘텐츠 상품 기획',
     tags: ['상품 기획', 'IA 설계', '커리큘럼 설계', 'Notion', 'Figma'],
     isMain: true,
-    highlight: '신규 강의 4개+',
+    highlight: '신규 강의 6개',
     content: {
       problem:
         '새로운 강사 영입 시 콘텐츠 방향, 타겟, 커리큘럼 구성, 페이지 기획이 담당자 경험에만 의존하고 있었다. 제작 프로세스가 문서화되지 않아 일정 지연과 품질 편차가 반복됐다.',
@@ -71,23 +71,23 @@ export const projects: Project[] = [
         { num: '05', step: '프로세스 문서화', desc: '전 과정을 Notion 기반 표준 템플릿으로 정리, 후임자 인수인계 완료' },
       ],
       results: [
-        { label: '런칭', desc: '신규 강의 4개+ 기획·출시 완료 (7개월, 2024.05–12)' },
+        { label: '런칭', desc: '신규 강의 6개 기획·출시 완료 (7개월, 2024.05–12)' },
         { label: '페이지 개선', desc: 'IA 재설계 후 상품 페이지 구성 이해도 개선 확인 (정량 지표 사내 비공개)' },
         { label: '프로세스', desc: '표준 제작 프로세스 도입, 담당자 간 품질 편차 감소 및 온보딩 시간 단축' },
       ],
       contribution: {
         role: '콘텐츠 상품 기획자',
         scope: '강사 분석·커리큘럼 설계·IA 기획·런칭 매니징·프로세스 문서화',
-        output: '신규 강의 상품 4개+ 출시, 표준 제작 프로세스 Notion 문서',
+        output: '신규 강의 상품 6개 출시, 표준 제작 프로세스 Notion 문서',
       },
     },
     screenshots: [
-      { src: '/images/fastcampus/minshortform.png',   caption: '민숏폼 — 숏폼 영상 기획·편집 실무 강의' },
-      { src: '/images/fastcampus/memil.png',          caption: '메밀 작가 이모티콘 클래스' },
-      { src: '/images/fastcampus/editman.png',        caption: '에디트맨 — 영상 편집 실무 강의' },
-      { src: '/images/fastcampus/figure.jpg',         caption: '피규어 디자인 클래스' },
-      { src: '/images/fastcampus/cinematicclip.webp', caption: '시네마틱 클립 영상 제작 강의' },
-      { src: '/images/fastcampus/apeai.jpg',          caption: 'APE AI — AI 영상 제작 실무 강의' },
+      { src: '/images/fastcampus/minshortform.png',   caption: '민숏폼 — 숏폼 영상 기획·편집 실무 강의',  url: 'https://fastcampus.co.kr/dgn_online_minshortform' },
+      { src: '/images/fastcampus/memil.png',          caption: '메밀 작가 이모티콘 클래스',               url: 'https://fastcampus.co.kr/dgn_online_memil' },
+      { src: '/images/fastcampus/editman.png',        caption: '에디트맨 — 영상 편집 실무 강의',          url: 'https://fastcampus.co.kr/dgn_online_editman' },
+      { src: '/images/fastcampus/figure.jpg',         caption: '피규어 디자인 클래스',                    url: 'https://fastcampus.co.kr/dgn_online_figure' },
+      { src: '/images/fastcampus/cinematicclip.webp', caption: '시네마틱 클립 영상 제작 강의',            url: 'https://fastcampus.co.kr/data_online_cinematicclip' },
+      { src: '/images/fastcampus/apeai.jpg',          caption: 'APE AI — AI 영상 제작 실무 강의',         url: 'https://fastcampus.co.kr/data_online_apeai' },
     ],
   },
   {
