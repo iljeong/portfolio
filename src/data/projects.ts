@@ -180,9 +180,11 @@ export const projects: Project[] = [
       },
     },
     screenshots: [
-      // 아른 사이 자료 복사 후 추가 — 아래 명령어 실행:
-      // ! cp "/Users/seojeong-il/Desktop/내문서/02 일/04 아른 사이/<파일명>" \
-      //   "/Users/seojeong-il/projects/06 portfolio-web/public/images/areun-sai/"
+      { src: '/images/areun-sai/book-cover.jpg', caption: '인터뷰집 표지·북 패키지 디자인 — 장기 프로젝트의 핵심 출판물 시각화', wide: true },
+      { src: '/images/areun-sai/funding-goods.jpg', caption: '텀블벅 리워드 패키지 구성 — 도서·굿즈·상세페이지까지 연결한 펀딩 설계' },
+      { src: '/images/areun-sai/interview-shoot.jpg', caption: '인터뷰 촬영 현장 — 대상 섭외부터 질문 설계·촬영·편집까지 진행' },
+      { src: '/images/areun-sai/question-board.jpg', caption: '콘텐츠 질문 보드 — 인터뷰 주제와 독자 반응을 수집해 출판 콘텐츠로 확장' },
+      { src: '/images/areun-sai/fulfillment-packaging.jpeg', caption: '리워드 포장·배송 준비 — 펀딩 이후 실물 제작과 발송 운영' },
     ],
   },
   {
@@ -216,5 +218,10 @@ export const projects: Project[] = [
         output: '3시즌 출시, 인스타 팔로워 +86%, 팝업 3회 운영, 유튜브 2.4만+ 조회',
       },
     },
+    screenshots: [
+      { src: '/images/salmidalla/location-front.jpg', caption: '시즌 룩북 촬영 — 브랜드 콘셉트와 제품 스타일링 기획', wide: true },
+      { src: '/images/salmidalla/location-lookbook.jpg', caption: '로케이션 룩북 컷 — 시즌 무드와 그래픽 티셔츠 착장 시각화', wide: true },
+      { src: '/images/salmidalla/location-graphic-tee.jpg', caption: '브랜드 그래픽 티셔츠 착장 — 상품 기획부터 촬영 콘텐츠까지 운영', wide: true },
+    ],
   },
 ];
