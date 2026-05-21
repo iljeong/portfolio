@@ -1,0 +1,146 @@
+/* ===== Design System — PPT Minimal v2 → Web ===== */
+
+:root {
+  /* Surface */
+  --c-bg: #FAFAFA;
+  --c-canvas: #FFFFFF;
+  --c-surface: #F5F5F5;
+  --c-hairline: #EBEBEB;
+  --c-night: #0F0F0F;
+
+  /* Text — 4-level hierarchy */
+  --c-ink: #111111;
+  --c-body: #767676;
+  --c-mute: #C0C0C0;
+  --c-on-dark: #FFFFFF;
+  --c-on-dark-mute: #909090;
+
+  /* Sky accent (1 accent color, 6:3:1 ratio) */
+  --c-sky: #5A9EC4;
+  --c-sky-deep: #1A2E4A;
+  --c-sky-soft: #EAF5FC;
+  --c-sky-line: #A8CCE0;
+
+  /* Typography */
+  --font: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+
+  /* Layout */
+  --max-w: 960px;
+  --px: clamp(1.25rem, 4vw, 2.5rem);
+
+  /* Motion */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur: 180ms;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font);
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--c-bg);
+  color: var(--c-ink);
+  line-height: 1.65;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===== Layout ===== */
+
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--px);
+}
+
+/* ===== Section spacing ===== */
+
+.section {
+  padding: 6rem 0;
+}
+
+.section-label {
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--c-sky);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--c-ink);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.section-desc {
+  font-size: 0.9375rem;
+  color: var(--c-body);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+/* ===== Divider ===== */
+
+.divider {
+  height: 1px;
+  background-color: var(--c-hairline);
+  border: none;
+  margin: 0;
+}
+
+/* ===== Chip / Tag ===== */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--c-body);
+  background: var(--c-surface);
+  border: 1px solid var(--c-hairline);
+  border-radius: 9999px;
+  padding: 0.2em 0.7em;
+  white-space: nowrap;
+}
+
+.chip--sky {
+  color: var(--c-sky);
+  border-color: var(--c-sky-line);
+  background: var(--c-sky-soft);
+}
+
+/* ===== Utility ===== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
