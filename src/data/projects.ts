@@ -114,8 +114,8 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: 'pullsize',
-    name: 'Pullsize 콘텐츠 자동화',
+    slug: 'ai-content-automation',
+    name: 'AI 콘텐츠 생성 자동화',
     title: 'AI 파이프라인으로 콘텐츠 제작 시간을 83% 단축했다',
     subtitle: 'Claude AI + Figma MCP 연동 → 29개 피드 자동 생성',
     period: '2026.03 — 현재',
@@ -146,8 +146,8 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: 'sizefit',
-    name: '사이즈핏 AI 추천 서비스',
+    slug: 'pullsize',
+    name: 'Pullsize',
     title: '신체 정보와 상품 URL로 의류 사이즈를 추천하는 서비스를 만들었다',
     subtitle: '온라인 쇼핑 사이즈 불안을 줄이는 AI 추천 MVP',
     period: '2026.03 — 현재',
@@ -178,8 +178,8 @@ export const projects: Project[] = [
       },
     },
     screenshots: [
-      { src: '/images/sizefit/service-main.png', caption: '서비스 메인 화면 — 상품 URL 입력 및 신체 정보 입력 UI' },
-      { src: '/images/sizefit/service-result.png', caption: '추천 결과 화면 — AI 사이즈 추천 및 여유도 시각화' },
+      { src: '/images/pullsize/service-main.png', caption: '서비스 메인 화면 — 상품 URL 입력 및 신체 정보 입력 UI' },
+      { src: '/images/pullsize/service-result.png', caption: '추천 결과 화면 — AI 사이즈 추천 및 여유도 시각화' },
     ],
   },
   {
