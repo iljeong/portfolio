@@ -155,6 +155,7 @@ export const projects: Project[] = [
     tags: ['AI 서비스', 'MVP', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계'],
     isMain: true,
     highlight: 'AI 사이즈 추천 MVP',
+    links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
     content: {
       problem:
         '온라인 의류 구매자는 브랜드마다 다른 실측 기준과 착용감 차이 때문에 사이즈 선택에 불안을 느낀다. 상품 상세페이지의 치수표만으로는 내 체형에 맞는 사이즈와 여유도를 판단하기 어렵고, 이는 구매 망설임과 교환·반품으로 이어질 수 있다.',
