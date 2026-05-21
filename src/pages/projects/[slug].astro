@@ -130,10 +130,7 @@ const next = projects[(idx + 1) % projects.length];
             <p class="label label--accent cs-sec-label">05 · 산출물</p>
             <div class="cs-shots">
               {project.screenshots.map(s => (
-                <figure
-                  class="cs-shot"
-                  style={s.wide ? 'grid-column: 1 / -1' : s.cols ? `grid-column: span ${s.cols}` : 'grid-column: span 6'}
-                >
+                <figure class={`cs-shot${s.wide ? ' cs-shot--wide' : ''}`}>
                   {s.url ? (
                     <a href={s.url} target="_blank" rel="noopener noreferrer" class="cs-shot-inner">
                       <img src={assetPath(s.src)} alt={s.caption ?? ''} loading="lazy" />
@@ -399,23 +396,26 @@ const next = projects[(idx + 1) % projects.length];
 
   /* Screenshots */
   .cs-shots {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 0.75rem;
-    align-items: start;
+    columns: 2;
+    column-gap: 0.75rem;
   }
 
   .cs-shot {
+    break-inside: avoid;
+    margin-bottom: 0.75rem;
     border: 1px solid var(--line);
     border-radius: var(--r-lg);
     overflow: hidden;
     background: var(--surface);
-    align-self: start;
+  }
+
+  .cs-shot--wide {
+    column-span: all;
+    margin-bottom: 0.75rem;
   }
 
   @media (max-width: 640px) {
-    .cs-shots { grid-template-columns: 1fr; }
-    .cs-shot  { grid-column: 1 / -1 !important; }
+    .cs-shots { columns: 1; }
   }
 
   .cs-shot-inner {
