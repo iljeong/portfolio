@@ -274,11 +274,11 @@ export const projects: Project[] = [
       },
     },
     screenshots: [
-      { src: '/images/areun-sai/book-cover.jpg', caption: '인터뷰집 표지·북 패키지 디자인 — 장기 프로젝트의 핵심 출판물 시각화', wide: true },
-      { src: '/images/areun-sai/funding-goods.jpg', caption: '텀블벅 리워드 패키지 구성 — 도서·굿즈·상세페이지까지 연결한 펀딩 설계' },
-      { src: '/images/areun-sai/interview-shoot.jpg', caption: '인터뷰 촬영 현장 — 대상 섭외부터 질문 설계·촬영·편집까지 진행' },
-      { src: '/images/areun-sai/question-board.jpg', caption: '콘텐츠 질문 보드 — 인터뷰 주제와 독자 반응을 수집해 출판 콘텐츠로 확장' },
-      { src: '/images/areun-sai/fulfillment-packaging.jpeg', caption: '리워드 포장·배송 준비 — 펀딩 이후 실물 제작과 발송 운영' },
+      { src: '/images/areun-sai/book-cover.jpg',            caption: '인터뷰집 표지·북 패키지 디자인 — 장기 프로젝트의 핵심 출판물 시각화', wide: true },
+      { src: '/images/areun-sai/funding-goods.jpg',         caption: '텀블벅 리워드 패키지 구성 — 도서·굿즈·상세페이지까지 연결한 펀딩 설계', cols: 6 },
+      { src: '/images/areun-sai/interview-shoot.jpg',       caption: '인터뷰 촬영 현장 — 대상 섭외부터 질문 설계·촬영·편집까지 진행',         cols: 6 },
+      { src: '/images/areun-sai/question-board.jpg',        caption: '콘텐츠 질문 보드 — 인터뷰 주제와 독자 반응을 수집해 출판 콘텐츠로 확장', cols: 7 },
+      { src: '/images/areun-sai/fulfillment-packaging.jpeg',caption: '리워드 포장·배송 준비 — 펀딩 이후 실물 제작과 발송 운영',               cols: 5 },
     ],
   },
 ];
