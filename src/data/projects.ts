@@ -118,7 +118,7 @@ export const projects: Project[] = [
     name: 'AI 콘텐츠 생성 자동화',
     title: 'AI 파이프라인으로 콘텐츠 제작 시간을 83% 단축했다',
     subtitle: 'Claude AI + Figma MCP 연동 → 29개 피드 자동 생성',
-    period: '2026.03 — 현재',
+    period: '2026.03 — 2026.05',
     category: 'AI 자동화 · 콘텐츠 기획',
     tags: ['Claude AI', 'Figma MCP', 'Python', 'Google Sheets', '자동화', '콘텐츠 기획'],
     isMain: true,
@@ -154,7 +154,7 @@ export const projects: Project[] = [
     category: 'AI 서비스 기획 · MVP',
     tags: ['AI 서비스', 'MVP', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계'],
     isMain: true,
-    highlight: 'AI 사이즈 추천 MVP',
+    highlight: '컨셉 → MVP 출시',
     links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
     content: {
       problem:
