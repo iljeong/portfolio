@@ -3,24 +3,24 @@
 
 :root {
   /* ── Surface ─────────────────────────────── */
-  --bg:       #F7F5F0;          /* warm ivory — editorial */
-  --canvas:   #FFFFFF;          /* card / panel surfaces  */
-  --surface:  #F0EDE8;          /* subtle fills           */
-  --surface-muted: #E8E6E1;     /* StyleSeed neutral.200  */
+  --bg:       #ffffff;
+  --canvas:   #ffffff;
+  --surface:  #fafafa;
+  --surface-muted: #fafafa;
 
-  /* ── Text — StyleSeed 4-level ────────────── */
-  --ink:      #3C3C3C;          /* primary   */
-  --ink-2:    #6A6A6A;          /* secondary */
-  --ink-3:    #9B9B9B;          /* tertiary  */
-  --ink-4:    #C4C2BE;          /* disabled / very muted  */
+  /* ── Text ────────────────────────────────── */
+  --ink:      #000000;
+  --ink-2:    #525252;
+  --ink-3:    #737373;
+  --ink-4:    #a3a3a3;
 
   /* ── Border ──────────────────────────────── */
-  --line:     rgba(0, 0, 0, 0.09);   /* adapts to any bg */
-  --line-strong: rgba(0, 0, 0, 0.15);
+  --line:     #e5e5e5;
+  --line-strong: #d4d4d4;
 
   /* ── Accent ───────────────────────────────── */
   --accent:    #2B5CE6;
-  --accent-bg: #EEF3FD;
+  --accent-bg: #f0f5ff;
 
   /* ── StyleSeed Shadows ────────────────────── */
   --shadow-sm:   0 1px 2px rgba(0, 0, 0, 0.04);
