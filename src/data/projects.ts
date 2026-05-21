@@ -166,7 +166,7 @@ export const projects: Project[] = [
     category: 'AI 서비스 기획 · MVP',
     tags: ['AI 서비스', 'MVP', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계'],
     isMain: true,
-    highlight: '컨셉 → MVP 출시',
+    highlight: 'MVP 출시',
     links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
     content: {
       problem:
@@ -241,12 +241,12 @@ export const projects: Project[] = [
     slug: 'salmidalla',
     name: '살미달라',
     title: '패션 브랜드를 창업하고 3시즌을 출시했다',
-    subtitle: '컨셉 → 생산 → 마케팅 → 판매 — 브랜드 전 과정 운영',
+    subtitle: '컨셉부터 판매까지, 브랜드 전 과정 운영',
     period: '2021.01 — 2023.04',
     category: '브랜드 기획 · 패션 MD',
     tags: ['브랜드 기획', 'MD', '영상 편집', 'Premiere Pro', 'Photoshop', '팝업스토어'],
     isMain: false,
-    highlight: '팔로워 464→863 · +86%',
+    highlight: '팔로워 +86%',
     links: [{ label: '브랜드 사이트 보기', url: 'https://www.sixshop.com/salmidollar/home' }],
     content: {
       problem:
