@@ -159,7 +159,10 @@ export const projects: Project[] = [
     tags: ['PM', '출판', 'InDesign', '크라우드펀딩', '영상 편집', '콘텐츠 기획'],
     isMain: false,
     highlight: '텀블벅 177%',
-    links: [{ label: '텀블벅 페이지 보기', url: 'https://tumblbug.com/areunsight' }],
+    links: [
+      { label: '텀블벅 페이지 보기', url: 'https://tumblbug.com/areunsight' },
+      { label: '아른 사이 링크 모음', url: 'https://litt.ly/areun.sight' },
+    ],
     content: {
       problem:
         '창업동아리 인터뷰 콘텐츠가 영상 단독으로만 소비되고 있었다. 인터뷰 데이터를 더 많은 포맷으로 확장해 더 넓은 독자에게 도달하는 방법이 필요했다.',
