@@ -35,6 +35,8 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
                   <span class="work-cat">{p.category.split('·')[0].trim()}</span>
                   <span class="work-sep">·</span>
                   <span class="work-kpi">{p.highlight}</span>
+                  <span class="work-sep work-period-sep">·</span>
+                  <span class="work-period-meta">{p.period.replace(' — ', '–')}</span>
                 </span>
               </span>
               <span class="work-period">{p.period.replace(' — ', '–')}</span>
@@ -272,15 +274,26 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
     letter-spacing: 0.02em;
   }
 
+  /* period-meta: hidden on desktop, shown on mobile inside meta row */
+  .work-period-sep,
+  .work-period-meta { display: none; }
+
   /* Mobile: hide preview */
   @media (max-width: 860px) {
     .work-layout { grid-template-columns: 1fr; }
     .work-preview { display: none; }
     .work-link {
-      grid-template-columns: 2rem 1fr auto auto;
+      grid-template-columns: 2rem 1fr auto;
       gap: 0.75rem;
       padding-left: 0.25rem;
       padding-right: 0.25rem;
+    }
+    .work-period { display: none; }
+    .work-period-sep,
+    .work-period-meta { display: inline; }
+    .work-period-meta {
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.01em;
     }
   }
 </style>
