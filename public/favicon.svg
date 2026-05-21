@@ -1,4 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#5A9EC4"/>
-  <text x="16" y="22" font-family="serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">서</text>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="서정일 포트폴리오 파비콘">
+  <rect width="512" height="512" rx="80" fill="#111111"/>
+  <text x="256" y="332"
+        text-anchor="middle"
+        font-family="Pretendard, Apple SD Gothic Neo, Noto Sans KR, Arial, sans-serif"
+        font-size="230"
+        font-weight="800"
+        fill="#FFFFFF"
+        letter-spacing="-12">정</text>
+  <circle cx="386" cy="126" r="26" fill="#2B5CE6"/>
 </svg>
