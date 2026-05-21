@@ -135,7 +135,7 @@ export const projects: Project[] = [
         { num: '05', step: '피드백 반영', desc: '고객 리뷰·DM 수집 → 차기 시즌 상품 개선 반영 (사이즈 그레이딩 재설계 포함)' },
       ],
       results: [
-        { label: '시즌 출시', desc: '21SS · 21FW · 22SS 3시즌 출시 완료 (2021.01–2022.09)' },
+        { label: '21SS 완판', desc: '첫 시즌 자체 제작 의류 140벌 완판 — 이후 21FW · 22SS 연속 출시' },
         { label: 'SNS 성장', desc: '인스타그램 팔로워 464 → 863명 (+86%), 유튜브 조회수 총 2.4만+ (2년 기준)' },
         { label: '오프라인', desc: '팝업스토어 3회 운영, 학교 축제·플리마켓·카페 위탁 등 채널 다각화' },
       ],
@@ -149,6 +149,10 @@ export const projects: Project[] = [
       { src: '/images/salmidalla/location-front.jpg', caption: '시즌 룩북 촬영 — 브랜드 콘셉트와 제품 스타일링 기획', wide: true },
       { src: '/images/salmidalla/location-lookbook.jpg', caption: '로케이션 룩북 컷 — 시즌 무드와 그래픽 티셔츠 착장 시각화', wide: true },
       { src: '/images/salmidalla/location-graphic-tee.jpg', caption: '브랜드 그래픽 티셔츠 착장 — 상품 기획부터 촬영 콘텐츠까지 운영', wide: true },
+      { src: '/images/salmidalla/21ss-product.jpg', caption: '21SS 상품 — 자체 제작 의류 140벌 완판' },
+      { src: '/images/salmidalla/21fw-product-1.gif', caption: '21FW 컬렉션 — 21SS 완판에 이어 가을/겨울 라인 출시' },
+      { src: '/images/salmidalla/22ss-cloth-1.jpg', caption: '22SS 의류 라인 — 네 종 출시, ACC·굿즈백·키링으로 품목 확장' },
+      { src: '/images/salmidalla/22ss-acc-keyring-1.jpg', caption: '22SS 키링 ACC — 2종 완판' },
     ],
   },
   {
