@@ -1,5 +1,6 @@
 export type Project = {
   slug: string;
+  name: string;       // short name for list view
   title: string;
   subtitle: string;
   period: string;
@@ -18,6 +19,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: 'gcar-voc',
+    name: 'Gcar VoC 분석',
     title: '37,923건의 리뷰에서 이탈 구조를 찾았다',
     subtitle: '앱 리뷰 감정 분석 → 고객 여정 기반 서비스 개선안 설계',
     period: '2025',
@@ -49,6 +51,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'fastcampus',
+    name: '패스트캠퍼스 교육 상품 기획',
     title: 'URL 하나로 신규 강의 흐름을 설계했다',
     subtitle: '강사 분석 → 커리큘럼 설계 → 페이지 IA → 런칭 매니징',
     period: '2024.05 — 2024.12',
@@ -80,6 +83,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'pullsize',
+    name: 'pullsize AI 자동화',
     title: 'AI 파이프라인으로 콘텐츠 제작 시간을 80% 단축했다',
     subtitle: 'Claude AI + Figma MCP 연동 → 29개 피드 자동 생성',
     period: '2026.03 — 현재',
@@ -111,6 +115,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'areun-sai',
+    name: '아른 사이',
     title: '텀블벅 177% 달성 — 인터뷰 콘텐츠를 도서로 만들었다',
     subtitle: '창업동아리 PM · 영상 제작 · 출판 · 크라우드펀딩',
     period: '2023.04 — 2025.06',
@@ -142,6 +147,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'salmidalla',
+    name: '살미달라',
     title: '패션 브랜드를 창업하고 3시즌을 출시했다',
     subtitle: '컨셉 → 생산 → 마케팅 → 판매 — 브랜드 전 과정 운영',
     period: '2021.01 — 2023.04',

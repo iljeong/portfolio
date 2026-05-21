@@ -10,351 +10,358 @@ export const getStaticPaths = (() => {
 
 const { project } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const idx = projects.findIndex(p => p.slug === project.slug);
+const next = projects[(idx + 1) % projects.length];
 ---
 
 <Layout
-  title={`${project.title} — 서정일`}
+  title={`${project.name} — 서정일`}
   description={project.subtitle}
 >
   <Nav />
 
-  <main class="project-page">
-    <!-- Breadcrumb -->
-    <div class="container breadcrumb-row">
-      <a href={base} class="breadcrumb-link">← 전체 프로젝트</a>
-    </div>
+  <main class="cs-main">
 
-    <!-- Header -->
-    <header class="project-header">
+    <!-- ── Header ── -->
+    <header class="cs-header">
       <div class="container">
-        <p class="proj-chapter">{project.category} · {project.period}</p>
-        <h1 class="proj-title">{project.title}</h1>
-        <p class="proj-subtitle">{project.subtitle}</p>
-        <hr class="proj-divider" />
-        <div class="proj-tags">
-          {project.tags.map(tag => <span class="chip">{tag}</span>)}
+        <a href={base} class="cs-back">← 모든 프로젝트</a>
+        <div class="cs-meta-row">
+          <span class="label">{project.category}</span>
+          <span class="cs-sep">·</span>
+          <span class="label">{project.period}</span>
+        </div>
+        <h1 class="cs-title">{project.title}</h1>
+        <p class="cs-sub">{project.subtitle}</p>
+        <div class="cs-tags">
+          {project.tags.map(t => <span class="chip">{t}</span>)}
         </div>
       </div>
     </header>
 
-    <!-- Content -->
-    <div class="container project-body">
+    <!-- ── Highlight stat ── -->
+    <div class="cs-highlight-bar">
+      <div class="container cs-highlight-inner">
+        <p class="cs-highlight-num">{project.highlight}</p>
+        <p class="cs-highlight-label">핵심 성과</p>
+      </div>
+    </div>
+
+    <!-- ── Body ── -->
+    <div class="container cs-body">
 
       <!-- Problem -->
-      <section class="proj-section">
-        <p class="proj-section-label">PROBLEM</p>
-        <div class="callout-box">
-          <div class="callout-bar"></div>
-          <div class="callout-inner">
-            <p class="callout-label">문제 정의</p>
-            <p class="callout-text">{project.content.problem}</p>
-          </div>
+      <section class="cs-section">
+        <p class="cs-section-label label label--accent">01 · Problem</p>
+        <div class="cs-prose">
+          <p>{project.content.problem}</p>
         </div>
       </section>
 
+      <hr class="line" />
+
       <!-- Approach -->
-      <section class="proj-section">
-        <p class="proj-section-label">APPROACH</p>
-        <div class="process-list">
+      <section class="cs-section">
+        <p class="cs-section-label label label--accent">02 · Approach</p>
+        <div class="cs-process">
           {project.content.approach.map(a => (
-            <div class="process-item">
-              <span class="process-num">{a.num}</span>
-              <div class="process-body">
-                <p class="process-step">{a.step}</p>
-                <p class="process-desc">{a.desc}</p>
+            <div class="cs-step">
+              <span class="cs-step-num">{a.num}</span>
+              <div class="cs-step-body">
+                <p class="cs-step-name">{a.step}</p>
+                <p class="cs-step-desc">{a.desc}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
+      <hr class="line" />
+
       <!-- Results -->
-      <section class="proj-section">
-        <p class="proj-section-label">RESULTS</p>
-        <div class="results-grid">
+      <section class="cs-section">
+        <p class="cs-section-label label label--accent">03 · Results</p>
+        <div class="cs-results">
           {project.content.results.map(r => (
-            <div class="result-card">
-              <p class="result-label">{r.label}</p>
-              <p class="result-desc">{r.desc}</p>
+            <div class="cs-result">
+              <p class="cs-result-label">{r.label}</p>
+              <p class="cs-result-desc">{r.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <!-- Contribution scope -->
-      <section class="proj-section">
-        <p class="proj-section-label">CONTRIBUTION</p>
-        <div class="contrib-box">
-          <div class="contrib-row">
-            <span class="contrib-key">Role</span>
-            <span class="contrib-val">{project.content.contribution.role}</span>
+      <hr class="line" />
+
+      <!-- Contribution -->
+      <section class="cs-section">
+        <p class="cs-section-label label label--accent">04 · Contribution</p>
+        <div class="cs-contrib">
+          <div class="cc-row">
+            <span class="cc-key">Role</span>
+            <span class="cc-val">{project.content.contribution.role}</span>
           </div>
-          <hr class="contrib-divider" />
-          <div class="contrib-row">
-            <span class="contrib-key">Scope</span>
-            <span class="contrib-val">{project.content.contribution.scope}</span>
+          <div class="cc-row">
+            <span class="cc-key">Scope</span>
+            <span class="cc-val">{project.content.contribution.scope}</span>
           </div>
-          <hr class="contrib-divider" />
-          <div class="contrib-row">
-            <span class="contrib-key">Output</span>
-            <span class="contrib-val">{project.content.contribution.output}</span>
+          <div class="cc-row">
+            <span class="cc-key">Output</span>
+            <span class="cc-val">{project.content.contribution.output}</span>
           </div>
         </div>
       </section>
 
-      <!-- Back link -->
-      <div class="back-row">
-        <a href={base} class="back-link">← 전체 프로젝트로 돌아가기</a>
+    </div>
+
+    <!-- ── Next project ── -->
+    <div class="cs-next">
+      <div class="container">
+        <p class="label" style="margin-bottom:1rem">다음 프로젝트</p>
+        <a href={`${base}/projects/${next.slug}`} class="cs-next-link">
+          <span class="cs-next-name">{next.name}</span>
+          <span class="cs-next-arrow">→</span>
+        </a>
       </div>
     </div>
-  </main>
 
-  <!-- Simple footer -->
-  <footer class="proj-footer">
-    <div class="container">
-      <span>서정일 · seobgak11@naver.com</span>
-    </div>
-  </footer>
+  </main>
 </Layout>
 
 <style>
-  .project-page {
-    padding-top: 3.25rem; /* nav height */
-  }
-
-  /* Breadcrumb */
-  .breadcrumb-row {
-    padding-top: 1.5rem;
-    padding-bottom: 0;
-  }
-
-  .breadcrumb-link {
-    font-size: 0.8125rem;
-    color: var(--c-sky);
-    transition: color var(--dur) var(--ease);
-  }
-
-  .breadcrumb-link:hover {
-    color: var(--c-sky-deep);
+  .cs-main {
+    padding-top: 3.5rem; /* nav height */
   }
 
   /* Header */
-  .project-header {
-    padding: 3rem 0 2.5rem;
-    border-bottom: 1px solid var(--c-hairline);
-    margin-bottom: 3.5rem;
-    background: var(--c-canvas);
+  .cs-header {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--line);
   }
 
-  .proj-chapter {
-    font-size: 0.6875rem;
-    letter-spacing: 0.14em;
-    color: var(--c-sky);
-    text-transform: uppercase;
+  .cs-back {
+    display: inline-block;
+    font-size: 0.8125rem;
+    color: var(--ink-3);
+    margin-bottom: 2.5rem;
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .cs-back:hover { color: var(--ink); }
+
+  .cs-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .cs-sep { color: var(--ink-4); }
+
+  .cs-title {
+    font-size: clamp(1.75rem, 4vw, 2.875rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--ink);
+    max-width: 720px;
     margin-bottom: 0.875rem;
   }
 
-  .proj-title {
-    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    color: var(--c-ink);
-    line-height: 1.2;
-    margin-bottom: 0.75rem;
-    max-width: 720px;
-  }
-
-  .proj-subtitle {
-    font-size: 0.9375rem;
-    color: var(--c-body);
+  .cs-sub {
+    font-size: 1rem;
+    color: var(--ink-2);
+    max-width: 560px;
+    line-height: 1.65;
     margin-bottom: 1.5rem;
-    max-width: 600px;
   }
 
-  .proj-divider {
-    border: none;
-    height: 1px;
-    background: var(--c-hairline);
-    margin-bottom: 1.25rem;
-    max-width: 720px;
-  }
-
-  .proj-tags {
+  .cs-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.375rem;
+    gap: 0.4rem;
   }
 
-  /* Body sections */
-  .project-body {
-    padding-bottom: 5rem;
-    max-width: 760px;
+  /* Highlight bar */
+  .cs-highlight-bar {
+    background: var(--ink);
+    padding: 2rem 0;
   }
 
-  .proj-section {
-    margin-bottom: 3rem;
-  }
-
-  .proj-section-label {
-    font-size: 0.6875rem;
-    letter-spacing: 0.14em;
-    color: var(--c-sky);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  /* Callout box */
-  .callout-box {
+  .cs-highlight-inner {
     display: flex;
-    background: var(--c-canvas);
-    border: 1px solid var(--c-hairline);
-  }
-
-  .callout-bar {
-    width: 3px;
-    background: var(--c-sky);
-    flex-shrink: 0;
-  }
-
-  .callout-inner {
-    padding: 1.125rem 1.25rem;
-  }
-
-  .callout-label {
-    font-size: 0.6875rem;
-    letter-spacing: 0.08em;
-    color: var(--c-sky);
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  .callout-text {
-    font-size: 0.9375rem;
-    color: var(--c-body);
-    line-height: 1.7;
-  }
-
-  /* Process list */
-  .process-list {
-    border-top: 1px solid var(--c-hairline);
-  }
-
-  .process-item {
-    display: flex;
+    align-items: baseline;
     gap: 1.25rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--c-hairline);
+  }
+
+  .cs-highlight-num {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+    line-height: 1;
+  }
+
+  .cs-highlight-label {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.05em;
+  }
+
+  /* Body */
+  .cs-body {
+    padding: 0 0 5rem;
+    max-width: 800px;
+  }
+
+  .cs-section {
+    padding: 3rem 0;
+  }
+
+  .cs-section-label {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Prose */
+  .cs-prose p {
+    font-size: 1rem;
+    color: var(--ink-2);
+    line-height: 1.8;
+    max-width: 640px;
+  }
+
+  /* Process */
+  .cs-process {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .cs-step {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.125rem 0;
+    border-bottom: 1px solid var(--line);
     align-items: baseline;
   }
 
-  .process-num {
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: var(--c-mute);
-    min-width: 2rem;
+  .cs-step-num {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--ink-4);
     letter-spacing: -0.02em;
+    min-width: 2.25rem;
+    line-height: 1;
   }
 
-  .process-step {
+  .cs-step-name {
     font-size: 0.9375rem;
     font-weight: 700;
-    color: var(--c-ink);
-    margin-bottom: 0.2rem;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
   }
 
-  .process-desc {
+  .cs-step-desc {
     font-size: 0.875rem;
-    color: var(--c-body);
+    color: var(--ink-2);
     line-height: 1.55;
   }
 
   /* Results */
-  .results-grid {
+  .cs-results {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1px;
-    background: var(--c-hairline);
-    border: 1px solid var(--c-hairline);
+    background: var(--line);
+    border: 1px solid var(--line);
   }
 
-  .result-card {
-    background: var(--c-canvas);
-    padding: 1.25rem;
+  .cs-result {
+    background: var(--bg);
+    padding: 1.375rem;
   }
 
-  .result-label {
-    font-size: 0.75rem;
+  .cs-result-label {
+    font-size: 0.6875rem;
     font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--c-sky-deep);
-    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
   }
 
-  .result-desc {
-    font-size: 0.875rem;
-    color: var(--c-body);
+  .cs-result-desc {
+    font-size: 0.9375rem;
+    color: var(--ink);
     line-height: 1.55;
+    font-weight: 500;
   }
 
   /* Contribution */
-  .contrib-box {
-    background: var(--c-surface);
-    border: 1px solid var(--c-hairline);
-    padding: 1.25rem;
-  }
-
-  .contrib-row {
+  .cs-contrib {
     display: flex;
-    gap: 1.25rem;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .cc-row {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
     align-items: baseline;
-    padding: 0.5rem 0;
   }
 
-  .contrib-key {
-    font-size: 0.75rem;
+  .cc-key {
+    font-size: 0.6875rem;
     font-weight: 700;
-    letter-spacing: 0.06em;
-    color: var(--c-sky);
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    min-width: 3.5rem;
+    color: var(--accent);
+    min-width: 4rem;
+    padding-top: 0.1rem;
   }
 
-  .contrib-val {
-    font-size: 0.875rem;
-    color: var(--c-body);
-    line-height: 1.5;
+  .cc-val {
+    font-size: 0.9375rem;
+    color: var(--ink-2);
+    line-height: 1.55;
   }
 
-  .contrib-divider {
-    border: none;
-    height: 1px;
-    background: var(--c-hairline);
+  /* Next project */
+  .cs-next {
+    border-top: 1px solid var(--line);
+    padding: 3rem 0 4rem;
   }
 
-  /* Back */
-  .back-row {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--c-hairline);
+  .cs-next-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    transition: color var(--dur-fast) var(--ease);
   }
 
-  .back-link {
-    font-size: 0.875rem;
-    color: var(--c-sky);
-    transition: color var(--dur) var(--ease);
+  .cs-next-link:hover { color: var(--accent); }
+
+  .cs-next-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
   }
 
-  .back-link:hover {
-    color: var(--c-sky-deep);
+  .cs-next-arrow {
+    font-size: 1.25rem;
+    transition: transform var(--dur-fast) var(--ease);
   }
 
-  /* Footer */
-  .proj-footer {
-    border-top: 1px solid var(--c-hairline);
-    padding: 1.5rem 0;
-    font-size: 0.8125rem;
-    color: var(--c-mute);
+  .cs-next-link:hover .cs-next-arrow {
+    transform: translateX(4px);
   }
 </style>
