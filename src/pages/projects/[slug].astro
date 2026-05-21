@@ -10,82 +10,80 @@ export const getStaticPaths = (() => {
 
 const { project } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const idx = projects.findIndex(p => p.slug === project.slug);
+const idx  = projects.findIndex(p => p.slug === project.slug);
 const next = projects[(idx + 1) % projects.length];
 ---
 
-<Layout
-  title={`${project.name} — 서정일`}
-  description={project.subtitle}
->
+<Layout title={`${project.name} — 서정일`} description={project.subtitle}>
   <Nav />
 
-  <main class="cs-main">
+  <main class="cs">
 
-    <!-- ── Header ── -->
+    <!-- Header -->
     <header class="cs-header">
       <div class="container">
         <a href={base} class="cs-back">← 모든 프로젝트</a>
-        <div class="cs-meta-row">
-          <span class="label">{project.category}</span>
-          <span class="cs-sep">·</span>
+
+        <div class="cs-meta">
+          <span class="label label--accent">{project.category}</span>
+          <span class="cs-dot">·</span>
           <span class="label">{project.period}</span>
         </div>
+
         <h1 class="cs-title">{project.title}</h1>
         <p class="cs-sub">{project.subtitle}</p>
-        <div class="cs-tags">
+
+        <div class="cs-tag-row">
           {project.tags.map(t => <span class="chip">{t}</span>)}
         </div>
       </div>
     </header>
 
-    <!-- ── Highlight stat ── -->
-    <div class="cs-highlight-bar">
-      <div class="container cs-highlight-inner">
-        <p class="cs-highlight-num">{project.highlight}</p>
-        <p class="cs-highlight-label">핵심 성과</p>
+    <!-- Highlight stat bar -->
+    <div class="cs-stat-bar">
+      <div class="container cs-stat-inner">
+        <span class="cs-stat-num">{project.highlight}</span>
+        <span class="cs-stat-label">핵심 성과</span>
       </div>
     </div>
 
-    <!-- ── Body ── -->
+    <!-- Body -->
     <div class="container cs-body">
 
-      <!-- Problem -->
-      <section class="cs-section">
-        <p class="cs-section-label label label--accent">01 · Problem</p>
-        <div class="cs-prose">
-          <p>{project.content.problem}</p>
-        </div>
+      <!-- 01 Problem -->
+      <section class="cs-sec">
+        <p class="label label--accent cs-sec-label">01 · Problem</p>
+        <p class="cs-prose">{project.content.problem}</p>
       </section>
 
       <hr class="line" />
 
-      <!-- Approach -->
-      <section class="cs-section">
-        <p class="cs-section-label label label--accent">02 · Approach</p>
-        <div class="cs-process">
+      <!-- 02 Approach -->
+      <section class="cs-sec">
+        <p class="label label--accent cs-sec-label">02 · Approach</p>
+        <ol class="cs-steps" role="list">
           {project.content.approach.map(a => (
-            <div class="cs-step">
-              <span class="cs-step-num">{a.num}</span>
+            <li class="cs-step">
+              <span class="cs-step-n">{a.num}</span>
               <div class="cs-step-body">
-                <p class="cs-step-name">{a.step}</p>
+                <p class="cs-step-title">{a.step}</p>
                 <p class="cs-step-desc">{a.desc}</p>
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
       <hr class="line" />
 
-      <!-- Results -->
-      <section class="cs-section">
-        <p class="cs-section-label label label--accent">03 · Results</p>
+      <!-- 03 Results -->
+      <section class="cs-sec">
+        <p class="label label--accent cs-sec-label">03 · Results</p>
         <div class="cs-results">
           {project.content.results.map(r => (
             <div class="cs-result">
               <p class="cs-result-label">{r.label}</p>
-              <p class="cs-result-desc">{r.desc}</p>
+              <p class="cs-result-val">{r.desc}</p>
             </div>
           ))}
         </div>
@@ -93,31 +91,32 @@ const next = projects[(idx + 1) % projects.length];
 
       <hr class="line" />
 
-      <!-- Contribution -->
-      <section class="cs-section">
-        <p class="cs-section-label label label--accent">04 · Contribution</p>
-        <div class="cs-contrib">
-          <div class="cc-row">
-            <span class="cc-key">Role</span>
-            <span class="cc-val">{project.content.contribution.role}</span>
-          </div>
-          <div class="cc-row">
-            <span class="cc-key">Scope</span>
-            <span class="cc-val">{project.content.contribution.scope}</span>
-          </div>
-          <div class="cc-row">
-            <span class="cc-key">Output</span>
-            <span class="cc-val">{project.content.contribution.output}</span>
-          </div>
-        </div>
+      <!-- 04 Contribution -->
+      <section class="cs-sec">
+        <p class="label label--accent cs-sec-label">04 · Contribution</p>
+        <dl class="cs-contrib">
+          {[
+            { k: 'Role',   v: project.content.contribution.role },
+            { k: 'Scope',  v: project.content.contribution.scope },
+            { k: 'Output', v: project.content.contribution.output },
+          ].map(row => (
+            <>
+              <div class="cc-row">
+                <dt class="cc-key">{row.k}</dt>
+                <dd class="cc-val">{row.v}</dd>
+              </div>
+              <hr class="line" />
+            </>
+          ))}
+        </dl>
       </section>
 
     </div>
 
-    <!-- ── Next project ── -->
+    <!-- Next project -->
     <div class="cs-next">
       <div class="container">
-        <p class="label" style="margin-bottom:1rem">다음 프로젝트</p>
+        <p class="label" style="margin-bottom:0.875rem">다음 프로젝트</p>
         <a href={`${base}/projects/${next.slug}`} class="cs-next-link">
           <span class="cs-next-name">{next.name}</span>
           <span class="cs-next-arrow">→</span>
@@ -129,134 +128,127 @@ const next = projects[(idx + 1) % projects.length];
 </Layout>
 
 <style>
-  .cs-main {
-    padding-top: 3.5rem; /* nav height */
-  }
+  .cs { padding-top: 3.25rem; }
 
   /* Header */
   .cs-header {
-    padding: 4rem 0 3rem;
+    padding: 3.5rem 0 2.75rem;
     border-bottom: 1px solid var(--line);
   }
 
   .cs-back {
     display: inline-block;
-    font-size: 0.8125rem;
+    font-size: var(--text-caption); /* 13px */
     color: var(--ink-3);
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.25rem;
     transition: color var(--dur-fast) var(--ease);
   }
 
   .cs-back:hover { color: var(--ink); }
 
-  .cs-meta-row {
+  .cs-meta {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
-    margin-bottom: 1.25rem;
+    gap: 0.5rem;
+    margin-bottom: 1.125rem;
   }
 
-  .cs-sep { color: var(--ink-4); }
+  .cs-dot { color: var(--ink-4); font-size: var(--text-xs); }
 
   .cs-title {
-    font-size: clamp(1.75rem, 4vw, 2.875rem);
+    font-size: clamp(1.625rem, 3.5vw, 2.625rem);
     font-weight: 800;
     letter-spacing: -0.03em;
     line-height: 1.15;
     color: var(--ink);
-    max-width: 720px;
-    margin-bottom: 0.875rem;
+    max-width: 700px;
+    margin-bottom: 0.75rem;
   }
 
   .cs-sub {
-    font-size: 1rem;
+    font-size: var(--text-body);    /* 15px */
     color: var(--ink-2);
-    max-width: 560px;
-    line-height: 1.65;
-    margin-bottom: 1.5rem;
+    max-width: 540px;
+    line-height: 1.7;
+    margin-bottom: 1.375rem;
   }
 
-  .cs-tags {
+  .cs-tag-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: 0.375rem;
   }
 
-  /* Highlight bar */
-  .cs-highlight-bar {
+  /* Stat bar */
+  .cs-stat-bar {
     background: var(--ink);
-    padding: 2rem 0;
+    padding: 1.75rem 0;
   }
 
-  .cs-highlight-inner {
+  .cs-stat-inner {
     display: flex;
     align-items: baseline;
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
-  .cs-highlight-num {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+  .cs-stat-num {
+    font-size: clamp(1.875rem, 4.5vw, 3.25rem);
     font-weight: 800;
     letter-spacing: -0.04em;
     color: #FFFFFF;
     line-height: 1;
   }
 
-  .cs-highlight-label {
-    font-size: 0.8125rem;
-    color: rgba(255,255,255,0.45);
-    letter-spacing: 0.05em;
+  .cs-stat-label {
+    font-size: var(--text-xs);      /* 11px */
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
   }
 
   /* Body */
   .cs-body {
     padding: 0 0 5rem;
-    max-width: 800px;
+    max-width: 760px;
   }
 
-  .cs-section {
-    padding: 3rem 0;
-  }
+  .cs-sec { padding: 2.75rem 0; }
 
-  .cs-section-label {
-    margin-bottom: 1.5rem;
-  }
+  .cs-sec-label { margin-bottom: 1.375rem; }
 
   /* Prose */
-  .cs-prose p {
-    font-size: 1rem;
+  .cs-prose {
+    font-size: var(--text-body);    /* 15px */
     color: var(--ink-2);
     line-height: 1.8;
-    max-width: 640px;
+    max-width: 620px;
   }
 
-  /* Process */
-  .cs-process {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+  /* Process steps */
+  .cs-steps {
+    list-style: none;
     border-top: 1px solid var(--line);
   }
 
   .cs-step {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.375rem;
     padding: 1.125rem 0;
     border-bottom: 1px solid var(--line);
     align-items: baseline;
   }
 
-  .cs-step-num {
-    font-size: 1.25rem;
+  .cs-step-n {
+    font-size: var(--text-2xl);     /* 24px */
     font-weight: 800;
+    letter-spacing: -0.03em;
     color: var(--ink-4);
-    letter-spacing: -0.02em;
-    min-width: 2.25rem;
+    min-width: 2.5rem;
     line-height: 1;
   }
 
-  .cs-step-name {
-    font-size: 0.9375rem;
+  .cs-step-title {
+    font-size: var(--text-body);    /* 15px */
     font-weight: 700;
     letter-spacing: -0.015em;
     color: var(--ink);
@@ -264,27 +256,33 @@ const next = projects[(idx + 1) % projects.length];
   }
 
   .cs-step-desc {
-    font-size: 0.875rem;
+    font-size: var(--text-base);    /* 14px */
     color: var(--ink-2);
-    line-height: 1.55;
+    line-height: 1.6;
   }
 
   /* Results */
   .cs-results {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(196px, 1fr));
     gap: 1px;
     background: var(--line);
     border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
   }
 
   .cs-result {
     background: var(--bg);
-    padding: 1.375rem;
+    padding: 1.25rem;
+    transition: background var(--dur-fast) var(--ease);
   }
 
+  .cs-result:hover { background: var(--canvas); }
+
   .cs-result-label {
-    font-size: 0.6875rem;
+    font-size: var(--text-xs);      /* 11px */
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -292,57 +290,51 @@ const next = projects[(idx + 1) % projects.length];
     margin-bottom: 0.5rem;
   }
 
-  .cs-result-desc {
-    font-size: 0.9375rem;
-    color: var(--ink);
-    line-height: 1.55;
+  .cs-result-val {
+    font-size: var(--text-body);    /* 15px */
     font-weight: 500;
+    color: var(--ink);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
   }
 
   /* Contribution */
-  .cs-contrib {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border-top: 1px solid var(--line);
-  }
+  .cs-contrib { margin-top: 0; }
 
   .cc-row {
     display: flex;
     gap: 2rem;
     padding: 1rem 0;
-    border-bottom: 1px solid var(--line);
     align-items: baseline;
   }
 
   .cc-key {
-    font-size: 0.6875rem;
+    font-size: var(--text-xs);      /* 11px */
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--accent);
     min-width: 4rem;
-    padding-top: 0.1rem;
+    padding-top: 0.1em;
   }
 
   .cc-val {
-    font-size: 0.9375rem;
+    font-size: var(--text-body);    /* 15px */
     color: var(--ink-2);
-    line-height: 1.55;
+    line-height: 1.6;
   }
 
   /* Next project */
   .cs-next {
     border-top: 1px solid var(--line);
-    padding: 3rem 0 4rem;
+    padding: 2.75rem 0 4rem;
   }
 
   .cs-next-link {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    padding: 1.25rem 0;
+    padding: 1.125rem 0;
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
     transition: color var(--dur-fast) var(--ease);
@@ -351,17 +343,15 @@ const next = projects[(idx + 1) % projects.length];
   .cs-next-link:hover { color: var(--accent); }
 
   .cs-next-name {
-    font-size: 1.25rem;
+    font-size: var(--text-xl);      /* 20px */
     font-weight: 700;
     letter-spacing: -0.025em;
   }
 
   .cs-next-arrow {
-    font-size: 1.25rem;
-    transition: transform var(--dur-fast) var(--ease);
+    font-size: var(--text-xl);
+    transition: transform var(--dur-fast) var(--ease-spring);
   }
 
-  .cs-next-link:hover .cs-next-arrow {
-    transform: translateX(4px);
-  }
+  .cs-next-link:hover .cs-next-arrow { transform: translateX(5px); }
 </style>
