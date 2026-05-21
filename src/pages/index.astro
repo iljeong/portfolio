@@ -63,6 +63,9 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
               <span class="chip">{t}</span>
             ))}
           </div>
+          <div class="about-cta">
+            <a href="mailto:seobgak11@naver.com" class="about-cta-btn">이메일 보내기 ↗</a>
+          </div>
         </div>
 
         <div class="about-right">
@@ -293,6 +296,32 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
   }
 
   .edu-chips { display: flex; gap: 0.4rem; }
+
+  /* About CTA */
+  .about-cta { margin-top: 1.5rem; }
+
+  .about-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.625rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--surface);
+    transition:
+      border-color var(--dur-fast) var(--ease),
+      background   var(--dur-fast) var(--ease),
+      color        var(--dur-fast) var(--ease);
+  }
+
+  .about-cta-btn:hover {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: #fff;
+  }
 
   @media (max-width: 760px) {
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }

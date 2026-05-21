@@ -64,7 +64,7 @@ export const projects: Project[] = [
     name: 'Gcar VoC 분석',
     title: '37,923건의 리뷰에서 이탈 구조를 찾았다',
     subtitle: '앱 리뷰 감정 분석 → 고객 여정 기반 서비스 개선안 설계',
-    period: '2025',
+    period: '2025.11',
     category: '데이터 분석 · 서비스 기획',
     tags: ['Python', 'KoELECTRA', 'SHAP', 'SQL', '사용자 여정', '데이터 분석'],
     isMain: true,
