@@ -14,9 +14,18 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
 const assetPath = (src: string) => `${basePath}${src.replace(/^\/+/, '')}`;
 const idx  = projects.findIndex(p => p.slug === project.slug);
 const next = projects[(idx + 1) % projects.length];
+const siteUrl = 'https://iljeong.github.io/portfolio';
+const pageOgUrl = `${siteUrl}/projects/${project.slug}`;
+const firstShot = project.screenshots?.[0]?.src;
+const pageOgImage = firstShot ? `${siteUrl}${firstShot}` : undefined;
 ---
 
-<Layout title={`${project.name} — 서정일`} description={project.subtitle}>
+<Layout
+  title={`${project.name} — 서정일`}
+  description={project.subtitle}
+  ogUrl={pageOgUrl}
+  ogImage={pageOgImage}
+>
   <Nav />
 
   <main class="cs">
