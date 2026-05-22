@@ -38,6 +38,14 @@ const ogUrl = ogUrlProp ?? siteUrl;
 
     <link rel="canonical" href={ogUrl} />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SYTBWG0JXD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SYTBWG0JXD');
+    </script>
     <!-- Pretendard Variable — Korean optimized -->
     <link
       rel="stylesheet"
