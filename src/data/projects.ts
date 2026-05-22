@@ -227,8 +227,8 @@ export const projects: Project[] = [
         { label: '운영', desc: 'Google Sheets 대시보드로 39개 피드 전수 관리, 캡션 v4 전략 전면 적용' },
       ],
       contribution: {
-        role: '기획자 · AI 파이프라인 설계자 (1인 프로젝트)',
-        scope: '파이프라인 구조 설계·AI 프롬프트 설계·QA 체계·SEO 전략 수립',
+        role: '기획자 · AI 파이프라인 설계자 · Claude Code 직접 구현 (1인 프로젝트)',
+        scope: '파이프라인 구조 설계·AI 프롬프트 설계·QA 체계·SEO 전략 수립·Claude Code 기반 파이프라인 직접 구현',
         output: '29개+ 피드 자동 생성 파이프라인, 캡션 v4 전략 문서, 운영 대시보드',
       },
     },
@@ -272,9 +272,9 @@ export const projects: Project[] = [
         { label: '확장성', desc: '향후 브랜드별 실측 데이터, 후기 기반 핏 데이터, 개인 선호 핏을 반영할 수 있는 서비스 구조로 정리' },
       ],
       contribution: {
-        role: '서비스 기획자 · MVP 설계자',
-        scope: '문제 정의·사용자 입력 플로우·추천 결과 UX·MVP 화면 설계·Claude Code 기반 프론트엔드 직접 구현',
-        output: '사이즈 추천 서비스 MVP, 메인 입력 화면, AI 추천 결과 화면',
+        role: '서비스 기획자 · Claude Code 직접 구현',
+        scope: '문제 정의·사용자 입력 플로우·추천 결과 UX·MVP 화면 설계·Claude Code 기반 프론트엔드·백엔드 직접 구현·서비스 배포',
+        output: '실서비스 배포 (pullsize.kr), AI 추천 결과 화면, 메인 입력 화면',
       },
     },
     screenshots: [
