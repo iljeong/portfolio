@@ -446,6 +446,10 @@ const next = projects[(idx + 1) % projects.length];
 
   .cs-shot:hover .cs-shot-overlay { opacity: 1; }
 
+  @media (hover: none) {
+    .cs-shot-overlay { opacity: 1; }
+  }
+
   .cs-shot-overlay span {
     font-size: var(--text-caption);
     color: #fff;
