@@ -22,7 +22,7 @@ export const projects: Project[] = [
   {
     slug: 'fastcampus',
     name: '패스트캠퍼스 교육 상품 기획',
-    title: 'URL 하나로 신규 강의 흐름을 설계했다',
+    title: '강사 분석부터 런칭 매니징까지, 신규 교육 상품 6개를 기획했다',
     subtitle: '강사 분석 → 커리큘럼 설계 → 페이지 IA → 런칭 매니징',
     period: '2024.05 — 2024.12',
     category: '콘텐츠 상품 기획',
@@ -41,7 +41,7 @@ export const projects: Project[] = [
       ],
       results: [
         { label: '런칭', desc: '신규 강의 6개 기획·출시 완료 (7개월, 2024.05–12)' },
-        { label: '페이지 개선', desc: 'IA 재설계 후 상품 페이지 구성 이해도 개선 확인 (정량 지표 사내 비공개)' },
+        { label: '페이지 개선', desc: '상세페이지 구성 방식 개선, 수강생 이해도 기준 내부 피드백 반영' },
         { label: '프로세스', desc: '표준 제작 프로세스 도입, 담당자 간 품질 편차 감소 및 온보딩 시간 단축' },
       ],
       contribution: {
@@ -74,21 +74,21 @@ export const projects: Project[] = [
         'Gcar 앱의 부정 리뷰가 반복되고 있었으나, 어떤 문제가 핵심 이탈을 유발하는지 구조적으로 파악된 데이터가 없었다. 개별 이슈 대응에 그칠 뿐, 근본 원인을 고객 여정 관점으로 정의한 시도가 없었다.',
       approach: [
         { num: '01', step: '데이터 수집', desc: 'Google Play · App Store에서 Gcar·경쟁사 앱 리뷰 37,923건 크롤링 및 전처리 (수집 기간: 최근 3년)' },
-        { num: '02', step: '감정 분류', desc: 'KoELECTRA 감정 분류 모델 적용 + SHAP로 부정 감정 유발 핵심 키워드 도출' },
+        { num: '02', step: '감정 분류', desc: '사전학습 KoELECTRA 모델 적용, 감정 분류 후 SHAP로 부정 감정 유발 핵심 키워드 도출' },
         { num: '03', step: '이슈 구조화', desc: '부정 리뷰를 4개 영역(고객센터·앱오류·반납예약·과금)으로 클러스터링, 빈도·영향도 매트릭스 구성' },
         { num: '04', step: '여정 시각화', desc: '앱오류 → 반납실패 → 과금 이슈 → CS 문의 → 1점 리뷰로 이어지는 실패 여정 맵 작성' },
-        { num: '05', step: '개선안 도출', desc: '여정 기반 3개 우선 개선 방향 제안 (반납 UI 재설계 / 과금 사전 알림 / CS 봇 플로우 개선)' },
+        { num: '05', step: '개선안 도출', desc: '여정 기반 4개 우선 개선 방향 제안 (고객센터 IA 재설계 / 반납지 혼잡도 사전 안내 / 과금 사전 경고 / 자동 문의 연결)' },
       ],
       results: [
         { label: '분석 규모', desc: 'Google Play · App Store 리뷰 37,923건 수집·전처리·분류 (수집 기간: 최근 3년)' },
-        { label: '모델 성능', desc: 'KoELECTRA 감정 분류 F1 0.84 — 부정 리뷰 핵심 키워드 SHAP 기반 추출' },
+        { label: '모델 성능', desc: '사전학습 KoELECTRA 모델 적용, 감정 분류 F1 0.84 달성 — 부정 리뷰 핵심 키워드 SHAP 기반 추출' },
         { label: '구조 발견', desc: '부정 리뷰 원인을 4개 클러스터(고객센터·앱오류·반납예약·과금)로 구조화, 실패 여정 맵 작성' },
-        { label: '개선안', desc: '반납 UI 재설계 / 과금 사전 알림 / CS 봇 플로우 개선 — 3개 우선순위 방향 도출' },
+        { label: '개선안', desc: '고객센터 IA 재설계 / 반납지 혼잡도 사전 안내 / 과금 사전 경고 / 자동 문의 연결 — 4개 우선순위 방향 도출' },
       ],
       contribution: {
         role: '데이터 분석가 · 서비스 기획자 (공개 리뷰 데이터 기반 개인 분석 프로젝트)',
         scope: '크롤링·전처리·감정분석·이슈 구조화·여정 맵 작성·개선안 설계 전 과정',
-        output: '고객 여정 기반 이탈 구조 분석 보고서, 3개 우선 개선 방향 제안서',
+        output: '고객 여정 기반 이탈 구조 분석 보고서, 4개 우선 개선 방향 제안서',
       },
     },
     screenshots: [
@@ -123,7 +123,7 @@ export const projects: Project[] = [
     category: '브랜드 기획 · 패션 MD',
     tags: ['브랜드 기획', 'MD', '영상 편집', 'Premiere Pro', 'Photoshop', '팝업스토어'],
     isMain: false,
-    highlight: '팔로워 +86%',
+    highlight: '464→863명',
     links: [{ label: '브랜드 사이트 보기', url: 'https://www.sixshop.com/salmidollar/home' }],
     content: {
       problem:
@@ -143,7 +143,7 @@ export const projects: Project[] = [
       contribution: {
         role: '패션 브랜드 공동 창업·대표 (3인 팀, 기획·MD 총괄)',
         scope: '상품 기획·생산 관리·영상 제작·팝업 운영·SNS 마케팅',
-        output: '3시즌 출시, 인스타 팔로워 +86%, 팝업 3회 운영, 유튜브 2.4만+ 조회',
+        output: '3시즌 출시, 인스타 팔로워 464→863명, 팝업 3회 운영, 유튜브 2.4만+ 조회',
       },
     },
     screenshots: [
@@ -156,6 +156,49 @@ export const projects: Project[] = [
       { src: '/images/salmidalla/location-lookbook.jpg',    caption: '로케이션 룩북 컷 — 시즌 무드와 그래픽 티셔츠 착장 시각화',   wide: true },
       { src: '/images/salmidalla/location-graphic-tee.jpg', caption: '브랜드 그래픽 티셔츠 착장 — 상품 기획부터 촬영까지 운영' },
       { src: '/images/salmidalla/22ss-acc-keyring-1.jpg',   caption: '22SS 키링 ACC — 2종 완판' },
+    ],
+  },
+  {
+    slug: 'areun-sai',
+    name: '아른 사이',
+    title: '텀블벅 177% 달성 — 인터뷰 콘텐츠를 도서로 만들었다',
+    subtitle: '창업동아리 PM · 영상 제작 · 출판 · 크라우드펀딩',
+    period: '2023.04 — 2025.06',
+    category: '콘텐츠 기획 · PM',
+    tags: ['PM', '출판', 'InDesign', '크라우드펀딩', '영상 편집', '콘텐츠 기획'],
+    isMain: false,
+    highlight: '텀블벅 177%',
+    links: [
+      { label: '텀블벅 페이지 보기', url: 'https://tumblbug.com/areunsight' },
+      { label: '아른 사이 링크 모음', url: 'https://litt.ly/areun.sight' },
+    ],
+    content: {
+      problem:
+        '창업동아리 인터뷰 콘텐츠가 영상 단독으로만 소비되고 있었다. 인터뷰 데이터를 더 많은 포맷으로 확장해 더 넓은 독자에게 도달하는 방법이 필요했다.',
+      approach: [
+        { num: '01', step: '인터뷰 기획', desc: '대상 섭외·질문 설계·촬영·편집' },
+        { num: '02', step: '콘텐츠 확장', desc: '인스타그램 콘텐츠 운영 병행' },
+        { num: '03', step: '도서 제작', desc: 'InDesign으로 인터뷰집 편집·출판 (2권)' },
+        { num: '04', step: '크라우드펀딩', desc: '텀블벅 캠페인 기획·운영 — 목표 금액 대비 177% 달성' },
+        { num: '05', step: '팀 PM', desc: '편집제작팀·마케팅팀·디자인팀 9명 조율 (2023.04–2025.06, 2년 2개월)' },
+      ],
+      results: [
+        { label: '크라우드펀딩', desc: '텀블벅 목표 금액 대비 177% 달성 (2024, 캠페인 종료 기준)' },
+        { label: '출판물', desc: '애\'Say / 처음은 아니지만 — 2권 출판 완료' },
+        { label: 'PM', desc: '9명 팀 2년 2개월 리드, 기획·제작·마케팅 전 과정 조율' },
+      ],
+      contribution: {
+        role: '프로젝트 매니저',
+        scope: '인터뷰 기획·영상 편집·인터뷰집 편집·크라우드펀딩 운영·팀 PM',
+        output: '출판물 2권, 텀블벅 177% 달성, 인스타 콘텐츠 운영',
+      },
+    },
+    screenshots: [
+      { src: '/images/areun-sai/book-cover.jpg',             caption: '인터뷰집 표지·북 패키지 디자인 — 장기 프로젝트의 핵심 출판물 시각화', wide: true },
+      { src: '/images/areun-sai/funding-goods.jpg',          caption: '텀블벅 리워드 패키지 구성 — 도서·굿즈·상세페이지까지 연결한 펀딩 설계' },
+      { src: '/images/areun-sai/interview-shoot.jpg',        caption: '인터뷰 촬영 현장 — 대상 섭외부터 질문 설계·촬영·편집까지 진행' },
+      { src: '/images/areun-sai/question-board.jpg',         caption: '콘텐츠 질문 보드 — 인터뷰 주제와 독자 반응을 수집해 출판 콘텐츠로 확장' },
+      { src: '/images/areun-sai/fulfillment-packaging.jpeg', caption: '리워드 포장·배송 준비 — 펀딩 이후 실물 제작과 발송 운영' },
     ],
   },
   {
@@ -230,56 +273,13 @@ export const projects: Project[] = [
       ],
       contribution: {
         role: '서비스 기획자 · MVP 설계자',
-        scope: '문제 정의·사용자 입력 플로우·추천 결과 UX·MVP 화면 설계',
+        scope: '문제 정의·사용자 입력 플로우·추천 결과 UX·MVP 화면 설계·Claude Code 기반 프론트엔드 직접 구현',
         output: '사이즈 추천 서비스 MVP, 메인 입력 화면, AI 추천 결과 화면',
       },
     },
     screenshots: [
       { src: '/images/pullsize/service-main.png', caption: '서비스 메인 화면 — 상품 URL 입력 및 신체 정보 입력 UI' },
       { src: '/images/pullsize/service-result.png', caption: '추천 결과 화면 — AI 사이즈 추천 및 여유도 시각화' },
-    ],
-  },
-  {
-    slug: 'areun-sai',
-    name: '아른 사이',
-    title: '텀블벅 177% 달성 — 인터뷰 콘텐츠를 도서로 만들었다',
-    subtitle: '창업동아리 PM · 영상 제작 · 출판 · 크라우드펀딩',
-    period: '2023.04 — 2025.06',
-    category: '콘텐츠 기획 · PM',
-    tags: ['PM', '출판', 'InDesign', '크라우드펀딩', '영상 편집', '콘텐츠 기획'],
-    isMain: false,
-    highlight: '텀블벅 177%',
-    links: [
-      { label: '텀블벅 페이지 보기', url: 'https://tumblbug.com/areunsight' },
-      { label: '아른 사이 링크 모음', url: 'https://litt.ly/areun.sight' },
-    ],
-    content: {
-      problem:
-        '창업동아리 인터뷰 콘텐츠가 영상 단독으로만 소비되고 있었다. 인터뷰 데이터를 더 많은 포맷으로 확장해 더 넓은 독자에게 도달하는 방법이 필요했다.',
-      approach: [
-        { num: '01', step: '인터뷰 기획', desc: '대상 섭외·질문 설계·촬영·편집' },
-        { num: '02', step: '콘텐츠 확장', desc: '인스타그램 콘텐츠 운영 병행' },
-        { num: '03', step: '도서 제작', desc: 'InDesign으로 인터뷰집 편집·출판 (2권)' },
-        { num: '04', step: '크라우드펀딩', desc: '텀블벅 캠페인 기획·운영 — 목표 금액 대비 177% 달성' },
-        { num: '05', step: '팀 PM', desc: '편집제작팀·마케팅팀·디자인팀 9명 조율 (2023.04–2025.06, 2년 2개월)' },
-      ],
-      results: [
-        { label: '크라우드펀딩', desc: '텀블벅 목표 금액 대비 177% 달성 (2024, 캠페인 종료 기준)' },
-        { label: '출판물', desc: '애\'Say / 처음은 아니지만 — 2권 출판 완료' },
-        { label: 'PM', desc: '9명 팀 2년 2개월 리드, 기획·제작·마케팅 전 과정 조율' },
-      ],
-      contribution: {
-        role: '프로젝트 매니저',
-        scope: '인터뷰 기획·영상 편집·인터뷰집 편집·크라우드펀딩 운영·팀 PM',
-        output: '출판물 2권, 텀블벅 177% 달성, 인스타 콘텐츠 운영',
-      },
-    },
-    screenshots: [
-      { src: '/images/areun-sai/book-cover.jpg',             caption: '인터뷰집 표지·북 패키지 디자인 — 장기 프로젝트의 핵심 출판물 시각화', wide: true },
-      { src: '/images/areun-sai/funding-goods.jpg',          caption: '텀블벅 리워드 패키지 구성 — 도서·굿즈·상세페이지까지 연결한 펀딩 설계' },
-      { src: '/images/areun-sai/interview-shoot.jpg',        caption: '인터뷰 촬영 현장 — 대상 섭외부터 질문 설계·촬영·편집까지 진행' },
-      { src: '/images/areun-sai/question-board.jpg',         caption: '콘텐츠 질문 보드 — 인터뷰 주제와 독자 반응을 수집해 출판 콘텐츠로 확장' },
-      { src: '/images/areun-sai/fulfillment-packaging.jpeg', caption: '리워드 포장·배송 준비 — 펀딩 이후 실물 제작과 발송 운영' },
     ],
   },
 ];

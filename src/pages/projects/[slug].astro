@@ -151,7 +151,6 @@ const pageOgImage = firstShot ? `${siteUrl}${firstShot}` : undefined;
                       {s.caption && <div class="cs-shot-overlay"><span>{s.caption}</span></div>}
                     </div>
                   )}
-                  {s.caption && <figcaption class="cs-shot-cap">{s.caption}{s.url ? ' ↗' : ''}</figcaption>}
                 </figure>
               ))}
             </div>
@@ -459,18 +458,6 @@ const pageOgImage = firstShot ? `${siteUrl}${firstShot}` : undefined;
   }
 
   .cs-shot:hover .cs-shot-overlay { opacity: 1; }
-
-  .cs-shot-cap {
-    display: none;
-    font-size: var(--text-caption);
-    color: var(--ink-3);
-    padding: 0.5rem 0.75rem 0.625rem;
-    line-height: 1.4;
-  }
-
-  @media (hover: none) {
-    .cs-shot-cap { display: block; }
-  }
 
   .cs-shot-overlay span {
     font-size: var(--text-caption);
