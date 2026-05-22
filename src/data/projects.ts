@@ -211,7 +211,7 @@ export const projects: Project[] = [
     category: 'AI 서비스 기획 · MVP',
     tags: ['AI 서비스', 'MVP', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계'],
     isMain: true,
-    highlight: 'MVP 출시',
+    highlight: '상품 URL → AI 추천',
     links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
     content: {
       problem:

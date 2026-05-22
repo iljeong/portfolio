@@ -36,6 +36,7 @@ const ogUrl = ogUrlProp ?? siteUrl;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image"       content={ogImage} />
 
+    <link rel="canonical" href={ogUrl} />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <!-- Pretendard Variable — Korean optimized -->
     <link
@@ -44,10 +45,25 @@ const ogUrl = ogUrlProp ?? siteUrl;
     />
   </head>
   <body>
+    <a href="#main-content" class="skip-link">본문으로 바로가기</a>
     <slot />
   </body>
 </html>
 
 <style is:global>
   @import '../styles/global.css';
+
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--ink);
+    color: #fff;
+    font-size: 0.875rem;
+    border-radius: 0 0 var(--r-sm) var(--r-sm);
+    z-index: 9999;
+    transition: top 0.1s;
+  }
+  .skip-link:focus { top: 0; }
 </style>

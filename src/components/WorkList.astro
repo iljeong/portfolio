@@ -29,7 +29,7 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
         {projects.map((p, i) => (
           <li class="work-item" data-slug={p.slug}>
             <a href={`${base}/projects/${p.slug}`} class="work-link">
-              <span class="work-num">0{i + 1}</span>
+              <span class="work-num">{String(i + 1).padStart(2, '0')}</span>
               <span class="work-main">
                 <span class="work-name">{p.name}</span>
                 <span class="work-meta-row">
@@ -41,7 +41,7 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
                 </span>
               </span>
               <span class="work-period">{p.period.replace(' — ', '–')}</span>
-              <span class="work-arrow" aria-hidden="true">↗</span>
+              <span class="work-arrow" aria-hidden="true">→</span>
             </a>
           </li>
         ))}
@@ -49,9 +49,6 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
 
       <!-- Hover preview panel (desktop only) -->
       <aside class="work-preview" aria-hidden="true">
-        <div class="preview-idle">
-          <span>hover to preview</span>
-        </div>
         {projects.map(p => {
           const s = previewStyles[p.slug] ?? { bg: '#1A1A1A', accent: '#E0E0E0' };
           return (
