@@ -29,17 +29,23 @@
 
 body{
   font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;
-  background:#111;height:100vh;overflow:hidden;color:var(--primary);
+  background:#C8C8C8;height:100vh;overflow:hidden;color:var(--primary);
+  display:flex;align-items:center;justify-content:center;
 }
 
-.deck{width:100vw;height:100vh;position:relative;}
+.deck{
+  position:relative;overflow:hidden;
+  width:min(92vw, calc(92vh * 16 / 9));
+  height:min(92vh, calc(92vw * 9 / 16));
+  box-shadow:0 8px 48px rgba(0,0,0,0.25),0 2px 8px rgba(0,0,0,0.12);
+}
 .slide{position:absolute;inset:0;display:none;flex-direction:column;}
 .slide.active{display:flex;animation:appear .28s ease;}
 @keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 
 /* BACK BUTTON */
 .back-btn{
-  position:fixed;top:14px;left:16px;z-index:300;
+  position:absolute;top:14px;left:16px;z-index:300;
   font-family:'Inter',sans-serif;font-size:11px;font-weight:600;
   color:rgba(255,255,255,0.65);background:rgba(0,0,0,0.5);
   backdrop-filter:blur(14px);padding:6px 14px;border-radius:100px;
@@ -55,12 +61,12 @@ body{
 .back-btn:focus-visible{outline:2px solid var(--sky);outline-offset:2px;}
 
 /* PROGRESS */
-.pbar{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(0,0,0,0.07);z-index:200;}
+.pbar{position:absolute;top:0;left:0;right:0;height:2px;background:rgba(0,0,0,0.07);z-index:200;}
 .pf{height:100%;background:var(--sky);transition:width .3s ease;}
 
 /* NAV */
 .nav{
-  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
   display:flex;align-items:center;gap:10px;z-index:200;
   background:rgba(0,0,0,0.55);backdrop-filter:blur(14px);
   padding:6px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.1);
@@ -76,7 +82,7 @@ body{
 /* SLIDE NUM */
 .snum{
   font-family:'Inter',sans-serif;font-size:9px;font-weight:600;letter-spacing:2px;
-  position:fixed;bottom:24px;right:40px;z-index:200;color:var(--supp);
+  position:absolute;bottom:24px;right:40px;z-index:200;color:var(--supp);
   transition:color .2s;
 }
 .snum.dark{color:rgba(255,255,255,0.25);}
