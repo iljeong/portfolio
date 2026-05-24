@@ -374,16 +374,46 @@ h1.st{
   .tb-snum{min-width:50px;font-size:12px;}
   .tb-icon-btn{width:32px;height:32px;}
   .viewer{
-    align-items:stretch;justify-content:flex-start;gap:10px;
-    padding:10px 14px calc(12px + env(safe-area-inset-bottom));
+    align-items:center;justify-content:center;gap:10px;
+    padding:10px 12px calc(12px + env(safe-area-inset-bottom));
     overflow-y:auto;-webkit-overflow-scrolling:touch;
   }
   .deck{display:none;}
-  .mobile-deck{display:block;width:342px;max-width:calc(100vw - 28px);min-width:0;margin:0;flex:0 0 auto;}
+  .mobile-deck{display:block;width:min(390px,calc(100vw - 24px));min-width:0;margin:0 auto;flex:0 0 auto;}
   .m-card{
-    min-height:calc(100dvh - 118px);
-    padding:28px 22px 30px;
+    aspect-ratio:4 / 5;
+    min-height:auto;height:auto;
+    padding:24px 22px 22px;
+    overflow:hidden;
+    display:flex;flex-direction:column;
   }
+  .m-eyebrow{font-size:11px;letter-spacing:1.2px;margin-bottom:10px;}
+  .m-title{font-size:26px;line-height:1.1;margin-bottom:10px;}
+  .m-sub{font-size:13px;line-height:1.48;margin-bottom:14px;}
+  .m-rule{margin:14px 0;}
+  .m-section{margin-top:13px;}
+  .m-label{font-size:11px;letter-spacing:1.1px;margin-bottom:7px;}
+  .m-text{font-size:13px;line-height:1.55;}
+  .m-quote{padding:12px 13px;font-size:13px;line-height:1.5;}
+  .m-list{margin-top:8px;}
+  .m-row{grid-template-columns:28px 1fr;gap:9px;padding:8px 0;}
+  .m-num{font-size:12px;}
+  .m-row-title{font-size:14px;line-height:1.28;margin-bottom:3px;}
+  .m-row-desc{font-size:12px;line-height:1.4;}
+  .m-metrics{gap:8px;margin-top:12px;}
+  .m-metric{padding:10px 10px;}
+  .m-metric strong{font-size:22px;}
+  .m-metric span{font-size:11.5px;line-height:1.35;margin-top:6px;}
+  .m-tags{gap:6px;margin-top:auto;padding-top:12px;}
+  .m-tag{font-size:11px;padding:4px 8px;}
+  .m-flow{gap:7px;margin-top:8px;}
+  .m-flow-item{align-items:flex-start;font-size:12.5px;line-height:1.4;gap:8px;}
+  .m-dotnum{width:22px;height:22px;font-size:10px;margin-top:-1px;}
+  .m-role{
+    grid-template-columns:46px 1fr;gap:5px 9px;
+    padding:10px;font-size:11.5px;line-height:1.38;margin-top:auto;
+  }
+  .m-role b{font-size:9.5px;}
   .dots{justify-content:center;margin-bottom:2px;}
 }
 
@@ -438,7 +468,6 @@ h1.st{
     <!-- ── S1 COVER ── -->
     <div class="slide" id="s1">
       <div class="inner">
-        <div class="cv-label">Portfolio &nbsp;·&nbsp; Service Planner</div>
         <div class="cv-name">서정일</div>
         <div class="cv-tagline">
           문제를 찾고, 구조를 잡고, 직접 만듭니다.<br>
@@ -449,22 +478,18 @@ h1.st{
         <div class="cv-stats">
           <div class="cv-stat">
             <div class="cv-stat-n">6개</div>
-            <div class="cv-stat-l">신규 강의 기획</div>
             <div class="cv-stat-s">패스트캠퍼스</div>
           </div>
           <div class="cv-stat">
             <div class="cv-stat-n">3.8만</div>
-            <div class="cv-stat-l">앱 리뷰 분석</div>
             <div class="cv-stat-s">Gcar VoC</div>
           </div>
           <div class="cv-stat">
             <div class="cv-stat-n">83%↓</div>
-            <div class="cv-stat-l">제작 시간 단축</div>
             <div class="cv-stat-s">AI 자동화</div>
           </div>
           <div class="cv-stat">
             <div class="cv-stat-n">MVP</div>
-            <div class="cv-stat-l">AI 사이즈 추천</div>
             <div class="cv-stat-s">pullsize</div>
           </div>
         </div>
@@ -960,10 +985,10 @@ h1.st{
   <div class="mobile-deck" aria-label="모바일 포트폴리오 슬라이드">
     <section class="mslide">
       <div class="m-card" style="background:linear-gradient(180deg,#C8E6FF 0%,#F7FBFF 54%,#FFFFFF 100%);">
-        <div style="min-height:32vh;"></div>
+        <div style="min-height:70px;"></div>
         <div class="m-eyebrow">Portfolio · 2026</div>
-        <h1 class="m-title" style="font-size:44px;">서정일</h1>
-        <p class="m-sub">사용자 말·리뷰·데이터를 기획 근거로 바꾸고, 서비스 흐름으로 검증하는 기획자</p>
+        <h1 class="m-title" style="font-size:42px;">서정일</h1>
+        <p class="m-sub">사용자 말·리뷰·데이터를 기획 근거로 바꾸고, 서비스 흐름으로 검증합니다.</p>
         <div class="m-rule"></div>
         <div class="m-metrics">
           <div class="m-metric"><strong>3.8만</strong><span>앱 리뷰 분석<br>Gcar VoC</span></div>
@@ -978,17 +1003,16 @@ h1.st{
       <div class="m-card">
         <div class="m-eyebrow">About</div>
         <h2 class="m-title">사용자의 언어에서 서비스 문제를 읽습니다</h2>
-        <p class="m-sub">데이터와 현장 경험을 교차해 실제 작동하는 기획으로 연결해왔습니다.</p>
+        <p class="m-sub">리뷰, 문의, 현장 경험을 모아 문제의 시작점을 찾고 실행 가능한 흐름으로 바꿉니다.</p>
         <div class="m-quote">고객의 불만은 단일 기능이 아니라 여정 전반에서 누적된다. 문제의 시작점을 찾고, 흐름으로 해결한다.</div>
         <div class="m-section">
           <div class="m-label">Career</div>
           <div class="m-list">
-            <div class="m-row"><div class="m-num">01</div><div><div class="m-row-title">패스트캠퍼스</div><div class="m-row-desc">콘텐츠 상품 기획자 인턴 · 신규 교육 상품 6개 기획</div></div></div>
-            <div class="m-row"><div class="m-num">02</div><div><div class="m-row-title">아른 사이</div><div class="m-row-desc">프로젝트 매니저 · 텀블벅 177% 달성</div></div></div>
-            <div class="m-row"><div class="m-num">03</div><div><div class="m-row-title">살미달라</div><div class="m-row-desc">패션 브랜드 대표 · 상품 기획부터 팝업 운영까지 수행</div></div></div>
+            <div class="m-row"><div class="m-num">01</div><div><div class="m-row-title">교육 상품 기획</div><div class="m-row-desc">신규 강의 6개 출시와 상세페이지 IA 설계</div></div></div>
+            <div class="m-row"><div class="m-num">02</div><div><div class="m-row-title">데이터 기반 문제정의</div><div class="m-row-desc">앱 리뷰 37,923건으로 이탈 구조 재정의</div></div></div>
+            <div class="m-row"><div class="m-num">03</div><div><div class="m-row-title">End-to-End 실행</div><div class="m-row-desc">브랜드·콘텐츠·AI MVP를 직접 만들고 운영</div></div></div>
           </div>
         </div>
-        <div class="m-tags"><span class="m-tag">서비스 기획</span><span class="m-tag">데이터 분석</span><span class="m-tag">AI 자동화</span><span class="m-tag">IA 설계</span></div>
       </div>
     </section>
 
@@ -998,12 +1022,11 @@ h1.st{
         <h2 class="m-title">핵심 프로젝트</h2>
         <p class="m-sub">문제정의, 구조화, 실행, 결과가 보이는 프로젝트만 선별했습니다.</p>
         <div class="m-list">
-          <div class="m-row"><div class="m-num">01</div><div><div class="m-row-title">Gcar VoC 분석</div><div class="m-row-desc">앱 리뷰 37,923건으로 이탈 구조와 개선안을 도출</div></div></div>
-          <div class="m-row"><div class="m-num">02</div><div><div class="m-row-title">패스트캠퍼스 교육 상품 기획</div><div class="m-row-desc">강사 채널 반응을 근거로 커리큘럼·상세페이지 IA 재설계</div></div></div>
-          <div class="m-row"><div class="m-num">03</div><div><div class="m-row-title">pullsize AI 사이즈 추천</div><div class="m-row-desc">상품 URL 기반 사이즈표 파싱과 AI 추천 플로우 설계</div></div></div>
-          <div class="m-row"><div class="m-num">04</div><div><div class="m-row-title">AI 콘텐츠 자동화</div><div class="m-row-desc">리서치-카피-디자인-대시보드 파이프라인 구축</div></div></div>
-          <div class="m-row"><div class="m-num">05</div><div><div class="m-row-title">살미달라 브랜드 창업</div><div class="m-row-desc">3인 팀 리드 · 리드타임 20%↓ · 팔로워 +86% · 3시즌 출시</div></div></div>
-          <div class="m-row"><div class="m-num">06</div><div><div class="m-row-title">아른 사이 — 출판·크라우드펀딩</div><div class="m-row-desc">인터뷰를 도서·SNS·텀블벅 4종 포맷으로 확장 — 177% 달성</div></div></div>
+          <div class="m-row"><div class="m-num">01</div><div><div class="m-row-title">Gcar VoC 분석</div><div class="m-row-desc">37,923건 리뷰로 이탈 구조 도출</div></div></div>
+          <div class="m-row"><div class="m-num">02</div><div><div class="m-row-title">패스트캠퍼스</div><div class="m-row-desc">신규 교육 상품 6개 기획·출시</div></div></div>
+          <div class="m-row"><div class="m-num">03</div><div><div class="m-row-title">pullsize</div><div class="m-row-desc">URL 기반 AI 사이즈 추천 MVP</div></div></div>
+          <div class="m-row"><div class="m-num">04</div><div><div class="m-row-title">AI 콘텐츠 자동화</div><div class="m-row-desc">제작 시간 3시간 → 30분</div></div></div>
+          <div class="m-row"><div class="m-num">05</div><div><div class="m-row-title">살미달라 / 아른 사이</div><div class="m-row-desc">브랜드 창업과 출판·펀딩 PM 경험</div></div></div>
         </div>
       </div>
     </section>
