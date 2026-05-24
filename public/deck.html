@@ -97,6 +97,72 @@ body{
 .slide.active{display:flex;animation:appear .28s ease;}
 @keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 
+/* ── MOBILE NATIVE DECK ── */
+.mobile-deck{display:none;}
+.mslide{display:none;}
+.mslide.active{display:block;animation:appear .24s ease;}
+.m-card{
+  background:var(--white);border:1px solid var(--border);
+  box-shadow:0 8px 36px rgba(0,0,0,0.22),0 2px 8px rgba(0,0,0,0.12);
+  width:100%;overflow:hidden;min-width:0;
+}
+.m-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--sky);margin-bottom:14px;
+}
+.m-title{
+  font-size:32px;font-weight:800;letter-spacing:-0.02em;line-height:1.12;
+  color:var(--primary);margin-bottom:12px;
+  word-break:keep-all;overflow-wrap:anywhere;
+}
+.m-sub{font-size:14px;line-height:1.65;color:var(--body);margin-bottom:22px;word-break:keep-all;overflow-wrap:anywhere;}
+.m-rule{height:1px;background:var(--sky-line);margin:20px 0;}
+.m-section{margin-top:24px;}
+.m-label{
+  font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;
+  color:var(--sky);margin-bottom:10px;
+}
+.m-text{font-size:14px;line-height:1.72;color:var(--primary);}
+.m-muted{color:var(--body);}
+.m-list{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
+.m-row{
+  display:grid;grid-template-columns:34px 1fr;gap:12px;
+  padding:13px 0;border-bottom:1px solid var(--border);
+}
+.m-num{font-size:13px;font-weight:800;color:var(--supp);}
+.m-row-title{font-size:16px;font-weight:800;line-height:1.35;color:var(--primary);}
+.m-row-desc{font-size:13px;line-height:1.55;color:var(--body);margin-top:4px;}
+.m-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px;min-width:0;}
+.m-metric{background:var(--surface);border:1px solid var(--border);padding:14px 13px;}
+.m-metric strong{display:block;font-size:24px;line-height:1;font-weight:800;color:var(--primary);letter-spacing:-0.02em;}
+.m-metric span{display:block;font-size:12px;line-height:1.45;color:var(--body);margin-top:8px;}
+.m-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px;}
+.m-tag{
+  font-size:11px;color:var(--sky);border:1px solid var(--sky-line);
+  background:var(--sky-bg);border-radius:999px;padding:5px 9px;
+}
+.m-quote{
+  border-left:3px solid var(--primary);background:var(--surface);
+  padding:14px 15px;font-size:14px;line-height:1.65;font-weight:600;
+}
+.m-role{
+  display:grid;grid-template-columns:52px 1fr;gap:7px 12px;
+  background:var(--surface);border:1px solid var(--border);padding:13px;
+  font-size:12px;line-height:1.45;margin-top:16px;
+}
+.m-role b{color:var(--muted);font-size:10px;letter-spacing:0.8px;text-transform:uppercase;}
+.m-role span{color:var(--primary);}
+.m-flow{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+.m-flow-item{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--primary);}
+.m-dotnum{
+  width:24px;height:24px;border-radius:50%;background:var(--primary);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex:0 0 auto;
+}
+.m-end{background:var(--dark);color:var(--white);border-color:var(--dark);}
+.m-end .m-eyebrow{color:var(--sky);}
+.m-end .m-title{color:var(--white);}
+.m-end .m-sub,.m-end .m-text{color:var(--midGrayOnDark,#909090);}
+
 /* PROGRESS BAR */
 .pbar{position:absolute;top:0;left:0;right:0;height:2px;background:rgba(0,0,0,0.07);z-index:200;}
 .pf{height:100%;background:var(--sky);transition:width .3s ease;}
@@ -295,65 +361,6 @@ h1.st{
 .end-label{font-family:'Noto Sans KR',sans-serif;font-size:var(--fs-cap);font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--sky);margin-bottom:28px;}
 .end-label{font-family:'Noto Sans KR',sans-serif;}
 
-@media (max-width: 700px) {
-  :root {
-    --fs-disp: clamp(19px, 6vw, 25px);
-    --fs-bl: 12px;
-    --fs-body: 10px;
-    --fs-cap: 8px;
-  }
-
-  body { height: 100dvh; }
-
-  .toolbar {
-    height: 48px;
-    padding: 0 8px;
-  }
-
-  .back-link { padding: 6px 4px; font-size: 12px; }
-  .tb-nav-btn { width: 30px; height: 30px; }
-  .tb-snum { min-width: 50px; font-size: 12px; }
-  .tb-icon-btn { width: 32px; height: 32px; }
-
-  .viewer {
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 8px;
-    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .deck {
-    width: min(342px, calc(100vw - 48px));
-    height: min(620px, calc(100dvh - 112px));
-    max-height: none;
-    flex: 0 0 auto;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.22), 0 1px 4px rgba(0,0,0,0.12);
-  }
-
-  .inner { padding: 10px 18px 18px; }
-  #s1 .inner, #s10 .inner { padding-left: 22px; }
-  #s1 .inner { justify-content: center; }
-  .cv-label { font-size: 7px; letter-spacing: 1.8px; margin-bottom: 8px; }
-  .cv-name { font-size: clamp(24px, 10vw, 36px); margin-bottom: 8px; }
-  .cv-tagline { font-size: 8.5px; line-height: 1.45; max-width: 280px; margin-bottom: 8px; }
-  .cv-div { width: 140px; margin-bottom: 7px; }
-  .cv-contact { font-size: 8px; }
-  .cv-stats {
-    width: min(100%, 300px);
-    max-width: 300px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-top: 8px;
-    padding-top: 8px;
-    gap: 4px;
-  }
-  .cv-stat { min-width: 0; padding-right: 2px; }
-  .cv-stat-n { font-size: 12px; white-space: nowrap; }
-  .cv-stat-l, .cv-stat-s { font-size: 6.8px; line-height: 1.25; }
-
-  .dots { align-self: center; margin-bottom: 2px; }
-}
 .end-div{width:100%;max-width:200px;height:1px;background:rgba(255,255,255,0.12);margin-bottom:28px;}
 .end-quote{font-size:clamp(13px,1.4vw,17px);color:rgba(255,255,255,0.55);line-height:1.9;max-width:580px;margin-bottom:36px;}
 .end-em{font-weight:600;color:rgba(255,255,255,0.85);}
@@ -361,54 +368,24 @@ h1.st{
 .end-contact{font-size:var(--fs-body);color:rgba(255,255,255,0.35);}
 
 @media (max-width: 700px) {
-  .label { font-size: 7px; letter-spacing: 1.3px; margin-bottom: 4px; }
-  h1.st { line-height: 1.12; margin-bottom: 3px; }
-  .ss { margin-bottom: 7px; line-height: 1.35; }
-  .div-line { margin-bottom: 7px; }
-  .callout { padding: 7px 8px 7px 10px; margin-bottom: 5px; border-radius: 5px; }
-  .callout::before { width: 2px; }
-  .callout-lbl, .section-label { font-size: 6.8px; letter-spacing: 1px; margin-bottom: 2px; }
-  .callout-body { font-size: 8px; line-height: 1.35; }
-  .metric { padding: 7px 8px; border-radius: 5px; }
-  .mn, .ach-n { font-size: 13px; letter-spacing: -0.02em; }
-  .ml, .ms, .career-role, .career-period, .idx-s, .idx-d { font-size: 6.8px; line-height: 1.25; }
-  .tag { font-size: 6.8px; padding: 2px 5px; }
-  .role { padding: 6px 7px; gap: 2px 6px; font-size: 6.8px; border-radius: 5px; }
-  .rk, .rv { line-height: 1.25; }
-  .ab-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  [style*="grid-template-columns:56% 44%"] { gap: 10px !important; }
-  [style*="border-left:1px solid var(--border);padding-left:20px"] { padding-left: 10px !important; }
-  [style*="display:flex;flex-direction:column;gap:10px"] { gap: 5px !important; }
-  [style*="display:flex;flex-direction:column;gap:9px"] { gap: 5px !important; }
-  [style*="display:grid;grid-template-columns:1fr 1fr;gap:8px"] { gap: 5px !important; }
-  [style*="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"] { gap: 5px !important; }
-  [style*="display:grid;grid-template-columns:repeat(3,1fr);gap:10px"] { gap: 5px !important; }
-  [style*="display:grid;grid-template-columns:repeat(4,1fr);gap:8px"] { gap: 5px !important; }
-  .ab-left { padding-right: 0; gap: 5px; }
-  .ab-right { padding-left: 10px; }
-  .ab-intro, .sk-v, .sk-k { font-size: 7px; line-height: 1.25; }
-  .sk-row { padding: 3px 0; gap: 5px; }
-  .career-row { padding: 4px 0; gap: 2px 6px; }
-  .career-company { font-size: 8px; }
-  .idx-item { grid-template-columns: 24px 1fr auto; gap: 7px; padding: 7px 8px; border-radius: 5px; }
-  .idx-n { font-size: 11px; }
-  .idx-t { font-size: 8.5px; margin-bottom: 1px; }
-  .pipeline { padding: 6px 7px; gap: 2px; margin-bottom: 5px; border-radius: 5px; }
-  .pipe-s, .jnode, .sol-d, .ach-d, .comp-d, .comp-e { font-size: 7px; line-height: 1.25; }
-  .pipe-a, .jarr { font-size: 7px; }
-  .step-pill { font-size: 7px; gap: 3px; }
-  .step-num { width: 11px; height: 11px; font-size: 6px; }
-  .sol, .ach, .comp { padding: 7px 8px; border-radius: 5px; }
-  .sol-n { font-size: 11px; }
-  .sol-t, .ach-t, .comp-t { font-size: 8.5px; margin-bottom: 2px; }
-  .comp-grid { gap: 6px; }
-  .comp { gap: 4px; }
-  .comp-n { font-size: 22px; margin-bottom: -8px; }
-  .end-label { font-size: 7px; margin-bottom: 10px; }
-  .end-div { max-width: 120px; margin-bottom: 10px; }
-  .end-quote { font-size: 8.5px; line-height: 1.45; margin-bottom: 12px; max-width: 320px; }
-  .end-name { font-size: 9px; }
-  .end-contact { font-size: 8px; }
+  body{height:100dvh;overflow:hidden;}
+  .toolbar{height:48px;padding:0 8px;}
+  .back-link{padding:6px 4px;font-size:12px;}
+  .tb-nav-btn{width:30px;height:30px;}
+  .tb-snum{min-width:50px;font-size:12px;}
+  .tb-icon-btn{width:32px;height:32px;}
+  .viewer{
+    align-items:stretch;justify-content:flex-start;gap:10px;
+    padding:10px 14px calc(12px + env(safe-area-inset-bottom));
+    overflow-y:auto;-webkit-overflow-scrolling:touch;
+  }
+  .deck{display:none;}
+  .mobile-deck{display:block;width:342px;max-width:calc(100vw - 28px);min-width:0;margin:0;flex:0 0 auto;}
+  .m-card{
+    min-height:calc(100dvh - 118px);
+    padding:28px 22px 30px;
+  }
+  .dots{justify-content:center;margin-bottom:2px;}
 }
 
 @media print{
@@ -923,13 +900,209 @@ h1.st{
 
   </div><!-- /deck -->
 
+  <div class="mobile-deck" aria-label="모바일 포트폴리오 슬라이드">
+    <section class="mslide">
+      <div class="m-card" style="background:linear-gradient(180deg,#C8E6FF 0%,#F7FBFF 54%,#FFFFFF 100%);">
+        <div style="min-height:32vh;"></div>
+        <div class="m-eyebrow">Portfolio · 2026</div>
+        <h1 class="m-title" style="font-size:44px;">서정일</h1>
+        <p class="m-sub">사용자 말·리뷰·데이터를 기획 근거로 바꾸고, 서비스 흐름으로 검증하는 기획자</p>
+        <div class="m-rule"></div>
+        <div class="m-metrics">
+          <div class="m-metric"><strong>3.8만</strong><span>앱 리뷰 분석<br>Gcar VoC</span></div>
+          <div class="m-metric"><strong>6개</strong><span>신규 교육 상품<br>패스트캠퍼스</span></div>
+          <div class="m-metric"><strong>83%↓</strong><span>콘텐츠 제작 시간<br>AI 자동화</span></div>
+          <div class="m-metric"><strong>MVP</strong><span>AI 사이즈 추천<br>pullsize</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mslide">
+      <div class="m-card">
+        <div class="m-eyebrow">About</div>
+        <h2 class="m-title">사용자의 언어에서 서비스 문제를 읽습니다</h2>
+        <p class="m-sub">데이터와 현장 경험을 교차해 실제 작동하는 기획으로 연결해왔습니다.</p>
+        <div class="m-quote">고객의 불만은 단일 기능이 아니라 여정 전반에서 누적된다. 문제의 시작점을 찾고, 흐름으로 해결한다.</div>
+        <div class="m-section">
+          <div class="m-label">Career</div>
+          <div class="m-list">
+            <div class="m-row"><div class="m-num">01</div><div><div class="m-row-title">패스트캠퍼스</div><div class="m-row-desc">콘텐츠 상품 기획자 인턴 · 신규 교육 상품 6개 기획</div></div></div>
+            <div class="m-row"><div class="m-num">02</div><div><div class="m-row-title">아른 사이</div><div class="m-row-desc">프로젝트 매니저 · 텀블벅 177% 달성</div></div></div>
+            <div class="m-row"><div class="m-num">03</div><div><div class="m-row-title">살미달라</div><div class="m-row-desc">패션 브랜드 대표 · 상품 기획부터 팝업 운영까지 수행</div></div></div>
+          </div>
+        </div>
+        <div class="m-tags"><span class="m-tag">서비스 기획</span><span class="m-tag">데이터 분석</span><span class="m-tag">AI 자동화</span><span class="m-tag">IA 설계</span></div>
+      </div>
+    </section>
+
+    <section class="mslide">
+      <div class="m-card">
+        <div class="m-eyebrow">Index</div>
+        <h2 class="m-title">핵심 프로젝트</h2>
+        <p class="m-sub">문제정의, 구조화, 실행, 결과가 보이는 프로젝트만 선별했습니다.</p>
+        <div class="m-list">
+          <div class="m-row"><div class="m-num">01</div><div><div class="m-row-title">Gcar VoC 분석</div><div class="m-row-desc">앱 리뷰 37,923건으로 이탈 구조와 개선안을 도출</div></div></div>
+          <div class="m-row"><div class="m-num">02</div><div><div class="m-row-title">패스트캠퍼스 교육 상품 기획</div><div class="m-row-desc">강사 채널 반응을 근거로 커리큘럼·상세페이지 IA 재설계</div></div></div>
+          <div class="m-row"><div class="m-num">03</div><div><div class="m-row-title">pullsize AI 사이즈 추천</div><div class="m-row-desc">상품 URL 기반 사이즈표 파싱과 AI 추천 플로우 설계</div></div></div>
+          <div class="m-row"><div class="m-num">04</div><div><div class="m-row-title">AI 콘텐츠 자동화</div><div class="m-row-desc">리서치-카피-디자인-대시보드 파이프라인 구축</div></div></div>
+          <div class="m-row"><div class="m-num">05</div><div><div class="m-row-title">아른 사이 · 살미달라</div><div class="m-row-desc">콘텐츠와 상품으로 확장한 실행 경험</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mslide">
+      <div class="m-card">
+        <div class="m-eyebrow">Project 01</div>
+        <h2 class="m-title">37,923건의 리뷰에서 이탈 구조를 찾았습니다</h2>
+        <p class="m-sub">리뷰를 평점이 아니라 고객 여정의 실패 신호로 다시 읽었습니다.</p>
+        <div class="m-section">
+          <div class="m-label">핵심 발견</div>
+          <p class="m-text">Gcar의 부정 경험은 앱 오류 → 반납 실패 → 과금 → CS 지연 → 1점 리뷰로 이어지는 연쇄 구조였습니다.</p>
+        </div>
+        <div class="m-metrics">
+          <div class="m-metric"><strong>3.8만</strong><span>리뷰 수집·분류</span></div>
+          <div class="m-metric"><strong>F1 0.84</strong><span>감정 분류 성능</span></div>
+          <div class="m-metric"><strong>4개</strong><span>이슈 클러스터</span></div>
+          <div class="m-metric"><strong>3개</strong><span>우선 개선 방향</span></div>
+        </div>
+        <div class="m-section">
+          <div class="m-label">개선 방향</div>
+          <div class="m-flow">
+            <div class="m-flow-item"><span class="m-dotnum">1</span>반납 전 만차·혼잡도 사전 안내</div>
+            <div class="m-flow-item"><span class="m-dotnum">2</span>과금 발생 전 경고와 회피 행동 안내</div>
+            <div class="m-flow-item"><span class="m-dotnum">3</span>오류 화면에서 CS 자동 문의 연결</div>
+          </div>
+        </div>
+        <div class="m-role"><b>Role</b><span>개인 분석 프로젝트</span><b>Output</b><span>이탈 구조 분석 보고서 + 개선 방향 제안</span></div>
+      </div>
+    </section>
+
+    <section class="mslide">
+      <div class="m-card">
+        <div class="m-eyebrow">Project 02</div>
+        <h2 class="m-title">강사 분석부터 런칭까지 신규 강의 6개를 기획했습니다</h2>
+        <p class="m-sub">강사 경험 중심 기획을 수강생 니즈 중심의 상품 구조로 바꿨습니다.</p>
+        <div class="m-section">
+          <div class="m-label">접근</div>
+          <div class="m-flow">
+            <div class="m-flow-item"><span class="m-dotnum">1</span>강사 채널 반응과 수강생 니즈 분석</div>
+            <div class="m-flow-item"><span class="m-dotnum">2</span>학습 목표 기반 커리큘럼·차시 구조 설계</div>
+            <div class="m-flow-item"><span class="m-dotnum">3</span>상세페이지 IA와 구매 흐름 재구성</div>
+            <div class="m-flow-item"><span class="m-dotnum">4</span>Notion 표준 제작 프로세스 문서화</div>
+          </div>
+        </div>
+        <div class="m-metrics">
+          <div class="m-metric"><strong>6개</strong><span>신규 강의 출시</span></div>
+          <div class="m-metric"><strong>IA</strong><span>상세페이지 구조화</span></div>
+          <div class="m-metric"><strong>1건</strong><span>표준 제작 프로세스</span></div>
+          <div class="m-metric"><strong>7개월</strong><span>인턴 기간 내 실행</span></div>
+        </div>
+        <div class="m-role"><b>Role</b><span>콘텐츠 상품 기획자 인턴</span><b>Output</b><span>신규 강의 6개 출시 + 제작 프로세스 문서</span></div>
+      </div>
+    </section>
+
+    <section class="mslide">
+      <div class="m-card">
+        <div class="m-eyebrow">Project 03</div>
+        <h2 class="m-title">상품 URL로 사이즈 추천 흐름을 설계했습니다</h2>
+        <p class="m-sub">브랜드마다 다른 실측 기준 때문에 생기는 구매 전 불안을 줄이는 AI 추천 MVP입니다.</p>
+        <div class="m-section">
+          <div class="m-label">서비스 흐름</div>
+          <div class="m-flow">
+            <div class="m-flow-item"><span class="m-dotnum">1</span>상품 URL 입력</div>
+            <div class="m-flow-item"><span class="m-dotnum">2</span>사이즈표 파싱 또는 이미지 업로드</div>
+            <div class="m-flow-item"><span class="m-dotnum">3</span>키·몸무게·선호 핏 입력</div>
+            <div class="m-flow-item"><span class="m-dotnum">4</span>추천 사이즈와 판단 근거 제공</div>
+          </div>
+        </div>
+        <div class="m-metrics">
+          <div class="m-metric"><strong>MVP</strong><span>실서비스 배포</span></div>
+          <div class="m-metric"><strong>URL</strong><span>상품 정보 기반</span></div>
+          <div class="m-metric"><strong>3개</strong><span>주요 쇼핑몰 대응</span></div>
+          <div class="m-metric"><strong>AI</strong><span>추천 이유 생성</span></div>
+        </div>
+        <div class="m-tags"><span class="m-tag">Claude API</span><span class="m-tag">Firecrawl</span><span class="m-tag">Next.js</span><span class="m-tag">Supabase</span></div>
+        <div class="m-role"><b>Role</b><span>서비스 기획 · Claude Code 직접 구현</span><b>Output</b><span>pullsize.kr AI 사이즈 추천 MVP</span></div>
+      </div>
+    </section>
+
+    <section class="mslide">
+      <div class="m-card">
+        <div class="m-eyebrow">Project 04</div>
+        <h2 class="m-title">AI 파이프라인으로 콘텐츠 제작 시간을 83% 줄였습니다</h2>
+        <p class="m-sub">반복 제작 과정을 자동화하되, 기획자의 판단이 필요한 지점은 QA 게이트로 남겼습니다.</p>
+        <div class="m-section">
+          <div class="m-label">Pipeline</div>
+          <div class="m-flow">
+            <div class="m-flow-item"><span class="m-dotnum">1</span>자료조사 자동화</div>
+            <div class="m-flow-item"><span class="m-dotnum">2</span>전략·카피 생성</div>
+            <div class="m-flow-item"><span class="m-dotnum">3</span>Figma MCP 디자인 적용</div>
+            <div class="m-flow-item"><span class="m-dotnum">4</span>Google Sheets 대시보드 관리</div>
+          </div>
+        </div>
+        <div class="m-metrics">
+          <div class="m-metric"><strong>83%↓</strong><span>3시간 → 30분</span></div>
+          <div class="m-metric"><strong>29개+</strong><span>피드 자동 생성</span></div>
+          <div class="m-metric"><strong>39개</strong><span>피드 통합 관리</span></div>
+          <div class="m-metric"><strong>22개</strong><span>브랜드 커버</span></div>
+        </div>
+        <div class="m-role"><b>Role</b><span>파이프라인 설계 · Claude Code 구현</span><b>Output</b><span>콘텐츠 자동화 파이프라인 + QA 체계</span></div>
+      </div>
+    </section>
+
+    <section class="mslide">
+      <div class="m-card">
+        <div class="m-eyebrow">Project 05</div>
+        <h2 class="m-title">콘텐츠와 상품으로 확장한 프로젝트를 운영했습니다</h2>
+        <p class="m-sub">인터뷰 출판 프로젝트와 패션 브랜드 운영을 통해 기획의 실행 범위를 넓혔습니다.</p>
+        <div class="m-list">
+          <div class="m-row"><div class="m-num">01</div><div><div class="m-row-title">아른 사이</div><div class="m-row-desc">창업자 인터뷰를 도서·펀딩·SNS 콘텐츠로 확장한 프로젝트 PM</div></div></div>
+          <div class="m-row"><div class="m-num">02</div><div><div class="m-row-title">살미달라</div><div class="m-row-desc">상품 기획, 콘텐츠 제작, 팝업 운영, 재고 관리까지 직접 수행</div></div></div>
+        </div>
+        <div class="m-metrics">
+          <div class="m-metric"><strong>177%</strong><span>텀블벅 달성률</span></div>
+          <div class="m-metric"><strong>3권</strong><span>독립출판 제작</span></div>
+          <div class="m-metric"><strong>3회</strong><span>팝업 운영</span></div>
+          <div class="m-metric"><strong>86%</strong><span>팔로워 성장</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mslide">
+      <div class="m-card">
+        <div class="m-eyebrow">Strengths</div>
+        <h2 class="m-title">서비스 기획자로서의 3가지 역량</h2>
+        <div class="m-list">
+          <div class="m-row"><div class="m-num">01</div><div><div class="m-row-title">사용자 경험 설계</div><div class="m-row-desc">고객의 언어와 행동 데이터에서 문제를 정의하고 서비스 흐름으로 연결합니다.</div></div></div>
+          <div class="m-row"><div class="m-num">02</div><div><div class="m-row-title">논리적 기획 문서화</div><div class="m-row-desc">문제 정의 → 근거 → 개선안 흐름을 협업 문서로 구조화합니다.</div></div></div>
+          <div class="m-row"><div class="m-num">03</div><div><div class="m-row-title">End-to-End 실행</div><div class="m-row-desc">기획에서 멈추지 않고 구현·배포·운영까지 직접 확인합니다.</div></div></div>
+        </div>
+        <div class="m-tags"><span class="m-tag">Python</span><span class="m-tag">SQL</span><span class="m-tag">Figma</span><span class="m-tag">Notion</span><span class="m-tag">Claude Code</span></div>
+      </div>
+    </section>
+
+    <section class="mslide">
+      <div class="m-card m-end">
+        <div class="m-eyebrow">Closing</div>
+        <h2 class="m-title">함께 더 나은 흐름을 만들어보고 싶습니다.</h2>
+        <p class="m-sub">서비스 기획자는 기능을 늘리는 사람이 아니라, 사용자가 이탈하는 지점을 발견하고 더 나은 흐름으로 바꾸는 사람이라고 생각합니다.</p>
+        <p class="m-text">저는 데이터와 사용자 경험을 함께 보며 문제를 구조화하고, 실제로 작동하는 서비스 흐름으로 바꾸는 일을 해왔습니다.</p>
+        <div class="m-rule"></div>
+        <p class="m-text">서정일<br><span class="m-muted">seobgak11@naver.com</span></p>
+      </div>
+    </section>
+  </div>
+
   <div class="dots" id="dots"></div>
 
 </div><!-- /viewer -->
 
 <script>
-const slides = document.querySelectorAll('.slide');
-const N = slides.length;
+const desktopSlides = Array.from(document.querySelectorAll('.slide'));
+const mobileSlides = Array.from(document.querySelectorAll('.mslide'));
+const mobileQuery = window.matchMedia('(max-width: 700px)');
+let slides = mobileQuery.matches ? mobileSlides : desktopSlides;
+let N = slides.length;
 let cur = 0;
 
 const pbarEl  = document.getElementById('pbar');
@@ -938,16 +1111,29 @@ const snumEl  = document.getElementById('snum');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
 
-for (let i = 0; i < N; i++) {
-  const d = document.createElement('button');
-  d.className = 'dot';
-  d.setAttribute('aria-label', `슬라이드 ${i + 1}`);
-  d.addEventListener('click', () => go(i));
-  dotsEl.appendChild(d);
+function setSlidesForViewport() {
+  const nextSlides = mobileQuery.matches ? mobileSlides : desktopSlides;
+  if (slides[cur]) slides[cur].classList.remove('active');
+  slides = nextSlides;
+  N = slides.length;
+  cur = Math.min(cur, N - 1);
+  buildDots();
+  go(cur);
+}
+
+function buildDots() {
+  dotsEl.innerHTML = '';
+  for (let i = 0; i < N; i++) {
+    const d = document.createElement('button');
+    d.className = 'dot';
+    d.setAttribute('aria-label', `슬라이드 ${i + 1}`);
+    d.addEventListener('click', () => go(i));
+    dotsEl.appendChild(d);
+  }
 }
 
 function go(n) {
-  slides[cur].classList.remove('active');
+  if (slides[cur]) slides[cur].classList.remove('active');
   cur = Math.max(0, Math.min(N - 1, n));
   slides[cur].classList.add('active');
   pbarEl.style.width = ((cur + 1) / N * 100) + '%';
@@ -958,6 +1144,7 @@ function go(n) {
   snumEl.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(N).padStart(2, '0');
   prevBtn.disabled = cur === 0;
   nextBtn.disabled = cur === N - 1;
+  document.querySelector('.viewer')?.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 prevBtn.addEventListener('click', () => go(cur - 1));
@@ -986,7 +1173,9 @@ document.addEventListener('touchend', e => {
 });
 
 const initialSlide = Number(new URLSearchParams(window.location.search).get('slide'));
-go(Number.isFinite(initialSlide) && initialSlide >= 1 ? initialSlide - 1 : 0);
+cur = Number.isFinite(initialSlide) && initialSlide >= 1 ? initialSlide - 1 : 0;
+setSlidesForViewport();
+mobileQuery.addEventListener('change', setSlidesForViewport);
 </script>
 </body>
 </html>
