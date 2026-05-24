@@ -79,9 +79,15 @@ body{
   position:fixed;bottom:24px;right:40px;z-index:200;color:var(--supp);
   transition:color .2s;
 }
+.snum.dark{color:rgba(255,255,255,0.25);}
 
 /* INNER */
-.inner{flex:1;display:flex;flex-direction:column;padding:24px 48px 60px;overflow:hidden;}
+.inner{flex:1;display:flex;flex-direction:column;padding:24px 48px 60px;min-height:0;}
+
+/* REUSABLE: section sub-label */
+.section-label{font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:8px;}
+/* REUSABLE: right column in 56/44 layout */
+.col-right{border-left:1px solid var(--border);padding-left:20px;display:flex;flex-direction:column;gap:8px;}
 
 /* LABEL CHIP */
 .label{
@@ -216,18 +222,18 @@ h1.st{
 .cv-name{
   font-family:'Noto Sans KR',sans-serif;
   font-size:clamp(52px,7vw,80px);font-weight:900;letter-spacing:-0.03em;
-  line-height:1;color:#171717;margin-bottom:18px;
+  line-height:1;color:var(--primary);margin-bottom:18px;
 }
 .cv-tagline{
-  font-size:clamp(14px,1.5vw,18px);color:#60646C;line-height:1.7;
+  font-size:clamp(14px,1.5vw,18px);color:var(--body);line-height:1.7;
   margin-bottom:24px;max-width:520px;
 }
 .cv-div{width:100%;max-width:240px;height:1px;background:var(--sky-line);margin-bottom:18px;}
-.cv-role{font-size:var(--fs-bl);font-weight:500;color:#60646C;margin-bottom:5px;}
+.cv-role{font-size:var(--fs-bl);font-weight:500;color:var(--body);margin-bottom:5px;}
 .cv-contact{font-size:var(--fs-body);color:var(--muted);}
 .cv-stats{
   display:grid;grid-template-columns:repeat(4,1fr);
-  gap:0;border-top:1px solid var(--border);padding-top:20px;margin-top:auto;
+  gap:0;border-top:1px solid var(--border);padding-top:20px;margin-top:28px;
   max-width:720px;
 }
 .cv-stat{padding-right:20px;}
@@ -284,7 +290,7 @@ h1.st{
       데이터 분석 · 서비스 기획 · AI 자동화 · End-to-End 실행
     </div>
     <div class="cv-div"></div>
-    <div class="cv-role">seobgak11@naver.com</div>
+    <div class="cv-contact">seobgak11@naver.com</div>
     <div class="cv-stats">
       <div class="cv-stat">
         <div class="cv-stat-n">6개</div>
@@ -450,7 +456,7 @@ h1.st{
           </div>
         </div>
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;">
-          <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:8px;">5단계 접근</div>
+          <div class="section-label">5단계 접근</div>
           <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;">
             <div class="step-pill"><div class="step-num">1</div><span>강사·타겟 분석</span></div>
             <span style="font-size:10px;color:var(--supp);">→</span>
@@ -497,10 +503,10 @@ h1.st{
       <div style="display:flex;flex-direction:column;gap:9px;">
         <div class="callout">
           <div class="callout-lbl">핵심 발견</div>
-          <div class="callout-body">Gcar의 부정 경험은 <strong>앱 오류 → 반납 실패 → 과금 → CS 지연</strong>으로 이어지는 연쇄 구조였습니다. 경쟁사 대비 1점 리뷰 비중이 유의하게 높았습니다.</div>
+          <div class="callout-body">Gcar의 부정 경험은 <span style="font-weight:600;color:var(--primary);">앱 오류 → 반납 실패 → 과금 → CS 지연</span>으로 이어지는 연쇄 구조였습니다. 경쟁사 대비 1점 리뷰 비중이 유의하게 높았습니다.</div>
         </div>
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;">
-          <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:7px;">실패 여정</div>
+          <div class="section-label">실패 여정</div>
           <div style="display:flex;align-items:center;gap:5px;">
             <div class="jnode">앱 오류<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">예약·반납</span></div>
             <div class="jarr">→</div>
@@ -532,7 +538,7 @@ h1.st{
           <span class="tag">KoELECTRA</span><span class="tag">SHAP</span><span class="tag">Python</span><span class="tag">시계열 분석</span><span class="tag">여정 맵</span>
         </div>
       </div>
-      <div style="border-left:1px solid var(--border);padding-left:20px;display:flex;flex-direction:column;gap:8px;">
+      <div class="col-right">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
           <div class="metric"><div class="mn">3.8만</div><div class="ml">리뷰 수집·분류</div><div class="ms">최근 3년</div></div>
           <div class="metric"><div class="mn">F1 0.84</div><div class="ml">감정 분류 성능</div><div class="ms">KoELECTRA</div></div>
@@ -557,7 +563,7 @@ h1.st{
     <div class="ss">Claude AI + Figma MCP 연동 → 자료조사부터 디자인 적용까지 자동화</div>
     <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
       <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);">자동화 파이프라인</div>
+        <div class="section-label">자동화 파이프라인</div>
         <div class="pipeline">
           <div class="pipe-s">자료조사</div><div class="pipe-a">→</div>
           <div class="pipe-s">전략 수립</div><div class="pipe-a">→</div>
@@ -574,14 +580,14 @@ h1.st{
           <div class="callout-body">fact_check·QA 체크리스트 자동화로 게시 전 오류 검증. 인물 권리·브랜드 정보 정확도 포함. 판단은 기획자가 직접 담당.</div>
         </div>
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;">
-          <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px;">대시보드 & SEO</div>
+          <div class="section-label">대시보드 & SEO</div>
           <div style="font-size:var(--fs-body);color:var(--body);line-height:1.6;">Google Sheets로 39개 피드 진행 현황·캡션·발행 상태 통합 관리. 캡션 v4 포맷 + 3-Tier 해시태그 전략 전면 적용.</div>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;">
           <span class="tag">Claude AI</span><span class="tag">Figma MCP</span><span class="tag">Claude Code</span><span class="tag">Python</span><span class="tag">Google Sheets</span>
         </div>
       </div>
-      <div style="border-left:1px solid var(--border);padding-left:20px;display:flex;flex-direction:column;gap:8px;">
+      <div class="col-right">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
           <div class="metric"><div class="mn">83%↓</div><div class="ml">제작 시간 단축</div><div class="ms">3시간 → 30분</div></div>
           <div class="metric"><div class="mn">29개+</div><div class="ml">피드 자동 생성</div><div class="ms">3개월 내</div></div>
@@ -611,7 +617,7 @@ h1.st{
           <div class="callout-body">브랜드마다 다른 실측 기준과 착용감 차이로 사이즈 선택에 불안을 느낀다. 치수표만으로는 내 체형에 맞는 사이즈 판단이 어렵고, 구매 망설임과 교환·반품으로 이어진다.</div>
         </div>
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;">
-          <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:8px;">서비스 흐름</div>
+          <div class="section-label">서비스 흐름</div>
           <div class="pipeline" style="margin-bottom:0;">
             <div class="pipe-s">URL 입력</div><div class="pipe-a">→</div>
             <div class="pipe-s">상품 파싱</div><div class="pipe-a">→</div>
@@ -628,7 +634,7 @@ h1.st{
           <span class="tag">Claude API</span><span class="tag">Firecrawl</span><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">MVP 설계</span>
         </div>
       </div>
-      <div style="border-left:1px solid var(--border);padding-left:20px;display:flex;flex-direction:column;gap:8px;">
+      <div class="col-right">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
           <div class="metric"><div class="mn">MVP</div><div class="ml">실서비스 배포</div><div class="ms">pullsize.kr</div></div>
           <div class="metric"><div class="mn">URL→</div><div class="ml">AI 추천 플로우</div><div class="ms">핵심 UX 구현</div></div>
@@ -748,7 +754,7 @@ const pbarEl = document.getElementById('pbar');
 const dotsEl = document.getElementById('dots');
 const snumEl = document.getElementById('snum');
 const backBtn = document.getElementById('back-btn');
-const darkSlides = new Set([0, N - 1]);
+const darkSlides = new Set([N - 1]); // S10만 다크 (S1은 밝은 하늘색 배경)
 
 for (let i = 0; i < N; i++) {
   const d = document.createElement('button');
@@ -768,7 +774,7 @@ function go(n) {
     d.setAttribute('aria-current', i === cur ? 'true' : 'false');
   });
   snumEl.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(N).padStart(2, '0');
-  snumEl.style.color = darkSlides.has(cur) ? 'rgba(255,255,255,0.25)' : 'var(--supp)';
+  snumEl.classList.toggle('dark', darkSlides.has(cur));
   backBtn.classList.toggle('light', !darkSlides.has(cur));
 }
 
@@ -781,14 +787,17 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1); }
 });
 
-let tx = null;
-document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-document.addEventListener('touchcancel', () => { tx = null; });
+let tx = null, ty = null;
+document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+document.addEventListener('touchcancel', () => { tx = ty = null; });
 document.addEventListener('touchend', e => {
   if (tx === null || !e.changedTouches.length) return;
   const dx = e.changedTouches[0].clientX - tx;
-  tx = null;
-  if (Math.abs(dx) > 50) dx > 0 ? go(cur - 1) : go(cur + 1);
+  const dy = e.changedTouches[0].clientY - ty;
+  tx = ty = null;
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+    dx > 0 ? go(cur - 1) : go(cur + 1);
+  }
 });
 
 go(0);
