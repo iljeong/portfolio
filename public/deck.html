@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서정일 · SERVICE PLANNER PORTFOLIO</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  /* palette */
+  --primary:   #111111;
+  --body:      #767676;
+  --muted:     #AAAAAA;
+  --supp:      #C0C0C0;
+  --border:    #EBEBEB;
+  --surface:   #F5F5F5;
+  --white:     #FFFFFF;
+  --dark:      #0F0F0F;
+  --sky:       #5A9EC4;
+  --sky-bg:    #EBF4FA;
+  --sky-line:  #A8CCE0;
+  /* type scale */
+  --fs-disp:   clamp(22px, 2.4vw, 30px);
+  --fs-bl:     clamp(12px, 1.1vw, 14px);
+  --fs-body:   clamp(11px, 1vw,   13px);
+  --fs-cap:    clamp(9px,  0.8vw, 11px);
+  --r: 8px;
+}
+
+body{
+  font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:#111;height:100vh;overflow:hidden;color:var(--primary);
+}
+
+.deck{width:100vw;height:100vh;position:relative;}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;}
+.slide.active{display:flex;animation:appear .28s ease;}
+@keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+/* BACK BUTTON */
+.back-btn{
+  position:fixed;top:14px;left:16px;z-index:300;
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:600;
+  color:rgba(255,255,255,0.65);background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(14px);padding:6px 14px;border-radius:100px;
+  border:1px solid rgba(255,255,255,0.1);text-decoration:none;
+  transition:color .15s,background .2s,border-color .2s;letter-spacing:0.3px;
+}
+.back-btn:hover{color:#fff;}
+.back-btn.light{
+  color:var(--body);background:rgba(255,255,255,0.85);
+  border-color:var(--border);
+}
+.back-btn.light:hover{color:var(--primary);}
+.back-btn:focus-visible{outline:2px solid var(--sky);outline-offset:2px;}
+
+/* PROGRESS */
+.pbar{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(0,0,0,0.07);z-index:200;}
+.pf{height:100%;background:var(--sky);transition:width .3s ease;}
+
+/* NAV */
+.nav{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:10px;z-index:200;
+  background:rgba(0,0,0,0.55);backdrop-filter:blur(14px);
+  padding:6px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.1);
+}
+.nbtn{width:24px;height:24px;border:none;background:none;color:rgba(255,255,255,0.6);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .15s;}
+.nbtn:hover{color:#fff;}
+.nbtn:focus-visible{outline:2px solid var(--sky);outline-offset:2px;}
+.dots{display:flex;gap:4px;}
+.dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;transition:all .2s;border:none;padding:0;}
+.dot.on{background:#fff;width:12px;border-radius:2px;}
+.dot:focus-visible{outline:2px solid var(--sky);outline-offset:3px;}
+
+/* SLIDE NUM */
+.snum{
+  font-family:'Inter',sans-serif;font-size:9px;font-weight:600;letter-spacing:2px;
+  position:fixed;bottom:24px;right:40px;z-index:200;color:var(--supp);
+  transition:color .2s;
+}
+
+/* INNER */
+.inner{flex:1;display:flex;flex-direction:column;padding:36px 56px 68px;overflow:hidden;}
+
+/* LABEL CHIP */
+.label{
+  font-family:'Inter',sans-serif;font-size:var(--fs-cap);font-weight:600;
+  letter-spacing:2.5px;text-transform:uppercase;color:var(--sky);
+  margin-bottom:10px;
+}
+
+/* SLIDE TITLE */
+h1.st{
+  font-size:var(--fs-disp);font-weight:700;color:var(--primary);
+  line-height:1.25;letter-spacing:-0.02em;margin-bottom:4px;
+}
+.ss{font-size:var(--fs-body);color:var(--body);margin-bottom:20px;line-height:1.55;}
+
+/* DIVIDER */
+.div-line{width:100%;height:1px;background:var(--border);margin-bottom:16px;}
+
+/* CALLOUT BOX — insight (black bar) */
+.callout{
+  background:var(--white);border:1px solid var(--border);border-radius:var(--r);
+  padding:12px 14px 12px 18px;position:relative;margin-bottom:12px;
+}
+.callout::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:3px;background:var(--primary);border-radius:3px 0 0 3px;
+}
+.callout.sky::before{background:var(--sky);}
+.callout-lbl{font-size:var(--fs-cap);font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:5px;}
+.callout-body{font-size:var(--fs-body);color:var(--primary);line-height:1.65;}
+
+/* ROLE BOX */
+.role{
+  background:var(--surface);border-radius:var(--r);border:1px solid var(--border);
+  padding:11px 14px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;
+  align-items:baseline;font-size:var(--fs-cap);
+}
+.rk{font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;}
+.rv{color:var(--primary);}
+
+/* METRIC CARD */
+.metric{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:12px 14px;display:flex;flex-direction:column;}
+.mn{font-family:'Inter',sans-serif;font-size:clamp(18px,2vw,24px);font-weight:800;color:var(--primary);line-height:1;letter-spacing:-0.03em;}
+.ml{font-size:var(--fs-cap);color:var(--body);margin-top:4px;}
+.ms{font-size:var(--fs-cap);color:var(--supp);margin-top:2px;}
+
+/* SKILL TAG */
+.tag{
+  display:inline-block;font-family:'Inter',sans-serif;
+  font-size:var(--fs-cap);font-weight:500;
+  color:var(--sky);border:1px solid var(--sky-line);
+  background:var(--sky-bg);padding:3px 9px;border-radius:100px;
+}
+
+/* JOURNEY NODE */
+.jnode{
+  background:var(--white);border:1px solid var(--border);border-radius:6px;
+  padding:6px 10px;flex:1;font-size:var(--fs-body);font-weight:600;color:var(--primary);text-align:center;
+}
+.jarr{font-size:12px;color:var(--supp);flex-shrink:0;padding:0 4px;}
+
+/* STEP PILL */
+.step-pill{
+  display:flex;align-items:center;gap:5px;
+  font-size:var(--fs-cap);color:var(--primary);
+}
+.step-num{
+  font-family:'Inter',sans-serif;font-size:9px;font-weight:700;
+  background:var(--primary);color:#fff;
+  width:15px;height:15px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+
+/* SOLUTION CARD */
+.sol{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:16px;border-top:1px solid var(--sky);}
+.sol-n{font-family:'Inter',sans-serif;font-size:clamp(14px,1.6vw,20px);font-weight:800;color:var(--sky);margin-bottom:7px;line-height:1;}
+.sol-t{font-size:var(--fs-bl);font-weight:600;color:var(--primary);margin-bottom:5px;}
+.sol-d{font-size:var(--fs-body);color:var(--body);line-height:1.6;}
+
+/* ACH CARD */
+.ach{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:16px;}
+.ach-n{font-family:'Inter',sans-serif;font-size:clamp(18px,2.2vw,26px);font-weight:800;color:var(--primary);line-height:1;letter-spacing:-0.03em;margin-bottom:5px;}
+.ach-t{font-size:var(--fs-bl);font-weight:600;color:var(--primary);margin-bottom:4px;}
+.ach-d{font-size:var(--fs-body);color:var(--body);line-height:1.55;}
+
+/* COMPETENCY CARD */
+.comp{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:22px 20px;display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--primary);}
+.comp-n{font-family:'Inter',sans-serif;font-size:clamp(28px,3.5vw,44px);font-weight:900;color:var(--primary);line-height:1;opacity:0.06;margin-bottom:-4px;}
+.comp-t{font-size:var(--fs-bl);font-weight:700;color:var(--primary);}
+.comp-d{font-size:var(--fs-body);color:var(--body);line-height:1.7;}
+.comp-el{font-size:var(--fs-cap);text-transform:uppercase;letter-spacing:1px;font-weight:600;color:var(--supp);}
+.comp-e{font-size:var(--fs-body);color:var(--body);}
+
+/* IDX ITEM */
+.idx-item{
+  background:var(--white);border-radius:var(--r);padding:14px 20px;
+  display:grid;grid-template-columns:32px 1fr auto;align-items:center;gap:16px;
+  border:1px solid var(--border);flex:1;
+}
+.idx-n{font-family:'Inter',sans-serif;font-size:clamp(14px,1.6vw,18px);font-weight:800;color:var(--supp);}
+.idx-t{font-size:var(--fs-bl);font-weight:600;color:var(--primary);margin-bottom:2px;}
+.idx-s{font-size:var(--fs-body);color:var(--body);}
+.idx-d{font-family:'Inter',sans-serif;font-size:var(--fs-cap);color:var(--supp);white-space:nowrap;}
+
+/* PIPELINE */
+.pipeline{display:flex;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:11px 16px;margin-bottom:10px;}
+.pipe-s{text-align:center;flex:1;font-size:var(--fs-body);font-weight:600;color:var(--primary);}
+.pipe-a{font-size:12px;color:var(--supp);flex-shrink:0;}
+
+/* SLIDE BACKGROUNDS */
+#s3{background:var(--surface);}
+#s4,#s5,#s6,#s7,#s8{background:var(--white);}
+
+/* REUSABLE LAYOUT */
+.case-grid{flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;}
+.case-side{border-left:1px solid var(--border);padding-left:20px;display:flex;flex-direction:column;gap:8px;}
+.section-kicker{font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);}
+.three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+
+/* ─────────────────────────────────
+   S1 COVER
+───────────────────────────────── */
+#s1{background:linear-gradient(170deg,#C8E6FF 0%,#f0f8ff 40%,#FFFFFF 100%);}
+#s1 .inner{justify-content:center;padding-left:60px;}
+.cv-label{
+  font-family:'Inter',sans-serif;font-size:var(--fs-cap);font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;color:var(--sky);margin-bottom:32px;
+}
+.cv-name{
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:clamp(40px,5.5vw,64px);font-weight:900;letter-spacing:-0.03em;
+  line-height:1;color:#171717;margin-bottom:20px;
+}
+.cv-tagline{
+  font-size:clamp(13px,1.4vw,16px);color:#60646C;line-height:1.7;
+  margin-bottom:28px;max-width:480px;
+}
+.cv-div{width:100%;max-width:240px;height:1px;background:var(--sky-line);margin-bottom:20px;}
+.cv-role{font-size:var(--fs-bl);font-weight:500;color:#60646C;margin-bottom:5px;}
+.cv-contact{font-size:var(--fs-body);color:var(--muted);}
+
+/* ─────────────────────────────────
+   S2 ABOUT
+───────────────────────────────── */
+#s2{background:var(--white);}
+.ab-grid{
+  flex:1;display:grid;grid-template-columns:56% 44%;
+  position:relative;overflow:hidden;
+}
+.ab-left{padding-right:36px;display:flex;flex-direction:column;gap:12px;}
+.ab-right{padding-left:28px;border-left:1px solid var(--border);display:flex;flex-direction:column;gap:10px;}
+.ab-intro{font-size:var(--fs-bl);color:var(--body);line-height:1.75;}
+.ab-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.sk-section{display:flex;flex-direction:column;gap:0;}
+.sk-row{display:flex;align-items:baseline;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
+.sk-k{font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--primary);min-width:40px;}
+.sk-v{font-size:var(--fs-body);color:var(--body);}
+
+/* ─────────────────────────────────
+   S9 COMPETENCY
+───────────────────────────────── */
+#s9{background:var(--surface);}
+.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;flex:1;}
+
+/* ─────────────────────────────────
+   S10 END CARD
+───────────────────────────────── */
+#s10{background:var(--dark);}
+#s10 .inner{justify-content:center;padding-left:60px;}
+.end-label{font-family:'Inter',sans-serif;font-size:var(--fs-cap);font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--sky);margin-bottom:28px;}
+.end-div{width:100%;max-width:200px;height:1px;background:rgba(255,255,255,0.12);margin-bottom:28px;}
+.end-quote{font-size:clamp(13px,1.4vw,16px);color:rgba(255,255,255,0.55);line-height:1.9;max-width:580px;margin-bottom:36px;}
+.end-em{font-weight:600;color:rgba(255,255,255,0.85);}
+.end-name{font-size:var(--fs-bl);font-weight:600;color:#fff;margin-bottom:5px;}
+.end-contact{font-size:var(--fs-body);color:rgba(255,255,255,0.35);}
+</style>
+</head>
+<body>
+
+<a href="/portfolio/" class="back-btn light" id="back-btn">← 웹 버전</a>
+<div class="pbar"><div class="pf" id="pbar"></div></div>
+
+<div class="deck">
+
+<!-- ── S1 COVER ── -->
+<div class="slide" id="s1">
+  <div class="inner">
+    <div class="cv-label">Portfolio &nbsp;·&nbsp; Service Planner</div>
+    <div class="cv-name">서정일</div>
+    <div class="cv-tagline">
+      사용자 문제를 데이터로 구조화하고,<br>
+      서비스 흐름으로 검증하는 기획자
+    </div>
+    <div class="cv-div"></div>
+    <div class="cv-role">서비스 기획 &nbsp;·&nbsp; 데이터 분석 &nbsp;·&nbsp; AI 활용 &nbsp;·&nbsp; End-to-End 실행</div>
+    <div class="cv-contact">seobgak11@naver.com</div>
+  </div>
+</div>
+
+<!-- ── S2 ABOUT ── -->
+<div class="slide" id="s2">
+  <div class="inner">
+    <div class="label">About</div>
+    <h1 class="st">사용자의 언어에서 서비스 문제를 읽습니다</h1>
+    <div class="ss">데이터와 현장 경험을 교차해 실제 작동하는 기획으로 연결해왔습니다</div>
+    <div class="ab-grid">
+      <div class="ab-left">
+        <div class="callout sky">
+          <div class="callout-lbl">기획 철학</div>
+          <div class="callout-body">
+            고객의 불만은 단일 기능이 아니라<br>
+            여정 전반에서 누적된다.<br>
+            문제의 시작점을 찾고, 흐름으로 해결한다.
+          </div>
+        </div>
+        <div class="ab-intro">광고홍보·사학 복수전공 &nbsp;·&nbsp; 기획 3년+</div>
+        <div class="sk-section">
+          <div class="sk-row"><span class="sk-k">기획</span><span class="sk-v">Figma · Notion · Miro · 기능명세서 작성</span></div>
+          <div class="sk-row"><span class="sk-k">데이터</span><span class="sk-v">Python · SQL · KoELECTRA · SHAP · Tableau</span></div>
+          <div class="sk-row"><span class="sk-k">툴</span><span class="sk-v">Claude Code · Claude API · Photoshop · InDesign</span></div>
+        </div>
+        <div style="font-size:var(--fs-cap);color:var(--muted);">seobgak11@naver.com</div>
+      </div>
+      <div class="ab-right">
+        <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--supp);margin-bottom:4px;">주요 성과</div>
+        <div class="ab-stats-grid">
+          <div class="metric"><div class="mn">6개</div><div class="ml">강의 기획·출시</div><div class="ms">패스트캠퍼스</div></div>
+          <div class="metric"><div class="mn">3.8만</div><div class="ml">앱 리뷰 분석</div><div class="ms">Gcar VoC</div></div>
+          <div class="metric"><div class="mn">83%↓</div><div class="ml">제작 시간 단축</div><div class="ms">AI 자동화</div></div>
+          <div class="metric"><div class="mn">MVP</div><div class="ml">AI 사이즈 추천</div><div class="ms">pullsize</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── S3 INDEX ── -->
+<div class="slide" id="s3">
+  <div class="inner">
+    <div class="label">Index</div>
+    <h1 class="st">3개의 메인 케이스와 1개의 실행 경험</h1>
+    <div class="ss">문제정의 · 구조화 · 실행 역량 중심으로 구성했습니다</div>
+    <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+      <div class="idx-item">
+        <div class="idx-n">01</div>
+        <div><div class="idx-t">패스트캠퍼스 콘텐츠 기획</div><div class="idx-s">강사 분석에서 페이지 IA까지 — 신규 강의 6개 출시</div></div>
+        <div class="idx-d">2024.05 — 2024.12</div>
+      </div>
+      <div class="idx-item">
+        <div class="idx-n">02</div>
+        <div><div class="idx-t">Gcar VoC 분석</div><div class="idx-s">37,923건 리뷰로 고객 여정 기반 이탈 구조 도출</div></div>
+        <div class="idx-d">2025.11</div>
+      </div>
+      <div class="idx-item">
+        <div class="idx-n">03</div>
+        <div><div class="idx-t">AI 콘텐츠 자동화 · pullsize</div><div class="idx-s">Claude+Figma MCP 파이프라인 · AI 사이즈 추천 MVP</div></div>
+        <div class="idx-d">2026.03 — 현재</div>
+      </div>
+      <div class="idx-item">
+        <div class="idx-n">04</div>
+        <div><div class="idx-t">살미달라 브랜드 창업</div><div class="idx-s">5인 팀 리드 · 리드타임 20%↓ · 팔로워 +86%</div></div>
+        <div class="idx-d">2021.01 — 2023.04</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── S4 PROJECT 01 ── -->
+<div class="slide" id="s4">
+  <div class="inner">
+    <div class="label">Project 01 · 패스트캠퍼스 · 2024.05—2024.12</div>
+    <h1 class="st">가설을 데이터로 뒤집고, 신규 강의 6개를 기획했다</h1>
+    <div class="ss">강사 분석 → 수강생 니즈 재정의 → 커리큘럼·페이지 IA 설계</div>
+    <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="callout" style="margin-bottom:0;">
+            <div class="callout-lbl">Before</div>
+            <div class="callout-body">강사의 심미적 영상미 중심 기획. 수강생 실전 니즈와 어긋날 위험.</div>
+          </div>
+          <div class="callout sky" style="margin-bottom:0;">
+            <div class="callout-lbl">After</div>
+            <div class="callout-body">댓글·조회수 분석으로 핵심 니즈를 "최소 공수로 조회수를 만드는 실전 전략"으로 재정의.</div>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;">
+          <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:8px;">5단계 접근</div>
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;">
+            <div class="step-pill"><div class="step-num">1</div><span>강사·타겟 분석</span></div>
+            <span style="font-size:10px;color:var(--supp);">→</span>
+            <div class="step-pill"><div class="step-num">2</div><span>커리큘럼 설계</span></div>
+            <span style="font-size:10px;color:var(--supp);">→</span>
+            <div class="step-pill"><div class="step-num">3</div><span>페이지 IA</span></div>
+            <span style="font-size:10px;color:var(--supp);">→</span>
+            <div class="step-pill"><div class="step-num">4</div><span>제작 협업</span></div>
+            <span style="font-size:10px;color:var(--supp);">→</span>
+            <div class="step-pill"><div class="step-num">5</div><span>프로세스 문서화</span></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="tag">Figma</span><span class="tag">Notion</span><span class="tag">콘텐츠 기획</span><span class="tag">IA 설계</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;border-left:1px solid var(--border);padding-left:20px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="metric"><div class="mn">6개</div><div class="ml">신규 강의 출시</div><div class="ms">7개월 내</div></div>
+          <div class="metric"><div class="mn">IA</div><div class="ml">페이지 구조 재설계</div><div class="ms">수강생 변화 기준</div></div>
+          <div class="metric" style="grid-column:1/-1;"><div class="mn">1건</div><div class="ml">표준 제작 프로세스</div><div class="ms">Notion 인수인계 문서</div></div>
+        </div>
+        <div class="role">
+          <span class="rk">Role</span><span class="rv">콘텐츠 상품 기획자 인턴</span>
+          <span class="rk">Scope</span><span class="rv">강사 분석 · 커리큘럼 설계 · 상세페이지 IA · 런칭 매니징</span>
+          <span class="rk">Output</span><span class="rv">신규 강의 6개 출시 + 표준 제작 프로세스 문서</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── S5 PROJECT 02a ── -->
+<div class="slide" id="s5">
+  <div class="inner">
+    <div class="label">Project 02 · Gcar VoC 분석 · 2025.11</div>
+    <h1 class="st">37,923건의 리뷰에서 이탈 구조를 찾았다</h1>
+    <div class="ss">평점·감정·키워드 분석을 넘어 실패 여정을 서비스 문제로 재구성</div>
+    <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="callout">
+          <div class="callout-lbl">핵심 문제</div>
+          <div class="callout-body">Gcar는 Socar보다 평점이 낮고, 1점 리뷰 비중이 더 높았습니다.</div>
+        </div>
+        <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:4px;">실패 여정 구조</div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px;display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;align-items:center;gap:5px;">
+            <div class="jnode" style="background:#F0F0F0;color:#333;">앱 오류<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">예약·반납</span></div>
+            <div class="jarr">→</div>
+            <div class="jnode" style="background:#E4E4E4;color:#444;">반납 실패<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">시간 초과</span></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:5px;">
+            <div class="jnode" style="background:#D8D8D8;color:#555;">과금·페널티<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">예상 외 비용</span></div>
+            <div class="jarr">→</div>
+            <div class="jnode" style="background:#CCCCCC;color:#666;">고객센터<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">해결 지연</span></div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;">
+            <div style="background:#111;color:#fff;border-radius:6px;padding:6px 12px;font-size:var(--fs-body);font-weight:700;">→ 1점 리뷰 · 이탈</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="tag">KoELECTRA</span><span class="tag">SHAP</span><span class="tag">Python</span><span class="tag">시계열 분석</span>
+        </div>
+      </div>
+      <div style="border-left:1px solid var(--border);padding-left:20px;display:flex;flex-direction:column;gap:10px;">
+        <div class="callout sky">
+          <div class="callout-lbl">접근 방식</div>
+          <div class="callout-body">크롤링 → 전처리 → 감정분석 → 이슈 구조화 → 여정 맵 작성</div>
+        </div>
+        <div class="role" style="flex:1;align-content:start;">
+          <span class="rk">Role</span><span class="rv">개인 분석 프로젝트</span>
+          <span class="rk">Scope</span><span class="rv">크롤링 · 전처리 · 감정분석 · 이슈 구조화 · 여정 맵 작성</span>
+          <span class="rk">Output</span><span class="rv">고객 여정 기반 이탈 구조 분석 보고서 + 3개 개선 방향</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── S6 PROJECT 02b ── -->
+<div class="slide" id="s6">
+  <div class="inner">
+    <div class="label">Project 02 · Gcar VoC · 개선안</div>
+    <h1 class="st">분석에서 끝내지 않고, 서비스 개선 흐름으로 연결했다</h1>
+    <div class="ss">연쇄 구조 검증 후 문제 발생 시작점을 줄이는 3개 우선순위 제안</div>
+    <div class="callout">
+      <div class="callout-lbl">핵심 발견</div>
+      <div class="callout-body">Gcar의 부정 경험은 단일 기능 문제가 아니라, <strong>앱 오류 → 반납 실패 → 과금 → CS 지연</strong>으로 이어지는 연쇄 구조였습니다.</div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+        <div class="sol">
+          <div class="sol-n">01</div>
+          <div class="sol-t">반납 UI + 사전 예측 안내</div>
+          <div class="sol-d">예약 단계·반납 30분 전 혼잡 가능성을 알려 대체 반납지 연결</div>
+        </div>
+        <div class="sol">
+          <div class="sol-n">02</div>
+          <div class="sol-t">과금 발생 전 사전 경고</div>
+          <div class="sol-d">예상 금액·사유·회피 행동을 앱 안에서 선제적으로 안내</div>
+        </div>
+        <div class="sol">
+          <div class="sol-n">03</div>
+          <div class="sol-t">CS 봇 + 자동 문의 연결</div>
+          <div class="sol-d">오류 화면에서 증빙 캡처·문의 접수·처리 상태 확인까지 연결</div>
+        </div>
+      </div>
+      <div class="role">
+        <span class="rk">Role</span><span class="rv">개인 프로젝트 리드</span>
+        <span class="rk">Scope</span><span class="rv">개선안 설계 · 기능 우선순위 도출 · 서비스 흐름 제안</span>
+        <span class="rk">Output</span><span class="rv">고객 여정 기반 3개 개선 방향 기획서 문서화</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── S7 PROJECT 03 ── -->
+<div class="slide" id="s7">
+  <div class="inner">
+    <div class="label">Project 03 · AI 기획·구현 · 2026.03—현재</div>
+    <h1 class="st">AI 파이프라인으로 제작 시간을 83% 단축했다</h1>
+    <div class="ss">Claude AI + Figma MCP 콘텐츠 자동화 · pullsize AI 사이즈 추천 MVP</div>
+    <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);">AI 콘텐츠 자동화 파이프라인</div>
+        <div class="pipeline">
+          <div class="pipe-s">자료조사</div><div class="pipe-a">→</div>
+          <div class="pipe-s">전략 수립</div><div class="pipe-a">→</div>
+          <div class="pipe-s">카피 생성</div><div class="pipe-a">→</div>
+          <div class="pipe-s">디자인 적용</div><div class="pipe-a">→</div>
+          <div class="pipe-s">QA 검수</div>
+        </div>
+        <div class="callout sky">
+          <div class="callout-lbl">pullsize — AI 사이즈 추천</div>
+          <div class="callout-body">상품 URL 입력 → Firecrawl 파싱 → Claude API 추천 → 신뢰도 표시.<br>무신사·지그재그·에이블리 지원, 이미지 업로드 fallback 포함.</div>
+        </div>
+        <div class="callout" style="margin-bottom:0;">
+          <div class="callout-lbl">AI 사용 원칙</div>
+          <div class="callout-body">판단은 직접 수행 — 요구사항·QA 설계는 기획자가 직접 담당</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="tag">Claude AI</span><span class="tag">Figma MCP</span><span class="tag">Claude Code</span><span class="tag">Python</span>
+        </div>
+      </div>
+      <div style="border-left:1px solid var(--border);padding-left:20px;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="metric"><div class="mn">83%↓</div><div class="ml">제작 시간 단축</div><div class="ms">3시간 → 30분</div></div>
+          <div class="metric"><div class="mn">29개+</div><div class="ml">피드 자동 생성</div><div class="ms">22개 브랜드</div></div>
+          <div class="metric" style="grid-column:1/-1;"><div class="mn">MVP</div><div class="ml">pullsize 출시</div><div class="ms">URL→AI 추천 서비스</div></div>
+        </div>
+        <div class="role" style="flex:1;align-content:start;">
+          <span class="rk">Role</span><span class="rv">1인 프로젝트</span>
+          <span class="rk">Scope</span><span class="rv">파이프라인 구조 · QA 체계 · SEO 전략 · URL→AI 추천 흐름 설계</span>
+          <span class="rk">Output</span><span class="rv">29개+ 피드 자동화 파이프라인 + pullsize MVP 출시</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── S8 PROJECT 04 ── -->
+<div class="slide" id="s8">
+  <div class="inner">
+    <div class="label">Project 04 · 살미달라 브랜드 창업 · 2021.01—2023.04</div>
+    <h1 class="st">기획과 실행을 분리하지 않고, End-to-End로 책임졌다</h1>
+    <div class="ss">5인 팀 리드 · 리드타임 20%↓ · 판매량 30%↑ · 팔로워 +86%</div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+        <div class="ach">
+          <div class="ach-n">20%↓</div>
+          <div class="ach-t">리드타임 단축</div>
+          <div class="ach-d">협력업체 소통 창구를 단일화하고 샘플→촬영→오픈 일정을 통합 관리</div>
+        </div>
+        <div class="ach">
+          <div class="ach-n">30%↑</div>
+          <div class="ach-t">판매량 성장</div>
+          <div class="ach-d">룩북 영상·상세페이지·SNS 운영을 시즌 판매 전략과 연결</div>
+        </div>
+        <div class="ach">
+          <div class="ach-n">+86%</div>
+          <div class="ach-t">팔로워 성장</div>
+          <div class="ach-d">팝업스토어 3회 기획 후 오프라인 접점을 온라인으로 확장</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div class="metric"><div class="mn">1.7만</div><div class="ml">유튜브 쇼츠 조회</div><div class="ms">브랜드 채널</div></div>
+        <div class="metric"><div class="mn">3시즌</div><div class="ml">판매량 30%↑ 기준</div><div class="ms">누적 성과</div></div>
+      </div>
+      <div class="role">
+        <span class="rk">Role</span><span class="rv">대표 · 팀 리더</span>
+        <span class="rk">Scope</span><span class="rv">시즌 상품 기획 · 제작 관리 · 팝업스토어 · SNS 콘텐츠 · 외부 협력</span>
+        <span class="rk">Output</span><span class="rv">리드타임 20%↓ · 판매량 30%↑ · 팔로워 +86%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── S9 COMPETENCY ── -->
+<div class="slide" id="s9">
+  <div class="inner">
+    <div class="label">Competency</div>
+    <h1 class="st">서비스 기획자로서의 3가지 역량</h1>
+    <div class="ss">문제정의 · 논리적 구조화 · 데이터 기반 검증 — 세 역량이 하나의 흐름으로 연결됩니다</div>
+    <div class="comp-grid">
+      <div class="comp">
+        <div class="comp-n">01</div>
+        <div class="comp-t">사용자 경험 설계</div>
+        <div class="comp-d">고객의 언어와 행동 데이터에서 문제를 정의하고 서비스 흐름으로 연결</div>
+        <div><div class="comp-el">관련 경험</div><div class="comp-e">Gcar 여정 구조화 · 패스트캠퍼스 IA</div></div>
+      </div>
+      <div class="comp">
+        <div class="comp-n">02</div>
+        <div class="comp-t">논리적 기획 문서화</div>
+        <div class="comp-d">문제 정의 → 근거 → 개선안 흐름을 개발·디자인 협업 문서로 구조화</div>
+        <div><div class="comp-el">관련 경험</div><div class="comp-e">표준 프로세스 문서 · 기능 요구사항 정의</div></div>
+      </div>
+      <div class="comp">
+        <div class="comp-n">03</div>
+        <div class="comp-t">데이터 기반 가설 검증</div>
+        <div class="comp-d">주관적 판단이 아니라 데이터와 현장 반응으로 기획 방향을 수정</div>
+        <div><div class="comp-el">관련 경험</div><div class="comp-e">KoELECTRA·SHAP · 댓글·조회수 분석</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── S10 END CARD ── -->
+<div class="slide" id="s10">
+  <div class="inner">
+    <div class="end-label">마무리하기 전</div>
+    <div class="end-div"></div>
+    <div class="end-quote">
+      서비스 기획자는 기능을 늘리는 사람이 아니라,<br>
+      <span class="end-em">사용자가 이탈하는 지점을 발견하고 더 나은 흐름으로 바꾸는 사람</span>이라고 생각합니다.<br><br>
+      저는 데이터와 사용자 경험을 함께 보며 문제를 구조화하고,<br>
+      실제로 작동하는 서비스 흐름으로 바꾸는 일을 해왔습니다.<br><br>
+      그 방식으로 팀의 문제를 함께 풀어보고 싶습니다.
+    </div>
+    <div class="end-name">서정일</div>
+    <div class="end-contact">seobgak11@naver.com</div>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- NAV -->
+<div class="nav" id="nav">
+  <button class="nbtn" id="prev" aria-label="이전 슬라이드">&#8592;</button>
+  <div class="dots" id="dots"></div>
+  <button class="nbtn" id="next" aria-label="다음 슬라이드">&#8594;</button>
+</div>
+<div class="snum" id="snum"></div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const N = slides.length;
+let cur = 0;
+
+const pbarEl = document.getElementById('pbar');
+const dotsEl = document.getElementById('dots');
+const snumEl = document.getElementById('snum');
+const backBtn = document.getElementById('back-btn');
+const darkSlides = new Set([0, N - 1]); // cover & end card
+
+for (let i = 0; i < N; i++) {
+  const d = document.createElement('button');
+  d.className = 'dot';
+  d.setAttribute('aria-label', `슬라이드 ${i + 1}`);
+  d.addEventListener('click', () => go(i));
+  dotsEl.appendChild(d);
+}
+
+function go(n) {
+  slides[cur].classList.remove('active');
+  cur = Math.max(0, Math.min(N - 1, n));
+  slides[cur].classList.add('active');
+  pbarEl.style.width = ((cur + 1) / N * 100) + '%';
+  dotsEl.querySelectorAll('.dot').forEach((d, i) => {
+    d.classList.toggle('on', i === cur);
+    d.setAttribute('aria-current', i === cur ? 'true' : 'false');
+  });
+  snumEl.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(N).padStart(2, '0');
+  snumEl.style.color = darkSlides.has(cur) ? 'rgba(255,255,255,0.25)' : 'var(--supp)';
+  backBtn.classList.toggle('light', !darkSlides.has(cur));
+}
+
+document.getElementById('prev').addEventListener('click', () => go(cur - 1));
+document.getElementById('next').addEventListener('click', () => go(cur + 1));
+
+document.addEventListener('keydown', e => {
+  if (e.target.closest('button,a,input,textarea,select')) return;
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(cur + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1); }
+});
+
+let tx = null;
+document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+document.addEventListener('touchcancel', () => { tx = null; });
+document.addEventListener('touchend', e => {
+  if (tx === null || !e.changedTouches.length) return;
+  const dx = e.changedTouches[0].clientX - tx;
+  tx = null;
+  if (Math.abs(dx) > 50) dx > 0 ? go(cur - 1) : go(cur + 1);
+});
+
+go(0);
+</script>
+</body>
+</html>
