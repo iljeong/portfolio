@@ -156,7 +156,7 @@ body{
   background:var(--surface);border:1px solid var(--border);padding:13px;
   font-size:13px;line-height:1.55;margin-top:16px;
 }
-.m-role b{color:var(--muted);font-size:10px;letter-spacing:0.8px;text-transform:uppercase;}
+.m-role b{color:var(--muted);font-size:11px;letter-spacing:0.8px;text-transform:uppercase;}
 .m-role span{color:var(--primary);}
 .m-flow{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
 .m-flow-item{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--primary);}
@@ -184,7 +184,7 @@ body{
 .dot:focus-visible{outline:2px solid var(--sky);outline-offset:3px;}
 
 /* ── INNER ── */
-.inner{flex:1;display:flex;flex-direction:column;padding:24px 48px 60px;min-height:0;}
+.inner{flex:1;display:flex;flex-direction:column;padding:24px 48px 28px;min-height:0;}
 
 /* REUSABLE */
 .section-label{font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:8px;}
@@ -1155,7 +1155,6 @@ function go(n) {
   prevBtn.disabled = cur === 0;
   nextBtn.disabled = cur === N - 1;
   document.querySelector('.viewer')?.scrollTo({ top: 0, behavior: 'smooth' });
-  scaleDeck();
 }
 
 prevBtn.addEventListener('click', () => go(cur - 1));
