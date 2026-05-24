@@ -381,9 +381,11 @@ h1.st{
   .deck{display:none;}
   .mobile-deck{display:block;width:min(366px,calc(100vw - 24px));min-width:0;margin:0;flex:0 0 auto;}
   .m-card{
+    aspect-ratio:4 / 5;
     min-height:auto;height:auto;
-    padding:22px 22px 24px;
-    overflow:visible;
+    padding:22px 22px 18px;
+    overflow:hidden;
+    display:flex;flex-direction:column;
   }
   .m-eyebrow{font-size:11px;letter-spacing:1.2px;margin-bottom:10px;}
   .m-title{font-size:24px;line-height:1.1;margin-bottom:9px;}
@@ -1034,23 +1036,21 @@ h1.st{
         <div class="m-eyebrow">Project 01</div>
         <h2 class="m-title">37,923건의 리뷰에서 이탈 구조를 찾았습니다</h2>
         <p class="m-sub">리뷰를 평점이 아니라 고객 여정의 실패 신호로 다시 읽었습니다.</p>
-        <div class="m-section">
-          <div class="m-label">핵심 발견</div>
-          <p class="m-text">Gcar의 부정 경험은 앱 오류 → 반납 실패 → 과금 → CS 지연 → 1점 리뷰로 이어지는 연쇄 구조였습니다.</p>
-        </div>
         <div class="m-metrics">
           <div class="m-metric"><strong>3.8만</strong><span>리뷰 수집·분류</span></div>
           <div class="m-metric"><strong>F1 0.84</strong><span>감정 분류 성능</span></div>
+          <div class="m-metric"><strong>4개</strong><span>이슈 클러스터</span></div>
+          <div class="m-metric"><strong>4개</strong><span>우선 개선 방향</span></div>
         </div>
         <div class="m-section">
           <div class="m-label">개선 방향</div>
           <div class="m-flow">
-            <div class="m-flow-item"><span class="m-dotnum">1</span>FAQ·반납 기능 중심의 고객센터 IA 재설계</div>
-            <div class="m-flow-item"><span class="m-dotnum">2</span>반납지 혼잡도와 과금 위험 사전 안내</div>
-            <div class="m-flow-item"><span class="m-dotnum">3</span>오류 화면에서 CS 자동 문의 연결</div>
+            <div class="m-flow-item"><span class="m-dotnum">1</span>고객센터 IA 재설계</div>
+            <div class="m-flow-item"><span class="m-dotnum">2</span>반납지 혼잡도 사전 안내</div>
+            <div class="m-flow-item"><span class="m-dotnum">3</span>과금 발생 전 경고</div>
+            <div class="m-flow-item"><span class="m-dotnum">4</span>CS 자동 문의 연결</div>
           </div>
         </div>
-        <div class="m-role"><b>Output</b><span>이탈 구조 분석 보고서 + 개선 방향 제안</span></div>
       </div>
     </section>
 
