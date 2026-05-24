@@ -374,24 +374,24 @@ h1.st{
   .tb-snum{min-width:50px;font-size:12px;}
   .tb-icon-btn{width:32px;height:32px;}
   .viewer{
-    align-items:center;justify-content:center;gap:10px;
+    align-items:flex-start;justify-content:center;gap:10px;
     padding:10px 12px calc(12px + env(safe-area-inset-bottom));
     overflow-y:auto;-webkit-overflow-scrolling:touch;
   }
   .deck{display:none;}
-  .mobile-deck{display:block;width:min(390px,calc(100vw - 24px));min-width:0;margin:0 auto;flex:0 0 auto;}
+  .mobile-deck{display:block;width:min(366px,calc(100vw - 24px));min-width:0;margin:0;flex:0 0 auto;}
   .m-card{
     aspect-ratio:4 / 5;
     min-height:auto;height:auto;
-    padding:24px 22px 22px;
+    padding:22px 22px 18px;
     overflow:hidden;
     display:flex;flex-direction:column;
   }
   .m-eyebrow{font-size:11px;letter-spacing:1.2px;margin-bottom:10px;}
-  .m-title{font-size:26px;line-height:1.1;margin-bottom:10px;}
+  .m-title{font-size:24px;line-height:1.1;margin-bottom:9px;}
   .m-sub{font-size:13px;line-height:1.48;margin-bottom:14px;}
   .m-rule{margin:14px 0;}
-  .m-section{margin-top:13px;}
+  .m-section{margin-top:11px;}
   .m-label{font-size:11px;letter-spacing:1.1px;margin-bottom:7px;}
   .m-text{font-size:13px;line-height:1.55;}
   .m-quote{padding:12px 13px;font-size:13px;line-height:1.5;}
@@ -406,12 +406,12 @@ h1.st{
   .m-metric span{font-size:11.5px;line-height:1.35;margin-top:6px;}
   .m-tags{gap:6px;margin-top:auto;padding-top:12px;}
   .m-tag{font-size:11px;padding:4px 8px;}
-  .m-flow{gap:7px;margin-top:8px;}
-  .m-flow-item{align-items:flex-start;font-size:12.5px;line-height:1.4;gap:8px;}
+  .m-flow{gap:6px;margin-top:7px;}
+  .m-flow-item{align-items:flex-start;font-size:12px;line-height:1.36;gap:8px;}
   .m-dotnum{width:22px;height:22px;font-size:10px;margin-top:-1px;}
   .m-role{
-    grid-template-columns:46px 1fr;gap:5px 9px;
-    padding:10px;font-size:11.5px;line-height:1.38;margin-top:auto;
+    grid-template-columns:42px 1fr;gap:4px 8px;
+    padding:8px;font-size:11px;line-height:1.25;margin-top:8px;
   }
   .m-role b{font-size:9.5px;}
   .dots{justify-content:center;margin-bottom:2px;}
@@ -1043,19 +1043,16 @@ h1.st{
         <div class="m-metrics">
           <div class="m-metric"><strong>3.8만</strong><span>리뷰 수집·분류</span></div>
           <div class="m-metric"><strong>F1 0.84</strong><span>감정 분류 성능</span></div>
-          <div class="m-metric"><strong>4개</strong><span>이슈 클러스터</span></div>
-          <div class="m-metric"><strong>4개</strong><span>우선 개선 방향</span></div>
         </div>
         <div class="m-section">
           <div class="m-label">개선 방향</div>
           <div class="m-flow">
-            <div class="m-flow-item"><span class="m-dotnum">1</span>고객센터 IA 재설계 — FAQ·반납 기능 도달 시간 단축</div>
-            <div class="m-flow-item"><span class="m-dotnum">2</span>반납지 혼잡도 사전 안내</div>
-            <div class="m-flow-item"><span class="m-dotnum">3</span>과금 발생 전 경고와 회피 행동 안내</div>
-            <div class="m-flow-item"><span class="m-dotnum">4</span>오류 화면에서 CS 자동 문의 연결</div>
+            <div class="m-flow-item"><span class="m-dotnum">1</span>FAQ·반납 기능 중심의 고객센터 IA 재설계</div>
+            <div class="m-flow-item"><span class="m-dotnum">2</span>반납지 혼잡도와 과금 위험 사전 안내</div>
+            <div class="m-flow-item"><span class="m-dotnum">3</span>오류 화면에서 CS 자동 문의 연결</div>
           </div>
         </div>
-        <div class="m-role"><b>Role</b><span>개인 분석 프로젝트</span><b>Output</b><span>이탈 구조 분석 보고서 + 개선 방향 제안</span></div>
+        <div class="m-role"><b>Output</b><span>이탈 구조 분석 보고서 + 개선 방향 제안</span></div>
       </div>
     </section>
 
@@ -1070,16 +1067,13 @@ h1.st{
             <div class="m-flow-item"><span class="m-dotnum">1</span>강사 채널 반응과 수강생 니즈 분석</div>
             <div class="m-flow-item"><span class="m-dotnum">2</span>학습 목표 기반 커리큘럼·차시 구조 설계</div>
             <div class="m-flow-item"><span class="m-dotnum">3</span>상세페이지 IA와 구매 흐름 재구성</div>
-            <div class="m-flow-item"><span class="m-dotnum">4</span>Notion 표준 제작 프로세스 문서화</div>
           </div>
         </div>
         <div class="m-metrics">
           <div class="m-metric"><strong>6개</strong><span>신규 강의 출시</span></div>
           <div class="m-metric"><strong>IA</strong><span>상세페이지 구조화</span></div>
-          <div class="m-metric"><strong>1건</strong><span>표준 제작 프로세스</span></div>
-          <div class="m-metric"><strong>7개월</strong><span>인턴 기간 내 실행</span></div>
         </div>
-        <div class="m-role"><b>Role</b><span>콘텐츠 상품 기획자 인턴</span><b>Output</b><span>신규 강의 6개 출시 + 제작 프로세스 문서</span></div>
+        <div class="m-role"><b>Output</b><span>신규 강의 6개 출시 + 제작 프로세스 문서</span></div>
       </div>
     </section>
 
@@ -1100,11 +1094,8 @@ h1.st{
         <div class="m-metrics">
           <div class="m-metric"><strong>MVP</strong><span>실서비스 배포</span></div>
           <div class="m-metric"><strong>URL</strong><span>상품 정보 기반</span></div>
-          <div class="m-metric"><strong>3개</strong><span>주요 쇼핑몰 대응</span></div>
-          <div class="m-metric"><strong>AI</strong><span>추천 이유 생성</span></div>
         </div>
-        <div class="m-tags"><span class="m-tag">Claude API</span><span class="m-tag">Firecrawl</span><span class="m-tag">Next.js</span><span class="m-tag">Supabase</span></div>
-        <div class="m-role"><b>Role</b><span>서비스 기획 · Claude Code 직접 구현</span><b>Output</b><span>pullsize.kr AI 사이즈 추천 MVP</span></div>
+        <div class="m-role"><b>Output</b><span>pullsize.kr AI 사이즈 추천 MVP</span></div>
       </div>
     </section>
 
@@ -1119,16 +1110,13 @@ h1.st{
             <div class="m-flow-item"><span class="m-dotnum">1</span>자료조사 자동화</div>
             <div class="m-flow-item"><span class="m-dotnum">2</span>전략·카피 생성</div>
             <div class="m-flow-item"><span class="m-dotnum">3</span>Figma MCP 디자인 적용</div>
-            <div class="m-flow-item"><span class="m-dotnum">4</span>Google Sheets 대시보드 관리</div>
           </div>
         </div>
         <div class="m-metrics">
           <div class="m-metric"><strong>83%↓</strong><span>3시간 → 30분</span></div>
           <div class="m-metric"><strong>29개+</strong><span>피드 자동 생성</span></div>
-          <div class="m-metric"><strong>39개</strong><span>피드 통합 관리</span></div>
-          <div class="m-metric"><strong>22개</strong><span>브랜드 커버</span></div>
         </div>
-        <div class="m-role"><b>Role</b><span>파이프라인 설계 · Claude Code 구현</span><b>Output</b><span>콘텐츠 자동화 파이프라인 + QA 체계</span></div>
+        <div class="m-role"><b>Output</b><span>콘텐츠 자동화 파이프라인 + QA 체계</span></div>
       </div>
     </section>
 
@@ -1142,16 +1130,14 @@ h1.st{
           <div class="m-flow">
             <div class="m-flow-item"><span class="m-dotnum">1</span>21SS 첫 시즌 자체 제작 140벌 완판</div>
             <div class="m-flow-item"><span class="m-dotnum">2</span>리드타임 20% 단축 — 생산·협업 프로세스 정비</div>
-            <div class="m-flow-item"><span class="m-dotnum">3</span>팝업스토어 3회 기획·운영, 인스타 팔로워 +86%</div>
+            <div class="m-flow-item"><span class="m-dotnum">3</span>팝업 3회 운영, 인스타 팔로워 +86%</div>
           </div>
         </div>
         <div class="m-metrics">
           <div class="m-metric"><strong>3시즌</strong><span>21SS / 21FW / 22SS</span></div>
           <div class="m-metric"><strong>140벌</strong><span>첫 시즌 완판</span></div>
-          <div class="m-metric"><strong>3회</strong><span>팝업스토어</span></div>
-          <div class="m-metric"><strong>+86%</strong><span>팔로워 성장</span></div>
         </div>
-        <div class="m-role"><b>Role</b><span>패션 브랜드 공동창업·대표 (3인 팀)</span><b>Output</b><span>3시즌 출시 · 리드타임 20%↓ · 팔로워 +86%</span></div>
+        <div class="m-role"><b>Output</b><span>3시즌 출시 · 리드타임 20%↓ · 팔로워 +86%</span></div>
       </div>
     </section>
 
@@ -1164,20 +1150,16 @@ h1.st{
           <div class="m-label">접근</div>
           <div class="m-flow">
             <div class="m-flow-item"><span class="m-dotnum">1</span>인터뷰 기획·촬영·편집</div>
-            <div class="m-flow-item"><span class="m-dotnum">2</span>인스타그램 콘텐츠 운영 병행</div>
-            <div class="m-flow-item"><span class="m-dotnum">3</span>InDesign으로 인터뷰집 편집·출판 (2권)</div>
-            <div class="m-flow-item"><span class="m-dotnum">4</span>텀블벅 캠페인 기획·운영 — 177% 달성</div>
-            <div class="m-flow-item"><span class="m-dotnum">5</span>9명 팀 PM (편집·마케팅·디자인팀 조율)</div>
+            <div class="m-flow-item"><span class="m-dotnum">2</span>인터뷰집 2권 편집·출판</div>
+            <div class="m-flow-item"><span class="m-dotnum">3</span>텀블벅 캠페인 기획·운영 — 177% 달성</div>
+            <div class="m-flow-item"><span class="m-dotnum">4</span>9명 팀 PM, 편집·마케팅·디자인 조율</div>
           </div>
         </div>
         <div class="m-metrics">
           <div class="m-metric"><strong>177%</strong><span>텀블벅 달성</span></div>
           <div class="m-metric"><strong>2권</strong><span>인터뷰집 출판</span></div>
-          <div class="m-metric"><strong>9명</strong><span>팀 PM</span></div>
-          <div class="m-metric"><strong>4종</strong><span>콘텐츠 포맷</span></div>
         </div>
-        <div class="m-tags"><span class="m-tag">PM</span><span class="m-tag">InDesign</span><span class="m-tag">출판</span><span class="m-tag">크라우드펀딩</span></div>
-        <div class="m-role"><b>Role</b><span>프로젝트 매니저</span><b>Output</b><span>출판물 2권 · 텀블벅 177% 달성</span></div>
+        <div class="m-role"><b>Output</b><span>출판물 2권 · 텀블벅 177% 달성</span></div>
       </div>
     </section>
 
@@ -1272,8 +1254,14 @@ function go(n) {
 prevBtn.addEventListener('click', () => go(cur - 1));
 nextBtn.addEventListener('click', () => go(cur + 1));
 
-document.getElementById('btn-download').addEventListener('click', () => window.print());
-document.getElementById('btn-print').addEventListener('click', () => window.print());
+document.getElementById('btn-download').addEventListener('click', () => {
+  const link = document.createElement('a');
+  link.href = '/portfolio/files/seojeongil-portfolio.pdf';
+  link.download = 'seojeongil-portfolio.pdf';
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+});
 
 document.addEventListener('keydown', e => {
   if (e.target.closest('button,a,input,textarea,select')) return;
