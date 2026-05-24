@@ -9,7 +9,6 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 
 :root{
-  /* palette */
   --primary:   #111111;
   --body:      #767676;
   --muted:     #AAAAAA;
@@ -21,11 +20,10 @@
   --sky:       #5A9EC4;
   --sky-bg:    #EBF4FA;
   --sky-line:  #A8CCE0;
-  /* type scale */
-  --fs-disp:   clamp(22px, 2.4vw, 30px);
-  --fs-bl:     clamp(12px, 1.1vw, 14px);
-  --fs-body:   clamp(11px, 1vw,   13px);
-  --fs-cap:    clamp(9px,  0.8vw, 11px);
+  --fs-disp:   clamp(28px, 3.5vw, 44px);
+  --fs-bl:     clamp(14px, 1.4vw, 17px);
+  --fs-body:   clamp(12px, 1.1vw, 14px);
+  --fs-cap:    clamp(10px, 0.9vw, 12px);
   --r: 8px;
 }
 
@@ -83,51 +81,51 @@ body{
 }
 
 /* INNER */
-.inner{flex:1;display:flex;flex-direction:column;padding:36px 56px 68px;overflow:hidden;}
+.inner{flex:1;display:flex;flex-direction:column;padding:24px 48px 60px;overflow:hidden;}
 
 /* LABEL CHIP */
 .label{
   font-family:'Inter',sans-serif;font-size:var(--fs-cap);font-weight:600;
   letter-spacing:2.5px;text-transform:uppercase;color:var(--sky);
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 
 /* SLIDE TITLE */
 h1.st{
   font-size:var(--fs-disp);font-weight:700;color:var(--primary);
-  line-height:1.25;letter-spacing:-0.02em;margin-bottom:4px;
+  line-height:1.2;letter-spacing:-0.02em;margin-bottom:4px;
 }
-.ss{font-size:var(--fs-body);color:var(--body);margin-bottom:20px;line-height:1.55;}
+.ss{font-size:var(--fs-body);color:var(--body);margin-bottom:16px;line-height:1.5;}
 
 /* DIVIDER */
-.div-line{width:100%;height:1px;background:var(--border);margin-bottom:16px;}
+.div-line{width:100%;height:1px;background:var(--border);margin-bottom:14px;}
 
-/* CALLOUT BOX — insight (black bar) */
+/* CALLOUT BOX */
 .callout{
   background:var(--white);border:1px solid var(--border);border-radius:var(--r);
-  padding:12px 14px 12px 18px;position:relative;margin-bottom:12px;
+  padding:12px 14px 12px 18px;position:relative;margin-bottom:10px;
 }
 .callout::before{
   content:'';position:absolute;left:0;top:0;bottom:0;
   width:3px;background:var(--primary);border-radius:3px 0 0 3px;
 }
 .callout.sky::before{background:var(--sky);}
-.callout-lbl{font-size:var(--fs-cap);font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:5px;}
-.callout-body{font-size:var(--fs-body);color:var(--primary);line-height:1.65;}
+.callout-lbl{font-size:var(--fs-cap);font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:4px;}
+.callout-body{font-size:var(--fs-body);color:var(--primary);line-height:1.6;}
 
 /* ROLE BOX */
 .role{
   background:var(--surface);border-radius:var(--r);border:1px solid var(--border);
-  padding:11px 14px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;
+  padding:12px 14px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;
   align-items:baseline;font-size:var(--fs-cap);
 }
 .rk{font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;}
 .rv{color:var(--primary);}
 
 /* METRIC CARD */
-.metric{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:12px 14px;display:flex;flex-direction:column;}
-.mn{font-family:'Inter',sans-serif;font-size:clamp(18px,2vw,24px);font-weight:800;color:var(--primary);line-height:1;letter-spacing:-0.03em;}
-.ml{font-size:var(--fs-cap);color:var(--body);margin-top:4px;}
+.metric{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:14px 16px;display:flex;flex-direction:column;}
+.mn{font-family:'Inter',sans-serif;font-size:clamp(22px,2.5vw,32px);font-weight:800;color:var(--primary);line-height:1;letter-spacing:-0.03em;}
+.ml{font-size:var(--fs-cap);color:var(--body);margin-top:5px;}
 .ms{font-size:var(--fs-cap);color:var(--supp);margin-top:2px;}
 
 /* SKILL TAG */
@@ -141,7 +139,7 @@ h1.st{
 /* JOURNEY NODE */
 .jnode{
   background:var(--white);border:1px solid var(--border);border-radius:6px;
-  padding:6px 10px;flex:1;font-size:var(--fs-body);font-weight:600;color:var(--primary);text-align:center;
+  padding:8px 12px;flex:1;font-size:var(--fs-body);font-weight:600;color:var(--primary);text-align:center;
 }
 .jarr{font-size:12px;color:var(--supp);flex-shrink:0;padding:0 4px;}
 
@@ -153,25 +151,25 @@ h1.st{
 .step-num{
   font-family:'Inter',sans-serif;font-size:9px;font-weight:700;
   background:var(--primary);color:#fff;
-  width:15px;height:15px;border-radius:50%;
+  width:16px;height:16px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 
 /* SOLUTION CARD */
 .sol{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:16px;border-top:1px solid var(--sky);}
-.sol-n{font-family:'Inter',sans-serif;font-size:clamp(14px,1.6vw,20px);font-weight:800;color:var(--sky);margin-bottom:7px;line-height:1;}
-.sol-t{font-size:var(--fs-bl);font-weight:600;color:var(--primary);margin-bottom:5px;}
-.sol-d{font-size:var(--fs-body);color:var(--body);line-height:1.6;}
+.sol-n{font-family:'Inter',sans-serif;font-size:clamp(16px,1.8vw,22px);font-weight:800;color:var(--sky);margin-bottom:6px;line-height:1;}
+.sol-t{font-size:var(--fs-bl);font-weight:600;color:var(--primary);margin-bottom:4px;}
+.sol-d{font-size:var(--fs-body);color:var(--body);line-height:1.55;}
 
 /* ACH CARD */
-.ach{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:16px;}
-.ach-n{font-family:'Inter',sans-serif;font-size:clamp(18px,2.2vw,26px);font-weight:800;color:var(--primary);line-height:1;letter-spacing:-0.03em;margin-bottom:5px;}
-.ach-t{font-size:var(--fs-bl);font-weight:600;color:var(--primary);margin-bottom:4px;}
+.ach{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:18px;}
+.ach-n{font-family:'Inter',sans-serif;font-size:clamp(22px,2.8vw,36px);font-weight:800;color:var(--primary);line-height:1;letter-spacing:-0.03em;margin-bottom:6px;}
+.ach-t{font-size:var(--fs-bl);font-weight:600;color:var(--primary);margin-bottom:5px;}
 .ach-d{font-size:var(--fs-body);color:var(--body);line-height:1.55;}
 
 /* COMPETENCY CARD */
-.comp{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:22px 20px;display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--primary);}
-.comp-n{font-family:'Inter',sans-serif;font-size:clamp(28px,3.5vw,44px);font-weight:900;color:var(--primary);line-height:1;opacity:0.06;margin-bottom:-4px;}
+.comp{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:24px 20px;display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--primary);}
+.comp-n{font-family:'Inter',sans-serif;font-size:clamp(36px,4.5vw,56px);font-weight:900;color:var(--primary);line-height:1;opacity:0.06;margin-bottom:-4px;}
 .comp-t{font-size:var(--fs-bl);font-weight:700;color:var(--primary);}
 .comp-d{font-size:var(--fs-body);color:var(--body);line-height:1.7;}
 .comp-el{font-size:var(--fs-cap);text-transform:uppercase;letter-spacing:1px;font-weight:600;color:var(--supp);}
@@ -179,83 +177,91 @@ h1.st{
 
 /* IDX ITEM */
 .idx-item{
-  background:var(--white);border-radius:var(--r);padding:14px 20px;
-  display:grid;grid-template-columns:32px 1fr auto;align-items:center;gap:16px;
+  background:var(--white);border-radius:var(--r);padding:16px 22px;
+  display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:16px;
   border:1px solid var(--border);flex:1;
 }
-.idx-n{font-family:'Inter',sans-serif;font-size:clamp(14px,1.6vw,18px);font-weight:800;color:var(--supp);}
-.idx-t{font-size:var(--fs-bl);font-weight:600;color:var(--primary);margin-bottom:2px;}
+.idx-n{font-family:'Inter',sans-serif;font-size:clamp(16px,2vw,24px);font-weight:800;color:var(--supp);}
+.idx-t{font-size:var(--fs-bl);font-weight:600;color:var(--primary);margin-bottom:3px;}
 .idx-s{font-size:var(--fs-body);color:var(--body);}
 .idx-d{font-family:'Inter',sans-serif;font-size:var(--fs-cap);color:var(--supp);white-space:nowrap;}
 
 /* PIPELINE */
-.pipeline{display:flex;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:11px 16px;margin-bottom:10px;}
+.pipeline{display:flex;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin-bottom:10px;}
 .pipe-s{text-align:center;flex:1;font-size:var(--fs-body);font-weight:600;color:var(--primary);}
 .pipe-a{font-size:12px;color:var(--supp);flex-shrink:0;}
 
+/* CAREER ROW */
+.career-row{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding:10px 0;border-bottom:1px solid var(--border);align-items:baseline;}
+.career-period{font-size:var(--fs-cap);color:var(--muted);white-space:nowrap;font-family:'Inter',sans-serif;}
+.career-company{font-size:var(--fs-bl);font-weight:600;color:var(--primary);}
+.career-role{font-size:var(--fs-cap);color:var(--body);}
+
 /* SLIDE BACKGROUNDS */
+#s1{background:linear-gradient(170deg,#C8E6FF 0%,#f0f8ff 40%,#FFFFFF 100%);}
+#s2{background:var(--white);}
 #s3{background:var(--surface);}
 #s4,#s5,#s6,#s7,#s8{background:var(--white);}
-
-/* REUSABLE LAYOUT */
-.case-grid{flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;}
-.case-side{border-left:1px solid var(--border);padding-left:20px;display:flex;flex-direction:column;gap:8px;}
-.section-kicker{font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);}
-.three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+#s9{background:var(--surface);}
+#s10{background:var(--dark);}
 
 /* ─────────────────────────────────
    S1 COVER
 ───────────────────────────────── */
-#s1{background:linear-gradient(170deg,#C8E6FF 0%,#f0f8ff 40%,#FFFFFF 100%);}
-#s1 .inner{justify-content:center;padding-left:60px;}
+#s1 .inner{justify-content:center;padding-left:64px;}
 .cv-label{
   font-family:'Inter',sans-serif;font-size:var(--fs-cap);font-weight:600;
-  letter-spacing:3px;text-transform:uppercase;color:var(--sky);margin-bottom:32px;
+  letter-spacing:3px;text-transform:uppercase;color:var(--sky);margin-bottom:28px;
 }
 .cv-name{
   font-family:'Noto Sans KR',sans-serif;
-  font-size:clamp(40px,5.5vw,64px);font-weight:900;letter-spacing:-0.03em;
-  line-height:1;color:#171717;margin-bottom:20px;
+  font-size:clamp(52px,7vw,80px);font-weight:900;letter-spacing:-0.03em;
+  line-height:1;color:#171717;margin-bottom:18px;
 }
 .cv-tagline{
-  font-size:clamp(13px,1.4vw,16px);color:#60646C;line-height:1.7;
-  margin-bottom:28px;max-width:480px;
+  font-size:clamp(14px,1.5vw,18px);color:#60646C;line-height:1.7;
+  margin-bottom:24px;max-width:520px;
 }
-.cv-div{width:100%;max-width:240px;height:1px;background:var(--sky-line);margin-bottom:20px;}
+.cv-div{width:100%;max-width:240px;height:1px;background:var(--sky-line);margin-bottom:18px;}
 .cv-role{font-size:var(--fs-bl);font-weight:500;color:#60646C;margin-bottom:5px;}
 .cv-contact{font-size:var(--fs-body);color:var(--muted);}
+.cv-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;border-top:1px solid var(--border);padding-top:20px;margin-top:auto;
+  max-width:720px;
+}
+.cv-stat{padding-right:20px;}
+.cv-stat-n{font-family:'Inter',sans-serif;font-size:clamp(22px,2.5vw,30px);font-weight:800;color:var(--primary);line-height:1;}
+.cv-stat-l{font-size:var(--fs-cap);color:var(--body);margin-top:4px;}
+.cv-stat-s{font-size:var(--fs-cap);color:var(--muted);}
 
 /* ─────────────────────────────────
    S2 ABOUT
 ───────────────────────────────── */
-#s2{background:var(--white);}
 .ab-grid{
   flex:1;display:grid;grid-template-columns:56% 44%;
   position:relative;overflow:hidden;
 }
-.ab-left{padding-right:36px;display:flex;flex-direction:column;gap:12px;}
-.ab-right{padding-left:28px;border-left:1px solid var(--border);display:flex;flex-direction:column;gap:10px;}
+.ab-left{padding-right:36px;display:flex;flex-direction:column;gap:10px;}
+.ab-right{padding-left:28px;border-left:1px solid var(--border);display:flex;flex-direction:column;gap:0;}
 .ab-intro{font-size:var(--fs-bl);color:var(--body);line-height:1.75;}
-.ab-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .sk-section{display:flex;flex-direction:column;gap:0;}
 .sk-row{display:flex;align-items:baseline;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
-.sk-k{font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--primary);min-width:40px;}
+.sk-k{font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--primary);min-width:44px;}
 .sk-v{font-size:var(--fs-body);color:var(--body);}
 
 /* ─────────────────────────────────
    S9 COMPETENCY
 ───────────────────────────────── */
-#s9{background:var(--surface);}
 .comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;flex:1;}
 
 /* ─────────────────────────────────
    S10 END CARD
 ───────────────────────────────── */
-#s10{background:var(--dark);}
-#s10 .inner{justify-content:center;padding-left:60px;}
+#s10 .inner{justify-content:center;padding-left:64px;}
 .end-label{font-family:'Inter',sans-serif;font-size:var(--fs-cap);font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--sky);margin-bottom:28px;}
 .end-div{width:100%;max-width:200px;height:1px;background:rgba(255,255,255,0.12);margin-bottom:28px;}
-.end-quote{font-size:clamp(13px,1.4vw,16px);color:rgba(255,255,255,0.55);line-height:1.9;max-width:580px;margin-bottom:36px;}
+.end-quote{font-size:clamp(13px,1.4vw,17px);color:rgba(255,255,255,0.55);line-height:1.9;max-width:580px;margin-bottom:36px;}
 .end-em{font-weight:600;color:rgba(255,255,255,0.85);}
 .end-name{font-size:var(--fs-bl);font-weight:600;color:#fff;margin-bottom:5px;}
 .end-contact{font-size:var(--fs-body);color:rgba(255,255,255,0.35);}
@@ -274,12 +280,33 @@ h1.st{
     <div class="cv-label">Portfolio &nbsp;·&nbsp; Service Planner</div>
     <div class="cv-name">서정일</div>
     <div class="cv-tagline">
-      사용자 문제를 데이터로 구조화하고,<br>
-      서비스 흐름으로 검증하는 기획자
+      문제를 찾고, 구조를 잡고, 직접 만듭니다.<br>
+      데이터 분석 · 서비스 기획 · AI 자동화 · End-to-End 실행
     </div>
     <div class="cv-div"></div>
-    <div class="cv-role">서비스 기획 &nbsp;·&nbsp; 데이터 분석 &nbsp;·&nbsp; AI 활용 &nbsp;·&nbsp; End-to-End 실행</div>
-    <div class="cv-contact">seobgak11@naver.com</div>
+    <div class="cv-role">seobgak11@naver.com</div>
+    <div class="cv-stats">
+      <div class="cv-stat">
+        <div class="cv-stat-n">6개</div>
+        <div class="cv-stat-l">신규 강의 기획</div>
+        <div class="cv-stat-s">패스트캠퍼스</div>
+      </div>
+      <div class="cv-stat">
+        <div class="cv-stat-n">3.8만</div>
+        <div class="cv-stat-l">앱 리뷰 분석</div>
+        <div class="cv-stat-s">Gcar VoC</div>
+      </div>
+      <div class="cv-stat">
+        <div class="cv-stat-n">83%↓</div>
+        <div class="cv-stat-l">제작 시간 단축</div>
+        <div class="cv-stat-s">AI 자동화</div>
+      </div>
+      <div class="cv-stat">
+        <div class="cv-stat-n">MVP</div>
+        <div class="cv-stat-l">AI 사이즈 추천</div>
+        <div class="cv-stat-s">pullsize</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -294,26 +321,59 @@ h1.st{
         <div class="callout sky">
           <div class="callout-lbl">기획 철학</div>
           <div class="callout-body">
-            고객의 불만은 단일 기능이 아니라<br>
-            여정 전반에서 누적된다.<br>
+            고객의 불만은 단일 기능이 아니라 여정 전반에서 누적된다.<br>
             문제의 시작점을 찾고, 흐름으로 해결한다.
           </div>
         </div>
-        <div class="ab-intro">광고홍보·사학 복수전공 &nbsp;·&nbsp; 기획 3년+</div>
+        <div class="ab-intro">광고홍보·사학 복수전공 &nbsp;·&nbsp; 서비스 기획 3년+</div>
         <div class="sk-section">
-          <div class="sk-row"><span class="sk-k">기획</span><span class="sk-v">Figma · Notion · Miro · 기능명세서 작성</span></div>
+          <div class="sk-row"><span class="sk-k">기획</span><span class="sk-v">Figma · Notion · Miro · IA 설계 · 기능명세서</span></div>
           <div class="sk-row"><span class="sk-k">데이터</span><span class="sk-v">Python · SQL · KoELECTRA · SHAP · Tableau</span></div>
-          <div class="sk-row"><span class="sk-k">툴</span><span class="sk-v">Claude Code · Claude API · Photoshop · InDesign</span></div>
+          <div class="sk-row"><span class="sk-k">AI</span><span class="sk-v">Claude Code · Claude API · Figma MCP · 자동화 파이프라인</span></div>
+          <div class="sk-row"><span class="sk-k">디자인</span><span class="sk-v">Photoshop · InDesign · GTQ 1급</span></div>
         </div>
-        <div style="font-size:var(--fs-cap);color:var(--muted);">seobgak11@naver.com</div>
+        <div style="font-size:var(--fs-cap);color:var(--muted);">seobgak11@naver.com &nbsp;·&nbsp; OPIc IH</div>
       </div>
       <div class="ab-right">
-        <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--supp);margin-bottom:4px;">주요 성과</div>
-        <div class="ab-stats-grid">
-          <div class="metric"><div class="mn">6개</div><div class="ml">강의 기획·출시</div><div class="ms">패스트캠퍼스</div></div>
+        <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--supp);padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:0;">커리어</div>
+        <div class="career-row">
+          <div>
+            <div class="career-period">2024.05 — 2024.12</div>
+          </div>
+          <div>
+            <div class="career-company">패스트캠퍼스 (데이원컴퍼니)</div>
+            <div class="career-role">콘텐츠 상품 기획자 · 인턴</div>
+          </div>
+        </div>
+        <div class="career-row">
+          <div>
+            <div class="career-period">2023.04 — 2025.06</div>
+          </div>
+          <div>
+            <div class="career-company">아른 사이</div>
+            <div class="career-role">프로젝트 매니저 · 텀블벅 177% 달성</div>
+          </div>
+        </div>
+        <div class="career-row" style="border-bottom:none;">
+          <div>
+            <div class="career-period">2021.01 — 2023.04</div>
+          </div>
+          <div>
+            <div class="career-company">살미달라</div>
+            <div class="career-role">패션 브랜드 대표 · MD · 팔로워 +86%</div>
+          </div>
+        </div>
+        <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--supp);padding-bottom:8px;border-bottom:1px solid var(--border);margin-top:14px;margin-bottom:0;">학력</div>
+        <div style="padding-top:10px;">
+          <div style="font-size:var(--fs-bl);font-weight:600;color:var(--primary);margin-bottom:3px;">한림대학교</div>
+          <div style="font-size:var(--fs-cap);color:var(--body);">사학전공 · 광고홍보학과 — 2025.02 졸업</div>
+        </div>
+        <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--supp);padding-bottom:8px;border-bottom:1px solid var(--border);margin-top:14px;margin-bottom:0;">주요 성과</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;flex:1;">
+          <div class="metric"><div class="mn">6개</div><div class="ml">신규 강의 출시</div><div class="ms">패스트캠퍼스</div></div>
           <div class="metric"><div class="mn">3.8만</div><div class="ml">앱 리뷰 분석</div><div class="ms">Gcar VoC</div></div>
           <div class="metric"><div class="mn">83%↓</div><div class="ml">제작 시간 단축</div><div class="ms">AI 자동화</div></div>
-          <div class="metric"><div class="mn">MVP</div><div class="ml">AI 사이즈 추천</div><div class="ms">pullsize</div></div>
+          <div class="metric"><div class="mn">177%</div><div class="ml">텀블벅 달성</div><div class="ms">아른 사이</div></div>
         </div>
       </div>
     </div>
@@ -324,45 +384,65 @@ h1.st{
 <div class="slide" id="s3">
   <div class="inner">
     <div class="label">Index</div>
-    <h1 class="st">3개의 메인 케이스와 1개의 실행 경험</h1>
-    <div class="ss">문제정의 · 구조화 · 실행 역량 중심으로 구성했습니다</div>
-    <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+    <h1 class="st">4개의 메인 케이스와 1개의 실행 경험</h1>
+    <div class="ss">문제정의 · 구조화 · 실행 · End-to-End 역량 중심으로 구성했습니다</div>
+    <div style="display:flex;flex-direction:column;gap:7px;flex:1;">
       <div class="idx-item">
         <div class="idx-n">01</div>
-        <div><div class="idx-t">패스트캠퍼스 콘텐츠 기획</div><div class="idx-s">강사 분석에서 페이지 IA까지 — 신규 강의 6개 출시</div></div>
+        <div>
+          <div class="idx-t">패스트캠퍼스 교육 상품 기획</div>
+          <div class="idx-s">강사 분석부터 런칭 매니징까지 — 신규 강의 6개 출시</div>
+        </div>
         <div class="idx-d">2024.05 — 2024.12</div>
       </div>
       <div class="idx-item">
         <div class="idx-n">02</div>
-        <div><div class="idx-t">Gcar VoC 분석</div><div class="idx-s">37,923건 리뷰로 고객 여정 기반 이탈 구조 도출</div></div>
+        <div>
+          <div class="idx-t">Gcar VoC 분석 + 개선 제안</div>
+          <div class="idx-s">37,923건 리뷰로 이탈 구조 도출 → 3개 우선순위 개선안 설계</div>
+        </div>
         <div class="idx-d">2025.11</div>
       </div>
       <div class="idx-item">
         <div class="idx-n">03</div>
-        <div><div class="idx-t">AI 콘텐츠 자동화 · pullsize</div><div class="idx-s">Claude+Figma MCP 파이프라인 · AI 사이즈 추천 MVP</div></div>
+        <div>
+          <div class="idx-t">AI 콘텐츠 자동화 파이프라인</div>
+          <div class="idx-s">Claude AI + Figma MCP → 제작 시간 3시간에서 30분으로 단축</div>
+        </div>
         <div class="idx-d">2026.03 — 현재</div>
       </div>
       <div class="idx-item">
         <div class="idx-n">04</div>
-        <div><div class="idx-t">살미달라 브랜드 창업</div><div class="idx-s">5인 팀 리드 · 리드타임 20%↓ · 팔로워 +86%</div></div>
+        <div>
+          <div class="idx-t">pullsize — AI 사이즈 추천 서비스</div>
+          <div class="idx-s">상품 URL 입력 → Claude API 추천 → 실서비스 배포 (pullsize.kr)</div>
+        </div>
+        <div class="idx-d">2026.03 — 현재</div>
+      </div>
+      <div class="idx-item">
+        <div class="idx-n">05</div>
+        <div>
+          <div class="idx-t">살미달라 브랜드 창업</div>
+          <div class="idx-s">5인 팀 리드 · 리드타임 20%↓ · 팔로워 +86% · 3시즌 출시</div>
+        </div>
         <div class="idx-d">2021.01 — 2023.04</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── S4 PROJECT 01 ── -->
+<!-- ── S4 PROJECT 01 패스트캠퍼스 ── -->
 <div class="slide" id="s4">
   <div class="inner">
     <div class="label">Project 01 · 패스트캠퍼스 · 2024.05—2024.12</div>
-    <h1 class="st">가설을 데이터로 뒤집고, 신규 강의 6개를 기획했다</h1>
-    <div class="ss">강사 분석 → 수강생 니즈 재정의 → 커리큘럼·페이지 IA 설계</div>
+    <h1 class="st">강사 분석부터 런칭 매니징까지, 신규 강의 6개를 기획했다</h1>
+    <div class="ss">강사 분석 → 수강생 니즈 재정의 → 커리큘럼 설계 → 페이지 IA → 표준 프로세스 구축</div>
     <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
       <div style="display:flex;flex-direction:column;gap:10px;">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
           <div class="callout" style="margin-bottom:0;">
             <div class="callout-lbl">Before</div>
-            <div class="callout-body">강사의 심미적 영상미 중심 기획. 수강생 실전 니즈와 어긋날 위험.</div>
+            <div class="callout-body">강사 경험·심미성 중심 기획. 수강생 실전 니즈와 어긋날 위험.</div>
           </div>
           <div class="callout sky" style="margin-bottom:0;">
             <div class="callout-lbl">After</div>
@@ -383,14 +463,18 @@ h1.st{
             <div class="step-pill"><div class="step-num">5</div><span>프로세스 문서화</span></div>
           </div>
         </div>
+        <div class="callout" style="margin-bottom:0;">
+          <div class="callout-lbl">핵심 인사이트</div>
+          <div class="callout-body">제작 프로세스가 담당자 경험에만 의존해 일정 지연과 품질 편차가 반복. → Notion 표준 템플릿으로 온보딩 시간 단축 및 품질 편차 해소.</div>
+        </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <span class="tag">Figma</span><span class="tag">Notion</span><span class="tag">콘텐츠 기획</span><span class="tag">IA 설계</span>
+          <span class="tag">Figma</span><span class="tag">Notion</span><span class="tag">콘텐츠 기획</span><span class="tag">IA 설계</span><span class="tag">커리큘럼 설계</span>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;border-left:1px solid var(--border);padding-left:20px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
           <div class="metric"><div class="mn">6개</div><div class="ml">신규 강의 출시</div><div class="ms">7개월 내</div></div>
-          <div class="metric"><div class="mn">IA</div><div class="ml">페이지 구조 재설계</div><div class="ms">수강생 변화 기준</div></div>
+          <div class="metric"><div class="mn">IA</div><div class="ml">상세페이지 재설계</div><div class="ms">수강생 이해도 기준</div></div>
           <div class="metric" style="grid-column:1/-1;"><div class="mn">1건</div><div class="ml">표준 제작 프로세스</div><div class="ms">Notion 인수인계 문서</div></div>
         </div>
         <div class="role">
@@ -403,99 +487,77 @@ h1.st{
   </div>
 </div>
 
-<!-- ── S5 PROJECT 02a ── -->
+<!-- ── S5 PROJECT 02 Gcar VoC ── -->
 <div class="slide" id="s5">
   <div class="inner">
     <div class="label">Project 02 · Gcar VoC 분석 · 2025.11</div>
-    <h1 class="st">37,923건의 리뷰에서 이탈 구조를 찾았다</h1>
-    <div class="ss">평점·감정·키워드 분석을 넘어 실패 여정을 서비스 문제로 재구성</div>
+    <h1 class="st">37,923건의 리뷰에서 이탈 구조를 찾고, 개선안으로 연결했다</h1>
+    <div class="ss">크롤링 → KoELECTRA 감정 분류 → 실패 여정 구조화 → 3개 우선순위 개선 제안</div>
     <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
-      <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;flex-direction:column;gap:9px;">
         <div class="callout">
-          <div class="callout-lbl">핵심 문제</div>
-          <div class="callout-body">Gcar는 Socar보다 평점이 낮고, 1점 리뷰 비중이 더 높았습니다.</div>
+          <div class="callout-lbl">핵심 발견</div>
+          <div class="callout-body">Gcar의 부정 경험은 <strong>앱 오류 → 반납 실패 → 과금 → CS 지연</strong>으로 이어지는 연쇄 구조였습니다. 경쟁사 대비 1점 리뷰 비중이 유의하게 높았습니다.</div>
         </div>
-        <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:4px;">실패 여정 구조</div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px;display:flex;flex-direction:column;gap:6px;">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;">
+          <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:7px;">실패 여정</div>
           <div style="display:flex;align-items:center;gap:5px;">
-            <div class="jnode" style="background:#F0F0F0;color:#333;">앱 오류<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">예약·반납</span></div>
+            <div class="jnode">앱 오류<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">예약·반납</span></div>
             <div class="jarr">→</div>
-            <div class="jnode" style="background:#E4E4E4;color:#444;">반납 실패<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">시간 초과</span></div>
-          </div>
-          <div style="display:flex;align-items:center;gap:5px;">
-            <div class="jnode" style="background:#D8D8D8;color:#555;">과금·페널티<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">예상 외 비용</span></div>
+            <div class="jnode">반납 실패<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">시간 초과</span></div>
             <div class="jarr">→</div>
-            <div class="jnode" style="background:#CCCCCC;color:#666;">고객센터<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">해결 지연</span></div>
+            <div class="jnode">과금·페널티<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">예상 외 비용</span></div>
+            <div class="jarr">→</div>
+            <div class="jnode" style="background:#111;color:#fff;border:none;">1점 리뷰<br><span style="font-size:var(--fs-cap);color:rgba(255,255,255,0.5);font-weight:400;">이탈</span></div>
           </div>
-          <div style="display:flex;justify-content:flex-end;">
-            <div style="background:#111;color:#fff;border-radius:6px;padding:6px 12px;font-size:var(--fs-body);font-weight:700;">→ 1점 리뷰 · 이탈</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+          <div class="sol">
+            <div class="sol-n">01</div>
+            <div class="sol-t">반납 UI + 혼잡도 사전 안내</div>
+            <div class="sol-d">예약 단계에서 반납지 혼잡 가능성을 알려 대체 반납지 연결</div>
+          </div>
+          <div class="sol">
+            <div class="sol-n">02</div>
+            <div class="sol-t">과금 발생 전 경고</div>
+            <div class="sol-d">예상 금액·사유·회피 행동을 앱 안에서 선제적으로 안내</div>
+          </div>
+          <div class="sol">
+            <div class="sol-n">03</div>
+            <div class="sol-t">CS 봇 + 자동 문의 연결</div>
+            <div class="sol-d">오류 화면에서 증빙 캡처·접수·처리 상태 확인까지 연결</div>
           </div>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <span class="tag">KoELECTRA</span><span class="tag">SHAP</span><span class="tag">Python</span><span class="tag">시계열 분석</span>
+          <span class="tag">KoELECTRA</span><span class="tag">SHAP</span><span class="tag">Python</span><span class="tag">시계열 분석</span><span class="tag">여정 맵</span>
         </div>
       </div>
-      <div style="border-left:1px solid var(--border);padding-left:20px;display:flex;flex-direction:column;gap:10px;">
-        <div class="callout sky">
-          <div class="callout-lbl">접근 방식</div>
-          <div class="callout-body">크롤링 → 전처리 → 감정분석 → 이슈 구조화 → 여정 맵 작성</div>
+      <div style="border-left:1px solid var(--border);padding-left:20px;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
+          <div class="metric"><div class="mn">3.8만</div><div class="ml">리뷰 수집·분류</div><div class="ms">최근 3년</div></div>
+          <div class="metric"><div class="mn">F1 0.84</div><div class="ml">감정 분류 성능</div><div class="ms">KoELECTRA</div></div>
+          <div class="metric"><div class="mn">4개</div><div class="ml">이슈 클러스터</div><div class="ms">구조화 결과</div></div>
+          <div class="metric"><div class="mn">3개</div><div class="ml">우선 개선 방향</div><div class="ms">여정 기반</div></div>
         </div>
-        <div class="role" style="flex:1;align-content:start;">
+        <div class="role">
           <span class="rk">Role</span><span class="rv">개인 분석 프로젝트</span>
-          <span class="rk">Scope</span><span class="rv">크롤링 · 전처리 · 감정분석 · 이슈 구조화 · 여정 맵 작성</span>
-          <span class="rk">Output</span><span class="rv">고객 여정 기반 이탈 구조 분석 보고서 + 3개 개선 방향</span>
+          <span class="rk">Scope</span><span class="rv">크롤링 · 감정분석 · 이슈 구조화 · 여정 맵 · 개선안 설계</span>
+          <span class="rk">Output</span><span class="rv">이탈 구조 분석 보고서 + 3개 개선 방향 제안서</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── S6 PROJECT 02b ── -->
+<!-- ── S6 PROJECT 03 AI 콘텐츠 자동화 ── -->
 <div class="slide" id="s6">
   <div class="inner">
-    <div class="label">Project 02 · Gcar VoC · 개선안</div>
-    <h1 class="st">분석에서 끝내지 않고, 서비스 개선 흐름으로 연결했다</h1>
-    <div class="ss">연쇄 구조 검증 후 문제 발생 시작점을 줄이는 3개 우선순위 제안</div>
-    <div class="callout">
-      <div class="callout-lbl">핵심 발견</div>
-      <div class="callout-body">Gcar의 부정 경험은 단일 기능 문제가 아니라, <strong>앱 오류 → 반납 실패 → 과금 → CS 지연</strong>으로 이어지는 연쇄 구조였습니다.</div>
-    </div>
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
-        <div class="sol">
-          <div class="sol-n">01</div>
-          <div class="sol-t">반납 UI + 사전 예측 안내</div>
-          <div class="sol-d">예약 단계·반납 30분 전 혼잡 가능성을 알려 대체 반납지 연결</div>
-        </div>
-        <div class="sol">
-          <div class="sol-n">02</div>
-          <div class="sol-t">과금 발생 전 사전 경고</div>
-          <div class="sol-d">예상 금액·사유·회피 행동을 앱 안에서 선제적으로 안내</div>
-        </div>
-        <div class="sol">
-          <div class="sol-n">03</div>
-          <div class="sol-t">CS 봇 + 자동 문의 연결</div>
-          <div class="sol-d">오류 화면에서 증빙 캡처·문의 접수·처리 상태 확인까지 연결</div>
-        </div>
-      </div>
-      <div class="role">
-        <span class="rk">Role</span><span class="rv">개인 프로젝트 리드</span>
-        <span class="rk">Scope</span><span class="rv">개선안 설계 · 기능 우선순위 도출 · 서비스 흐름 제안</span>
-        <span class="rk">Output</span><span class="rv">고객 여정 기반 3개 개선 방향 기획서 문서화</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── S7 PROJECT 03 ── -->
-<div class="slide" id="s7">
-  <div class="inner">
-    <div class="label">Project 03 · AI 기획·구현 · 2026.03—현재</div>
-    <h1 class="st">AI 파이프라인으로 제작 시간을 83% 단축했다</h1>
-    <div class="ss">Claude AI + Figma MCP 콘텐츠 자동화 · pullsize AI 사이즈 추천 MVP</div>
+    <div class="label">Project 03 · AI 콘텐츠 자동화 · 2026.03—현재</div>
+    <h1 class="st">AI 파이프라인으로 콘텐츠 제작 시간을 83% 단축했다</h1>
+    <div class="ss">Claude AI + Figma MCP 연동 → 자료조사부터 디자인 적용까지 자동화</div>
     <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
       <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);">AI 콘텐츠 자동화 파이프라인</div>
+        <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);">자동화 파이프라인</div>
         <div class="pipeline">
           <div class="pipe-s">자료조사</div><div class="pipe-a">→</div>
           <div class="pipe-s">전략 수립</div><div class="pipe-a">→</div>
@@ -504,39 +566,90 @@ h1.st{
           <div class="pipe-s">QA 검수</div>
         </div>
         <div class="callout sky">
-          <div class="callout-lbl">pullsize — AI 사이즈 추천</div>
-          <div class="callout-body">상품 URL 입력 → Firecrawl 파싱 → Claude API 추천 → 신뢰도 표시.<br>무신사·지그재그·에이블리 지원, 이미지 업로드 fallback 포함.</div>
+          <div class="callout-lbl">기술 연동</div>
+          <div class="callout-body">Claude AI로 브랜드 분석·카피 자동 생성, Figma MCP로 디자인 노드 직접 반영. 수동 Figma 작업을 파이프라인에서 완전 제거.</div>
         </div>
-        <div class="callout" style="margin-bottom:0;">
-          <div class="callout-lbl">AI 사용 원칙</div>
-          <div class="callout-body">판단은 직접 수행 — 요구사항·QA 설계는 기획자가 직접 담당</div>
+        <div class="callout">
+          <div class="callout-lbl">품질 게이트</div>
+          <div class="callout-body">fact_check·QA 체크리스트 자동화로 게시 전 오류 검증. 인물 권리·브랜드 정보 정확도 포함. 판단은 기획자가 직접 담당.</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;">
+          <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px;">대시보드 & SEO</div>
+          <div style="font-size:var(--fs-body);color:var(--body);line-height:1.6;">Google Sheets로 39개 피드 진행 현황·캡션·발행 상태 통합 관리. 캡션 v4 포맷 + 3-Tier 해시태그 전략 전면 적용.</div>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <span class="tag">Claude AI</span><span class="tag">Figma MCP</span><span class="tag">Claude Code</span><span class="tag">Python</span>
+          <span class="tag">Claude AI</span><span class="tag">Figma MCP</span><span class="tag">Claude Code</span><span class="tag">Python</span><span class="tag">Google Sheets</span>
         </div>
       </div>
       <div style="border-left:1px solid var(--border);padding-left:20px;display:flex;flex-direction:column;gap:8px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
           <div class="metric"><div class="mn">83%↓</div><div class="ml">제작 시간 단축</div><div class="ms">3시간 → 30분</div></div>
-          <div class="metric"><div class="mn">29개+</div><div class="ml">피드 자동 생성</div><div class="ms">22개 브랜드</div></div>
-          <div class="metric" style="grid-column:1/-1;"><div class="mn">MVP</div><div class="ml">pullsize 출시</div><div class="ms">URL→AI 추천 서비스</div></div>
+          <div class="metric"><div class="mn">29개+</div><div class="ml">피드 자동 생성</div><div class="ms">3개월 내</div></div>
+          <div class="metric"><div class="mn">22개</div><div class="ml">브랜드 커버</div><div class="ms">스트릿·컨템포러리</div></div>
+          <div class="metric"><div class="mn">39개</div><div class="ml">피드 전수 관리</div><div class="ms">Google Sheets</div></div>
         </div>
-        <div class="role" style="flex:1;align-content:start;">
-          <span class="rk">Role</span><span class="rv">1인 프로젝트</span>
-          <span class="rk">Scope</span><span class="rv">파이프라인 구조 · QA 체계 · SEO 전략 · URL→AI 추천 흐름 설계</span>
-          <span class="rk">Output</span><span class="rv">29개+ 피드 자동화 파이프라인 + pullsize MVP 출시</span>
+        <div class="role">
+          <span class="rk">Role</span><span class="rv">기획자 · AI 파이프라인 설계 · Claude Code 직접 구현</span>
+          <span class="rk">Scope</span><span class="rv">파이프라인 구조 · QA 체계 · SEO 전략 · 직접 구현</span>
+          <span class="rk">Output</span><span class="rv">29개+ 피드 자동화 파이프라인 + 캡션 v4 전략</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── S8 PROJECT 04 ── -->
+<!-- ── S7 PROJECT 04 pullsize ── -->
+<div class="slide" id="s7">
+  <div class="inner">
+    <div class="label">Project 04 · pullsize · 2026.03—현재</div>
+    <h1 class="st">상품 URL과 신체 정보로 의류 사이즈를 추천하는 서비스를 만들었다</h1>
+    <div class="ss">온라인 쇼핑 사이즈 불안을 줄이는 AI 추천 MVP — pullsize.kr 실서비스 배포</div>
+    <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="callout">
+          <div class="callout-lbl">문제 정의</div>
+          <div class="callout-body">브랜드마다 다른 실측 기준과 착용감 차이로 사이즈 선택에 불안을 느낀다. 치수표만으로는 내 체형에 맞는 사이즈 판단이 어렵고, 구매 망설임과 교환·반품으로 이어진다.</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;">
+          <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:8px;">서비스 흐름</div>
+          <div class="pipeline" style="margin-bottom:0;">
+            <div class="pipe-s">URL 입력</div><div class="pipe-a">→</div>
+            <div class="pipe-s">상품 파싱</div><div class="pipe-a">→</div>
+            <div class="pipe-s">신체 정보</div><div class="pipe-a">→</div>
+            <div class="pipe-s">AI 추천</div><div class="pipe-a">→</div>
+            <div class="pipe-s">결과 확인</div>
+          </div>
+        </div>
+        <div class="callout sky">
+          <div class="callout-lbl">UX 핵심</div>
+          <div class="callout-body">단순 사이즈명이 아니라 여유도와 판단 근거를 함께 제공해 사용자가 추천을 납득할 수 있도록 설계. 무신사·지그재그·에이블리 지원, 이미지 업로드 fallback 포함.</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="tag">Claude API</span><span class="tag">Firecrawl</span><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">MVP 설계</span>
+        </div>
+      </div>
+      <div style="border-left:1px solid var(--border);padding-left:20px;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
+          <div class="metric"><div class="mn">MVP</div><div class="ml">실서비스 배포</div><div class="ms">pullsize.kr</div></div>
+          <div class="metric"><div class="mn">URL→</div><div class="ml">AI 추천 플로우</div><div class="ms">핵심 UX 구현</div></div>
+          <div class="metric" style="grid-column:1/-1;"><div class="mn">3개</div><div class="ml">쇼핑몰 지원</div><div class="ms">무신사·지그재그·에이블리</div></div>
+        </div>
+        <div class="role">
+          <span class="rk">Role</span><span class="rv">서비스 기획 · Claude Code 직접 구현</span>
+          <span class="rk">Scope</span><span class="rv">문제 정의 · 입력 플로우 · 추천 UX · MVP 설계 · 배포</span>
+          <span class="rk">Output</span><span class="rv">실서비스 배포 (pullsize.kr) + AI 추천 결과 화면</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── S8 PROJECT 05 살미달라 ── -->
 <div class="slide" id="s8">
   <div class="inner">
-    <div class="label">Project 04 · 살미달라 브랜드 창업 · 2021.01—2023.04</div>
+    <div class="label">Project 05 · 살미달라 브랜드 창업 · 2021.01—2023.04</div>
     <h1 class="st">기획과 실행을 분리하지 않고, End-to-End로 책임졌다</h1>
-    <div class="ss">5인 팀 리드 · 리드타임 20%↓ · 판매량 30%↑ · 팔로워 +86%</div>
+    <div class="ss">5인 팀 리드 · 리드타임 20%↓ · 판매량 30%↑ · 팔로워 +86% · 3시즌 출시</div>
     <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
         <div class="ach">
@@ -547,22 +660,24 @@ h1.st{
         <div class="ach">
           <div class="ach-n">30%↑</div>
           <div class="ach-t">판매량 성장</div>
-          <div class="ach-d">룩북 영상·상세페이지·SNS 운영을 시즌 판매 전략과 연결</div>
+          <div class="ach-d">룩북 영상·상세페이지·SNS 운영을 시즌 판매 전략과 연결. 21SS 첫 시즌 140벌 완판</div>
         </div>
         <div class="ach">
           <div class="ach-n">+86%</div>
           <div class="ach-t">팔로워 성장</div>
-          <div class="ach-d">팝업스토어 3회 기획 후 오프라인 접점을 온라인으로 확장</div>
+          <div class="ach-d">팝업스토어 3회 기획 후 오프라인 접점을 온라인으로 확장. 유튜브 조회 2.4만+</div>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-        <div class="metric"><div class="mn">1.7만</div><div class="ml">유튜브 쇼츠 조회</div><div class="ms">브랜드 채널</div></div>
-        <div class="metric"><div class="mn">3시즌</div><div class="ml">판매량 30%↑ 기준</div><div class="ms">누적 성과</div></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+        <div class="metric"><div class="mn">3시즌</div><div class="ml">21SS / 21FW / 22SS</div><div class="ms">연속 출시</div></div>
+        <div class="metric"><div class="mn">140벌</div><div class="ml">첫 시즌 완판</div><div class="ms">21SS</div></div>
+        <div class="metric"><div class="mn">3회</div><div class="ml">팝업스토어 운영</div><div class="ms">채널 다각화</div></div>
+        <div class="metric"><div class="mn">5인</div><div class="ml">팀 리드</div><div class="ms">기획·MD 총괄</div></div>
       </div>
       <div class="role">
-        <span class="rk">Role</span><span class="rv">대표 · 팀 리더</span>
-        <span class="rk">Scope</span><span class="rv">시즌 상품 기획 · 제작 관리 · 팝업스토어 · SNS 콘텐츠 · 외부 협력</span>
-        <span class="rk">Output</span><span class="rv">리드타임 20%↓ · 판매량 30%↑ · 팔로워 +86%</span>
+        <span class="rk">Role</span><span class="rv">패션 브랜드 공동창업 · 대표 · MD 총괄</span>
+        <span class="rk">Scope</span><span class="rv">시즌 상품 기획 · 생산 관리 · 팝업스토어 · SNS 콘텐츠 · 외부 협력</span>
+        <span class="rk">Output</span><span class="rv">3시즌 출시 · 리드타임 20%↓ · 판매량 30%↑ · 팔로워 +86%</span>
       </div>
     </div>
   </div>
@@ -578,20 +693,20 @@ h1.st{
       <div class="comp">
         <div class="comp-n">01</div>
         <div class="comp-t">사용자 경험 설계</div>
-        <div class="comp-d">고객의 언어와 행동 데이터에서 문제를 정의하고 서비스 흐름으로 연결</div>
-        <div><div class="comp-el">관련 경험</div><div class="comp-e">Gcar 여정 구조화 · 패스트캠퍼스 IA</div></div>
+        <div class="comp-d">고객의 언어와 행동 데이터에서 문제를 정의하고 서비스 흐름으로 연결. 단일 기능이 아닌 여정 전체를 본다.</div>
+        <div><div class="comp-el">관련 경험</div><div class="comp-e">Gcar 여정 구조화 · 패스트캠퍼스 IA · pullsize UX</div></div>
       </div>
       <div class="comp">
         <div class="comp-n">02</div>
         <div class="comp-t">논리적 기획 문서화</div>
-        <div class="comp-d">문제 정의 → 근거 → 개선안 흐름을 개발·디자인 협업 문서로 구조화</div>
-        <div><div class="comp-el">관련 경험</div><div class="comp-e">표준 프로세스 문서 · 기능 요구사항 정의</div></div>
+        <div class="comp-d">문제 정의 → 근거 → 개선안 흐름을 개발·디자인 협업 문서로 구조화. 가설을 검증 가능한 형태로 만든다.</div>
+        <div><div class="comp-el">관련 경험</div><div class="comp-e">표준 프로세스 문서 · 기능 요구사항 정의 · 개선안 보고서</div></div>
       </div>
       <div class="comp">
         <div class="comp-n">03</div>
-        <div class="comp-t">데이터 기반 가설 검증</div>
-        <div class="comp-d">주관적 판단이 아니라 데이터와 현장 반응으로 기획 방향을 수정</div>
-        <div><div class="comp-el">관련 경험</div><div class="comp-e">KoELECTRA·SHAP · 댓글·조회수 분석</div></div>
+        <div class="comp-t">End-to-End 실행</div>
+        <div class="comp-d">기획에서 멈추지 않고 Claude Code로 직접 구현·배포. AI 파이프라인 설계부터 실서비스 출시까지 책임진다.</div>
+        <div><div class="comp-el">관련 경험</div><div class="comp-e">pullsize 실배포 · AI 자동화 파이프라인 · 살미달라 전 과정</div></div>
       </div>
     </div>
   </div>
@@ -633,7 +748,7 @@ const pbarEl = document.getElementById('pbar');
 const dotsEl = document.getElementById('dots');
 const snumEl = document.getElementById('snum');
 const backBtn = document.getElementById('back-btn');
-const darkSlides = new Set([0, N - 1]); // cover & end card
+const darkSlides = new Set([0, N - 1]);
 
 for (let i = 0; i < N; i++) {
   const d = document.createElement('button');
