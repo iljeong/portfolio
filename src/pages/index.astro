@@ -64,6 +64,8 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
           </div>
           <div class="about-cta">
             <a href="mailto:seobgak11@naver.com" class="about-cta-btn">이메일 보내기 ↗</a>
+            <a href={`${basePath}files/seojeongil-portfolio.pdf`} class="about-cta-btn" target="_blank" rel="noopener">PDF 포트폴리오 보기 ↗</a>
+            <a href={`${basePath}files/seojeongil-portfolio.pptx`} class="about-cta-btn" download>PPT 다운로드 ↓</a>
           </div>
         </div>
 
@@ -303,7 +305,12 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
   .edu-chips { display: flex; gap: 0.4rem; }
 
   /* About CTA */
-  .about-cta { margin-top: 1.5rem; }
+  .about-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
 
   .about-cta-btn {
     display: inline-flex;
