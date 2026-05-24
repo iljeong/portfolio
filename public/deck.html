@@ -27,72 +27,95 @@
   --r: 8px;
 }
 
+/* ── GLOBAL LAYOUT ── */
 body{
   font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;
-  background:#C8C8C8;height:100vh;overflow:hidden;color:var(--primary);
-  display:flex;align-items:center;justify-content:center;
+  height:100vh;overflow:hidden;color:var(--primary);
+  display:flex;flex-direction:column;background:#C8C8C8;
 }
 
+/* ── TOOLBAR ── */
+.toolbar{
+  height:52px;background:#fff;border-bottom:1px solid #DCDCDC;
+  display:flex;align-items:center;flex-shrink:0;
+  padding:0 12px;gap:0;
+}
+.tb-left{flex:1;display:flex;align-items:center;}
+.tb-center{display:flex;align-items:center;gap:6px;}
+.tb-right{flex:1;display:flex;align-items:center;justify-content:flex-end;gap:2px;}
+
+.back-link{
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:500;
+  color:#555;text-decoration:none;
+  display:flex;align-items:center;gap:4px;
+  padding:6px 10px;border-radius:6px;
+  transition:background .15s,color .15s;white-space:nowrap;
+}
+.back-link:hover{background:#F5F5F5;color:#111;}
+.back-link:focus-visible{outline:2px solid var(--sky);outline-offset:2px;}
+
+.tb-nav-btn{
+  width:32px;height:32px;border:none;background:none;cursor:pointer;
+  border-radius:6px;display:flex;align-items:center;justify-content:center;
+  color:#444;font-size:14px;transition:background .15s,color .15s;flex-shrink:0;
+}
+.tb-nav-btn:hover{background:#F0F0F0;color:#111;}
+.tb-nav-btn:disabled{opacity:0.3;cursor:default;}
+.tb-nav-btn:focus-visible{outline:2px solid var(--sky);outline-offset:2px;}
+
+.tb-snum{
+  font-family:'Inter',sans-serif;font-size:13px;color:#444;
+  min-width:54px;text-align:center;user-select:none;letter-spacing:0.2px;
+}
+
+.tb-divider{width:1px;height:22px;background:#E4E4E4;margin:0 6px;flex-shrink:0;}
+
+.tb-icon-btn{
+  width:36px;height:36px;border:none;background:none;cursor:pointer;
+  border-radius:6px;display:flex;align-items:center;justify-content:center;
+  color:#555;transition:background .15s,color .15s;flex-shrink:0;
+}
+.tb-icon-btn:hover{background:#F0F0F0;color:#111;}
+.tb-icon-btn:focus-visible{outline:2px solid var(--sky);outline-offset:2px;}
+
+/* ── VIEWER ── */
+.viewer{
+  flex:1;background:#C8C8C8;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:14px;padding:16px;overflow:hidden;
+}
+
+/* ── DECK ── */
 .deck{
   position:relative;overflow:hidden;
-  width:min(92vw, calc(92vh * 16 / 9));
-  height:min(92vh, calc(92vw * 9 / 16));
-  box-shadow:0 8px 48px rgba(0,0,0,0.25),0 2px 8px rgba(0,0,0,0.12);
+  width:min(calc(100vw - 32px), calc((100vh - 144px) * 16 / 9));
+  height:min(calc(100vh - 144px), calc((100vw - 32px) * 9 / 16));
+  box-shadow:0 8px 48px rgba(0,0,0,0.28),0 2px 8px rgba(0,0,0,0.14);
 }
+
 .slide{position:absolute;inset:0;display:none;flex-direction:column;}
 .slide.active{display:flex;animation:appear .28s ease;}
 @keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 
-/* BACK BUTTON */
-.back-btn{
-  position:absolute;top:14px;left:16px;z-index:300;
-  font-family:'Inter',sans-serif;font-size:11px;font-weight:600;
-  color:rgba(255,255,255,0.65);background:rgba(0,0,0,0.5);
-  backdrop-filter:blur(14px);padding:6px 14px;border-radius:100px;
-  border:1px solid rgba(255,255,255,0.1);text-decoration:none;
-  transition:color .15s,background .2s,border-color .2s;letter-spacing:0.3px;
-}
-.back-btn:hover{color:#fff;}
-.back-btn.light{
-  color:var(--body);background:rgba(255,255,255,0.85);
-  border-color:var(--border);
-}
-.back-btn.light:hover{color:var(--primary);}
-.back-btn:focus-visible{outline:2px solid var(--sky);outline-offset:2px;}
-
-/* PROGRESS */
+/* PROGRESS BAR */
 .pbar{position:absolute;top:0;left:0;right:0;height:2px;background:rgba(0,0,0,0.07);z-index:200;}
 .pf{height:100%;background:var(--sky);transition:width .3s ease;}
 
-/* NAV */
-.nav{
-  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
-  display:flex;align-items:center;gap:10px;z-index:200;
-  background:rgba(0,0,0,0.55);backdrop-filter:blur(14px);
-  padding:6px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.1);
+/* DOTS (in viewer, below deck) */
+.dots{display:flex;gap:5px;align-items:center;}
+.dot{
+  width:5px;height:5px;border-radius:50%;
+  background:rgba(0,0,0,0.28);cursor:pointer;
+  transition:all .2s;border:none;padding:0;
 }
-.nbtn{width:24px;height:24px;border:none;background:none;color:rgba(255,255,255,0.6);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .15s;}
-.nbtn:hover{color:#fff;}
-.nbtn:focus-visible{outline:2px solid var(--sky);outline-offset:2px;}
-.dots{display:flex;gap:4px;}
-.dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;transition:all .2s;border:none;padding:0;}
-.dot.on{background:#fff;width:12px;border-radius:2px;}
+.dot.on{background:rgba(0,0,0,0.72);width:14px;border-radius:2px;}
 .dot:focus-visible{outline:2px solid var(--sky);outline-offset:3px;}
 
-/* SLIDE NUM */
-.snum{
-  font-family:'Inter',sans-serif;font-size:9px;font-weight:600;letter-spacing:2px;
-  position:absolute;bottom:24px;right:40px;z-index:200;color:var(--supp);
-  transition:color .2s;
-}
-.snum.dark{color:rgba(255,255,255,0.25);}
-
-/* INNER */
+/* ── INNER ── */
 .inner{flex:1;display:flex;flex-direction:column;padding:24px 48px 60px;min-height:0;}
 
-/* REUSABLE: section sub-label */
+/* REUSABLE */
 .section-label{font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:8px;}
-/* REUSABLE: right column in 56/44 layout */
 .col-right{border-left:1px solid var(--border);padding-left:20px;display:flex;flex-direction:column;gap:8px;}
 
 /* LABEL CHIP */
@@ -217,9 +240,7 @@ h1.st{
 #s9{background:var(--surface);}
 #s10{background:var(--dark);}
 
-/* ─────────────────────────────────
-   S1 COVER
-───────────────────────────────── */
+/* S1 COVER */
 #s1 .inner{justify-content:center;padding-left:64px;}
 .cv-label{
   font-family:'Inter',sans-serif;font-size:var(--fs-cap);font-weight:600;
@@ -247,9 +268,7 @@ h1.st{
 .cv-stat-l{font-size:var(--fs-cap);color:var(--body);margin-top:4px;}
 .cv-stat-s{font-size:var(--fs-cap);color:var(--muted);}
 
-/* ─────────────────────────────────
-   S2 ABOUT
-───────────────────────────────── */
+/* S2 ABOUT */
 .ab-grid{
   flex:1;display:grid;grid-template-columns:56% 44%;
   position:relative;overflow:hidden;
@@ -262,14 +281,10 @@ h1.st{
 .sk-k{font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--primary);min-width:44px;}
 .sk-v{font-size:var(--fs-body);color:var(--body);}
 
-/* ─────────────────────────────────
-   S9 COMPETENCY
-───────────────────────────────── */
+/* S9 COMPETENCY */
 .comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;flex:1;}
 
-/* ─────────────────────────────────
-   S10 END CARD
-───────────────────────────────── */
+/* S10 END CARD */
 #s10 .inner{justify-content:center;padding-left:64px;}
 .end-label{font-family:'Inter',sans-serif;font-size:var(--fs-cap);font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--sky);margin-bottom:28px;}
 .end-div{width:100%;max-width:200px;height:1px;background:rgba(255,255,255,0.12);margin-bottom:28px;}
@@ -277,490 +292,533 @@ h1.st{
 .end-em{font-weight:600;color:rgba(255,255,255,0.85);}
 .end-name{font-size:var(--fs-bl);font-weight:600;color:#fff;margin-bottom:5px;}
 .end-contact{font-size:var(--fs-body);color:rgba(255,255,255,0.35);}
+
+@media print{
+  body{height:auto;overflow:auto;background:#fff;flex-direction:column;}
+  .toolbar{display:none;}
+  .viewer{height:auto;background:#fff;padding:0;gap:0;overflow:visible;}
+  .deck{width:100%;height:auto;box-shadow:none;position:static;}
+  .slide{position:static;display:flex!important;page-break-after:always;height:100vh;}
+  .dots{display:none;}
+  .pbar{display:none;}
+}
 </style>
 </head>
 <body>
 
-<a href="/portfolio/" class="back-btn light" id="back-btn">← 웹 버전</a>
-<div class="pbar"><div class="pf" id="pbar"></div></div>
-
-<div class="deck">
-
-<!-- ── S1 COVER ── -->
-<div class="slide" id="s1">
-  <div class="inner">
-    <div class="cv-label">Portfolio &nbsp;·&nbsp; Service Planner</div>
-    <div class="cv-name">서정일</div>
-    <div class="cv-tagline">
-      문제를 찾고, 구조를 잡고, 직접 만듭니다.<br>
-      데이터 분석 · 서비스 기획 · AI 자동화 · End-to-End 실행
-    </div>
-    <div class="cv-div"></div>
-    <div class="cv-contact">seobgak11@naver.com</div>
-    <div class="cv-stats">
-      <div class="cv-stat">
-        <div class="cv-stat-n">6개</div>
-        <div class="cv-stat-l">신규 강의 기획</div>
-        <div class="cv-stat-s">패스트캠퍼스</div>
-      </div>
-      <div class="cv-stat">
-        <div class="cv-stat-n">3.8만</div>
-        <div class="cv-stat-l">앱 리뷰 분석</div>
-        <div class="cv-stat-s">Gcar VoC</div>
-      </div>
-      <div class="cv-stat">
-        <div class="cv-stat-n">83%↓</div>
-        <div class="cv-stat-l">제작 시간 단축</div>
-        <div class="cv-stat-s">AI 자동화</div>
-      </div>
-      <div class="cv-stat">
-        <div class="cv-stat-n">MVP</div>
-        <div class="cv-stat-l">AI 사이즈 추천</div>
-        <div class="cv-stat-s">pullsize</div>
-      </div>
-    </div>
+<!-- ── TOOLBAR ── -->
+<div class="toolbar">
+  <div class="tb-left">
+    <a href="/portfolio/" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2L4 7l5 5"/></svg>
+      웹 버전
+    </a>
+  </div>
+  <div class="tb-center">
+    <button class="tb-nav-btn" id="prev" aria-label="이전 슬라이드">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2L4 7l5 5"/></svg>
+    </button>
+    <span class="tb-snum" id="snum">01 / 10</span>
+    <button class="tb-nav-btn" id="next" aria-label="다음 슬라이드">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2l5 5-5 5"/></svg>
+    </button>
+  </div>
+  <div class="tb-right">
+    <div class="tb-divider"></div>
+    <button class="tb-icon-btn" id="btn-download" title="PDF로 저장" aria-label="PDF로 저장">
+      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 2v9M5.5 8l3 3 3-3"/>
+        <path d="M2.5 13v.5A1.5 1.5 0 004 15h9a1.5 1.5 0 001.5-1.5V13"/>
+      </svg>
+    </button>
+    <button class="tb-icon-btn" id="btn-print" title="인쇄" aria-label="인쇄">
+      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3.5" y="7" width="10" height="7" rx="1"/>
+        <path d="M5.5 7V4a1 1 0 011-1h4a1 1 0 011 1v3"/>
+        <rect x="5.5" y="10.5" width="6" height="1.5" rx=".75" fill="currentColor" stroke="none"/>
+        <circle cx="12.5" cy="9" r=".75" fill="currentColor" stroke="none"/>
+      </svg>
+    </button>
   </div>
 </div>
 
-<!-- ── S2 ABOUT ── -->
-<div class="slide" id="s2">
-  <div class="inner">
-    <div class="label">About</div>
-    <h1 class="st">사용자의 언어에서 서비스 문제를 읽습니다</h1>
-    <div class="ss">데이터와 현장 경험을 교차해 실제 작동하는 기획으로 연결해왔습니다</div>
-    <div class="ab-grid">
-      <div class="ab-left">
-        <div class="callout sky">
-          <div class="callout-lbl">기획 철학</div>
-          <div class="callout-body">
-            고객의 불만은 단일 기능이 아니라 여정 전반에서 누적된다.<br>
-            문제의 시작점을 찾고, 흐름으로 해결한다.
-          </div>
+<!-- ── VIEWER ── -->
+<div class="viewer">
+
+  <div class="deck">
+    <div class="pbar"><div class="pf" id="pbar"></div></div>
+
+    <!-- ── S1 COVER ── -->
+    <div class="slide" id="s1">
+      <div class="inner">
+        <div class="cv-label">Portfolio &nbsp;·&nbsp; Service Planner</div>
+        <div class="cv-name">서정일</div>
+        <div class="cv-tagline">
+          문제를 찾고, 구조를 잡고, 직접 만듭니다.<br>
+          데이터 분석 · 서비스 기획 · AI 자동화 · End-to-End 실행
         </div>
-        <div class="ab-intro">광고홍보·사학 복수전공 &nbsp;·&nbsp; 서비스 기획 3년+</div>
-        <div class="sk-section">
-          <div class="sk-row"><span class="sk-k">기획</span><span class="sk-v">Figma · Notion · Miro · IA 설계 · 기능명세서</span></div>
-          <div class="sk-row"><span class="sk-k">데이터</span><span class="sk-v">Python · SQL · KoELECTRA · SHAP · Tableau</span></div>
-          <div class="sk-row"><span class="sk-k">AI</span><span class="sk-v">Claude Code · Claude API · Figma MCP · 자동화 파이프라인</span></div>
-          <div class="sk-row"><span class="sk-k">디자인</span><span class="sk-v">Photoshop · InDesign · GTQ 1급</span></div>
-        </div>
-        <div style="font-size:var(--fs-cap);color:var(--muted);">seobgak11@naver.com &nbsp;·&nbsp; OPIc IH</div>
-      </div>
-      <div class="ab-right">
-        <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--supp);padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:0;">커리어</div>
-        <div class="career-row">
-          <div>
-            <div class="career-period">2024.05 — 2024.12</div>
+        <div class="cv-div"></div>
+        <div class="cv-contact">seobgak11@naver.com</div>
+        <div class="cv-stats">
+          <div class="cv-stat">
+            <div class="cv-stat-n">6개</div>
+            <div class="cv-stat-l">신규 강의 기획</div>
+            <div class="cv-stat-s">패스트캠퍼스</div>
           </div>
-          <div>
-            <div class="career-company">패스트캠퍼스 (데이원컴퍼니)</div>
-            <div class="career-role">콘텐츠 상품 기획자 · 인턴</div>
+          <div class="cv-stat">
+            <div class="cv-stat-n">3.8만</div>
+            <div class="cv-stat-l">앱 리뷰 분석</div>
+            <div class="cv-stat-s">Gcar VoC</div>
           </div>
-        </div>
-        <div class="career-row">
-          <div>
-            <div class="career-period">2023.04 — 2025.06</div>
+          <div class="cv-stat">
+            <div class="cv-stat-n">83%↓</div>
+            <div class="cv-stat-l">제작 시간 단축</div>
+            <div class="cv-stat-s">AI 자동화</div>
           </div>
-          <div>
-            <div class="career-company">아른 사이</div>
-            <div class="career-role">프로젝트 매니저 · 텀블벅 177% 달성</div>
+          <div class="cv-stat">
+            <div class="cv-stat-n">MVP</div>
+            <div class="cv-stat-l">AI 사이즈 추천</div>
+            <div class="cv-stat-s">pullsize</div>
           </div>
-        </div>
-        <div class="career-row" style="border-bottom:none;">
-          <div>
-            <div class="career-period">2021.01 — 2023.04</div>
-          </div>
-          <div>
-            <div class="career-company">살미달라</div>
-            <div class="career-role">패션 브랜드 대표 · MD · 팔로워 +86%</div>
-          </div>
-        </div>
-        <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--supp);padding-bottom:8px;border-bottom:1px solid var(--border);margin-top:14px;margin-bottom:0;">학력</div>
-        <div style="padding-top:10px;">
-          <div style="font-size:var(--fs-bl);font-weight:600;color:var(--primary);margin-bottom:3px;">한림대학교</div>
-          <div style="font-size:var(--fs-cap);color:var(--body);">사학전공 · 광고홍보학과 — 2025.02 졸업</div>
-        </div>
-        <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--supp);padding-bottom:8px;border-bottom:1px solid var(--border);margin-top:14px;margin-bottom:0;">주요 성과</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;flex:1;">
-          <div class="metric"><div class="mn">6개</div><div class="ml">신규 강의 출시</div><div class="ms">패스트캠퍼스</div></div>
-          <div class="metric"><div class="mn">3.8만</div><div class="ml">앱 리뷰 분석</div><div class="ms">Gcar VoC</div></div>
-          <div class="metric"><div class="mn">83%↓</div><div class="ml">제작 시간 단축</div><div class="ms">AI 자동화</div></div>
-          <div class="metric"><div class="mn">177%</div><div class="ml">텀블벅 달성</div><div class="ms">아른 사이</div></div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- ── S3 INDEX ── -->
-<div class="slide" id="s3">
-  <div class="inner">
-    <div class="label">Index</div>
-    <h1 class="st">4개의 메인 케이스와 1개의 실행 경험</h1>
-    <div class="ss">문제정의 · 구조화 · 실행 · End-to-End 역량 중심으로 구성했습니다</div>
-    <div style="display:flex;flex-direction:column;gap:7px;flex:1;">
-      <div class="idx-item">
-        <div class="idx-n">01</div>
-        <div>
-          <div class="idx-t">패스트캠퍼스 교육 상품 기획</div>
-          <div class="idx-s">강사 분석부터 런칭 매니징까지 — 신규 강의 6개 출시</div>
-        </div>
-        <div class="idx-d">2024.05 — 2024.12</div>
-      </div>
-      <div class="idx-item">
-        <div class="idx-n">02</div>
-        <div>
-          <div class="idx-t">Gcar VoC 분석 + 개선 제안</div>
-          <div class="idx-s">37,923건 리뷰로 이탈 구조 도출 → 3개 우선순위 개선안 설계</div>
-        </div>
-        <div class="idx-d">2025.11</div>
-      </div>
-      <div class="idx-item">
-        <div class="idx-n">03</div>
-        <div>
-          <div class="idx-t">AI 콘텐츠 자동화 파이프라인</div>
-          <div class="idx-s">Claude AI + Figma MCP → 제작 시간 3시간에서 30분으로 단축</div>
-        </div>
-        <div class="idx-d">2026.03 — 현재</div>
-      </div>
-      <div class="idx-item">
-        <div class="idx-n">04</div>
-        <div>
-          <div class="idx-t">pullsize — AI 사이즈 추천 서비스</div>
-          <div class="idx-s">상품 URL 입력 → Claude API 추천 → 실서비스 배포 (pullsize.kr)</div>
-        </div>
-        <div class="idx-d">2026.03 — 현재</div>
-      </div>
-      <div class="idx-item">
-        <div class="idx-n">05</div>
-        <div>
-          <div class="idx-t">살미달라 브랜드 창업</div>
-          <div class="idx-s">5인 팀 리드 · 리드타임 20%↓ · 팔로워 +86% · 3시즌 출시</div>
-        </div>
-        <div class="idx-d">2021.01 — 2023.04</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── S4 PROJECT 01 패스트캠퍼스 ── -->
-<div class="slide" id="s4">
-  <div class="inner">
-    <div class="label">Project 01 · 패스트캠퍼스 · 2024.05—2024.12</div>
-    <h1 class="st">강사 분석부터 런칭 매니징까지, 신규 강의 6개를 기획했다</h1>
-    <div class="ss">강사 분석 → 수강생 니즈 재정의 → 커리큘럼 설계 → 페이지 IA → 표준 프로세스 구축</div>
-    <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <div class="callout" style="margin-bottom:0;">
-            <div class="callout-lbl">Before</div>
-            <div class="callout-body">강사 경험·심미성 중심 기획. 수강생 실전 니즈와 어긋날 위험.</div>
+    <!-- ── S2 ABOUT ── -->
+    <div class="slide" id="s2">
+      <div class="inner">
+        <div class="label">About</div>
+        <h1 class="st">사용자의 언어에서 서비스 문제를 읽습니다</h1>
+        <div class="ss">데이터와 현장 경험을 교차해 실제 작동하는 기획으로 연결해왔습니다</div>
+        <div class="ab-grid">
+          <div class="ab-left">
+            <div class="callout sky">
+              <div class="callout-lbl">기획 철학</div>
+              <div class="callout-body">
+                고객의 불만은 단일 기능이 아니라 여정 전반에서 누적된다.<br>
+                문제의 시작점을 찾고, 흐름으로 해결한다.
+              </div>
+            </div>
+            <div class="ab-intro">광고홍보·사학 복수전공 &nbsp;·&nbsp; 서비스 기획 3년+</div>
+            <div class="sk-section">
+              <div class="sk-row"><span class="sk-k">기획</span><span class="sk-v">Figma · Notion · Miro · IA 설계 · 기능명세서</span></div>
+              <div class="sk-row"><span class="sk-k">데이터</span><span class="sk-v">Python · SQL · KoELECTRA · SHAP · Tableau</span></div>
+              <div class="sk-row"><span class="sk-k">AI</span><span class="sk-v">Claude Code · Claude API · Figma MCP · 자동화 파이프라인</span></div>
+              <div class="sk-row"><span class="sk-k">디자인</span><span class="sk-v">Photoshop · InDesign · GTQ 1급</span></div>
+            </div>
+            <div style="font-size:var(--fs-cap);color:var(--muted);">seobgak11@naver.com &nbsp;·&nbsp; OPIc IH</div>
           </div>
-          <div class="callout sky" style="margin-bottom:0;">
-            <div class="callout-lbl">After</div>
-            <div class="callout-body">댓글·조회수 분석으로 핵심 니즈를 "최소 공수로 조회수를 만드는 실전 전략"으로 재정의.</div>
+          <div class="ab-right">
+            <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--supp);padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:0;">커리어</div>
+            <div class="career-row">
+              <div>
+                <div class="career-period">2024.05 — 2024.12</div>
+              </div>
+              <div>
+                <div class="career-company">패스트캠퍼스 (데이원컴퍼니)</div>
+                <div class="career-role">콘텐츠 상품 기획자 · 인턴</div>
+              </div>
+            </div>
+            <div class="career-row">
+              <div>
+                <div class="career-period">2023.04 — 2025.06</div>
+              </div>
+              <div>
+                <div class="career-company">아른 사이</div>
+                <div class="career-role">프로젝트 매니저 · 텀블벅 177% 달성</div>
+              </div>
+            </div>
+            <div class="career-row" style="border-bottom:none;">
+              <div>
+                <div class="career-period">2021.01 — 2023.04</div>
+              </div>
+              <div>
+                <div class="career-company">살미달라</div>
+                <div class="career-role">패션 브랜드 대표 · MD · 팔로워 +86%</div>
+              </div>
+            </div>
+            <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--supp);padding-bottom:8px;border-bottom:1px solid var(--border);margin-top:14px;margin-bottom:0;">학력</div>
+            <div style="padding-top:10px;">
+              <div style="font-size:var(--fs-bl);font-weight:600;color:var(--primary);margin-bottom:3px;">한림대학교</div>
+              <div style="font-size:var(--fs-cap);color:var(--body);">사학전공 · 광고홍보학과 — 2025.02 졸업</div>
+            </div>
+            <div style="font-size:var(--fs-cap);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--supp);padding-bottom:8px;border-bottom:1px solid var(--border);margin-top:14px;margin-bottom:0;">주요 성과</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;flex:1;">
+              <div class="metric"><div class="mn">6개</div><div class="ml">신규 강의 출시</div><div class="ms">패스트캠퍼스</div></div>
+              <div class="metric"><div class="mn">3.8만</div><div class="ml">앱 리뷰 분석</div><div class="ms">Gcar VoC</div></div>
+              <div class="metric"><div class="mn">83%↓</div><div class="ml">제작 시간 단축</div><div class="ms">AI 자동화</div></div>
+              <div class="metric"><div class="mn">177%</div><div class="ml">텀블벅 달성</div><div class="ms">아른 사이</div></div>
+            </div>
           </div>
-        </div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;">
-          <div class="section-label">5단계 접근</div>
-          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;">
-            <div class="step-pill"><div class="step-num">1</div><span>강사·타겟 분석</span></div>
-            <span style="font-size:10px;color:var(--supp);">→</span>
-            <div class="step-pill"><div class="step-num">2</div><span>커리큘럼 설계</span></div>
-            <span style="font-size:10px;color:var(--supp);">→</span>
-            <div class="step-pill"><div class="step-num">3</div><span>페이지 IA</span></div>
-            <span style="font-size:10px;color:var(--supp);">→</span>
-            <div class="step-pill"><div class="step-num">4</div><span>제작 협업</span></div>
-            <span style="font-size:10px;color:var(--supp);">→</span>
-            <div class="step-pill"><div class="step-num">5</div><span>프로세스 문서화</span></div>
-          </div>
-        </div>
-        <div class="callout" style="margin-bottom:0;">
-          <div class="callout-lbl">핵심 인사이트</div>
-          <div class="callout-body">제작 프로세스가 담당자 경험에만 의존해 일정 지연과 품질 편차가 반복. → Notion 표준 템플릿으로 온보딩 시간 단축 및 품질 편차 해소.</div>
-        </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <span class="tag">Figma</span><span class="tag">Notion</span><span class="tag">콘텐츠 기획</span><span class="tag">IA 설계</span><span class="tag">커리큘럼 설계</span>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;border-left:1px solid var(--border);padding-left:20px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
-          <div class="metric"><div class="mn">6개</div><div class="ml">신규 강의 출시</div><div class="ms">7개월 내</div></div>
-          <div class="metric"><div class="mn">IA</div><div class="ml">상세페이지 재설계</div><div class="ms">수강생 이해도 기준</div></div>
-          <div class="metric" style="grid-column:1/-1;"><div class="mn">1건</div><div class="ml">표준 제작 프로세스</div><div class="ms">Notion 인수인계 문서</div></div>
-        </div>
-        <div class="role">
-          <span class="rk">Role</span><span class="rv">콘텐츠 상품 기획자 인턴</span>
-          <span class="rk">Scope</span><span class="rv">강사 분석 · 커리큘럼 설계 · 상세페이지 IA · 런칭 매니징</span>
-          <span class="rk">Output</span><span class="rv">신규 강의 6개 출시 + 표준 제작 프로세스 문서</span>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- ── S5 PROJECT 02 Gcar VoC ── -->
-<div class="slide" id="s5">
-  <div class="inner">
-    <div class="label">Project 02 · Gcar VoC 분석 · 2025.11</div>
-    <h1 class="st">37,923건의 리뷰에서 이탈 구조를 찾고, 개선안으로 연결했다</h1>
-    <div class="ss">크롤링 → KoELECTRA 감정 분류 → 실패 여정 구조화 → 3개 우선순위 개선 제안</div>
-    <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
-      <div style="display:flex;flex-direction:column;gap:9px;">
-        <div class="callout">
-          <div class="callout-lbl">핵심 발견</div>
-          <div class="callout-body">Gcar의 부정 경험은 <span style="font-weight:600;color:var(--primary);">앱 오류 → 반납 실패 → 과금 → CS 지연</span>으로 이어지는 연쇄 구조였습니다. 경쟁사 대비 1점 리뷰 비중이 유의하게 높았습니다.</div>
-        </div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;">
-          <div class="section-label">실패 여정</div>
-          <div style="display:flex;align-items:center;gap:5px;">
-            <div class="jnode">앱 오류<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">예약·반납</span></div>
-            <div class="jarr">→</div>
-            <div class="jnode">반납 실패<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">시간 초과</span></div>
-            <div class="jarr">→</div>
-            <div class="jnode">과금·페널티<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">예상 외 비용</span></div>
-            <div class="jarr">→</div>
-            <div class="jnode" style="background:#111;color:#fff;border:none;">1점 리뷰<br><span style="font-size:var(--fs-cap);color:rgba(255,255,255,0.5);font-weight:400;">이탈</span></div>
+    <!-- ── S3 INDEX ── -->
+    <div class="slide" id="s3">
+      <div class="inner">
+        <div class="label">Index</div>
+        <h1 class="st">4개의 메인 케이스와 1개의 실행 경험</h1>
+        <div class="ss">문제정의 · 구조화 · 실행 · End-to-End 역량 중심으로 구성했습니다</div>
+        <div style="display:flex;flex-direction:column;gap:7px;flex:1;">
+          <div class="idx-item">
+            <div class="idx-n">01</div>
+            <div>
+              <div class="idx-t">패스트캠퍼스 교육 상품 기획</div>
+              <div class="idx-s">강사 분석부터 런칭 매니징까지 — 신규 강의 6개 출시</div>
+            </div>
+            <div class="idx-d">2024.05 — 2024.12</div>
+          </div>
+          <div class="idx-item">
+            <div class="idx-n">02</div>
+            <div>
+              <div class="idx-t">Gcar VoC 분석 + 개선 제안</div>
+              <div class="idx-s">37,923건 리뷰로 이탈 구조 도출 → 3개 우선순위 개선안 설계</div>
+            </div>
+            <div class="idx-d">2025.11</div>
+          </div>
+          <div class="idx-item">
+            <div class="idx-n">03</div>
+            <div>
+              <div class="idx-t">AI 콘텐츠 자동화 파이프라인</div>
+              <div class="idx-s">Claude AI + Figma MCP → 제작 시간 3시간에서 30분으로 단축</div>
+            </div>
+            <div class="idx-d">2026.03 — 현재</div>
+          </div>
+          <div class="idx-item">
+            <div class="idx-n">04</div>
+            <div>
+              <div class="idx-t">pullsize — AI 사이즈 추천 서비스</div>
+              <div class="idx-s">상품 URL 입력 → Claude API 추천 → 실서비스 배포 (pullsize.kr)</div>
+            </div>
+            <div class="idx-d">2026.03 — 현재</div>
+          </div>
+          <div class="idx-item">
+            <div class="idx-n">05</div>
+            <div>
+              <div class="idx-t">살미달라 브랜드 창업</div>
+              <div class="idx-s">5인 팀 리드 · 리드타임 20%↓ · 팔로워 +86% · 3시즌 출시</div>
+            </div>
+            <div class="idx-d">2021.01 — 2023.04</div>
           </div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-          <div class="sol">
-            <div class="sol-n">01</div>
-            <div class="sol-t">반납 UI + 혼잡도 사전 안내</div>
-            <div class="sol-d">예약 단계에서 반납지 혼잡 가능성을 알려 대체 반납지 연결</div>
-          </div>
-          <div class="sol">
-            <div class="sol-n">02</div>
-            <div class="sol-t">과금 발생 전 경고</div>
-            <div class="sol-d">예상 금액·사유·회피 행동을 앱 안에서 선제적으로 안내</div>
-          </div>
-          <div class="sol">
-            <div class="sol-n">03</div>
-            <div class="sol-t">CS 봇 + 자동 문의 연결</div>
-            <div class="sol-d">오류 화면에서 증빙 캡처·접수·처리 상태 확인까지 연결</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <span class="tag">KoELECTRA</span><span class="tag">SHAP</span><span class="tag">Python</span><span class="tag">시계열 분석</span><span class="tag">여정 맵</span>
-        </div>
-      </div>
-      <div class="col-right">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
-          <div class="metric"><div class="mn">3.8만</div><div class="ml">리뷰 수집·분류</div><div class="ms">최근 3년</div></div>
-          <div class="metric"><div class="mn">F1 0.84</div><div class="ml">감정 분류 성능</div><div class="ms">KoELECTRA</div></div>
-          <div class="metric"><div class="mn">4개</div><div class="ml">이슈 클러스터</div><div class="ms">구조화 결과</div></div>
-          <div class="metric"><div class="mn">3개</div><div class="ml">우선 개선 방향</div><div class="ms">여정 기반</div></div>
-        </div>
-        <div class="role">
-          <span class="rk">Role</span><span class="rv">개인 분석 프로젝트</span>
-          <span class="rk">Scope</span><span class="rv">크롤링 · 감정분석 · 이슈 구조화 · 여정 맵 · 개선안 설계</span>
-          <span class="rk">Output</span><span class="rv">이탈 구조 분석 보고서 + 3개 개선 방향 제안서</span>
-        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- ── S6 PROJECT 03 AI 콘텐츠 자동화 ── -->
-<div class="slide" id="s6">
-  <div class="inner">
-    <div class="label">Project 03 · AI 콘텐츠 자동화 · 2026.03—현재</div>
-    <h1 class="st">AI 파이프라인으로 콘텐츠 제작 시간을 83% 단축했다</h1>
-    <div class="ss">Claude AI + Figma MCP 연동 → 자료조사부터 디자인 적용까지 자동화</div>
-    <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div class="section-label">자동화 파이프라인</div>
-        <div class="pipeline">
-          <div class="pipe-s">자료조사</div><div class="pipe-a">→</div>
-          <div class="pipe-s">전략 수립</div><div class="pipe-a">→</div>
-          <div class="pipe-s">카피 생성</div><div class="pipe-a">→</div>
-          <div class="pipe-s">디자인 적용</div><div class="pipe-a">→</div>
-          <div class="pipe-s">QA 검수</div>
-        </div>
-        <div class="callout sky">
-          <div class="callout-lbl">기술 연동</div>
-          <div class="callout-body">Claude AI로 브랜드 분석·카피 자동 생성, Figma MCP로 디자인 노드 직접 반영. 수동 Figma 작업을 파이프라인에서 완전 제거.</div>
-        </div>
-        <div class="callout">
-          <div class="callout-lbl">품질 게이트</div>
-          <div class="callout-body">fact_check·QA 체크리스트 자동화로 게시 전 오류 검증. 인물 권리·브랜드 정보 정확도 포함. 판단은 기획자가 직접 담당.</div>
-        </div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;">
-          <div class="section-label">대시보드 & SEO</div>
-          <div style="font-size:var(--fs-body);color:var(--body);line-height:1.6;">Google Sheets로 39개 피드 진행 현황·캡션·발행 상태 통합 관리. 캡션 v4 포맷 + 3-Tier 해시태그 전략 전면 적용.</div>
-        </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <span class="tag">Claude AI</span><span class="tag">Figma MCP</span><span class="tag">Claude Code</span><span class="tag">Python</span><span class="tag">Google Sheets</span>
-        </div>
-      </div>
-      <div class="col-right">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
-          <div class="metric"><div class="mn">83%↓</div><div class="ml">제작 시간 단축</div><div class="ms">3시간 → 30분</div></div>
-          <div class="metric"><div class="mn">29개+</div><div class="ml">피드 자동 생성</div><div class="ms">3개월 내</div></div>
-          <div class="metric"><div class="mn">22개</div><div class="ml">브랜드 커버</div><div class="ms">스트릿·컨템포러리</div></div>
-          <div class="metric"><div class="mn">39개</div><div class="ml">피드 전수 관리</div><div class="ms">Google Sheets</div></div>
-        </div>
-        <div class="role">
-          <span class="rk">Role</span><span class="rv">기획자 · AI 파이프라인 설계 · Claude Code 직접 구현</span>
-          <span class="rk">Scope</span><span class="rv">파이프라인 구조 · QA 체계 · SEO 전략 · 직접 구현</span>
-          <span class="rk">Output</span><span class="rv">29개+ 피드 자동화 파이프라인 + 캡션 v4 전략</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── S7 PROJECT 04 pullsize ── -->
-<div class="slide" id="s7">
-  <div class="inner">
-    <div class="label">Project 04 · pullsize · 2026.03—현재</div>
-    <h1 class="st">상품 URL과 신체 정보로 의류 사이즈를 추천하는 서비스를 만들었다</h1>
-    <div class="ss">온라인 쇼핑 사이즈 불안을 줄이는 AI 추천 MVP — pullsize.kr 실서비스 배포</div>
-    <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div class="callout">
-          <div class="callout-lbl">문제 정의</div>
-          <div class="callout-body">브랜드마다 다른 실측 기준과 착용감 차이로 사이즈 선택에 불안을 느낀다. 치수표만으로는 내 체형에 맞는 사이즈 판단이 어렵고, 구매 망설임과 교환·반품으로 이어진다.</div>
-        </div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;">
-          <div class="section-label">서비스 흐름</div>
-          <div class="pipeline" style="margin-bottom:0;">
-            <div class="pipe-s">URL 입력</div><div class="pipe-a">→</div>
-            <div class="pipe-s">상품 파싱</div><div class="pipe-a">→</div>
-            <div class="pipe-s">신체 정보</div><div class="pipe-a">→</div>
-            <div class="pipe-s">AI 추천</div><div class="pipe-a">→</div>
-            <div class="pipe-s">결과 확인</div>
+    <!-- ── S4 PROJECT 01 패스트캠퍼스 ── -->
+    <div class="slide" id="s4">
+      <div class="inner">
+        <div class="label">Project 01 · 패스트캠퍼스 · 2024.05—2024.12</div>
+        <h1 class="st">강사 분석부터 런칭 매니징까지, 신규 강의 6개를 기획했다</h1>
+        <div class="ss">강사 분석 → 수강생 니즈 재정의 → 커리큘럼 설계 → 페이지 IA → 표준 프로세스 구축</div>
+        <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div class="callout" style="margin-bottom:0;">
+                <div class="callout-lbl">Before</div>
+                <div class="callout-body">강사 경험·심미성 중심 기획. 수강생 실전 니즈와 어긋날 위험.</div>
+              </div>
+              <div class="callout sky" style="margin-bottom:0;">
+                <div class="callout-lbl">After</div>
+                <div class="callout-body">댓글·조회수 분석으로 핵심 니즈를 "최소 공수로 조회수를 만드는 실전 전략"으로 재정의.</div>
+              </div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;">
+              <div class="section-label">5단계 접근</div>
+              <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;">
+                <div class="step-pill"><div class="step-num">1</div><span>강사·타겟 분석</span></div>
+                <span style="font-size:10px;color:var(--supp);">→</span>
+                <div class="step-pill"><div class="step-num">2</div><span>커리큘럼 설계</span></div>
+                <span style="font-size:10px;color:var(--supp);">→</span>
+                <div class="step-pill"><div class="step-num">3</div><span>페이지 IA</span></div>
+                <span style="font-size:10px;color:var(--supp);">→</span>
+                <div class="step-pill"><div class="step-num">4</div><span>제작 협업</span></div>
+                <span style="font-size:10px;color:var(--supp);">→</span>
+                <div class="step-pill"><div class="step-num">5</div><span>프로세스 문서화</span></div>
+              </div>
+            </div>
+            <div class="callout" style="margin-bottom:0;">
+              <div class="callout-lbl">핵심 인사이트</div>
+              <div class="callout-body">제작 프로세스가 담당자 경험에만 의존해 일정 지연과 품질 편차가 반복. → Notion 표준 템플릿으로 온보딩 시간 단축 및 품질 편차 해소.</div>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="tag">Figma</span><span class="tag">Notion</span><span class="tag">콘텐츠 기획</span><span class="tag">IA 설계</span><span class="tag">커리큘럼 설계</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;border-left:1px solid var(--border);padding-left:20px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
+              <div class="metric"><div class="mn">6개</div><div class="ml">신규 강의 출시</div><div class="ms">7개월 내</div></div>
+              <div class="metric"><div class="mn">IA</div><div class="ml">상세페이지 재설계</div><div class="ms">수강생 이해도 기준</div></div>
+              <div class="metric" style="grid-column:1/-1;"><div class="mn">1건</div><div class="ml">표준 제작 프로세스</div><div class="ms">Notion 인수인계 문서</div></div>
+            </div>
+            <div class="role">
+              <span class="rk">Role</span><span class="rv">콘텐츠 상품 기획자 인턴</span>
+              <span class="rk">Scope</span><span class="rv">강사 분석 · 커리큘럼 설계 · 상세페이지 IA · 런칭 매니징</span>
+              <span class="rk">Output</span><span class="rv">신규 강의 6개 출시 + 표준 제작 프로세스 문서</span>
+            </div>
           </div>
         </div>
-        <div class="callout sky">
-          <div class="callout-lbl">UX 핵심</div>
-          <div class="callout-body">단순 사이즈명이 아니라 여유도와 판단 근거를 함께 제공해 사용자가 추천을 납득할 수 있도록 설계. 무신사·지그재그·에이블리 지원, 이미지 업로드 fallback 포함.</div>
-        </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <span class="tag">Claude API</span><span class="tag">Firecrawl</span><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">MVP 설계</span>
-        </div>
       </div>
-      <div class="col-right">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
-          <div class="metric"><div class="mn">MVP</div><div class="ml">실서비스 배포</div><div class="ms">pullsize.kr</div></div>
-          <div class="metric"><div class="mn">URL→</div><div class="ml">AI 추천 플로우</div><div class="ms">핵심 UX 구현</div></div>
-          <div class="metric" style="grid-column:1/-1;"><div class="mn">3개</div><div class="ml">쇼핑몰 지원</div><div class="ms">무신사·지그재그·에이블리</div></div>
-        </div>
-        <div class="role">
-          <span class="rk">Role</span><span class="rv">서비스 기획 · Claude Code 직접 구현</span>
-          <span class="rk">Scope</span><span class="rv">문제 정의 · 입력 플로우 · 추천 UX · MVP 설계 · 배포</span>
-          <span class="rk">Output</span><span class="rv">실서비스 배포 (pullsize.kr) + AI 추천 결과 화면</span>
+    </div>
+
+    <!-- ── S5 PROJECT 02 Gcar VoC ── -->
+    <div class="slide" id="s5">
+      <div class="inner">
+        <div class="label">Project 02 · Gcar VoC 분석 · 2025.11</div>
+        <h1 class="st">37,923건의 리뷰에서 이탈 구조를 찾고, 개선안으로 연결했다</h1>
+        <div class="ss">크롤링 → KoELECTRA 감정 분류 → 실패 여정 구조화 → 3개 우선순위 개선 제안</div>
+        <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            <div class="callout">
+              <div class="callout-lbl">핵심 발견</div>
+              <div class="callout-body">Gcar의 부정 경험은 <span style="font-weight:600;color:var(--primary);">앱 오류 → 반납 실패 → 과금 → CS 지연</span>으로 이어지는 연쇄 구조였습니다. 경쟁사 대비 1점 리뷰 비중이 유의하게 높았습니다.</div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;">
+              <div class="section-label">실패 여정</div>
+              <div style="display:flex;align-items:center;gap:5px;">
+                <div class="jnode">앱 오류<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">예약·반납</span></div>
+                <div class="jarr">→</div>
+                <div class="jnode">반납 실패<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">시간 초과</span></div>
+                <div class="jarr">→</div>
+                <div class="jnode">과금·페널티<br><span style="font-size:var(--fs-cap);color:var(--muted);font-weight:400;">예상 외 비용</span></div>
+                <div class="jarr">→</div>
+                <div class="jnode" style="background:#111;color:#fff;border:none;">1점 리뷰<br><span style="font-size:var(--fs-cap);color:rgba(255,255,255,0.5);font-weight:400;">이탈</span></div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+              <div class="sol">
+                <div class="sol-n">01</div>
+                <div class="sol-t">반납 UI + 혼잡도 사전 안내</div>
+                <div class="sol-d">예약 단계에서 반납지 혼잡 가능성을 알려 대체 반납지 연결</div>
+              </div>
+              <div class="sol">
+                <div class="sol-n">02</div>
+                <div class="sol-t">과금 발생 전 경고</div>
+                <div class="sol-d">예상 금액·사유·회피 행동을 앱 안에서 선제적으로 안내</div>
+              </div>
+              <div class="sol">
+                <div class="sol-n">03</div>
+                <div class="sol-t">CS 봇 + 자동 문의 연결</div>
+                <div class="sol-d">오류 화면에서 증빙 캡처·접수·처리 상태 확인까지 연결</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="tag">KoELECTRA</span><span class="tag">SHAP</span><span class="tag">Python</span><span class="tag">시계열 분석</span><span class="tag">여정 맵</span>
+            </div>
+          </div>
+          <div class="col-right">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
+              <div class="metric"><div class="mn">3.8만</div><div class="ml">리뷰 수집·분류</div><div class="ms">최근 3년</div></div>
+              <div class="metric"><div class="mn">F1 0.84</div><div class="ml">감정 분류 성능</div><div class="ms">KoELECTRA</div></div>
+              <div class="metric"><div class="mn">4개</div><div class="ml">이슈 클러스터</div><div class="ms">구조화 결과</div></div>
+              <div class="metric"><div class="mn">3개</div><div class="ml">우선 개선 방향</div><div class="ms">여정 기반</div></div>
+            </div>
+            <div class="role">
+              <span class="rk">Role</span><span class="rv">개인 분석 프로젝트</span>
+              <span class="rk">Scope</span><span class="rv">크롤링 · 감정분석 · 이슈 구조화 · 여정 맵 · 개선안 설계</span>
+              <span class="rk">Output</span><span class="rv">이탈 구조 분석 보고서 + 3개 개선 방향 제안서</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- ── S8 PROJECT 05 살미달라 ── -->
-<div class="slide" id="s8">
-  <div class="inner">
-    <div class="label">Project 05 · 살미달라 브랜드 창업 · 2021.01—2023.04</div>
-    <h1 class="st">기획과 실행을 분리하지 않고, End-to-End로 책임졌다</h1>
-    <div class="ss">5인 팀 리드 · 리드타임 20%↓ · 판매량 30%↑ · 팔로워 +86% · 3시즌 출시</div>
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
-        <div class="ach">
-          <div class="ach-n">20%↓</div>
-          <div class="ach-t">리드타임 단축</div>
-          <div class="ach-d">협력업체 소통 창구를 단일화하고 샘플→촬영→오픈 일정을 통합 관리</div>
+    <!-- ── S6 PROJECT 03 AI 콘텐츠 자동화 ── -->
+    <div class="slide" id="s6">
+      <div class="inner">
+        <div class="label">Project 03 · AI 콘텐츠 자동화 · 2026.03—현재</div>
+        <h1 class="st">AI 파이프라인으로 콘텐츠 제작 시간을 83% 단축했다</h1>
+        <div class="ss">Claude AI + Figma MCP 연동 → 자료조사부터 디자인 적용까지 자동화</div>
+        <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="section-label">자동화 파이프라인</div>
+            <div class="pipeline">
+              <div class="pipe-s">자료조사</div><div class="pipe-a">→</div>
+              <div class="pipe-s">전략 수립</div><div class="pipe-a">→</div>
+              <div class="pipe-s">카피 생성</div><div class="pipe-a">→</div>
+              <div class="pipe-s">디자인 적용</div><div class="pipe-a">→</div>
+              <div class="pipe-s">QA 검수</div>
+            </div>
+            <div class="callout sky">
+              <div class="callout-lbl">기술 연동</div>
+              <div class="callout-body">Claude AI로 브랜드 분석·카피 자동 생성, Figma MCP로 디자인 노드 직접 반영. 수동 Figma 작업을 파이프라인에서 완전 제거.</div>
+            </div>
+            <div class="callout">
+              <div class="callout-lbl">품질 게이트</div>
+              <div class="callout-body">fact_check·QA 체크리스트 자동화로 게시 전 오류 검증. 인물 권리·브랜드 정보 정확도 포함. 판단은 기획자가 직접 담당.</div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;">
+              <div class="section-label">대시보드 & SEO</div>
+              <div style="font-size:var(--fs-body);color:var(--body);line-height:1.6;">Google Sheets로 39개 피드 진행 현황·캡션·발행 상태 통합 관리. 캡션 v4 포맷 + 3-Tier 해시태그 전략 전면 적용.</div>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="tag">Claude AI</span><span class="tag">Figma MCP</span><span class="tag">Claude Code</span><span class="tag">Python</span><span class="tag">Google Sheets</span>
+            </div>
+          </div>
+          <div class="col-right">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
+              <div class="metric"><div class="mn">83%↓</div><div class="ml">제작 시간 단축</div><div class="ms">3시간 → 30분</div></div>
+              <div class="metric"><div class="mn">29개+</div><div class="ml">피드 자동 생성</div><div class="ms">3개월 내</div></div>
+              <div class="metric"><div class="mn">22개</div><div class="ml">브랜드 커버</div><div class="ms">스트릿·컨템포러리</div></div>
+              <div class="metric"><div class="mn">39개</div><div class="ml">피드 전수 관리</div><div class="ms">Google Sheets</div></div>
+            </div>
+            <div class="role">
+              <span class="rk">Role</span><span class="rv">기획자 · AI 파이프라인 설계 · Claude Code 직접 구현</span>
+              <span class="rk">Scope</span><span class="rv">파이프라인 구조 · QA 체계 · SEO 전략 · 직접 구현</span>
+              <span class="rk">Output</span><span class="rv">29개+ 피드 자동화 파이프라인 + 캡션 v4 전략</span>
+            </div>
+          </div>
         </div>
-        <div class="ach">
-          <div class="ach-n">30%↑</div>
-          <div class="ach-t">판매량 성장</div>
-          <div class="ach-d">룩북 영상·상세페이지·SNS 운영을 시즌 판매 전략과 연결. 21SS 첫 시즌 140벌 완판</div>
-        </div>
-        <div class="ach">
-          <div class="ach-n">+86%</div>
-          <div class="ach-t">팔로워 성장</div>
-          <div class="ach-d">팝업스토어 3회 기획 후 오프라인 접점을 온라인으로 확장. 유튜브 조회 2.4만+</div>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
-        <div class="metric"><div class="mn">3시즌</div><div class="ml">21SS / 21FW / 22SS</div><div class="ms">연속 출시</div></div>
-        <div class="metric"><div class="mn">140벌</div><div class="ml">첫 시즌 완판</div><div class="ms">21SS</div></div>
-        <div class="metric"><div class="mn">3회</div><div class="ml">팝업스토어 운영</div><div class="ms">채널 다각화</div></div>
-        <div class="metric"><div class="mn">5인</div><div class="ml">팀 리드</div><div class="ms">기획·MD 총괄</div></div>
-      </div>
-      <div class="role">
-        <span class="rk">Role</span><span class="rv">패션 브랜드 공동창업 · 대표 · MD 총괄</span>
-        <span class="rk">Scope</span><span class="rv">시즌 상품 기획 · 생산 관리 · 팝업스토어 · SNS 콘텐츠 · 외부 협력</span>
-        <span class="rk">Output</span><span class="rv">3시즌 출시 · 리드타임 20%↓ · 판매량 30%↑ · 팔로워 +86%</span>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- ── S9 COMPETENCY ── -->
-<div class="slide" id="s9">
-  <div class="inner">
-    <div class="label">Competency</div>
-    <h1 class="st">서비스 기획자로서의 3가지 역량</h1>
-    <div class="ss">문제정의 · 논리적 구조화 · 데이터 기반 검증 — 세 역량이 하나의 흐름으로 연결됩니다</div>
-    <div class="comp-grid">
-      <div class="comp">
-        <div class="comp-n">01</div>
-        <div class="comp-t">사용자 경험 설계</div>
-        <div class="comp-d">고객의 언어와 행동 데이터에서 문제를 정의하고 서비스 흐름으로 연결. 단일 기능이 아닌 여정 전체를 본다.</div>
-        <div><div class="comp-el">관련 경험</div><div class="comp-e">Gcar 여정 구조화 · 패스트캠퍼스 IA · pullsize UX</div></div>
-      </div>
-      <div class="comp">
-        <div class="comp-n">02</div>
-        <div class="comp-t">논리적 기획 문서화</div>
-        <div class="comp-d">문제 정의 → 근거 → 개선안 흐름을 개발·디자인 협업 문서로 구조화. 가설을 검증 가능한 형태로 만든다.</div>
-        <div><div class="comp-el">관련 경험</div><div class="comp-e">표준 프로세스 문서 · 기능 요구사항 정의 · 개선안 보고서</div></div>
-      </div>
-      <div class="comp">
-        <div class="comp-n">03</div>
-        <div class="comp-t">End-to-End 실행</div>
-        <div class="comp-d">기획에서 멈추지 않고 Claude Code로 직접 구현·배포. AI 파이프라인 설계부터 실서비스 출시까지 책임진다.</div>
-        <div><div class="comp-el">관련 경험</div><div class="comp-e">pullsize 실배포 · AI 자동화 파이프라인 · 살미달라 전 과정</div></div>
+    <!-- ── S7 PROJECT 04 pullsize ── -->
+    <div class="slide" id="s7">
+      <div class="inner">
+        <div class="label">Project 04 · pullsize · 2026.03—현재</div>
+        <h1 class="st">상품 URL과 신체 정보로 의류 사이즈를 추천하는 서비스를 만들었다</h1>
+        <div class="ss">온라인 쇼핑 사이즈 불안을 줄이는 AI 추천 MVP — pullsize.kr 실서비스 배포</div>
+        <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="callout">
+              <div class="callout-lbl">문제 정의</div>
+              <div class="callout-body">브랜드마다 다른 실측 기준과 착용감 차이로 사이즈 선택에 불안을 느낀다. 치수표만으로는 내 체형에 맞는 사이즈 판단이 어렵고, 구매 망설임과 교환·반품으로 이어진다.</div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;">
+              <div class="section-label">서비스 흐름</div>
+              <div class="pipeline" style="margin-bottom:0;">
+                <div class="pipe-s">URL 입력</div><div class="pipe-a">→</div>
+                <div class="pipe-s">상품 파싱</div><div class="pipe-a">→</div>
+                <div class="pipe-s">신체 정보</div><div class="pipe-a">→</div>
+                <div class="pipe-s">AI 추천</div><div class="pipe-a">→</div>
+                <div class="pipe-s">결과 확인</div>
+              </div>
+            </div>
+            <div class="callout sky">
+              <div class="callout-lbl">UX 핵심</div>
+              <div class="callout-body">단순 사이즈명이 아니라 여유도와 판단 근거를 함께 제공해 사용자가 추천을 납득할 수 있도록 설계. 무신사·지그재그·에이블리 지원, 이미지 업로드 fallback 포함.</div>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="tag">Claude API</span><span class="tag">Firecrawl</span><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">MVP 설계</span>
+            </div>
+          </div>
+          <div class="col-right">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
+              <div class="metric"><div class="mn">MVP</div><div class="ml">실서비스 배포</div><div class="ms">pullsize.kr</div></div>
+              <div class="metric"><div class="mn">URL→</div><div class="ml">AI 추천 플로우</div><div class="ms">핵심 UX 구현</div></div>
+              <div class="metric" style="grid-column:1/-1;"><div class="mn">3개</div><div class="ml">쇼핑몰 지원</div><div class="ms">무신사·지그재그·에이블리</div></div>
+            </div>
+            <div class="role">
+              <span class="rk">Role</span><span class="rv">서비스 기획 · Claude Code 직접 구현</span>
+              <span class="rk">Scope</span><span class="rv">문제 정의 · 입력 플로우 · 추천 UX · MVP 설계 · 배포</span>
+              <span class="rk">Output</span><span class="rv">실서비스 배포 (pullsize.kr) + AI 추천 결과 화면</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- ── S10 END CARD ── -->
-<div class="slide" id="s10">
-  <div class="inner">
-    <div class="end-label">마무리하기 전</div>
-    <div class="end-div"></div>
-    <div class="end-quote">
-      서비스 기획자는 기능을 늘리는 사람이 아니라,<br>
-      <span class="end-em">사용자가 이탈하는 지점을 발견하고 더 나은 흐름으로 바꾸는 사람</span>이라고 생각합니다.<br><br>
-      저는 데이터와 사용자 경험을 함께 보며 문제를 구조화하고,<br>
-      실제로 작동하는 서비스 흐름으로 바꾸는 일을 해왔습니다.<br><br>
-      그 방식으로 팀의 문제를 함께 풀어보고 싶습니다.
+    <!-- ── S8 PROJECT 05 살미달라 ── -->
+    <div class="slide" id="s8">
+      <div class="inner">
+        <div class="label">Project 05 · 살미달라 브랜드 창업 · 2021.01—2023.04</div>
+        <h1 class="st">기획과 실행을 분리하지 않고, End-to-End로 책임졌다</h1>
+        <div class="ss">5인 팀 리드 · 리드타임 20%↓ · 판매량 30%↑ · 팔로워 +86% · 3시즌 출시</div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+            <div class="ach">
+              <div class="ach-n">20%↓</div>
+              <div class="ach-t">리드타임 단축</div>
+              <div class="ach-d">협력업체 소통 창구를 단일화하고 샘플→촬영→오픈 일정을 통합 관리</div>
+            </div>
+            <div class="ach">
+              <div class="ach-n">30%↑</div>
+              <div class="ach-t">판매량 성장</div>
+              <div class="ach-d">룩북 영상·상세페이지·SNS 운영을 시즌 판매 전략과 연결. 21SS 첫 시즌 140벌 완판</div>
+            </div>
+            <div class="ach">
+              <div class="ach-n">+86%</div>
+              <div class="ach-t">팔로워 성장</div>
+              <div class="ach-d">팝업스토어 3회 기획 후 오프라인 접점을 온라인으로 확장. 유튜브 조회 2.4만+</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+            <div class="metric"><div class="mn">3시즌</div><div class="ml">21SS / 21FW / 22SS</div><div class="ms">연속 출시</div></div>
+            <div class="metric"><div class="mn">140벌</div><div class="ml">첫 시즌 완판</div><div class="ms">21SS</div></div>
+            <div class="metric"><div class="mn">3회</div><div class="ml">팝업스토어 운영</div><div class="ms">채널 다각화</div></div>
+            <div class="metric"><div class="mn">5인</div><div class="ml">팀 리드</div><div class="ms">기획·MD 총괄</div></div>
+          </div>
+          <div class="role">
+            <span class="rk">Role</span><span class="rv">패션 브랜드 공동창업 · 대표 · MD 총괄</span>
+            <span class="rk">Scope</span><span class="rv">시즌 상품 기획 · 생산 관리 · 팝업스토어 · SNS 콘텐츠 · 외부 협력</span>
+            <span class="rk">Output</span><span class="rv">3시즌 출시 · 리드타임 20%↓ · 판매량 30%↑ · 팔로워 +86%</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="end-name">서정일</div>
-    <div class="end-contact">seobgak11@naver.com</div>
-  </div>
-</div>
 
-</div><!-- /deck -->
+    <!-- ── S9 COMPETENCY ── -->
+    <div class="slide" id="s9">
+      <div class="inner">
+        <div class="label">Competency</div>
+        <h1 class="st">서비스 기획자로서의 3가지 역량</h1>
+        <div class="ss">문제정의 · 논리적 구조화 · 데이터 기반 검증 — 세 역량이 하나의 흐름으로 연결됩니다</div>
+        <div class="comp-grid">
+          <div class="comp">
+            <div class="comp-n">01</div>
+            <div class="comp-t">사용자 경험 설계</div>
+            <div class="comp-d">고객의 언어와 행동 데이터에서 문제를 정의하고 서비스 흐름으로 연결. 단일 기능이 아닌 여정 전체를 본다.</div>
+            <div><div class="comp-el">관련 경험</div><div class="comp-e">Gcar 여정 구조화 · 패스트캠퍼스 IA · pullsize UX</div></div>
+          </div>
+          <div class="comp">
+            <div class="comp-n">02</div>
+            <div class="comp-t">논리적 기획 문서화</div>
+            <div class="comp-d">문제 정의 → 근거 → 개선안 흐름을 개발·디자인 협업 문서로 구조화. 가설을 검증 가능한 형태로 만든다.</div>
+            <div><div class="comp-el">관련 경험</div><div class="comp-e">표준 프로세스 문서 · 기능 요구사항 정의 · 개선안 보고서</div></div>
+          </div>
+          <div class="comp">
+            <div class="comp-n">03</div>
+            <div class="comp-t">End-to-End 실행</div>
+            <div class="comp-d">기획에서 멈추지 않고 Claude Code로 직접 구현·배포. AI 파이프라인 설계부터 실서비스 출시까지 책임진다.</div>
+            <div><div class="comp-el">관련 경험</div><div class="comp-e">pullsize 실배포 · AI 자동화 파이프라인 · 살미달라 전 과정</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<!-- NAV -->
-<div class="nav" id="nav">
-  <button class="nbtn" id="prev" aria-label="이전 슬라이드">&#8592;</button>
+    <!-- ── S10 END CARD ── -->
+    <div class="slide" id="s10">
+      <div class="inner">
+        <div class="end-label">마무리하기 전</div>
+        <div class="end-div"></div>
+        <div class="end-quote">
+          서비스 기획자는 기능을 늘리는 사람이 아니라,<br>
+          <span class="end-em">사용자가 이탈하는 지점을 발견하고 더 나은 흐름으로 바꾸는 사람</span>이라고 생각합니다.<br><br>
+          저는 데이터와 사용자 경험을 함께 보며 문제를 구조화하고,<br>
+          실제로 작동하는 서비스 흐름으로 바꾸는 일을 해왔습니다.<br><br>
+          그 방식으로 팀의 문제를 함께 풀어보고 싶습니다.
+        </div>
+        <div class="end-name">서정일</div>
+        <div class="end-contact">seobgak11@naver.com</div>
+      </div>
+    </div>
+
+  </div><!-- /deck -->
+
   <div class="dots" id="dots"></div>
-  <button class="nbtn" id="next" aria-label="다음 슬라이드">&#8594;</button>
-</div>
-<div class="snum" id="snum"></div>
+
+</div><!-- /viewer -->
 
 <script>
 const slides = document.querySelectorAll('.slide');
 const N = slides.length;
 let cur = 0;
 
-const pbarEl = document.getElementById('pbar');
-const dotsEl = document.getElementById('dots');
-const snumEl = document.getElementById('snum');
-const backBtn = document.getElementById('back-btn');
-const darkSlides = new Set([N - 1]); // S10만 다크 (S1은 밝은 하늘색 배경)
+const pbarEl  = document.getElementById('pbar');
+const dotsEl  = document.getElementById('dots');
+const snumEl  = document.getElementById('snum');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
 
 for (let i = 0; i < N; i++) {
   const d = document.createElement('button');
@@ -780,12 +838,15 @@ function go(n) {
     d.setAttribute('aria-current', i === cur ? 'true' : 'false');
   });
   snumEl.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(N).padStart(2, '0');
-  snumEl.classList.toggle('dark', darkSlides.has(cur));
-  backBtn.classList.toggle('light', !darkSlides.has(cur));
+  prevBtn.disabled = cur === 0;
+  nextBtn.disabled = cur === N - 1;
 }
 
-document.getElementById('prev').addEventListener('click', () => go(cur - 1));
-document.getElementById('next').addEventListener('click', () => go(cur + 1));
+prevBtn.addEventListener('click', () => go(cur - 1));
+nextBtn.addEventListener('click', () => go(cur + 1));
+
+document.getElementById('btn-download').addEventListener('click', () => window.print());
+document.getElementById('btn-print').addEventListener('click', () => window.print());
 
 document.addEventListener('keydown', e => {
   if (e.target.closest('button,a,input,textarea,select')) return;
