@@ -1254,14 +1254,7 @@ function go(n) {
 prevBtn.addEventListener('click', () => go(cur - 1));
 nextBtn.addEventListener('click', () => go(cur + 1));
 
-document.getElementById('btn-download').addEventListener('click', () => {
-  const link = document.createElement('a');
-  link.href = '/portfolio/files/seojeongil-portfolio.pdf';
-  link.download = 'seojeongil-portfolio.pdf';
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-});
+document.getElementById('btn-download').addEventListener('click', () => window.print());
 
 document.addEventListener('keydown', e => {
   if (e.target.closest('button,a,input,textarea,select')) return;
