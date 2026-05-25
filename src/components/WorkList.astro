@@ -274,6 +274,12 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
 
   /* Mobile: hide preview */
   @media (max-width: 860px) {
+    .work-name {
+      white-space: normal;
+      overflow: visible;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
     .work-layout { grid-template-columns: 1fr; }
     .work-preview { display: none; }
     .work-link {
