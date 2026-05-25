@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>서정일 · SERVICE PLANNER PORTFOLIO</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 
@@ -17,9 +17,9 @@
   --surface:   #F5F5F5;
   --white:     #FFFFFF;
   --dark:      #0F0F0F;
-  --sky:       #5A9EC4;
-  --sky-bg:    #EBF4FA;
-  --sky-line:  #A8CCE0;
+  --sky:       #2B5CE6;
+  --sky-bg:    #f0f5ff;
+  --sky-line:  #c7d7ff;
   --fs-disp:   38px;
   --fs-bl:     16px;
   --fs-body:   13px;
@@ -29,7 +29,7 @@
 
 /* ── GLOBAL LAYOUT ── */
 body{
-  font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;
   height:100dvh;overflow:hidden;color:var(--primary);
   display:flex;flex-direction:column;background:#C8C8C8;
 }
@@ -202,7 +202,9 @@ h1.st{
   font-size:var(--fs-disp);font-weight:700;color:var(--primary);
   line-height:1.2;letter-spacing:-0.02em;margin-bottom:4px;
 }
-.ss{font-size:var(--fs-body);color:var(--body);margin-bottom:16px;line-height:1.5;}
+.ss{font-size:var(--fs-body);color:var(--body);margin-bottom:8px;line-height:1.5;}
+.prob{font-size:var(--fs-body);color:var(--body);line-height:1.5;border-left:2px solid var(--sky);padding:5px 10px;background:var(--sky-bg);border-radius:0 4px 4px 0;margin-bottom:10px;display:flex;gap:8px;align-items:baseline;}
+.prob-k{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--sky);white-space:nowrap;flex-shrink:0;}
 
 /* DIVIDER */
 .div-line{width:100%;height:1px;background:var(--border);margin-bottom:14px;}
@@ -669,6 +671,7 @@ h1.st{
         <div class="label">Project 02 · Gcar VoC 분석 · 2025.11</div>
         <h1 class="st">37,923건의 리뷰에서 이탈 구조를 찾고, 개선안으로 연결했다</h1>
         <div class="ss">크롤링 → KoELECTRA 감정 분류 → 실패 여정 구조화 → 4개 우선순위 개선 제안</div>
+        <div class="prob"><span class="prob-k">문제</span>부정 리뷰가 반복됐으나 핵심 이탈 원인을 구조적으로 파악한 데이터가 없었다.</div>
         <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
           <div style="display:flex;flex-direction:column;gap:9px;">
             <div class="callout">
@@ -736,6 +739,7 @@ h1.st{
         <div class="label">Project 03 · AI 콘텐츠 자동화 · 2026.03—현재</div>
         <h1 class="st">AI 파이프라인으로 콘텐츠 제작 시간을 83% 단축했다</h1>
         <div class="ss">Claude AI + Figma MCP 연동 → 자료조사부터 디자인 적용까지 자동화</div>
+        <div class="prob"><span class="prob-k">문제</span>브랜드별 피드 수작업 시 평균 3시간 이상 소요. 품질 편차도 담당자에 따라 크게 달랐다.</div>
         <div style="flex:1;display:grid;grid-template-columns:56% 44%;gap:24px;overflow:hidden;">
           <div style="display:flex;flex-direction:column;gap:10px;">
             <div class="section-label">자동화 파이프라인</div>
@@ -1013,6 +1017,7 @@ h1.st{
       <div class="m-card">
         <div class="m-eyebrow">Project 01</div>
         <h2 class="m-title">37,923건의 리뷰에서 이탈 구조를 찾았습니다</h2>
+        <p class="m-sub">부정 리뷰가 반복됐으나 핵심 이탈 원인을 구조적으로 파악한 데이터가 없었다.</p>
         <div class="m-metrics">
           <div class="m-metric"><strong>3.8만</strong><span>리뷰 수집·분류</span></div>
           <div class="m-metric"><strong>F1 0.84</strong><span>감정 분류 성능</span></div>
