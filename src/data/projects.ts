@@ -8,6 +8,7 @@ export type Project = {
   tags: string[];
   isMain: boolean;
   highlight: string;
+  kpi?: string;
   links?: { label: string; url: string }[];
   content: {
     problem: string;
@@ -28,7 +29,8 @@ export const projects: Project[] = [
     category: '콘텐츠 상품 기획',
     tags: ['상품 기획', 'IA 설계', '커리큘럼 설계', 'Notion', 'Figma'],
     isMain: true,
-    highlight: '신규 강의 6개',
+    highlight: '강사 의존 제작→표준 프로세스 구축',
+    kpi: '신규 강의 6개',
     content: {
       problem:
         '새로운 강사 영입 시 콘텐츠 방향, 타겟, 커리큘럼 구성, 페이지 기획이 담당자 경험에만 의존하고 있었다. 제작 프로세스가 문서화되지 않아 일정 지연과 품질 편차가 반복됐다.',
@@ -68,7 +70,8 @@ export const projects: Project[] = [
     category: '데이터 분석 · 서비스 기획',
     tags: ['Python', 'KoELECTRA', 'SHAP', 'SQL', '사용자 여정', '데이터 분석'],
     isMain: true,
-    highlight: '37,923건 분석',
+    highlight: '이탈 원인을 고객 여정으로 재정의',
+    kpi: '37,923건',
     content: {
       problem:
         'Gcar 앱의 부정 리뷰가 반복되고 있었으나, 어떤 문제가 핵심 이탈을 유발하는지 구조적으로 파악된 데이터가 없었다. 개별 이슈 대응에 그칠 뿐, 근본 원인을 고객 여정 관점으로 정의한 시도가 없었다.',
@@ -216,7 +219,7 @@ export const projects: Project[] = [
         '패션 브랜드 인스타그램 피드를 자료조사 → 전략 수립 → 카피 작성 → 디자인 적용 순서로 수작업 시 브랜드당 평균 3시간 이상 소요됐다. 품질 일관성도 담당자에 따라 편차가 컸다.',
       approach: [
         { num: '01', step: '파이프라인 설계', desc: '자료조사 → 전략 → 카피 생성 → 디자인 자동 적용 4단계 구성. 각 단계 입출력 스펙 정의' },
-        { num: '02', step: 'AI 연동', desc: 'Claude AI로 브랜드 분석·카피 자동 생성, Figma MCP로 디자인 노드 직접 반영 (수동 Figma 작업 제거)' },
+        { num: '02', step: 'AI 연동', desc: '브랜드 분석 기준·카피 포맷 설계 후 Claude AI로 실행, Figma MCP로 디자인 자동 반영 (수동 Figma 작업 제거)' },
         { num: '03', step: '품질 게이트', desc: 'fact_check·QA 체크리스트 자동화로 게시 전 오류 검증 (인물 권리·브랜드 정보 정확도 포함)' },
         { num: '04', step: '대시보드 구축', desc: 'Google Sheets로 39개 피드 진행 현황·캡션·발행 상태 통합 관리' },
         { num: '05', step: 'SEO 전략', desc: '캡션 v4 포맷 + 3-Tier 해시태그 전략 설계·적용 (발행 피드 전수 적용 완료)' },
@@ -227,7 +230,7 @@ export const projects: Project[] = [
         { label: '운영', desc: 'Google Sheets 대시보드로 39개 피드 전수 관리, 캡션 v4 전략 전면 적용' },
       ],
       contribution: {
-        role: '기획자 · AI 파이프라인 설계자 · Claude Code 직접 구현 (1인 프로젝트)',
+        role: '콘텐츠 기획자 · 파이프라인 구조 설계자 (AI 실행 도구 활용, 1인 프로젝트)',
         scope: '파이프라인 구조 설계·AI 프롬프트 설계·QA 체계·SEO 전략 수립·Claude Code 기반 파이프라인 직접 구현',
         output: '29개+ 피드 자동 생성 파이프라인, 캡션 v4 전략 문서, 운영 대시보드',
       },
@@ -254,7 +257,7 @@ export const projects: Project[] = [
     category: 'AI 서비스 기획 · MVP',
     tags: ['AI 서비스', 'MVP', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계'],
     isMain: true,
-    highlight: '상품 URL → AI 추천',
+    highlight: '사이즈 불안을 추천 근거로 해소',
     links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
     content: {
       problem:
@@ -272,7 +275,7 @@ export const projects: Project[] = [
         { label: '확장성', desc: '향후 브랜드별 실측 데이터, 후기 기반 핏 데이터, 개인 선호 핏을 반영할 수 있는 서비스 구조로 정리' },
       ],
       contribution: {
-        role: '서비스 기획자 · Claude Code 직접 구현',
+        role: '서비스 기획자 · UX 설계 (AI 도구 기반 직접 구현)',
         scope: '문제 정의·사용자 입력 플로우·추천 결과 UX·MVP 화면 설계·Claude Code 기반 프론트엔드·백엔드 직접 구현·서비스 배포',
         output: '실서비스 배포 (pullsize.kr), AI 추천 결과 화면, 메인 입력 화면',
       },
