@@ -168,6 +168,9 @@ body{
 .m-end .m-eyebrow{color:var(--sky);}
 .m-end .m-title{color:var(--white);}
 .m-end .m-sub,.m-end .m-text{color:rgba(255,255,255,0.72);}
+.m-end-links{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
+.m-end-link{font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;}
+.m-end-link--web{background:var(--sky);color:#fff;padding:11px 16px;border-radius:8px;font-weight:600;text-align:center;display:block;}
 
 /* PROGRESS BAR */
 .pbar{position:absolute;top:0;left:0;right:0;height:2px;background:rgba(0,0,0,0.07);z-index:200;}
@@ -367,6 +370,11 @@ h1.st{
 .end-em{font-weight:600;color:rgba(255,255,255,0.85);}
 .end-name{font-size:var(--fs-bl);font-weight:600;color:#fff;margin-bottom:5px;}
 .end-contact{font-size:var(--fs-body);color:rgba(255,255,255,0.35);}
+.end-links{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:2px;}
+.end-link{font-size:var(--fs-body);color:rgba(255,255,255,0.45);text-decoration:none;transition:color .15s;}
+.end-link:hover{color:#fff;}
+.end-link--web{background:var(--sky);color:#fff !important;padding:7px 16px;border-radius:6px;font-weight:600;font-size:var(--fs-cap);}
+.end-link--web:hover{opacity:.85;}
 
 @media (max-width: 700px) {
   body{height:100dvh;overflow:hidden;}
@@ -961,7 +969,10 @@ h1.st{
           그 방식으로 팀의 문제를 함께 풀어보고 싶습니다.
         </div>
         <div class="end-name">서정일</div>
-        <div class="end-contact">seobgak11@naver.com</div>
+        <div class="end-links">
+          <a href="mailto:seobgak11@naver.com" class="end-link">seobgak11@naver.com ↗</a>
+          <a href="https://iljeong.github.io/portfolio" target="_blank" rel="noopener" class="end-link end-link--web">웹 포트폴리오 보기 ↗</a>
+        </div>
       </div>
     </div>
 
@@ -1033,6 +1044,7 @@ h1.st{
             <div class="m-flow-item"><span class="m-dotnum">4</span>CS 자동 문의 연결</div>
           </div>
         </div>
+        <div class="m-role"><b>Role</b><span>데이터 분석가 · 서비스 기획자</span><b>Output</b><span>이탈 구조 분석 보고서 + 4개 개선 방향 제안서</span></div>
       </div>
     </section>
 
@@ -1056,7 +1068,7 @@ h1.st{
           <div class="m-metric"><strong>1건</strong><span>표준 프로세스 문서</span></div>
           <div class="m-metric"><strong>7개월</strong><span>인턴 기간 내 실행</span></div>
         </div>
-        <div class="m-role"><b>Output</b><span>신규 강의 6개 출시 + 표준 제작 프로세스 문서</span></div>
+        <div class="m-role"><b>Role</b><span>콘텐츠 상품 기획자 · 인턴</span><b>Output</b><span>신규 강의 6개 출시 + 표준 제작 프로세스 문서</span></div>
       </div>
     </section>
 
@@ -1078,7 +1090,7 @@ h1.st{
           <div class="m-metric"><strong>MVP</strong><span>실서비스 배포</span></div>
           <div class="m-metric"><strong>URL</strong><span>상품 정보 기반</span></div>
         </div>
-        <div class="m-role"><b>Output</b><span>pullsize.kr AI 사이즈 추천 MVP</span></div>
+        <div class="m-role"><b>Role</b><span>서비스 기획자 · UX 설계</span><b>Output</b><span>pullsize.kr AI 사이즈 추천 MVP</span></div>
       </div>
     </section>
 
@@ -1102,7 +1114,7 @@ h1.st{
           <div class="m-metric"><strong>22개</strong><span>브랜드 커버</span></div>
           <div class="m-metric"><strong>39개</strong><span>피드 통합 관리</span></div>
         </div>
-        <div class="m-role"><b>Output</b><span>자동화 파이프라인 + 캡션 v4 전략 + 대시보드</span></div>
+        <div class="m-role"><b>Role</b><span>콘텐츠 기획자 · 파이프라인 구조 설계자</span><b>Output</b><span>자동화 파이프라인 + 캡션 v4 전략 + 대시보드</span></div>
       </div>
     </section>
 
@@ -1125,7 +1137,7 @@ h1.st{
           <div class="m-metric"><strong>3회</strong><span>팝업스토어 운영</span></div>
           <div class="m-metric"><strong>+86%</strong><span>인스타 팔로워</span></div>
         </div>
-        <div class="m-role"><b>Output</b><span>3시즌 출시 · 리드타임 20%↓ · 팔로워 +86%</span></div>
+        <div class="m-role"><b>Role</b><span>패션 브랜드 대표 · MD 총괄</span><b>Output</b><span>3시즌 출시 · 리드타임 20%↓ · 팔로워 +86%</span></div>
       </div>
     </section>
 
@@ -1149,7 +1161,7 @@ h1.st{
           <div class="m-metric"><strong>9명</strong><span>팀 PM · 2년 2개월</span></div>
           <div class="m-metric"><strong>4종</strong><span>영상·도서·SNS·펀딩</span></div>
         </div>
-        <div class="m-role"><b>Output</b><span>출판물 2권 · 텀블벅 177% 달성 · 인스타 운영</span></div>
+        <div class="m-role"><b>Role</b><span>프로젝트 매니저</span><b>Output</b><span>출판물 2권 · 텀블벅 177% 달성 · 인스타 운영</span></div>
       </div>
     </section>
 
@@ -1173,7 +1185,11 @@ h1.st{
         <p class="m-sub">서비스 기획자는 기능을 늘리는 사람이 아니라, 사용자가 이탈하는 지점을 발견하고 더 나은 흐름으로 바꾸는 사람이라고 생각합니다.</p>
         <p class="m-text">저는 데이터와 사용자 경험을 함께 보며 문제를 구조화하고, 실제로 작동하는 서비스 흐름으로 바꾸는 일을 해왔습니다.</p>
         <div class="m-rule"></div>
-        <p class="m-text">서정일<br><span class="m-muted">seobgak11@naver.com</span></p>
+        <p class="m-text">서정일</p>
+        <div class="m-end-links">
+          <a href="mailto:seobgak11@naver.com" class="m-end-link">seobgak11@naver.com ↗</a>
+          <a href="https://iljeong.github.io/portfolio" target="_blank" rel="noopener" class="m-end-link m-end-link--web">웹 포트폴리오 보기 ↗</a>
+        </div>
       </div>
     </section>
   </div>
