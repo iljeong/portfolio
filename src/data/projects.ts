@@ -7,12 +7,14 @@ export type Project = {
   category: string;
   tags: string[];
   isMain: boolean;
+  featured?: boolean;
   highlight: string;
   kpi?: string;
   links?: { label: string; url: string }[];
   content: {
     problem: string;
     approach: { num: string; step: string; desc: string }[];
+    insights?: { num: string; title: string; body: string }[];
     results: { label: string; desc: string }[];
     contribution: { role: string; scope: string; output: string };
   };
@@ -70,6 +72,7 @@ export const projects: Project[] = [
     category: '데이터 분석 · 서비스 기획',
     tags: ['Python', 'KoELECTRA', 'SHAP', 'SQL', '사용자 여정', '데이터 분석'],
     isMain: true,
+    featured: true,
     highlight: '이탈 원인을 고객 여정으로 재정의',
     kpi: '37,923건',
     content: {
@@ -81,6 +84,11 @@ export const projects: Project[] = [
         { num: '03', step: '이슈 구조화', desc: '부정 리뷰를 4개 영역(고객센터·앱오류·반납예약·과금)으로 클러스터링, 빈도·영향도 매트릭스 구성' },
         { num: '04', step: '여정 시각화', desc: '앱오류 → 반납실패 → 과금 이슈 → CS 문의 → 1점 리뷰로 이어지는 실패 여정 맵 작성' },
         { num: '05', step: '개선안 도출', desc: '여정 기반 4개 우선 개선 방향 제안 (고객센터 IA 재설계 / 반납지 혼잡도 사전 안내 / 과금 사전 경고 / 자동 문의 연결)' },
+      ],
+      insights: [
+        { num: '01', title: '가격 경쟁력은 불만을 덮지 못한다', body: '가격 만족도가 높음에도 1★ 리뷰 비율은 Socar(23.9%) 대비 Gcar(31.4%)가 높았다. 가격이 아닌 반납·패널티·CS 여정이 평점을 낮추는 핵심 변수였다.' },
+        { num: '02', title: '부정 경험은 단일 문제가 아니라 연쇄 여정이다', body: '앱 오류 → 반납 실패 → 패널티 → CS 지연이 단계별로 이어지며 불만이 증폭됐다. 단일 기능 개선보다 여정 전체의 불확실성 제거가 필요했다.' },
+        { num: '03', title: 'CS 개선의 핵심은 응대 속도가 아니라 정보 구조다', body: '사용자는 문제 발생 후 해결 방법을 빠르게 찾지 못했다. 공지사항 중심 구조를 문제 상황별 FAQ 구조로 재배치하는 방향을 잡았다.' },
       ],
       results: [
         { label: '분석 규모', desc: 'Google Play · App Store 리뷰 37,923건 수집·전처리·분류 (수집 기간: 최근 3년)' },
@@ -224,6 +232,11 @@ export const projects: Project[] = [
         { num: '04', step: '대시보드 구축', desc: 'Google Sheets로 39개 피드 진행 현황·캡션·발행 상태 통합 관리' },
         { num: '05', step: 'SEO 전략', desc: '캡션 v4 포맷 + 3-Tier 해시태그 전략 설계·적용 (발행 피드 전수 적용 완료)' },
       ],
+      insights: [
+        { num: '01', title: '병목은 이미지 선정이 아니라 브랜드별 규칙 재설계의 반복이었다', body: '매 피드마다 브랜드 톤·캡션 포맷·이미지 크롭 기준을 처음부터 결정하는 것이 진짜 시간 낭비였다. 기준을 한 번 설계하면 AI가 반복할 수 있다.' },
+        { num: '02', title: 'AI 실행 전에 인간의 설계 레이어가 있어야 품질이 안정된다', body: 'Claude API에 그냥 위임하면 결과가 들쑥날쑥하다. 브랜드 분석 기준·캡션 구조·출력 포맷을 먼저 설계한 뒤 AI를 실행했을 때 일관성이 생겼다.' },
+        { num: '03', title: '자동화의 진짜 효과는 속도보다 담당자 의존도 제거다', body: '3시간 → 30분 단축보다 중요한 건, 누가 하더라도 같은 품질이 나온다는 것. 이 프로젝트의 목표는 속도가 아니라 재현 가능한 프로세스 설계였다.' },
+      ],
       results: [
         { label: '시간 절감', desc: '브랜드당 평균 제작 시간 3시간 → 30분 이내, 약 83% 단축 (29개 브랜드 평균 기준)' },
         { label: '생산성', desc: '29개 이상 피드 자동 생성 완료, 22개 브랜드 커버 (2026.03–05, 약 3개월)' },
@@ -257,6 +270,7 @@ export const projects: Project[] = [
     category: 'AI 서비스 기획 · MVP',
     tags: ['AI 서비스', 'MVP', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계'],
     isMain: true,
+    featured: true,
     highlight: '사이즈 불안을 추천 근거로 해소',
     links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
     content: {
@@ -268,6 +282,11 @@ export const projects: Project[] = [
         { num: '03', step: '추천 로직 설계', desc: '사이즈 후보별 적합도와 여유도를 계산해 추천 사이즈와 판단 근거를 함께 제공하는 흐름 설계' },
         { num: '04', step: '결과 UI 구현', desc: '추천 사이즈, 여유도, 신체 부위별 핏 정보를 한 화면에서 이해할 수 있도록 시각화' },
         { num: '05', step: 'MVP 검증', desc: '실제 쇼핑 상황에서 사용자가 입력 → 추천 → 판단까지 이어질 수 있는 최소 기능 제품으로 구현' },
+      ],
+      insights: [
+        { num: '01', title: '문제는 사이즈표가 없는 게 아니라 연결 기준이 없는 것이다', body: '대부분의 쇼핑몰이 사이즈표를 제공하지만, 내 치수와 상품 치수를 연결하는 방법이 없어 사용자는 여전히 불확실함을 느꼈다.' },
+        { num: '02', title: '추천 신뢰도의 핵심은 결과가 아니라 근거다', body: '"그냥 M 추천"보다 "어깨 너비 기준으로 M을 추천하는 이유"가 있을 때 구매 결정이 빨라졌다. 설명 가능한 추천 구조가 필요했다.' },
+        { num: '03', title: 'MVP는 기능 수보다 흐름의 완결성이다', body: '사이즈 입력 → 상품 분석 → 추천 결과 → 근거 제시의 4단계 흐름이 끊기지 않아야 신뢰가 생긴다. 기능 수보다 흐름 완결을 우선했다.' },
       ],
       results: [
         { label: 'MVP', desc: '상품 URL 입력, 신체 정보 입력, AI 사이즈 추천 결과까지 이어지는 핵심 사용자 플로우 구현' },

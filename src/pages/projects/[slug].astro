@@ -115,9 +115,29 @@ const problemShort = project.content.problem.split('. ')[0] + '.';
 
       <hr class="line" />
 
+      {project.content.insights && project.content.insights.length > 0 && (
+        <>
+          <hr class="line" />
+          <section class="cs-sec">
+            <p class="label label--accent cs-sec-label">03 · Key Insight</p>
+            <div class="cs-insights">
+              {project.content.insights.map(ins => (
+                <div class="cs-insight">
+                  <span class="cs-insight-num">{ins.num}</span>
+                  <div class="cs-insight-body">
+                    <p class="cs-insight-title">{ins.title}</p>
+                    <p class="cs-insight-desc">{ins.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </>
+      )}
+
       <!-- 03 Results -->
       <section class="cs-sec">
-        <p class="label label--accent cs-sec-label">03 · Results</p>
+        <p class="label label--accent cs-sec-label">04 · Results</p>
         <div class="cs-results">
           {project.content.results.map(r => (
             <div class="cs-result">
@@ -132,7 +152,7 @@ const problemShort = project.content.problem.split('. ')[0] + '.';
 
       <!-- 04 Contribution -->
       <section class="cs-sec">
-        <p class="label label--accent cs-sec-label">04 · Contribution</p>
+        <p class="label label--accent cs-sec-label">05 · Contribution</p>
         <dl class="cs-contrib">
           {[
             { k: 'Role',   v: project.content.contribution.role },
@@ -155,7 +175,7 @@ const problemShort = project.content.problem.split('. ')[0] + '.';
         <>
           <hr class="line" />
           <section class="cs-sec">
-            <p class="label label--accent cs-sec-label">05 · 산출물</p>
+            <p class="label label--accent cs-sec-label">06 · 산출물</p>
             <div class="cs-shots">
               {project.screenshots.map(s => (
                 <figure class={`cs-shot${s.wide ? ' cs-shot--wide' : ''}`}>
@@ -421,6 +441,12 @@ const problemShort = project.content.problem.split('. ')[0] + '.';
     word-break: keep-all;
     overflow-wrap: anywhere;
   }
+
+  .cs-insights { display: flex; flex-direction: column; gap: 1.25rem; }
+  .cs-insight { display: grid; grid-template-columns: 2rem 1fr; gap: 0 1rem; align-items: start; }
+  .cs-insight-num { font-size: var(--text-xs); font-weight: 800; color: var(--accent); padding-top: 0.15em; font-variant-numeric: tabular-nums; }
+  .cs-insight-title { font-size: var(--text-body); font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; letter-spacing: -0.01em; }
+  .cs-insight-desc { font-size: var(--text-caption); color: var(--ink-3); line-height: 1.7; }
 
   /* Results */
   .cs-results {

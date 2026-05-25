@@ -427,14 +427,18 @@ h1.st{
   .dots{justify-content:center;margin-bottom:2px;}
 }
 
+@page{size:1280px 720px;margin:0;}
+
 @media print{
-  body{height:auto;overflow:auto;background:#fff;flex-direction:column;}
-  .toolbar{display:none;}
-  .viewer{height:auto;background:#fff;padding:0;gap:0;overflow:visible;}
-  .deck{width:100%;height:auto;box-shadow:none;position:static;}
-  .slide{position:static;display:flex!important;page-break-after:always;height:100vh;}
-  .dots{display:none;}
-  .pbar{display:none;}
+  *{animation:none!important;transition:none!important;}
+  html,body{height:auto!important;overflow:visible!important;background:#fff!important;}
+  body{display:block!important;}
+  .toolbar,.dots,.pbar,.mobile-deck{display:none!important;}
+  .viewer{display:block!important;height:auto!important;background:#fff!important;padding:0!important;}
+  .deck{display:block!important;position:static!important;width:1280px!important;height:auto!important;box-shadow:none!important;overflow:visible!important;}
+  #scaler{display:block!important;position:static!important;width:1280px!important;height:auto!important;transform:none!important;overflow:visible!important;}
+  .slide{display:flex!important;position:static!important;width:1280px!important;height:720px!important;overflow:hidden!important;break-after:page;page-break-after:always;}
+  .slide:last-of-type{break-after:avoid;page-break-after:avoid;}
 }
 </style>
 </head>
@@ -1261,6 +1265,13 @@ prevBtn.addEventListener('click', () => go(cur - 1));
 nextBtn.addEventListener('click', () => go(cur + 1));
 
 document.getElementById('btn-download').addEventListener('click', () => window.print());
+
+window.addEventListener('beforeprint', () => {
+  scalerEl.style.transform = '';
+});
+window.addEventListener('afterprint', () => {
+  scaleDeck();
+});
 
 document.addEventListener('keydown', e => {
   if (e.target.closest('button,a,input,textarea,select')) return;
