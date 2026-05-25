@@ -18,6 +18,7 @@ const siteUrl = 'https://iljeong.github.io/portfolio';
 const pageOgUrl = `${siteUrl}/projects/${project.slug}`;
 const firstShot = project.screenshots?.[0]?.src;
 const pageOgImage = firstShot ? `${siteUrl}${firstShot}` : undefined;
+const problemShort = project.content.problem.split('. ')[0] + '.';
 ---
 
 <Layout
@@ -64,6 +65,24 @@ const pageOgImage = firstShot ? `${siteUrl}${firstShot}` : undefined;
       <div class="container cs-stat-inner">
         <span class="cs-stat-num">{project.highlight}</span>
         <span class="cs-stat-label">핵심 성과</span>
+      </div>
+    </div>
+
+    <!-- TL;DR -->
+    <div class="cs-tldr">
+      <div class="container cs-tldr-inner">
+        <div class="cs-tldr-item">
+          <p class="label label--accent cs-tldr-label">문제</p>
+          <p class="cs-tldr-text">{problemShort}</p>
+        </div>
+        <div class="cs-tldr-item">
+          <p class="label label--accent cs-tldr-label">역할</p>
+          <p class="cs-tldr-text">{project.content.contribution.role}</p>
+        </div>
+        <div class="cs-tldr-item">
+          <p class="label label--accent cs-tldr-label">결과</p>
+          <p class="cs-tldr-text">{project.content.results[0]?.desc}</p>
+        </div>
       </div>
     </div>
 
@@ -288,6 +307,56 @@ const pageOgImage = firstShot ? `${siteUrl}${firstShot}` : undefined;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.4);
+  }
+
+  /* TL;DR Summary */
+  .cs-tldr {
+    border-bottom: 1px solid var(--line);
+    padding: 2rem 0;
+    background: var(--surface);
+  }
+
+  .cs-tldr-inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cs-tldr-item {
+    padding: 0 2rem;
+    border-left: 1px solid var(--line);
+  }
+
+  .cs-tldr-item:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .cs-tldr-label { margin-bottom: 0.5rem; }
+
+  .cs-tldr-text {
+    font-size: var(--text-body);    /* 15px */
+    color: var(--ink-2);
+    line-height: 1.65;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 640px) {
+    .cs-tldr-inner { grid-template-columns: 1fr; }
+
+    .cs-tldr-item {
+      padding: 0;
+      border-left: none;
+      border-top: 1px solid var(--line);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+
+    .cs-tldr-item:first-child {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
   }
 
   /* Body */
