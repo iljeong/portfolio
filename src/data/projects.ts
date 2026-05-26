@@ -7,7 +7,6 @@ export type Project = {
   category: string;
   tags: string[];
   isMain: boolean;
-  featured?: boolean;
   highlight: string;
   kpi?: string;
   links?: { label: string; url: string }[];
@@ -72,7 +71,6 @@ export const projects: Project[] = [
     category: '데이터 분석 · 서비스 기획',
     tags: ['Python', 'KoELECTRA', 'SHAP', 'SQL', '사용자 여정', '데이터 분석'],
     isMain: true,
-    featured: true,
     highlight: '이탈 원인을 고객 여정으로 재정의',
     kpi: '37,923건',
     content: {
@@ -270,7 +268,6 @@ export const projects: Project[] = [
     category: 'AI 서비스 기획 · MVP',
     tags: ['AI 서비스', 'MVP', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계'],
     isMain: true,
-    featured: true,
     highlight: '사이즈 불안을 추천 근거로 해소',
     links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
     content: {

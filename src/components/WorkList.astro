@@ -31,7 +31,7 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
             <a href={`${base}/projects/${p.slug}`} class="work-link">
               <span class="work-num">{String(i + 1).padStart(2, '0')}</span>
               <span class="work-main">
-                <span class="work-name">{p.name}{p.featured && <span class="work-feat">Featured</span>}</span>
+                <span class="work-name">{p.name}</span>
                 <span class="work-meta-row">
                   <span class="work-cat">{p.category.split('·')[0].trim()}</span>
                   <span class="work-sep">·</span>
@@ -145,22 +145,7 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
 
   .work-item:hover .work-name { color: var(--accent); }
 
-  .work-feat {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid currentColor;
-    border-radius: var(--r-full);
-    padding: 1px 6px;
-    margin-left: 0.5rem;
-    vertical-align: middle;
-    opacity: 0.75;
-    flex-shrink: 0;
-  }
-
-  .work-meta-row {
+.work-meta-row {
     display: flex;
     align-items: center;
     gap: 0.375rem;
