@@ -1,6 +1,8 @@
 ---
 import { projects } from '../data/projects';
 const base = import.meta.env.BASE_URL;
+const mainProjects = projects.filter(p => p.isMain);
+const subProjects  = projects.filter(p => !p.isMain);
 
 const previewStyles: Record<string, { bg: string; accent: string }> = {
   'gcar-voc':   { bg: '#10203E', accent: '#93B8F5' },
@@ -26,10 +28,34 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
 
       <!-- Project list -->
       <ul class="work-list" role="list">
-        {projects.map((p, i) => (
+        {mainProjects.map((p, i) => (
           <li class="work-item" data-slug={p.slug}>
             <a href={`${base}/projects/${p.slug}`} class="work-link">
               <span class="work-num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="work-main">
+                <span class="work-name">{p.name}</span>
+                <span class="work-meta-row">
+                  <span class="work-cat">{p.category.split('·')[0].trim()}</span>
+                  <span class="work-sep">·</span>
+                  <span class="work-kpi">{p.highlight}</span>
+                  <span class="work-sep work-period-sep">·</span>
+                  <span class="work-period-meta">{p.period.replace(' — ', '–')}</span>
+                </span>
+              </span>
+              <span class="work-period">{p.period.replace(' — ', '–')}</span>
+              <span class="work-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+        {subProjects.length > 0 && (
+          <li class="work-sub-head" aria-hidden="true">
+            <span class="work-sub-label">기타 경험</span>
+          </li>
+        )}
+        {subProjects.map((p, i) => (
+          <li class="work-item work-item--sub" data-slug={p.slug}>
+            <a href={`${base}/projects/${p.slug}`} class="work-link">
+              <span class="work-num">{String(mainProjects.length + i + 1).padStart(2, '0')}</span>
               <span class="work-main">
                 <span class="work-name">{p.name}</span>
                 <span class="work-meta-row">
@@ -49,7 +75,7 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
 
       <!-- Hover preview panel (desktop only) -->
       <aside class="work-preview" aria-hidden="true">
-        {projects.map(p => {
+        {[...mainProjects, ...subProjects].map(p => {
           const s = previewStyles[p.slug] ?? { bg: '#1A1A1A', accent: '#E0E0E0' };
           return (
             <div class="preview-card" data-for={p.slug} style={`background:${s.bg}`}>
@@ -73,7 +99,7 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
 </section>
 
 <style>
-  .work-section { padding: 3rem 0 5rem; }
+  .work-section { padding: 3rem 0 5rem; scroll-margin-top: 4rem; }
 
   /* Header row */
   .work-head {
@@ -267,6 +293,27 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
     padding: 0.2em 0.6em;
     letter-spacing: 0.02em;
   }
+
+  /* Sub-group divider */
+  .work-sub-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0.5rem 0.25rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .work-sub-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+  }
+
+  .work-item--sub .work-name { color: var(--ink-2); }
+  .work-item--sub:hover .work-name { color: var(--accent); }
+  .work-item--sub .work-num { opacity: 0.6; }
 
   /* period-meta: hidden on desktop, shown on mobile inside meta row */
   .work-period-sep,

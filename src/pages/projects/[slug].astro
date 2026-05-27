@@ -16,16 +16,16 @@ const idx  = projects.findIndex(p => p.slug === project.slug);
 const next = projects[(idx + 1) % projects.length];
 const siteUrl = 'https://iljeong.github.io/portfolio';
 const pageOgUrl = `${siteUrl}/projects/${project.slug}`;
-const firstShot = project.screenshots?.[0]?.src;
-const pageOgImage = firstShot ? `${siteUrl}${firstShot}` : undefined;
 const problemShort = project.content.problem.split('. ')[0] + '.';
+const hasInsights = (project.content.insights ?? []).length > 0;
+const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
+// sn(3)→'03'/'02', sn(4)→'04'/'03', sn(5)→'05'/'04', sn(6)→'06'/'05'
 ---
 
 <Layout
   title={`${project.name} — 서정일`}
   description={project.subtitle}
   ogUrl={pageOgUrl}
-  ogImage={pageOgImage}
 >
   <Nav />
 
@@ -113,15 +113,15 @@ const problemShort = project.content.problem.split('. ')[0] + '.';
         </ol>
       </section>
 
-      <hr class="line" />
 
-      {project.content.insights && project.content.insights.length > 0 && (
+
+      {hasInsights ? (
         <>
           <hr class="line" />
           <section class="cs-sec">
             <p class="label label--accent cs-sec-label">03 · Key Insight</p>
             <div class="cs-insights">
-              {project.content.insights.map(ins => (
+              {project.content.insights!.map(ins => (
                 <div class="cs-insight">
                   <span class="cs-insight-num">{ins.num}</span>
                   <div class="cs-insight-body">
@@ -133,11 +133,13 @@ const problemShort = project.content.problem.split('. ')[0] + '.';
             </div>
           </section>
         </>
-      )}
+      ) : null}
 
-      <!-- 03 Results -->
+      <hr class="line" />
+
+      <!-- Results -->
       <section class="cs-sec">
-        <p class="label label--accent cs-sec-label">04 · Results</p>
+        <p class="label label--accent cs-sec-label">{sn(4)} · Results</p>
         <div class="cs-results">
           {project.content.results.map(r => (
             <div class="cs-result">
@@ -150,9 +152,9 @@ const problemShort = project.content.problem.split('. ')[0] + '.';
 
       <hr class="line" />
 
-      <!-- 04 Contribution -->
+      <!-- Contribution -->
       <section class="cs-sec">
-        <p class="label label--accent cs-sec-label">05 · Contribution</p>
+        <p class="label label--accent cs-sec-label">{sn(5)} · Contribution</p>
         <dl class="cs-contrib">
           {[
             { k: 'Role',   v: project.content.contribution.role },
@@ -175,7 +177,7 @@ const problemShort = project.content.problem.split('. ')[0] + '.';
         <>
           <hr class="line" />
           <section class="cs-sec">
-            <p class="label label--accent cs-sec-label">06 · 산출물</p>
+            <p class="label label--accent cs-sec-label">{sn(6)} · 산출물</p>
             <div class="cs-shots">
               {project.screenshots.map(s => (
                 <figure class={`cs-shot${s.wide ? ' cs-shot--wide' : ''}`}>
