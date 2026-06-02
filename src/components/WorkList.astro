@@ -36,8 +36,6 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
       <span class="label work-range">2021 — 현재</span>
     </div>
 
-    <hr class="line work-rule" />
-
     <div class="work-layout">
 
       <!-- Project list -->
@@ -103,11 +101,10 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 1.125rem;
+    margin-bottom: 0.625rem;
   }
 
   .work-range { color: var(--ink-4); }
-  .work-rule  { margin-bottom: 0; }
 
   /* Grid: list + sticky preview */
   .work-layout {
@@ -305,7 +302,7 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
     padding: 0.125rem 0.5rem;
   }
 
-  .work-sub-head:first-child { margin-top: 0.75rem; }
+  .work-sub-head:first-child { margin-top: 0; }
 
   .work-sub-label {
     font-size: var(--text-xs);
