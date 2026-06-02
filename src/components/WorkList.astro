@@ -118,16 +118,21 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
   }
 
   /* ── List ── */
-  .work-list { list-style: none; }
+  .work-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    list-style: none;
+  }
 
   .work-item {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    background: var(--surface);
     transition: background var(--dur-fast) var(--ease);
-    border-radius: 0;
+    border-radius: var(--r-lg);
   }
 
   .work-item:hover {
-    background: rgba(0, 0, 0, 0.025);   /* StyleSeed-style surface wash */
+    background: var(--accent-bg);
   }
 
   .work-link {
@@ -135,7 +140,7 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
     grid-template-columns: 2.25rem 1fr auto auto;
     align-items: center;
     gap: 0.875rem;
-    padding: 1.25rem 0.5rem;
+    padding: 1.125rem 0.75rem;
   }
 
   /* Number */
@@ -291,19 +296,16 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
     letter-spacing: 0.02em;
   }
 
-  /* Sub-group divider */
+  /* StyleSeed: separate list groups with spacing, not repeated dividers. */
   .work-sub-head {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-top: 0.875rem;
-    padding: 0.5rem;
-    background: var(--surface);
-    border-top: 1px solid var(--line-strong);
-    border-bottom: 1px solid var(--line);
+    margin-top: 1.5rem;
+    padding: 0.125rem 0.5rem;
   }
 
-  .work-sub-head:first-child { margin-top: 0; }
+  .work-sub-head:first-child { margin-top: 0.75rem; }
 
   .work-sub-label {
     font-size: var(--text-xs);
