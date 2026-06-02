@@ -1,8 +1,22 @@
 ---
 import { projects } from '../data/projects';
 const base = import.meta.env.BASE_URL;
-const mainProjects = projects.filter(p => p.isMain);
-const subProjects  = projects.filter(p => !p.isMain);
+const workGroups = [
+  {
+    label: '실무 경험',
+    projects: projects.filter(p => p.slug === 'fastcampus'),
+  },
+  {
+    label: '프로젝트',
+    projects: projects.filter(p => p.isMain && p.slug !== 'fastcampus'),
+  },
+  {
+    label: '브랜드·콘텐츠 운영 경험',
+    projects: projects.filter(p => !p.isMain),
+    isSub: true,
+  },
+];
+const orderedProjects = workGroups.flatMap(group => group.projects);
 
 const previewStyles: Record<string, { bg: string; accent: string }> = {
   'gcar-voc':   { bg: '#10203E', accent: '#93B8F5' },
@@ -28,54 +42,37 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
 
       <!-- Project list -->
       <ul class="work-list" role="list">
-        {mainProjects.map((p, i) => (
-          <li class="work-item" data-slug={p.slug}>
-            <a href={`${base}/projects/${p.slug}`} class="work-link">
-              <span class="work-num">{String(i + 1).padStart(2, '0')}</span>
-              <span class="work-main">
-                <span class="work-name">{p.name}</span>
-                <span class="work-meta-row">
-                  <span class="work-cat">{p.category.split('·')[0].trim()}</span>
-                  <span class="work-sep">·</span>
-                  <span class="work-kpi">{p.highlight}</span>
-                  <span class="work-sep work-period-sep">·</span>
-                  <span class="work-period-meta">{p.period.replace(' — ', '–')}</span>
-                </span>
-              </span>
-              <span class="work-period">{p.period.replace(' — ', '–')}</span>
-              <span class="work-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-        ))}
-        {subProjects.length > 0 && (
-          <li class="work-sub-head" aria-hidden="true">
-            <span class="work-sub-label">기타 경험</span>
-          </li>
-        )}
-        {subProjects.map((p, i) => (
-          <li class="work-item work-item--sub" data-slug={p.slug}>
-            <a href={`${base}/projects/${p.slug}`} class="work-link">
-              <span class="work-num">{String(mainProjects.length + i + 1).padStart(2, '0')}</span>
-              <span class="work-main">
-                <span class="work-name">{p.name}</span>
-                <span class="work-meta-row">
-                  <span class="work-cat">{p.category.split('·')[0].trim()}</span>
-                  <span class="work-sep">·</span>
-                  <span class="work-kpi">{p.highlight}</span>
-                  <span class="work-sep work-period-sep">·</span>
-                  <span class="work-period-meta">{p.period.replace(' — ', '–')}</span>
-                </span>
-              </span>
-              <span class="work-period">{p.period.replace(' — ', '–')}</span>
-              <span class="work-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
+        {workGroups.map(group => (
+          <>
+            <li class="work-sub-head" aria-hidden="true">
+              <span class="work-sub-label">{group.label}</span>
+            </li>
+            {group.projects.map(p => (
+              <li class:list={['work-item', { 'work-item--sub': group.isSub }]} data-slug={p.slug}>
+                <a href={`${base}/projects/${p.slug}`} class="work-link">
+                  <span class="work-num">{String(orderedProjects.indexOf(p) + 1).padStart(2, '0')}</span>
+                  <span class="work-main">
+                    <span class="work-name">{p.name}</span>
+                    <span class="work-meta-row">
+                      <span class="work-cat">{p.category.split('·')[0].trim()}</span>
+                      <span class="work-sep">·</span>
+                      <span class="work-kpi">{p.highlight}</span>
+                      <span class="work-sep work-period-sep">·</span>
+                      <span class="work-period-meta">{p.period.replace(' — ', '–')}</span>
+                    </span>
+                  </span>
+                  <span class="work-period">{p.period.replace(' — ', '–')}</span>
+                  <span class="work-arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+            ))}
+          </>
         ))}
       </ul>
 
       <!-- Hover preview panel (desktop only) -->
       <aside class="work-preview" aria-hidden="true">
-        {[...mainProjects, ...subProjects].map(p => {
+        {orderedProjects.map(p => {
           const s = previewStyles[p.slug] ?? { bg: '#1A1A1A', accent: '#E0E0E0' };
           return (
             <div class="preview-card" data-for={p.slug} style={`background:${s.bg}`}>
