@@ -24,7 +24,7 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
       <div class="hero-foot">
         <p class="hero-sub">
           데이터 분석 · 콘텐츠 기획 · AI 자동화<br />
-          데이터와 콘텐츠를 기반으로 서비스 흐름을 설계하고, 직접 만듭니다.
+          데이터와 콘텐츠를 기반으로<br class="hero-sub-mobile-break" /> 서비스 흐름을 설계하고, 직접 만듭니다.
         </p>
         <a href="#work" class="hero-scroll">
           Work 보기 <span class="scroll-arrow">↓</span>
@@ -201,9 +201,12 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
     color: var(--ink-2);
     line-height: 1.65;
     max-width: 100%;
+    min-width: 0;
     word-break: keep-all;
     overflow-wrap: anywhere;
   }
+
+  .hero-sub-mobile-break { display: none; }
 
   .hero-scroll {
     display: flex;
@@ -228,11 +231,33 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
   }
 
   @media (max-width: 860px) {
-    .hero-foot { flex-direction: column; align-items: flex-start; }
+    .hero-foot {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.75rem;
+      min-width: 0;
+    }
     .hero-sub {
+      width: 100%;
       word-break: keep-all;
       overflow-wrap: anywhere;
     }
+  }
+
+  @media (max-width: 520px) {
+    .hero {
+      padding: 6.75rem 0 3.25rem;
+    }
+
+    .hero-label { margin-bottom: 2rem; }
+
+    .hero-title {
+      font-size: clamp(2.75rem, 12vw, 3.25rem);
+      line-height: 1.04;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-sub-mobile-break { display: block; }
   }
 
   /* ── ABOUT ──────────────────────────────────── */
