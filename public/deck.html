@@ -53,28 +53,12 @@ html,body{
   overflow:hidden;padding:24px;
 }
 
-.deck-frame{
-  position:relative;
-  flex:0 0 auto;
-}
-
 /* ── DECK (fixed 1280×720) ── */
 .deck{
   width:1280px;height:720px;
   position:relative;
-  transform-origin:top left;
+  transform-origin:center center;
   box-shadow:0 12px 48px rgba(0,0,0,.22);
-}
-
-@media (max-width: 640px) {
-  .toolbar{height:52px;padding:0 14px;}
-  .tb-back{padding-left:0;}
-  .viewport{
-    height:calc(100svh - 52px);
-    padding:24px;
-  }
-  .deck{box-shadow:0 10px 30px rgba(0,0,0,.18);}
-  .toolbar > div:last-child{display:none !important;}
 }
 
 /* ── BASE SLIDE ── */
@@ -119,7 +103,7 @@ html,body{
   font-size:14px;color:var(--body);line-height:1.55;margin-top:5px;
 }
 .check::before{content:'✓';color:var(--blue);font-weight:700;flex-shrink:0;margin-top:1px;}
-.card{border:1.5px solid var(--border);border-radius:12px;padding:24px 26px;background:#fff;}
+.card{border:1.5px solid var(--border);border-radius:4px;padding:24px 26px;background:#fff;}
 .card.hi{border-color:var(--blue);}
 </style>
 </head>
@@ -152,7 +136,6 @@ html,body{
 
 <!-- VIEWPORT -->
 <div class="viewport" id="viewport">
-<div class="deck-frame" id="deck-frame">
 <div class="deck" id="deck">
 
 <!-- ══ 1 · COVER ════════════════════════════════════════════ -->
@@ -203,7 +186,7 @@ html,body{
       <!-- Center: Photo -->
       <div style="display:flex;align-items:center;justify-content:center;">
         <img src="/portfolio/images/profile-deck.png" alt="서정일"
-          style="height:360px;width:auto;object-fit:contain;display:block;filter:drop-shadow(0 12px 32px rgba(0,0,0,.10));">
+          style="height:240px;width:auto;object-fit:contain;display:block;">
       </div>
 
       <!-- Right -->
@@ -225,44 +208,44 @@ html,body{
 <div class="slide" id="s3">
   <div class="sc" style="padding-top:48px;flex-direction:row;gap:0;">
     <!-- Timeline area (left 58%) -->
-    <div style="flex:0 0 58%;position:relative;padding-top:12px;">
+    <div style="flex:0 0 58%;position:relative;padding-top:20px;">
       <div style="position:absolute;left:50%;top:0;bottom:0;width:2px;background:#D0D0DC;transform:translateX(-50%);"></div>
 
       <!-- Entry 1 · left · blue -->
-      <div style="position:absolute;top:20px;right:calc(50% + 1px);width:44%;text-align:right;padding-right:28px;">
+      <div style="position:absolute;top:28px;right:calc(50% + 1px);width:44%;text-align:right;padding-right:28px;">
         <div style="font-size:12px;font-weight:600;color:var(--dark);">2021.01 ~ 2023.04</div>
-        <div style="font-size:15px;font-weight:700;color:var(--blue);margin-top:3px;">살미달라</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:2px;">패션 브랜드 대표 · MD</div>
-        <div style="position:absolute;right:-9px;top:9px;width:16px;height:16px;border-radius:50%;background:var(--blue);z-index:1;"></div>
+        <div style="font-size:15px;font-weight:700;color:var(--blue);margin-top:2px;">살미달라</div>
+        <div style="font-size:12px;color:var(--muted);">패션 브랜드 대표 · MD</div>
+        <div style="position:absolute;right:-9px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--blue);z-index:1;"></div>
       </div>
 
       <!-- Entry 2 · right · gray -->
-      <div style="position:absolute;top:170px;left:calc(50% + 1px);width:44%;text-align:left;padding-left:28px;">
-        <div style="position:absolute;left:-9px;top:9px;width:16px;height:16px;border-radius:50%;background:var(--muted);z-index:1;"></div>
+      <div style="position:absolute;top:152px;left:calc(50% + 1px);width:44%;text-align:left;padding-left:28px;">
+        <div style="position:absolute;left:-9px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--muted);z-index:1;"></div>
         <div style="font-size:12px;font-weight:600;color:var(--dark);">2023.04 ~ 2025.06</div>
-        <div style="font-size:15px;font-weight:600;color:var(--muted);margin-top:3px;">아른 사이</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:2px;">프로젝트 매니저</div>
+        <div style="font-size:15px;font-weight:600;color:var(--muted);margin-top:2px;">아른 사이</div>
+        <div style="font-size:12px;color:var(--muted);">프로젝트 매니저</div>
       </div>
 
       <!-- Entry 3 · left · blue -->
-      <div style="position:absolute;top:320px;right:calc(50% + 1px);width:44%;text-align:right;padding-right:28px;">
+      <div style="position:absolute;top:276px;right:calc(50% + 1px);width:44%;text-align:right;padding-right:28px;">
         <div style="font-size:12px;font-weight:600;color:var(--dark);">2024.05 ~ 2024.12</div>
-        <div style="font-size:15px;font-weight:700;color:var(--blue);margin-top:3px;">패스트캠퍼스</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:2px;">콘텐츠 상품 기획자 · 인턴</div>
-        <div style="position:absolute;right:-9px;top:9px;width:16px;height:16px;border-radius:50%;background:var(--blue);z-index:1;"></div>
+        <div style="font-size:15px;font-weight:700;color:var(--blue);margin-top:2px;">패스트캠퍼스</div>
+        <div style="font-size:12px;color:var(--muted);">콘텐츠 상품 기획자 · 인턴</div>
+        <div style="position:absolute;right:-9px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--blue);z-index:1;"></div>
       </div>
 
       <!-- Entry 4 · right · gray -->
-      <div style="position:absolute;top:470px;left:calc(50% + 1px);width:44%;text-align:left;padding-left:28px;">
-        <div style="position:absolute;left:-9px;top:9px;width:16px;height:16px;border-radius:50%;background:var(--muted);z-index:1;"></div>
+      <div style="position:absolute;top:400px;left:calc(50% + 1px);width:44%;text-align:left;padding-left:28px;">
+        <div style="position:absolute;left:-9px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--muted);z-index:1;"></div>
         <div style="font-size:12px;font-weight:600;color:var(--dark);">2025.06 ~ 2025.11</div>
-        <div style="font-size:15px;font-weight:600;color:var(--muted);margin-top:3px;">멋쟁이사자처럼</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:2px;">데이터분석 부트캠프 6기</div>
+        <div style="font-size:15px;font-weight:600;color:var(--muted);margin-top:2px;">멋쟁이사자처럼</div>
+        <div style="font-size:12px;color:var(--muted);">데이터분석 부트캠프 6기</div>
       </div>
     </div>
 
-    <!-- Right: Heading (vertically centered) -->
-    <div style="flex:0 0 42%;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;padding-left:36px;">
+    <!-- Right: Heading -->
+    <div style="flex:0 0 42%;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end;padding-left:36px;padding-bottom:16px;">
       <div style="font-size:60px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2px;text-align:right;">Career<br>Timeline</div>
       <div class="t-sub" style="text-align:right;">걸어온 길</div>
     </div>
@@ -277,8 +260,8 @@ html,body{
       <div style="font-size:62px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2px;">Education &amp; Training</div>
       <div class="t-sub">기획자의 기반이 된 배움의 여정</div>
     </div>
-    <!-- Rows — flex:1 fills remaining space, space-between for even distribution -->
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;margin-top:28px;padding-bottom:4px;">
+    <!-- Rows — flex:1 fills remaining space -->
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-evenly;margin-top:24px;">
       <!-- Row 1 -->
       <div style="display:grid;grid-template-columns:196px 216px 1fr;gap:24px;align-items:start;">
         <div style="font-size:14px;font-weight:600;color:var(--blue);padding-top:2px;">2018.03 ~ 2025.02</div>
@@ -325,16 +308,10 @@ html,body{
 <div class="slide" id="s5">
   <div class="sc" style="padding-top:52px;flex-direction:row;gap:40px;">
     <!-- Left label -->
-    <div style="flex:0 0 228px;display:flex;flex-direction:column;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
-      <div>
-        <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
-        <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">01</div>
-        <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">진행 프로젝트 소개</div>
-      </div>
-      <div>
-        <div style="font-size:12px;color:var(--muted);font-weight:500;">2024.05 — 2024.12</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:3px;">패스트캠퍼스 · 인턴</div>
-      </div>
+    <div style="flex:0 0 228px;display:flex;flex-direction:column;padding-top:8px;">
+      <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
+      <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">01</div>
+      <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">진행 프로젝트 소개</div>
     </div>
     <!-- Right content -->
     <div style="flex:1;min-width:0;display:flex;flex-direction:column;">
@@ -343,21 +320,21 @@ html,body{
         <div style="font-size:14px;color:var(--muted);">콘텐츠 상품 기획자 인턴</div>
       </div>
       <div class="divider" style="margin:12px 0;"></div>
-      <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:0;">
+      <div style="flex:1;display:grid;grid-template-rows:auto 1px auto 1px auto 1px auto;gap:0;">
         <!-- 프로젝트명 -->
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:center;padding:12px 0;">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:center;padding:10px 0;">
           <div class="pill">프로젝트명</div>
           <div style="font-size:14px;color:var(--body);">신규 온라인 교육 상품 기획 및 런칭 매니징</div>
         </div>
         <div class="divider"></div>
         <!-- 주요목표 -->
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:center;padding:12px 0;">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:center;padding:10px 0;">
           <div class="pill">주요 목표</div>
           <div style="font-size:14px;color:var(--body);">강사 의존 제작 방식 → 표준화된 상품 기획 체계 구축</div>
         </div>
         <div class="divider"></div>
         <!-- 개요 -->
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:start;padding:12px 0;">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:start;padding:10px 0;">
           <div class="pill">개요</div>
           <div>
             <div class="check">기간: 8개월 (2024.05–2024.12) · 역할: 상품 기획·IA 설계·커리큘럼 설계·런칭</div>
@@ -366,7 +343,7 @@ html,body{
         </div>
         <div class="divider"></div>
         <!-- 핵심기여 -->
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:start;padding:12px 0;">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:start;padding:10px 0;">
           <div class="pill">핵심 기여</div>
           <div>
             <div class="check">신규 상품 6개+ 기획·런칭 완료 — 리드타임 <strong style="color:var(--dark);">20% 단축</strong></div>
@@ -408,16 +385,10 @@ html,body{
       </div>
     </div>
     <!-- Right label -->
-    <div style="flex:0 0 228px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
-      <div style="text-align:right;">
-        <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
-        <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">02</div>
-        <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">진행 프로젝트 소개</div>
-      </div>
-      <div style="text-align:right;">
-        <div style="font-size:12px;color:var(--muted);font-weight:500;">2025.11</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:3px;">멋쟁이사자처럼 부트캠프</div>
-      </div>
+    <div style="flex:0 0 228px;display:flex;flex-direction:column;align-items:flex-end;padding-top:8px;">
+      <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
+      <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">02</div>
+      <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">진행 프로젝트 소개</div>
     </div>
   </div>
 </div>
@@ -426,16 +397,10 @@ html,body{
 <div class="slide" id="s7">
   <div class="sc" style="padding-top:52px;flex-direction:row;gap:40px;">
     <!-- Left label -->
-    <div style="flex:0 0 228px;display:flex;flex-direction:column;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
-      <div>
-        <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
-        <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">03</div>
-        <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">진행 프로젝트 소개</div>
-      </div>
-      <div>
-        <div style="font-size:12px;color:var(--muted);font-weight:500;">2026.03 — 현재</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:3px;">사이드 프로젝트</div>
-      </div>
+    <div style="flex:0 0 228px;display:flex;flex-direction:column;padding-top:8px;">
+      <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
+      <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">03</div>
+      <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">진행 프로젝트 소개</div>
     </div>
     <!-- Right content -->
     <div style="flex:1;min-width:0;display:flex;flex-direction:column;">
@@ -444,7 +409,7 @@ html,body{
         <div style="font-size:14px;color:var(--muted);">3시간 → 30분 단축</div>
       </div>
       <div class="divider" style="margin:12px 0;"></div>
-      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:14px 36px;align-content:space-between;">
+      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:14px 36px;align-content:start;">
         <div style="display:flex;flex-direction:column;gap:14px;">
           <div>
             <span class="pill" style="font-size:12px;padding:4px 14px;">프로젝트명</span>
@@ -510,16 +475,10 @@ html,body{
       </div>
     </div>
     <!-- Right label -->
-    <div style="flex:0 0 228px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
-      <div style="text-align:right;">
-        <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
-        <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">04</div>
-        <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">진행 프로젝트 소개</div>
-      </div>
-      <div style="text-align:right;">
-        <div style="font-size:12px;color:var(--muted);font-weight:500;">2026.03 — 현재</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:3px;">사이드 · AI 서비스 기획</div>
-      </div>
+    <div style="flex:0 0 228px;display:flex;flex-direction:column;align-items:flex-end;padding-top:8px;">
+      <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
+      <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">04</div>
+      <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">진행 프로젝트 소개</div>
     </div>
   </div>
 </div>
@@ -621,7 +580,7 @@ html,body{
       <!-- Card 1 -->
       <div class="card" style="display:flex;flex-direction:column;align-items:center;text-align:center;">
         <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">패스트캠퍼스 인턴</div>
-        <div style="font-size:26px;font-weight:700;color:var(--dark);line-height:1.25;">리드타임<br>20% 단축</div>
+        <div style="font-size:21px;font-weight:700;color:var(--dark);line-height:1.35;">리드타임<br>20% 단축</div>
         <div class="divider" style="width:60%;margin:18px auto;"></div>
         <div style="font-size:13px;color:var(--body);line-height:1.75;flex:1;display:flex;flex-direction:column;justify-content:center;">
           신규 교육 상품 6개+ 기획·런칭<br>상품 판매량 30% 증가
@@ -630,7 +589,7 @@ html,body{
       <!-- Card 2 highlighted -->
       <div class="card hi" style="display:flex;flex-direction:column;align-items:center;text-align:center;">
         <div style="font-size:13px;color:var(--blue);margin-bottom:10px;">멋쟁이사자처럼 부트캠프</div>
-        <div style="font-size:26px;font-weight:700;color:var(--blue);line-height:1.25;">앱 리뷰<br>37,923건 분석</div>
+        <div style="font-size:21px;font-weight:700;color:var(--blue);line-height:1.35;">앱 리뷰<br>37,923건 분석</div>
         <div style="width:60%;height:1px;background:var(--blue);margin:18px auto;"></div>
         <div style="font-size:13px;color:var(--body);line-height:1.75;flex:1;display:flex;flex-direction:column;justify-content:center;">
           이탈 원인 정량화 성공<br>불만 68% → 2개 영역 집중 파악
@@ -639,7 +598,7 @@ html,body{
       <!-- Card 3 -->
       <div class="card" style="display:flex;flex-direction:column;align-items:center;text-align:center;">
         <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">AI 콘텐츠 자동화</div>
-        <div style="font-size:26px;font-weight:700;color:var(--dark);line-height:1.25;">제작 시간<br>3h → 30min</div>
+        <div style="font-size:21px;font-weight:700;color:var(--dark);line-height:1.35;">제작 시간<br>3h → 30min</div>
         <div class="divider" style="width:60%;margin:18px auto;"></div>
         <div style="font-size:13px;color:var(--body);line-height:1.75;flex:1;display:flex;flex-direction:column;justify-content:center;">
           콘텐츠 제작 시간 90% 절감<br>누적 29개+ 피드 자동 생성
@@ -668,28 +627,21 @@ html,body{
 </div>
 
 </div><!-- /deck -->
-</div><!-- /deck-frame -->
 </div><!-- /viewport -->
 
 <script>
 const TOTAL = 11;
 let cur = 1;
 const vp = document.getElementById('viewport');
-const frame = document.getElementById('deck-frame');
 const deck = document.getElementById('deck');
 const counter = document.getElementById('counter');
 const btnPrev = document.getElementById('btn-prev');
 const btnNext = document.getElementById('btn-next');
 
 function scale() {
-  const style = getComputedStyle(vp);
-  const padX = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
-  const padY = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
-  const w = vp.clientWidth - padX;
-  const h = vp.clientHeight - padY;
-  const s = Math.min(w / 1280, h / 720, 1);
-  frame.style.width = `${1280 * s}px`;
-  frame.style.height = `${720 * s}px`;
+  const w = vp.clientWidth - 48;
+  const h = vp.clientHeight - 48;
+  const s = Math.min(w / 1280, h / 720);
   deck.style.transform = `scale(${s})`;
 }
 
