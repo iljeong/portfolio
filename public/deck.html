@@ -127,24 +127,23 @@ html,body{
 .lvl i{width:22px;height:7px;border-radius:3px;background:#E0E0EC;}
 .lvl i.on{background:var(--blue);}
 
-/* Project body: title spans top, image block + text below */
-.pbody{flex:1;min-height:0;display:flex;gap:30px;align-items:stretch;margin-top:16px;}
-.pimg,.pimg-2,.pimg-grid,.pimg-vstack{flex:0 0 44%;}
-.pimg{border-radius:10px;overflow:hidden;background:#E9E9F0;}
-.pimg img{width:100%;height:100%;object-fit:cover;display:block;}
-.pimg-2{display:flex;gap:10px;}
-.pimg-2 .cell{flex:1;border-radius:10px;overflow:hidden;background:#E9E9F0;}
-.pimg-2 .cell img{width:100%;height:100%;object-fit:cover;display:block;}
-.pimg-grid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:8px;}
-.pimg-grid .cell{border-radius:8px;overflow:hidden;background:#E9E9F0;}
-.pimg-grid .cell img{width:100%;height:100%;object-fit:cover;display:block;}
-.pimg-vstack{display:flex;flex-direction:column;gap:10px;}
-.pimg-vstack .cell{flex:1;border-radius:10px;overflow:hidden;background:#fff;border:1.5px solid var(--border);}
-.pimg-vstack .cell img{width:100%;height:100%;object-fit:contain;display:block;}
-/* contain variants for UI/screenshots */
-.pimg-2.fit .cell{background:#fff;border:1.5px solid var(--border);}
-.pimg-2.fit .cell img{object-fit:contain;}
-.ptext{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:16px;}
+/* Project body: title spans top, then [image frame | text].
+   All image areas share an identical 4:3 frame for consistency;
+   screenshots use contain (no crop), photos use cover. */
+.pbody{flex:1;min-height:0;display:flex;gap:34px;align-items:center;margin-top:18px;}
+.pframe,.pgrid,.prow{flex:0 0 45%;align-self:center;aspect-ratio:4/3;}
+.pframe{border-radius:10px;overflow:hidden;background:#fff;border:1.5px solid var(--border);display:flex;}
+.pframe img{width:100%;height:100%;object-fit:contain;display:block;}
+.pframe.cover{background:#E7E8EF;border:none;}
+.pframe.cover img{object-fit:cover;}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.pgrid .cell{border-radius:8px;overflow:hidden;background:#fff;border:1.5px solid var(--border);display:flex;}
+.pgrid .cell img{width:100%;height:100%;object-fit:contain;display:block;}
+.prow{display:flex;gap:10px;}
+.prow .cell{flex:1;border-radius:8px;overflow:hidden;background:#fff;border:1.5px solid var(--border);display:flex;}
+.prow .cell img{width:100%;height:100%;object-fit:contain;display:block;}
+.ptext{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:17px;}
+.ptext .check{font-size:14px;line-height:1.62;}
 </style>
 </head>
 <body>
@@ -414,7 +413,7 @@ html,body{
       </div>
       <div class="divider" style="margin:14px 0 0;"></div>
       <div class="pbody">
-        <div class="pimg"><img src="/portfolio/images/salmidalla/location-lookbook.jpg" alt="살미달라 시즌 룩북" style="object-position:center;"></div>
+        <div class="pframe cover"><img src="/portfolio/images/salmidalla/location-lookbook.jpg" alt="살미달라 시즌 룩북"></div>
         <div class="ptext">
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
             <div class="pill">역할</div>
@@ -474,7 +473,7 @@ html,body{
             <span class="pill">크라우드펀딩</span>
           </div>
         </div>
-        <div class="pimg"><img src="/portfolio/images/areun-sai/book-cover.jpg" alt="아른 사이 인터뷰집" style="object-position:center;"></div>
+        <div class="pframe cover"><img src="/portfolio/images/areun-sai/book-cover.jpg" alt="아른 사이 인터뷰집"></div>
       </div>
     </div>
     <!-- Right label -->
@@ -516,12 +515,10 @@ html,body{
       </div>
       <div class="divider" style="margin:14px 0 0;"></div>
       <div class="pbody">
-        <div class="pimg-grid">
+        <div class="pgrid">
           <div class="cell"><img src="/portfolio/images/fastcampus/minshortform.png" alt="숏폼 영상 강의"></div>
           <div class="cell"><img src="/portfolio/images/fastcampus/editman.png" alt="영상 편집 강의"></div>
           <div class="cell"><img src="/portfolio/images/fastcampus/memil.png" alt="이모티콘 클래스"></div>
-          <div class="cell"><img src="/portfolio/images/fastcampus/figure.jpg" alt="피규어 디자인 클래스"></div>
-          <div class="cell"><img src="/portfolio/images/fastcampus/cinematicclip.webp" alt="시네마틱 클립 강의"></div>
           <div class="cell"><img src="/portfolio/images/fastcampus/apeai.jpg" alt="AI 영상 제작 강의"></div>
         </div>
         <div class="ptext">
@@ -583,10 +580,7 @@ html,body{
             <span class="pill">데이터 분석</span>
           </div>
         </div>
-        <div class="pimg-vstack">
-          <div class="cell"><img src="/portfolio/images/gcar-voc/slide_tmp_8-08.png" alt="앱 평점 비교 분석"></div>
-          <div class="cell"><img src="/portfolio/images/gcar-voc/slide_tmp_22-22.png" alt="고객센터 IA 개선안"></div>
-        </div>
+        <div class="pframe"><img src="/portfolio/images/gcar-voc/slide_tmp_8-08.png" alt="앱 평점 비교 분석"></div>
       </div>
     </div>
     <!-- Right label -->
@@ -628,10 +622,7 @@ html,body{
       </div>
       <div class="divider" style="margin:14px 0 0;"></div>
       <div class="pbody">
-        <div class="pimg-vstack">
-          <div class="cell"><img src="/portfolio/images/ai-content-automation/instagram-feed.png" alt="실제 발행 인스타그램 피드"></div>
-          <div class="cell"><img src="/portfolio/images/ai-content-automation/figma-overview.png" alt="Figma 작업 전체 현황"></div>
-        </div>
+        <div class="pframe"><img src="/portfolio/images/ai-content-automation/figma-overview.png" alt="Figma 작업 전체 현황 — 29개+ 피드"></div>
         <div class="ptext">
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
             <div class="pill">역할</div>
@@ -691,7 +682,7 @@ html,body{
             <span class="pill">직접 구현·배포</span>
           </div>
         </div>
-        <div class="pimg-2 fit">
+        <div class="prow">
           <div class="cell"><img src="/portfolio/images/pullsize/service-main.png" alt="메인 입력 화면"></div>
           <div class="cell"><img src="/portfolio/images/pullsize/service-result.png" alt="AI 추천 결과 화면"></div>
         </div>
