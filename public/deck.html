@@ -83,6 +83,13 @@ html,body{
 }
 .sc.padtop-lg{padding-top:68px;}
 
+/* Page number */
+.pgnum{
+  position:absolute;right:40px;bottom:22px;
+  font-size:12px;font-weight:500;color:var(--muted);
+  letter-spacing:1.5px;z-index:5;
+}
+
 /* ── TYPOGRAPHY ── */
 .t-disp{font-size:108px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-4px;}
 .t-section{font-size:76px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2.5px;}
@@ -103,8 +110,21 @@ html,body{
   font-size:14px;color:var(--body);line-height:1.55;margin-top:5px;
 }
 .check::before{content:'✓';color:var(--blue);font-weight:700;flex-shrink:0;margin-top:1px;}
-.card{border:1.5px solid var(--border);border-radius:4px;padding:24px 26px;background:#fff;}
+.card{border:1.5px solid var(--border);border-radius:8px;padding:24px 26px;background:#fff;}
 .card.hi{border-color:var(--blue);}
+
+/* Result stat strip (project visual anchor) */
+.statbox{display:flex;background:var(--white);border:1.5px solid var(--border);border-radius:8px;overflow:hidden;}
+.statbox .stat{flex:1;padding:13px 16px;text-align:center;border-right:1px solid var(--border);}
+.statbox .stat:last-child{border-right:none;}
+.stat-num{font-size:25px;font-weight:800;color:var(--blue);line-height:1.1;letter-spacing:-0.5px;}
+.stat-lbl{font-size:11.5px;color:var(--muted);margin-top:5px;}
+
+/* Skill level bar */
+.skill-row{display:grid;grid-template-columns:104px 80px 1fr;gap:12px;align-items:center;}
+.lvl{display:flex;gap:4px;}
+.lvl i{width:22px;height:7px;border-radius:3px;background:#E0E0EC;}
+.lvl i.on{background:var(--blue);}
 </style>
 </head>
 <body>
@@ -119,7 +139,7 @@ html,body{
   <button class="tb-btn" id="btn-prev" onclick="prev()">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
   </button>
-  <span class="tb-counter" id="counter">1 / 11</span>
+  <span class="tb-counter" id="counter">1 / 14</span>
   <button class="tb-btn" id="btn-next" onclick="next()">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
   </button>
@@ -152,7 +172,7 @@ html,body{
       문제를 찾고, 구조를 잡고, 직접 만드는 기획자, <strong style="color:var(--dark);">서정일</strong>입니다.
     </div>
     <div style="margin-top:10px;font-size:14px;color:var(--muted);line-height:1.65;">
-      데이터 분석·콘텐츠 기획·AI 자동화를 기반으로 다수의 웹·앱 프로젝트를 수행한 경험을 담았습니다.
+      브랜드 운영·콘텐츠 기획·데이터 분석·AI 자동화를 아우르며 다수의 프로젝트를 직접 실행한 경험을 담았습니다.
     </div>
     <a href="mailto:seobgak11@naver.com"
        style="display:inline-block;margin-top:20px;font-size:15px;color:var(--blue);text-decoration:none;font-weight:500;">
@@ -180,7 +200,7 @@ html,body{
           </div>
           <div style="display:flex;align-items:center;gap:9px;font-size:13px;color:var(--body);margin-top:8px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            2025 취업 준비 중
+            신입 기획자 · 즉시 합류 가능
           </div>
           <div style="display:flex;align-items:center;gap:9px;font-size:13px;color:var(--body);margin-top:8px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -197,24 +217,61 @@ html,body{
 
       <!-- Right -->
       <div style="display:flex;flex-direction:column;justify-content:center;">
-        <div style="font-size:34px;font-weight:700;color:var(--blue);line-height:1.3;">데이터와<br>콘텐츠로<br>잇는 기획자</div>
+        <div style="font-size:34px;font-weight:700;color:var(--blue);line-height:1.3;">브랜드부터<br>데이터까지<br>잇는 기획자</div>
         <div class="divider-blue" style="margin:18px 0 14px;"></div>
         <p style="font-size:14px;color:var(--body);line-height:1.9;">
-          데이터 분석과 콘텐츠 기획을 바탕으로 사용자 문제를 정의하고, 이를 서비스 흐름과 운영 프로세스로 구체화하는 기획자입니다.
+          패션 브랜드 운영과 프로젝트 매니징부터 콘텐츠 상품 기획·데이터 분석까지, 기획의 전 과정을 직접 실행해 온 기획자입니다.
         </p>
         <p style="font-size:14px;color:var(--body);line-height:1.9;margin-top:12px;">
-          업무에서는 IA 설계와 서비스 플로우 설계를 강점으로 하며, AI 자동화 파이프라인 구축 경험을 보유하고 있습니다.
+          사용자 문제를 정의해 서비스 흐름으로 구체화하는 IA·플로우 설계가 강점이며, AI 자동화 파이프라인 구축 경험을 보유하고 있습니다.
         </p>
       </div>
     </div>
   </div>
+  <div class="pgnum"></div>
 </div>
 
-<!-- ══ 3 · CAREER TIMELINE ════════════════════════════════ -->
+<!-- ══ 3 · AGENDA ══════════════════════════════════════════ -->
 <div class="slide" id="s3">
+  <div class="sc" style="padding-top:56px;flex-direction:row;gap:0;">
+    <!-- Left heading -->
+    <div style="flex:0 0 38%;display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-size:72px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2.5px;">Contents</div>
+      <div class="t-sub">목차</div>
+      <div class="divider-blue" style="margin:22px 0 0;"></div>
+    </div>
+    <!-- Right list -->
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;padding-left:24px;">
+      <div style="display:flex;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid var(--border);">
+        <div style="font-size:18px;font-weight:800;color:var(--blue);width:36px;">01</div>
+        <div style="font-size:19px;font-weight:700;color:var(--dark);">About Me</div>
+        <div style="font-size:14px;color:var(--muted);margin-left:auto;">소개 · 경력 · 학력</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid var(--border);">
+        <div style="font-size:18px;font-weight:800;color:var(--blue);width:36px;">02</div>
+        <div style="font-size:19px;font-weight:700;color:var(--dark);">Projects</div>
+        <div style="font-size:14px;color:var(--muted);margin-left:auto;">6개 프로젝트 — 브랜드·PM·콘텐츠·데이터·AI</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid var(--border);">
+        <div style="font-size:18px;font-weight:800;color:var(--blue);width:36px;">03</div>
+        <div style="font-size:19px;font-weight:700;color:var(--dark);">Core Skills</div>
+        <div style="font-size:14px;color:var(--muted);margin-left:auto;">기획 · 실행 · 데이터 역량</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:20px;padding:14px 0;">
+        <div style="font-size:18px;font-weight:800;color:var(--blue);width:36px;">04</div>
+        <div style="font-size:19px;font-weight:700;color:var(--dark);">Key Results</div>
+        <div style="font-size:14px;color:var(--muted);margin-left:auto;">숫자로 증명하는 성과</div>
+      </div>
+    </div>
+  </div>
+  <div class="pgnum"></div>
+</div>
+
+<!-- ══ 4 · CAREER TIMELINE ════════════════════════════════ -->
+<div class="slide" id="s4">
   <div class="sc" style="padding-top:48px;flex-direction:row;gap:0;">
-    <!-- Timeline area (left 58%) -->
-    <div style="flex:0 0 58%;position:relative;padding-top:20px;">
+    <!-- Timeline area (left 62%) -->
+    <div style="flex:0 0 62%;position:relative;padding-top:20px;">
       <div style="position:absolute;left:50%;top:0;bottom:0;width:2px;background:#D0D0DC;transform:translateX(-50%);"></div>
 
       <!-- Entry 1 · left · blue -->
@@ -238,6 +295,7 @@ html,body{
         <div style="font-size:12px;font-weight:600;color:var(--dark);">2024.05 ~ 2024.12</div>
         <div style="font-size:15px;font-weight:700;color:var(--blue);margin-top:2px;">패스트캠퍼스</div>
         <div style="font-size:12px;color:var(--muted);">콘텐츠 상품 기획자 · 인턴</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px;font-style:italic;">* 아른 사이 재직 중 병행</div>
         <div style="position:absolute;right:-9px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--blue);z-index:1;"></div>
       </div>
 
@@ -251,22 +309,23 @@ html,body{
     </div>
 
     <!-- Right: Heading -->
-    <div style="flex:0 0 42%;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end;padding-left:36px;padding-bottom:16px;">
-      <div style="font-size:60px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2px;text-align:right;">Career<br>Timeline</div>
+    <div style="flex:0 0 38%;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end;padding-left:32px;padding-bottom:16px;">
+      <div style="font-size:56px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2px;text-align:right;">Career<br>Timeline</div>
       <div class="t-sub" style="text-align:right;">걸어온 길</div>
     </div>
   </div>
+  <div class="pgnum"></div>
 </div>
 
-<!-- ══ 4 · EDUCATION & TRAINING ══════════════════════════ -->
-<div class="slide" id="s4">
+<!-- ══ 5 · EDUCATION & TRAINING ══════════════════════════ -->
+<div class="slide" id="s5">
   <div class="sc" style="padding-top:52px;">
     <!-- Title block -->
     <div style="text-align:center;">
       <div style="font-size:62px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2px;">Education &amp; Training</div>
       <div class="t-sub">기획자의 기반이 된 배움의 여정</div>
     </div>
-    <!-- Rows — flex:1 fills remaining space -->
+    <!-- Rows -->
     <div style="flex:1;display:flex;flex-direction:column;justify-content:space-evenly;margin-top:24px;">
       <!-- Row 1 -->
       <div style="display:grid;grid-template-columns:196px 216px 1fr;gap:24px;align-items:start;">
@@ -308,16 +367,119 @@ html,body{
       </div>
     </div>
   </div>
+  <div class="pgnum"></div>
 </div>
 
-<!-- ══ 5 · PROJECT 01 · 패스트캠퍼스 ══════════════════════ -->
-<div class="slide" id="s5">
+<!-- ══ 6 · PROJECT 01 · 살미달라 (label left) ══════════════ -->
+<div class="slide" id="s6">
   <div class="sc" style="padding-top:52px;flex-direction:row;gap:40px;">
     <!-- Left label -->
-    <div style="flex:0 0 228px;display:flex;flex-direction:column;padding-top:8px;">
-      <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
-      <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">01</div>
-      <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">진행 프로젝트 소개</div>
+    <div style="flex:0 0 228px;display:flex;flex-direction:column;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
+      <div>
+        <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
+        <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">01</div>
+        <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">패션 브랜드 런칭·운영</div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--muted);font-weight:500;">2021.01 — 2023.04</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px;">살미달라 · 대표 / MD</div>
+      </div>
+    </div>
+    <!-- Right content -->
+    <div style="flex:1;min-width:0;display:flex;flex-direction:column;">
+      <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+        <div class="t-heading">살미달라 패션 브랜드 운영</div>
+        <div style="font-size:14px;color:var(--muted);">기획부터 생산·판매까지 직접 운영</div>
+      </div>
+      <div class="divider" style="margin:12px 0;"></div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:start;">
+          <div class="pill">역할</div>
+          <div style="font-size:14px;color:var(--body);line-height:1.6;">브랜드 기획 · 시즌 상품 기획(MD) · 생산·재고 관리 · 채널 판매·CS 전반 단독 운영</div>
+        </div>
+        <div>
+          <div class="check">3시즌에 걸친 시즌 컨셉 기획 및 상품 라인업 구성·생산 관리</div>
+          <div class="check">판매 데이터·고객 피드백 기반으로 다음 시즌 상품 구성 개선</div>
+        </div>
+        <div class="statbox">
+          <div class="stat"><div class="stat-num">3시즌</div><div class="stat-lbl">브랜드 운영</div></div>
+          <div class="stat"><div class="stat-num">30%↑</div><div class="stat-lbl">판매량 증가</div></div>
+          <div class="stat"><div class="stat-num">25%↑</div><div class="stat-lbl">고객 만족도</div></div>
+        </div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;">
+          <span class="pill">브랜드 기획</span>
+          <span class="pill">상품 기획(MD)</span>
+          <span class="pill">생산·운영</span>
+          <span class="pill">마케팅</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pgnum"></div>
+</div>
+
+<!-- ══ 7 · PROJECT 02 · 아른 사이 (label right) ════════════ -->
+<div class="slide" id="s7">
+  <div class="sc" style="padding-top:52px;flex-direction:row;gap:40px;align-items:stretch;">
+    <!-- Left content -->
+    <div style="flex:1;min-width:0;display:flex;flex-direction:column;">
+      <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+        <div class="t-heading">아른 사이 출판 프로젝트 매니징</div>
+        <div style="font-size:14px;color:var(--muted);">9명 팀을 이끈 PM</div>
+      </div>
+      <div class="divider" style="margin:12px 0;"></div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:start;">
+          <div class="pill">역할</div>
+          <div style="font-size:14px;color:var(--body);line-height:1.6;">프로젝트 총괄 PM — 출판 기획 · 일정/리소스 관리 · 팀 협업 · 크라우드펀딩 캠페인 운영</div>
+        </div>
+        <div>
+          <div class="check">9명 규모 팀의 일정·역할을 조율하며 출판물 3권 완성까지 매니징</div>
+          <div class="check">텀블벅 크라우드펀딩 캠페인을 기획·운영하여 목표 대비 177% 달성</div>
+        </div>
+        <div class="statbox">
+          <div class="stat"><div class="stat-num">9명</div><div class="stat-lbl">팀 매니징</div></div>
+          <div class="stat"><div class="stat-num">3권</div><div class="stat-lbl">출판물 완성</div></div>
+          <div class="stat"><div class="stat-num">177%</div><div class="stat-lbl">텀블벅 펀딩 달성</div></div>
+        </div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;">
+          <span class="pill">프로젝트 매니징</span>
+          <span class="pill">팀 협업</span>
+          <span class="pill">출판 기획</span>
+          <span class="pill">크라우드펀딩</span>
+        </div>
+      </div>
+    </div>
+    <!-- Right label -->
+    <div style="flex:0 0 228px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
+      <div style="text-align:right;">
+        <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
+        <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">02</div>
+        <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">출판 프로젝트 매니징</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:12px;color:var(--muted);font-weight:500;">2023.04 — 2025.06</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px;">아른 사이 · PM</div>
+      </div>
+    </div>
+  </div>
+  <div class="pgnum"></div>
+</div>
+
+<!-- ══ 8 · PROJECT 03 · 패스트캠퍼스 (label left) ══════════ -->
+<div class="slide" id="s8">
+  <div class="sc" style="padding-top:52px;flex-direction:row;gap:40px;">
+    <!-- Left label -->
+    <div style="flex:0 0 228px;display:flex;flex-direction:column;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
+      <div>
+        <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
+        <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">03</div>
+        <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">교육 상품 기획·런칭</div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--muted);font-weight:500;">2024.05 — 2024.12</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px;">패스트캠퍼스 · 인턴</div>
+      </div>
     </div>
     <!-- Right content -->
     <div style="flex:1;min-width:0;display:flex;flex-direction:column;">
@@ -326,45 +488,36 @@ html,body{
         <div style="font-size:14px;color:var(--muted);">콘텐츠 상품 기획자 인턴</div>
       </div>
       <div class="divider" style="margin:12px 0;"></div>
-      <div style="flex:1;display:grid;grid-template-rows:auto 1px auto 1px auto 1px auto;gap:0;">
-        <!-- 프로젝트명 -->
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:center;padding:10px 0;">
-          <div class="pill">프로젝트명</div>
-          <div style="font-size:14px;color:var(--body);">신규 온라인 교육 상품 기획 및 런칭 매니징</div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:start;">
+          <div class="pill">역할</div>
+          <div style="font-size:14px;color:var(--body);line-height:1.6;">신규 온라인 교육 상품 기획 · IA/커리큘럼 설계 · 런칭 매니징 (기획 2 · 디자인 2 · 개발 1)</div>
         </div>
-        <div class="divider"></div>
-        <!-- 주요목표 -->
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:center;padding:10px 0;">
-          <div class="pill">주요 목표</div>
-          <div style="font-size:14px;color:var(--body);">강사 의존 제작 방식 → 표준화된 상품 기획 체계 구축</div>
+        <div>
+          <div class="check">강사 의존 제작 방식을 표준화된 상품 기획 체계로 전환</div>
+          <div class="check">신규 교육 상품 6개+ 기획·런칭 완료</div>
         </div>
-        <div class="divider"></div>
-        <!-- 개요 -->
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:start;padding:10px 0;">
-          <div class="pill">개요</div>
-          <div>
-            <div class="check">기간: 8개월 (2024.05–2024.12) · 역할: 상품 기획·IA 설계·커리큘럼 설계·런칭</div>
-            <div class="check">팀 구성: 기획 2명, 디자이너 2명, 개발 1명</div>
-          </div>
+        <div class="statbox">
+          <div class="stat"><div class="stat-num">6개+</div><div class="stat-lbl">신규 상품 런칭</div></div>
+          <div class="stat"><div class="stat-num">20%↓</div><div class="stat-lbl">제작 리드타임</div></div>
+          <div class="stat"><div class="stat-num">30%↑</div><div class="stat-lbl">상품 판매량</div></div>
         </div>
-        <div class="divider"></div>
-        <!-- 핵심기여 -->
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:start;padding:10px 0;">
-          <div class="pill">핵심 기여</div>
-          <div>
-            <div class="check">신규 상품 6개+ 기획·런칭 완료 — 리드타임 <strong style="color:var(--dark);">20% 단축</strong></div>
-            <div class="check">상품 판매량 <strong style="color:var(--dark);">30% 증가</strong> 달성</div>
-          </div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;">
+          <span class="pill">상품 기획</span>
+          <span class="pill">IA 설계</span>
+          <span class="pill">커리큘럼 설계</span>
+          <span class="pill">런칭 매니징</span>
         </div>
       </div>
     </div>
   </div>
+  <div class="pgnum"></div>
 </div>
 
-<!-- ══ 6 · PROJECT 02 · GCAR VOC ══════════════════════════ -->
-<div class="slide" id="s6">
+<!-- ══ 9 · PROJECT 04 · GCAR VOC (label right) ═════════════ -->
+<div class="slide" id="s9">
   <div class="sc" style="padding-top:52px;flex-direction:row;gap:40px;align-items:stretch;">
-    <!-- Left: description -->
+    <!-- Left content -->
     <div style="flex:1;min-width:0;display:flex;flex-direction:column;">
       <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
         <div class="t-heading">Gcar VoC 분석</div>
@@ -372,85 +525,95 @@ html,body{
       </div>
       <div class="divider" style="margin:12px 0;"></div>
       <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
-        <p class="t-body">
-          중고차 플랫폼 Gcar 앱 리뷰 데이터 <strong style="color:var(--dark);">37,923건</strong>을 수집·분석하여 사용자 이탈 원인을 밝히는 데이터 분석 프로젝트입니다. 낮은 앱스토어 평점과 지속적인 사용자 불만이 있었지만, 어떤 기능이 문제인지 정확히 파악되지 않은 상태였습니다.
-        </p>
-        <p class="t-body">
-          KoELECTRA 기반 감정 분류 모델을 적용하고, SHAP으로 주요 불만 키워드를 추출했습니다. 고객 여정을 단계별로 매핑하여 이탈이 집중되는 지점을 시각화하고 서비스 개선안을 제안했습니다.
-        </p>
-        <p class="t-body">
-          분석 결과 사용자 불만의 <strong style="color:var(--dark);">68%</strong>가 '검색·필터 기능'과 '가격 신뢰도' 두 영역에 집중됨을 확인하였으며, 우선순위 개선 로드맵을 도출했습니다.
-        </p>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:start;">
+          <div class="pill">역할</div>
+          <div style="font-size:14px;color:var(--body);line-height:1.6;">데이터 수집·전처리 · 감정 분류 모델링 · 고객 여정 매핑 · 개선 로드맵 제안</div>
+        </div>
+        <div>
+          <div class="check">중고차 플랫폼 앱 리뷰 37,923건 수집 → KoELECTRA 감정 분류 + SHAP 키워드 추출</div>
+          <div class="check">불만의 68%가 '검색·필터'와 '가격 신뢰도' 2개 영역에 집중됨을 정량 확인</div>
+        </div>
+        <div class="statbox">
+          <div class="stat"><div class="stat-num">37,923건</div><div class="stat-lbl">리뷰 분석</div></div>
+          <div class="stat"><div class="stat-num">68%</div><div class="stat-lbl">불만 집중도</div></div>
+          <div class="stat"><div class="stat-num">2개</div><div class="stat-lbl">핵심 개선 영역</div></div>
+        </div>
         <div style="display:flex;gap:7px;flex-wrap:wrap;">
           <span class="pill">Python</span>
           <span class="pill">KoELECTRA</span>
           <span class="pill">SHAP</span>
           <span class="pill">데이터 분석</span>
-          <span class="pill">시각화</span>
         </div>
       </div>
     </div>
     <!-- Right label -->
-    <div style="flex:0 0 228px;display:flex;flex-direction:column;align-items:flex-end;padding-top:8px;">
-      <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
-      <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">02</div>
-      <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">진행 프로젝트 소개</div>
+    <div style="flex:0 0 228px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
+      <div style="text-align:right;">
+        <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
+        <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">04</div>
+        <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">데이터 분석 프로젝트</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:12px;color:var(--muted);font-weight:500;">2025.11</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px;">멋쟁이사자처럼 부트캠프</div>
+      </div>
     </div>
   </div>
+  <div class="pgnum"></div>
 </div>
 
-<!-- ══ 7 · PROJECT 03 · AI 콘텐츠 자동화 ═══════════════════ -->
-<div class="slide" id="s7">
+<!-- ══ 10 · PROJECT 05 · AI 콘텐츠 자동화 (label left) ═════ -->
+<div class="slide" id="s10">
   <div class="sc" style="padding-top:52px;flex-direction:row;gap:40px;">
     <!-- Left label -->
-    <div style="flex:0 0 228px;display:flex;flex-direction:column;padding-top:8px;">
-      <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
-      <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">03</div>
-      <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">진행 프로젝트 소개</div>
+    <div style="flex:0 0 228px;display:flex;flex-direction:column;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
+      <div>
+        <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
+        <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">05</div>
+        <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">AI 콘텐츠 자동화</div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--muted);font-weight:500;">2026.03 — 현재</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px;">사이드 프로젝트</div>
+      </div>
     </div>
     <!-- Right content -->
     <div style="flex:1;min-width:0;display:flex;flex-direction:column;">
       <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
         <div class="t-heading">AI 콘텐츠 생성 자동화</div>
-        <div style="font-size:14px;color:var(--muted);">3시간 → 30분 단축</div>
+        <div style="font-size:14px;color:var(--muted);">제작 시간 3시간 → 30분</div>
       </div>
       <div class="divider" style="margin:12px 0;"></div>
-      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:14px 36px;align-content:start;">
-        <div style="display:flex;flex-direction:column;gap:14px;">
-          <div>
-            <span class="pill" style="font-size:12px;padding:4px 14px;">프로젝트명</span>
-            <div style="font-size:13px;color:var(--body);margin-top:8px;">인스타그램 패션 콘텐츠 AI 자동 생성 파이프라인</div>
-          </div>
-          <div class="divider"></div>
-          <div>
-            <span class="pill" style="font-size:12px;padding:4px 14px;">프로젝트 목표</span>
-            <div style="font-size:13px;color:var(--body);margin-top:8px;line-height:1.75;">
-              Claude AI + Figma MCP 연동으로 브랜드 조사부터 슬라이드 제작까지 전 과정 자동화. 콘텐츠 제작 시간 <strong style="color:var(--dark);">90% 단축</strong>.
-            </div>
-          </div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:start;">
+          <div class="pill">역할</div>
+          <div style="font-size:14px;color:var(--body);line-height:1.6;">파이프라인 설계 · 프롬프트 엔지니어링 · Figma MCP 연동 · 운영 자동화</div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:10px;justify-content:space-between;">
-          <div>
-            <div class="check">기간: 2026.03 ~ 현재 (사이드 프로젝트)</div>
-            <div class="check">기술: Claude AI · Figma MCP · Python · Google Sheets</div>
-            <div class="check">결과: 콘텐츠 제작 <strong style="color:var(--dark);">3시간 → 30분</strong> 단축</div>
-            <div class="check">누적 <strong style="color:var(--dark);">29개+</strong> 피드 자동 생성 완료</div>
-          </div>
-          <div style="display:flex;gap:7px;flex-wrap:wrap;">
-            <span class="pill">Claude AI</span>
-            <span class="pill">Figma MCP</span>
-            <span class="pill">Python</span>
-          </div>
+        <div>
+          <div class="check">Claude AI + Figma MCP 연동으로 브랜드 조사부터 슬라이드 제작까지 전 과정 자동화</div>
+          <div class="check">인스타그램 패션 콘텐츠 파이프라인 구축 — 누적 29개+ 피드 자동 생성</div>
+        </div>
+        <div class="statbox">
+          <div class="stat"><div class="stat-num">3h → 30m</div><div class="stat-lbl">제작 시간</div></div>
+          <div class="stat"><div class="stat-num">90%↓</div><div class="stat-lbl">소요 시간 단축</div></div>
+          <div class="stat"><div class="stat-num">29개+</div><div class="stat-lbl">피드 자동 생성</div></div>
+        </div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;">
+          <span class="pill">Claude AI</span>
+          <span class="pill">Figma MCP</span>
+          <span class="pill">Python</span>
+          <span class="pill">자동화</span>
         </div>
       </div>
     </div>
   </div>
+  <div class="pgnum"></div>
 </div>
 
-<!-- ══ 8 · PROJECT 04 · PULLSIZE ══════════════════════════ -->
-<div class="slide" id="s8">
+<!-- ══ 11 · PROJECT 06 · PULLSIZE (label right) ════════════ -->
+<div class="slide" id="s11">
   <div class="sc" style="padding-top:52px;flex-direction:row;gap:40px;align-items:stretch;">
-    <!-- Left: description -->
+    <!-- Left content -->
     <div style="flex:1;min-width:0;display:flex;flex-direction:column;">
       <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
         <div class="t-heading">Pullsize AI 서비스 기획</div>
@@ -458,125 +621,104 @@ html,body{
       </div>
       <div class="divider" style="margin:12px 0;"></div>
       <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
-        <div>
-          <p class="t-body">
-            온라인 패션 쇼핑 시 '사이즈 불안' 문제를 해결하는 AI 서비스 Pullsize의 기획·MVP 공동 개발을 주도했습니다. 사용자 체형 정보와 리뷰 데이터를 분석해 개인화된 사이즈 추천 근거를 제공합니다.
-          </p>
-          <p class="t-body" style="margin-top:14px;">
-            Next.js + Supabase + Gemini AI 스택으로 MVP를 직접 기획·개발하고, 사용자 인터뷰와 데이터를 기반으로 서비스 흐름을 설계했습니다.
-          </p>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:start;">
+          <div class="pill">역할</div>
+          <div style="font-size:14px;color:var(--body);line-height:1.6;">서비스 기획 전체 · 사용자 인터뷰 · 서비스 흐름 설계 · MVP 공동 개발 (Next.js · Supabase)</div>
         </div>
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:12px 18px;align-items:start;">
-          <div class="pill" style="font-size:12px;padding:4px 14px;">핵심 가치</div>
-          <div style="font-size:13px;color:var(--body);padding-top:4px;">"왜 이 사이즈가 맞는지" 근거와 함께 추천 — 구매 전환율 개선 목표</div>
-          <div class="pill" style="font-size:12px;padding:4px 14px;">역할</div>
-          <div style="font-size:13px;color:var(--body);padding-top:4px;">서비스 기획 전체 + MVP 공동 개발 (Next.js · Supabase)</div>
+        <div>
+          <div class="check">온라인 쇼핑 '사이즈 불안' 문제를 정의하고 추천 근거 제공 서비스로 구체화</div>
+          <div class="check">사용자 인터뷰·리뷰 데이터를 기반으로 서비스 흐름을 설계하고 MVP 개발 완료</div>
+        </div>
+        <div class="statbox">
+          <div class="stat"><div class="stat-num">MVP</div><div class="stat-lbl">기획·개발 완료</div></div>
+          <div class="stat"><div class="stat-num">AI 추천</div><div class="stat-lbl">근거 기반 설계</div></div>
+          <div class="stat"><div class="stat-num">Next.js</div><div class="stat-lbl">직접 개발 참여</div></div>
         </div>
         <div style="display:flex;gap:7px;flex-wrap:wrap;">
           <span class="pill">AI 서비스 기획</span>
+          <span class="pill">사용자 리서치</span>
           <span class="pill">MVP</span>
-          <span class="pill">Next.js</span>
-          <span class="pill">Supabase</span>
+          <span class="pill">Next.js · Supabase</span>
         </div>
       </div>
     </div>
     <!-- Right label -->
-    <div style="flex:0 0 228px;display:flex;flex-direction:column;align-items:flex-end;padding-top:8px;">
-      <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
-      <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">04</div>
-      <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">진행 프로젝트 소개</div>
+    <div style="flex:0 0 228px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
+      <div style="text-align:right;">
+        <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
+        <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">06</div>
+        <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">AI 서비스 기획</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:12px;color:var(--muted);font-weight:500;">2026.03 — 현재</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px;">사이드 · AI 서비스 기획</div>
+      </div>
     </div>
   </div>
+  <div class="pgnum"></div>
 </div>
 
-<!-- ══ 9 · CORE SKILLS ════════════════════════════════════ -->
-<div class="slide" id="s9">
+<!-- ══ 12 · CORE SKILLS ════════════════════════════════════ -->
+<div class="slide" id="s12">
   <div class="sc" style="padding-top:48px;">
     <div style="text-align:center;">
       <div style="font-size:72px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2.5px;">Core Skills</div>
-      <div class="t-sub">강점을 만드는 기술과 역량</div>
+      <div class="t-sub">경험으로 증명한 역량</div>
     </div>
-    <div style="flex:1;display:grid;grid-template-columns:1fr 1px 1fr;margin-top:24px;gap:0;">
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1px 1fr;margin-top:28px;gap:0;align-items:center;">
       <!-- Left: 기획 역량 -->
-      <div style="padding:0 40px 0 0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
-        <div style="font-size:16px;font-weight:700;color:var(--dark);margin-bottom:20px;">기획 역량</div>
-        <div style="display:flex;justify-content:center;gap:24px;margin-bottom:18px;">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-            <svg width="108" height="108" viewBox="0 0 108 108">
-              <circle cx="54" cy="54" r="42" fill="none" stroke="#E0E0EC" stroke-width="7.5"/>
-              <circle cx="54" cy="54" r="42" fill="none" stroke="#3B52E8" stroke-width="7.5"
-                stroke-dasharray="264" stroke-dashoffset="26.4" stroke-linecap="round" transform="rotate(-90 54 54)"/>
-              <text x="54" y="61" text-anchor="middle" fill="#3B52E8" font-size="17" font-weight="700" font-family="Pretendard">90%</text>
-            </svg>
-            <div style="font-size:13px;font-weight:600;color:var(--blue);">서비스 기획</div>
-          </div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-            <svg width="108" height="108" viewBox="0 0 108 108">
-              <circle cx="54" cy="54" r="42" fill="none" stroke="#E0E0EC" stroke-width="7.5"/>
-              <circle cx="54" cy="54" r="42" fill="none" stroke="#3B52E8" stroke-width="7.5"
-                stroke-dasharray="264" stroke-dashoffset="36.96" stroke-linecap="round" transform="rotate(-90 54 54)"/>
-              <text x="54" y="61" text-anchor="middle" fill="#3B52E8" font-size="17" font-weight="700" font-family="Pretendard">86%</text>
-            </svg>
-            <div style="font-size:13px;font-weight:600;color:var(--blue);">IA 설계</div>
-          </div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-            <svg width="108" height="108" viewBox="0 0 108 108">
-              <circle cx="54" cy="54" r="42" fill="none" stroke="#E0E0EC" stroke-width="7.5"/>
-              <circle cx="54" cy="54" r="42" fill="none" stroke="#3B52E8" stroke-width="7.5"
-                stroke-dasharray="264" stroke-dashoffset="21.12" stroke-linecap="round" transform="rotate(-90 54 54)"/>
-              <text x="54" y="61" text-anchor="middle" fill="#3B52E8" font-size="17" font-weight="700" font-family="Pretendard">92%</text>
-            </svg>
-            <div style="font-size:13px;font-weight:600;color:var(--blue);">콘텐츠 기획</div>
-          </div>
+      <div style="padding:0 48px 0 8px;display:flex;flex-direction:column;gap:22px;">
+        <div style="font-size:16px;font-weight:700;color:var(--dark);">기획 역량</div>
+        <div class="skill-row">
+          <div style="font-size:14px;font-weight:600;color:var(--dark);">서비스 기획</div>
+          <div class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <div style="font-size:12px;color:var(--muted);">Pullsize · 아른 사이</div>
         </div>
-        <div style="font-size:12px;color:var(--muted);line-height:1.65;max-width:300px;">
-          다양한 웹·앱 프로젝트를 통해 서비스 기획과 IA 설계에 능숙하며, 콘텐츠 상품 기획 실무 경험을 보유합니다.
+        <div class="skill-row">
+          <div style="font-size:14px;font-weight:600;color:var(--dark);">IA 설계</div>
+          <div class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <div style="font-size:12px;color:var(--muted);">패스트캠퍼스 · Pullsize</div>
+        </div>
+        <div class="skill-row">
+          <div style="font-size:14px;font-weight:600;color:var(--dark);">콘텐츠·상품 기획</div>
+          <div class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <div style="font-size:12px;color:var(--muted);">패스트캠퍼스 · 살미달라</div>
         </div>
       </div>
       <!-- Divider -->
-      <div style="background:var(--border);"></div>
-      <!-- Right: 데이터·AI 역량 -->
-      <div style="padding:0 0 0 40px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
-        <div style="font-size:16px;font-weight:700;color:var(--dark);margin-bottom:20px;">데이터·AI 역량</div>
-        <div style="display:flex;justify-content:center;gap:24px;margin-bottom:18px;">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-            <svg width="108" height="108" viewBox="0 0 108 108">
-              <circle cx="54" cy="54" r="42" fill="none" stroke="#E0E0EC" stroke-width="7.5"/>
-              <circle cx="54" cy="54" r="42" fill="none" stroke="#3B52E8" stroke-width="7.5"
-                stroke-dasharray="264" stroke-dashoffset="42.24" stroke-linecap="round" transform="rotate(-90 54 54)"/>
-              <text x="54" y="61" text-anchor="middle" fill="#3B52E8" font-size="17" font-weight="700" font-family="Pretendard">84%</text>
-            </svg>
-            <div style="font-size:13px;font-weight:600;color:var(--blue);">데이터 분석</div>
-          </div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-            <svg width="108" height="108" viewBox="0 0 108 108">
-              <circle cx="54" cy="54" r="42" fill="none" stroke="#E0E0EC" stroke-width="7.5"/>
-              <circle cx="54" cy="54" r="42" fill="none" stroke="#3B52E8" stroke-width="7.5"
-                stroke-dasharray="264" stroke-dashoffset="26.4" stroke-linecap="round" transform="rotate(-90 54 54)"/>
-              <text x="54" y="61" text-anchor="middle" fill="#3B52E8" font-size="17" font-weight="700" font-family="Pretendard">90%</text>
-            </svg>
-            <div style="font-size:13px;font-weight:600;color:var(--blue);">AI 자동화</div>
-          </div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-            <svg width="108" height="108" viewBox="0 0 108 108">
-              <circle cx="54" cy="54" r="42" fill="none" stroke="#E0E0EC" stroke-width="7.5"/>
-              <circle cx="54" cy="54" r="42" fill="none" stroke="#3B52E8" stroke-width="7.5"
-                stroke-dasharray="264" stroke-dashoffset="13.2" stroke-linecap="round" transform="rotate(-90 54 54)"/>
-              <text x="54" y="61" text-anchor="middle" fill="#3B52E8" font-size="17" font-weight="700" font-family="Pretendard">95%</text>
-            </svg>
-            <div style="font-size:13px;font-weight:600;color:var(--blue);">커뮤니케이션</div>
-          </div>
+      <div style="background:var(--border);height:80%;align-self:center;"></div>
+      <!-- Right: 실행·데이터 역량 -->
+      <div style="padding:0 8px 0 48px;display:flex;flex-direction:column;gap:22px;">
+        <div style="font-size:16px;font-weight:700;color:var(--dark);">실행 · 데이터 역량</div>
+        <div class="skill-row">
+          <div style="font-size:14px;font-weight:600;color:var(--dark);">프로젝트 매니징</div>
+          <div class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <div style="font-size:12px;color:var(--muted);">아른 사이 · 9명 팀 PM</div>
         </div>
-        <div style="font-size:12px;color:var(--muted);line-height:1.65;max-width:300px;">
-          전 직군과의 유기적인 협업 및 데이터 기반 의사결정이 저의 강점입니다.
+        <div class="skill-row">
+          <div style="font-size:14px;font-weight:600;color:var(--dark);">AI 자동화</div>
+          <div class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <div style="font-size:12px;color:var(--muted);">콘텐츠 생성 파이프라인</div>
+        </div>
+        <div class="skill-row">
+          <div style="font-size:14px;font-weight:600;color:var(--dark);">데이터 분석</div>
+          <div class="lvl"><i class="on"></i><i class="on"></i><i></i></div>
+          <div style="font-size:12px;color:var(--muted);">Gcar VoC · 37,923건</div>
         </div>
       </div>
     </div>
+    <!-- Legend -->
+    <div style="display:flex;justify-content:center;gap:24px;margin-top:8px;font-size:11.5px;color:var(--muted);">
+      <span style="display:inline-flex;align-items:center;gap:6px;"><span class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i></span> 실무 경험</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;"><span class="lvl"><i class="on"></i><i class="on"></i><i></i></span> 숙련</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;"><span class="lvl"><i class="on"></i><i></i><i></i></span> 학습</span>
+    </div>
   </div>
+  <div class="pgnum"></div>
 </div>
 
-<!-- ══ 10 · KEY RESULTS ═══════════════════════════════════ -->
-<div class="slide" id="s10">
+<!-- ══ 13 · KEY RESULTS ═══════════════════════════════════ -->
+<div class="slide" id="s13">
   <div class="sc" style="padding-top:52px;">
     <div>
       <div style="font-size:76px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2.5px;">Key Results</div>
@@ -585,37 +727,38 @@ html,body{
     <div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px;">
       <!-- Card 1 -->
       <div class="card" style="display:flex;flex-direction:column;align-items:center;text-align:center;">
-        <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">패스트캠퍼스 인턴</div>
-        <div style="font-size:21px;font-weight:700;color:var(--dark);line-height:1.35;">리드타임<br>20% 단축</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">살미달라 · 브랜드 대표</div>
+        <div style="font-size:26px;font-weight:700;color:var(--dark);line-height:1.25;">판매량<br>30% 증가</div>
         <div class="divider" style="width:60%;margin:18px auto;"></div>
         <div style="font-size:13px;color:var(--body);line-height:1.75;flex:1;display:flex;flex-direction:column;justify-content:center;">
-          신규 교육 상품 6개+ 기획·런칭<br>상품 판매량 30% 증가
+          3시즌 브랜드 직접 운영<br>고객 만족도 25% 향상
         </div>
       </div>
       <!-- Card 2 highlighted -->
       <div class="card hi" style="display:flex;flex-direction:column;align-items:center;text-align:center;">
-        <div style="font-size:13px;color:var(--blue);margin-bottom:10px;">멋쟁이사자처럼 부트캠프</div>
-        <div style="font-size:21px;font-weight:700;color:var(--blue);line-height:1.35;">앱 리뷰<br>37,923건 분석</div>
+        <div style="font-size:13px;color:var(--blue);margin-bottom:10px;">아른 사이 · PM</div>
+        <div style="font-size:26px;font-weight:700;color:var(--blue);line-height:1.25;">텀블벅<br>177% 달성</div>
         <div style="width:60%;height:1px;background:var(--blue);margin:18px auto;"></div>
         <div style="font-size:13px;color:var(--body);line-height:1.75;flex:1;display:flex;flex-direction:column;justify-content:center;">
-          이탈 원인 정량화 성공<br>불만 68% → 2개 영역 집중 파악
+          9명 팀 매니징<br>출판물 3권 완성
         </div>
       </div>
       <!-- Card 3 -->
       <div class="card" style="display:flex;flex-direction:column;align-items:center;text-align:center;">
-        <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">AI 콘텐츠 자동화</div>
-        <div style="font-size:21px;font-weight:700;color:var(--dark);line-height:1.35;">제작 시간<br>3h → 30min</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">데이터 · AI</div>
+        <div style="font-size:26px;font-weight:700;color:var(--dark);line-height:1.25;">제작 시간<br>90% 절감</div>
         <div class="divider" style="width:60%;margin:18px auto;"></div>
         <div style="font-size:13px;color:var(--body);line-height:1.75;flex:1;display:flex;flex-direction:column;justify-content:center;">
-          콘텐츠 제작 시간 90% 절감<br>누적 29개+ 피드 자동 생성
+          앱 리뷰 37,923건 분석<br>누적 29개+ 피드 자동 생성
         </div>
       </div>
     </div>
   </div>
+  <div class="pgnum"></div>
 </div>
 
-<!-- ══ 11 · THANK YOU ════════════════════════════════════ -->
-<div class="slide" id="s11">
+<!-- ══ 14 · THANK YOU ════════════════════════════════════ -->
+<div class="slide" id="s14">
   <div class="sc" style="justify-content:flex-end;padding-bottom:88px;">
     <div style="font-size:100px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-4px;">Thank you</div>
     <div style="margin-top:22px;font-size:22px;color:var(--body);font-weight:500;">
@@ -636,7 +779,7 @@ html,body{
 </div><!-- /viewport -->
 
 <script>
-const TOTAL = 11;
+const TOTAL = 14;
 let cur = 1;
 const vp = document.getElementById('viewport');
 const deck = document.getElementById('deck');
@@ -659,6 +802,12 @@ function goto(n) {
   counter.textContent = `${n} / ${TOTAL}`;
   btnPrev.disabled = n === 1;
   btnNext.disabled = n === TOTAL;
+  // page number on the active slide (skip cover & thank-you)
+  const active = document.getElementById('s' + n);
+  if (active) {
+    const pg = active.querySelector('.pgnum');
+    if (pg) pg.textContent = (n === 1 || n === TOTAL) ? '' : `${String(n).padStart(2,'0')} / ${TOTAL}`;
+  }
 }
 
 function prev() { if (cur > 1) goto(cur - 1); }
