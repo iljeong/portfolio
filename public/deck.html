@@ -130,8 +130,8 @@ html,body{
 /* Project body: title spans top, then [image frame | text].
    All image areas share an identical 4:3 frame for consistency;
    screenshots use contain (no crop), photos use cover. */
-.pbody{flex:1;min-height:0;display:flex;gap:34px;align-items:center;margin-top:18px;}
-.pframe,.pgrid,.prow{flex:0 0 45%;align-self:center;aspect-ratio:4/3;}
+.pbody{flex:1;min-height:0;display:flex;gap:34px;align-items:flex-start;margin-top:20px;}
+.pframe,.pgrid,.prow{flex:0 0 45%;align-self:flex-start;aspect-ratio:4/3;}
 .pframe{border-radius:10px;overflow:hidden;background:#fff;border:1.5px solid var(--border);display:flex;}
 .pframe img{width:100%;height:100%;object-fit:contain;display:block;}
 .pframe.cover{background:#E7E8EF;border:none;}
@@ -142,7 +142,7 @@ html,body{
 .prow{display:flex;gap:10px;}
 .prow .cell{flex:1;border-radius:8px;overflow:hidden;background:#fff;border:1.5px solid var(--border);display:flex;}
 .prow .cell img{width:100%;height:100%;object-fit:contain;display:block;}
-.ptext{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:17px;}
+.ptext{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:flex-start;gap:15px;}
 .ptext .check{font-size:14px;line-height:1.62;}
 </style>
 </head>
@@ -394,7 +394,7 @@ html,body{
 <div class="slide" id="s6">
   <div class="sc" style="padding-top:52px;flex-direction:row;gap:28px;">
     <!-- Left label -->
-    <div style="flex:0 0 172px;display:flex;flex-direction:column;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
+    <div style="flex:0 0 172px;display:flex;flex-direction:column;gap:1.5rem;padding-top:8px;">
       <div>
         <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
         <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">01</div>
@@ -415,6 +415,10 @@ html,body{
       <div class="pbody">
         <div class="pframe cover"><img src="/portfolio/images/salmidalla/location-lookbook.jpg" alt="살미달라 시즌 룩북"></div>
         <div class="ptext">
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
+            <div class="pill" style="background:var(--dark);">문제</div>
+            <div style="font-size:14px;color:var(--body);line-height:1.6;">패션 브랜드를 직접 창업해 기획·생산·판매·마케팅 전 과정을 혼자 운영해야 했다.</div>
+          </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
             <div class="pill">역할</div>
             <div style="font-size:14px;color:var(--body);line-height:1.6;">공동 창업·대표 (3인 팀) · 상품 기획(MD) 총괄 · 영상 제작 · 팝업 운영</div>
@@ -454,6 +458,10 @@ html,body{
       <div class="pbody">
         <div class="ptext">
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
+            <div class="pill" style="background:var(--dark);">문제</div>
+            <div style="font-size:14px;color:var(--body);line-height:1.6;">영상 단독으로만 소비되던 인터뷰 콘텐츠를 더 넓은 독자에게 닿게 만들어야 했다.</div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
             <div class="pill">역할</div>
             <div style="font-size:14px;color:var(--body);line-height:1.6;">프로젝트 총괄 PM — 출판 기획 · 일정/리소스 관리 · 팀 협업 · 크라우드펀딩 운영</div>
           </div>
@@ -477,7 +485,7 @@ html,body{
       </div>
     </div>
     <!-- Right label -->
-    <div style="flex:0 0 172px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
+    <div style="flex:0 0 172px;display:flex;flex-direction:column;align-items:flex-end;gap:1.5rem;padding-top:8px;">
       <div style="text-align:right;">
         <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
         <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">02</div>
@@ -496,7 +504,7 @@ html,body{
 <div class="slide" id="s8">
   <div class="sc" style="padding-top:52px;flex-direction:row;gap:28px;">
     <!-- Left label -->
-    <div style="flex:0 0 172px;display:flex;flex-direction:column;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
+    <div style="flex:0 0 172px;display:flex;flex-direction:column;gap:1.5rem;padding-top:8px;">
       <div>
         <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
         <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">03</div>
@@ -522,6 +530,10 @@ html,body{
           <div class="cell"><img src="/portfolio/images/fastcampus/apeai.jpg" alt="AI 영상 제작 강의"></div>
         </div>
         <div class="ptext">
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
+            <div class="pill" style="background:var(--dark);">문제</div>
+            <div style="font-size:14px;color:var(--body);line-height:1.6;">강사 경험에만 의존하던 교육 상품 제작 방식에 일정 지연과 품질 편차가 반복됐다.</div>
+          </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
             <div class="pill">역할</div>
             <div style="font-size:14px;color:var(--body);line-height:1.6;">교육 상품 기획 · IA/커리큘럼 설계 · 런칭 매니징 (기획 2 · 디자인 2 · 개발 1)</div>
@@ -561,6 +573,10 @@ html,body{
       <div class="pbody">
         <div class="ptext">
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
+            <div class="pill" style="background:var(--dark);">문제</div>
+            <div style="font-size:14px;color:var(--body);line-height:1.6;">부정 리뷰는 반복됐지만, 어떤 문제가 이탈을 유발하는지 구조적으로 밝혀진 게 없었다.</div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
             <div class="pill">역할</div>
             <div style="font-size:14px;color:var(--body);line-height:1.6;">데이터 수집·전처리 · 감정 분류 모델링 · 여정 매핑 · 개선안 설계 <span style="color:var(--muted);">(공개 리뷰 기반 개인 분석)</span></div>
           </div>
@@ -584,7 +600,7 @@ html,body{
       </div>
     </div>
     <!-- Right label -->
-    <div style="flex:0 0 172px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
+    <div style="flex:0 0 172px;display:flex;flex-direction:column;align-items:flex-end;gap:1.5rem;padding-top:8px;">
       <div style="text-align:right;">
         <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
         <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">04</div>
@@ -603,7 +619,7 @@ html,body{
 <div class="slide" id="s10">
   <div class="sc" style="padding-top:52px;flex-direction:row;gap:28px;">
     <!-- Left label -->
-    <div style="flex:0 0 172px;display:flex;flex-direction:column;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
+    <div style="flex:0 0 172px;display:flex;flex-direction:column;gap:1.5rem;padding-top:8px;">
       <div>
         <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
         <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">05</div>
@@ -624,6 +640,10 @@ html,body{
       <div class="pbody">
         <div class="pframe"><img src="/portfolio/images/ai-content-automation/figma-overview.png" alt="Figma 작업 전체 현황 — 29개+ 피드"></div>
         <div class="ptext">
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
+            <div class="pill" style="background:var(--dark);">문제</div>
+            <div style="font-size:14px;color:var(--body);line-height:1.6;">피드 하나를 만드는 데 브랜드당 3시간 넘게 들었고, 품질도 담당자마다 편차가 컸다.</div>
+          </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
             <div class="pill">역할</div>
             <div style="font-size:14px;color:var(--body);line-height:1.6;">파이프라인 구조 설계 · 프롬프트 설계 · Figma MCP 연동 · QA·SEO 전략 · 직접 구현</div>
@@ -663,6 +683,10 @@ html,body{
       <div class="pbody">
         <div class="ptext">
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
+            <div class="pill" style="background:var(--dark);">문제</div>
+            <div style="font-size:14px;color:var(--body);line-height:1.6;">브랜드마다 치수 기준이 달라, 온라인에서 사이즈 고를 때 불안이 컸다.</div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
             <div class="pill">역할</div>
             <div style="font-size:14px;color:var(--body);line-height:1.6;">문제 정의 · 입력/추천 결과 UX 설계 · MVP 설계 · Claude Code 기반 직접 구현·배포</div>
           </div>
@@ -689,7 +713,7 @@ html,body{
       </div>
     </div>
     <!-- Right label -->
-    <div style="flex:0 0 172px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;padding-top:8px;padding-bottom:4px;">
+    <div style="flex:0 0 172px;display:flex;flex-direction:column;align-items:flex-end;gap:1.5rem;padding-top:8px;">
       <div style="text-align:right;">
         <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
         <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">06</div>
