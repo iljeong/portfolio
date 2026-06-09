@@ -46,6 +46,45 @@ html,body{
 .tb-btn:hover{background:#f5f5f5;}
 .tb-btn:disabled{opacity:.32;cursor:default;}
 
+.slide-list{
+  position:fixed;inset:0;z-index:30;
+  display:none;align-items:flex-start;justify-content:flex-end;
+  background:rgba(26,26,46,.28);
+}
+.slide-list.open{display:flex;}
+.slide-list-panel{
+  width:min(360px,calc(100vw - 28px));
+  max-height:calc(100vh - 28px);
+  margin:14px;
+  padding:14px;
+  overflow:auto;
+  background:#fff;
+  border:1px solid #DCDCDC;
+  border-radius:10px;
+  box-shadow:0 16px 48px rgba(0,0,0,.18);
+}
+.slide-list-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:2px 2px 12px;
+  border-bottom:1px solid #E5E5E5;
+  font-size:13px;font-weight:700;color:var(--dark);
+}
+.slide-list-close{
+  width:28px;height:28px;border:0;background:none;border-radius:6px;
+  color:#666;cursor:pointer;font-size:18px;line-height:1;
+}
+.slide-list-close:hover{background:#f5f5f5;}
+.slide-list-items{display:flex;flex-direction:column;gap:4px;padding-top:10px;}
+.slide-list-item{
+  width:100%;border:0;background:none;border-radius:7px;
+  display:grid;grid-template-columns:38px 1fr;gap:10px;
+  padding:10px 9px;text-align:left;cursor:pointer;color:var(--dark);
+}
+.slide-list-item:hover{background:#F2F3F7;}
+.slide-list-item.active{background:#EDF1FF;color:var(--blue);}
+.slide-list-num{font-size:12px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;}
+.slide-list-title{font-size:13px;font-weight:600;line-height:1.35;}
+
 /* ── VIEWPORT ── */
 .viewport{
   height:calc(100vh - 52px);
@@ -61,6 +100,14 @@ html,body{
   transform-origin:top left;
   box-shadow:0 12px 48px rgba(0,0,0,.22);
 }
+
+html:fullscreen .toolbar{display:none;}
+html:fullscreen .viewport{height:100dvh;padding:0;}
+html:fullscreen .deck{box-shadow:none;}
+html:fullscreen .slide-list{display:none !important;}
+html:-webkit-full-screen .toolbar{display:none;}
+html:-webkit-full-screen .viewport{height:100dvh;padding:0;}
+html:-webkit-full-screen .deck{box-shadow:none;}
 
 /* ── BASE SLIDE ── */
 .slide{
@@ -200,10 +247,10 @@ html,body{
   </button>
   <div class="tb-spacer"></div>
   <div style="width:80px;display:flex;justify-content:flex-end;gap:2px;">
-    <button class="tb-btn" title="처음으로" onclick="goto(1)">
+    <button class="tb-btn" id="btn-list" title="목록" aria-label="슬라이드 목록 열기" onclick="toggleList()">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
     </button>
-    <button class="tb-btn" title="풀스크린" onclick="toggleFS()">
+    <button class="tb-btn" id="btn-fullscreen" title="전체화면" aria-label="전체화면 전환" onclick="toggleFS()">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
     </button>
     <button class="tb-btn" id="btn-download" title="PDF 다운로드" aria-label="PDF 다운로드">
@@ -212,6 +259,16 @@ html,body{
         <path d="M2.5 13v.5A1.5 1.5 0 004 15h9a1.5 1.5 0 001.5-1.5V13"/>
       </svg>
     </button>
+  </div>
+</div>
+
+<div class="slide-list" id="slide-list" aria-hidden="true" onclick="onListBackdrop(event)">
+  <div class="slide-list-panel" role="dialog" aria-modal="true" aria-labelledby="slide-list-title">
+    <div class="slide-list-head">
+      <span id="slide-list-title">슬라이드 목록</span>
+      <button class="slide-list-close" type="button" aria-label="목록 닫기" onclick="closeList()">×</button>
+    </div>
+    <div class="slide-list-items" id="slide-list-items"></div>
   </div>
 </div>
 
@@ -907,11 +964,33 @@ const deck = document.getElementById('deck');
 const counter = document.getElementById('counter');
 const btnPrev = document.getElementById('btn-prev');
 const btnNext = document.getElementById('btn-next');
+const slideList = document.getElementById('slide-list');
+const slideListItems = document.getElementById('slide-list-items');
+const slideTitles = [
+  'Portfolio',
+  'About Me',
+  'Contents',
+  'Career Timeline',
+  'Education & Training',
+  '살미달라 패션 브랜드 운영',
+  '아른 사이 프로젝트 매니징',
+  '패스트캠퍼스 교육 상품 기획',
+  'Gcar VoC 분석',
+  'AI 콘텐츠 생성 자동화',
+  'Pullsize — 의류 사이즈 추천 AI',
+  'Core Skills',
+  'What I Bring',
+  'Thank you'
+];
 
 function scale() {
-  const w = vp.clientWidth - 48;
-  const h = vp.clientHeight - 48;
-  const s = Math.min(w / 1280, h / 720, 1);
+  const style = getComputedStyle(vp);
+  const padX = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+  const padY = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
+  const w = vp.clientWidth - padX;
+  const h = vp.clientHeight - padY;
+  const maxScale = document.fullscreenElement ? Number.POSITIVE_INFINITY : 1;
+  const s = Math.min(w / 1280, h / 720, maxScale);
   frame.style.width = `${1280 * s}px`;
   frame.style.height = `${720 * s}px`;
   deck.style.transform = `scale(${s})`;
@@ -931,17 +1010,61 @@ function goto(n) {
     const pg = active.querySelector('.pgnum');
     if (pg) pg.textContent = (n === 1 || n === TOTAL) ? '' : `${String(n).padStart(2,'0')} / ${TOTAL}`;
   }
+  updateListState();
 }
 
 function prev() { if (cur > 1) goto(cur - 1); }
 function next() { if (cur < TOTAL) goto(cur + 1); }
 
 function toggleFS() {
+  closeList();
   if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
   else document.exitFullscreen();
 }
 
+function buildList() {
+  slideListItems.innerHTML = slideTitles.map((title, idx) => {
+    const n = idx + 1;
+    return `<button class="slide-list-item" type="button" data-slide="${n}">
+      <span class="slide-list-num">${String(n).padStart(2,'0')}</span>
+      <span class="slide-list-title">${title}</span>
+    </button>`;
+  }).join('');
+  slideListItems.querySelectorAll('[data-slide]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      goto(Number(btn.dataset.slide));
+      closeList();
+    });
+  });
+}
+
+function updateListState() {
+  slideListItems.querySelectorAll('[data-slide]').forEach(btn => {
+    btn.classList.toggle('active', Number(btn.dataset.slide) === cur);
+  });
+}
+
+function openList() {
+  slideList.classList.add('open');
+  slideList.setAttribute('aria-hidden', 'false');
+  updateListState();
+}
+
+function closeList() {
+  slideList.classList.remove('open');
+  slideList.setAttribute('aria-hidden', 'true');
+}
+
+function toggleList() {
+  slideList.classList.contains('open') ? closeList() : openList();
+}
+
+function onListBackdrop(event) {
+  if (event.target === slideList) closeList();
+}
+
 document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && slideList.classList.contains('open')) { closeList(); return; }
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); next(); }
   if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prev(); }
   if (e.key === 'Home') goto(1);
@@ -959,6 +1082,8 @@ vp.addEventListener('touchend', e => {
 document.getElementById('btn-download').addEventListener('click', () => window.print());
 
 window.addEventListener('resize', scale);
+document.addEventListener('fullscreenchange', scale);
+buildList();
 scale();
 goto(1);
 </script>
