@@ -196,6 +196,13 @@ html:-webkit-full-screen .deck{box-shadow:none;}
 .ptakeaway{display:flex;align-items:baseline;gap:12px;border-top:1px solid var(--border);padding-top:13px;margin-top:18px;}
 .tk-label{font-size:11px;font-weight:700;color:var(--blue);letter-spacing:0.06em;flex-shrink:0;}
 .tk-text{font-size:13px;color:var(--body);line-height:1.5;}
+.contrib{display:flex;flex-direction:column;gap:6px;}
+.ct-row{display:grid;grid-template-columns:96px 1fr 38px;gap:10px;align-items:center;}
+.ct-name{font-size:12px;color:var(--body);}
+.ct-track{height:6px;background:#E0E0EC;border-radius:3px;overflow:hidden;}
+.ct-track i{display:block;height:100%;background:var(--blue);border-radius:3px;}
+.ct-pct{font-size:11px;font-weight:700;color:var(--blue);text-align:right;}
+.ct-note{font-size:11px;color:var(--muted);grid-column:1 / -1;margin-top:-1px;}
 
 /* ── PRINT / PDF: every slide as its own full-bleed page ── */
 @media print {
@@ -516,6 +523,13 @@ html:-webkit-full-screen .deck{box-shadow:none;}
             <div class="pill">역할</div>
             <div style="font-size:14px;color:var(--body);line-height:1.6;">공동 창업·대표 (3인 팀) · 상품 기획(MD) 총괄 · 영상 제작 · 팝업 운영</div>
           </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:center;">
+            <div class="pill">기여</div>
+            <div class="contrib">
+              <div class="ct-row"><span class="ct-name">기획·MD</span><span class="ct-track"><i style="width:100%"></i></span><span class="ct-pct">100%</span></div>
+              <div class="ct-row"><span class="ct-name">디자인</span><span class="ct-track"><i style="width:40%"></i></span><span class="ct-pct">40%</span></div>
+            </div>
+          </div>
           <div>
             <div class="check">3시즌(21SS·21FW·22SS) 컨셉 기획부터 원단·샘플·생산까지 MD 전 과정 운영</div>
             <div class="check">21SS 자체 제작 의류 140벌 완판, 피드백 반영해 차기 시즌 개선</div>
@@ -558,6 +572,10 @@ html:-webkit-full-screen .deck{box-shadow:none;}
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
             <div class="pill">역할</div>
             <div style="font-size:14px;color:var(--body);line-height:1.6;">프로젝트 총괄 PM — 출판 기획 · 일정/리소스 관리 · 팀 협업 · 크라우드펀딩 운영</div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
+            <div class="pill">기여</div>
+            <div style="font-size:13px;color:var(--body);line-height:1.55;">9명 팀 2년 리드 · 일정·리소스 조율 <span style="color:var(--muted);">(핵심 산출물은 팀 공동 제작)</span></div>
           </div>
           <div>
             <div class="check">영상 인터뷰를 인터뷰집 2권·펀딩으로 확장해 콘텐츠 소비 채널을 다변화</div>
@@ -633,6 +651,14 @@ html:-webkit-full-screen .deck{box-shadow:none;}
             <div class="pill">역할</div>
             <div style="font-size:14px;color:var(--body);line-height:1.6;">교육 상품 기획 · IA/커리큘럼 설계 · 런칭 매니징 (기획 2 · 디자인 2 · 개발 1)</div>
           </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:center;">
+            <div class="pill">기여</div>
+            <div class="contrib">
+              <div class="ct-row"><span class="ct-name">직접 기획</span><span class="ct-track"><i style="width:67%"></i></span><span class="ct-pct">67%</span></div>
+              <div class="ct-row"><span class="ct-name">런칭 매니징</span><span class="ct-track"><i style="width:100%"></i></span><span class="ct-pct">100%</span></div>
+              <div class="ct-note">신규 6개 중 4개 직접 기획 · 2개 PM 진행</div>
+            </div>
+          </div>
           <div>
             <div class="check">강사·타겟 분석 → 커리큘럼 → 페이지 IA → 런칭까지 전 과정 담당</div>
             <div class="check">강사 의존 제작 방식을 Notion 기반 표준 프로세스로 전환·문서화</div>
@@ -674,7 +700,14 @@ html:-webkit-full-screen .deck{box-shadow:none;}
           </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
             <div class="pill">역할</div>
-            <div style="font-size:14px;color:var(--body);line-height:1.6;">데이터 수집·전처리 · 감정 분류 모델링 · 여정 매핑 · 개선안 설계 <span style="color:var(--muted);">(공개 리뷰 기반 개인 분석)</span></div>
+            <div style="font-size:14px;color:var(--body);line-height:1.6;">데이터 분석·감정 분류·여정 매핑 참여 <span style="color:var(--muted);">(공개 리뷰 기반 · 4인 팀 프로젝트)</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:center;">
+            <div class="pill">기여</div>
+            <div class="contrib">
+              <div class="ct-row"><span class="ct-name">본인 기여</span><span class="ct-track"><i style="width:25%"></i></span><span class="ct-pct">25%</span></div>
+              <div class="ct-note">4인 팀 프로젝트 · 분석·여정 매핑 담당</div>
+            </div>
           </div>
           <div>
             <div class="check">앱 리뷰 37,923건을 KoELECTRA로 감정 분류하고 SHAP으로 부정 키워드를 추출</div>
@@ -745,6 +778,13 @@ html:-webkit-full-screen .deck{box-shadow:none;}
             <div class="pill">역할</div>
             <div style="font-size:14px;color:var(--body);line-height:1.6;">파이프라인 구조 설계 · 프롬프트 설계 · Figma MCP 연동 · QA·SEO 전략 · 직접 구현</div>
           </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:center;">
+            <div class="pill">기여</div>
+            <div class="contrib">
+              <div class="ct-row"><span class="ct-name">전 과정</span><span class="ct-track"><i style="width:100%"></i></span><span class="ct-pct">100%</span></div>
+              <div class="ct-note">1인 프로젝트</div>
+            </div>
+          </div>
           <div>
             <div style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:9px;">자동화 파이프라인 — 조사부터 게시까지</div>
             <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-bottom:12px;">
@@ -794,6 +834,13 @@ html:-webkit-full-screen .deck{box-shadow:none;}
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
             <div class="pill">역할</div>
             <div style="font-size:14px;color:var(--body);line-height:1.6;">문제 정의 · 입력/추천 결과 UX 설계 · MVP 설계 · Claude Code 기반 직접 구현·배포</div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:center;">
+            <div class="pill">기여</div>
+            <div class="contrib">
+              <div class="ct-row"><span class="ct-name">서비스 기획</span><span class="ct-track"><i style="width:100%"></i></span><span class="ct-pct">100%</span></div>
+              <div class="ct-row"><span class="ct-name">개발</span><span class="ct-track"><i style="width:70%"></i></span><span class="ct-pct">70%</span></div>
+            </div>
           </div>
           <div>
             <div class="check">신체 정보 + 상품 URL → AI 사이즈 추천 → 판단 근거 제시의 4단계 플로우 구현</div>
