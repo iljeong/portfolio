@@ -15,10 +15,7 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
   <!-- ═══════════════════════ HERO ═══════════════════════ -->
   <section id="main-content" class="hero">
     <div class="container">
-      <div class="hero-top">
-        <p class="label hero-label">Portfolio</p>
-        <p class="hero-meta">Service · Content Planner<br />Based in Seoul · 2021—</p>
-      </div>
+      <p class="label hero-label">Portfolio</p>
       <h1 class="hero-title">
         문제를 찾고,<br />
         구조를 잡고,<br />
@@ -186,31 +183,14 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
     padding: 7rem 0 3rem;
   }
 
-  .hero-top,
+  .hero-label,
   .hero-title,
   .hero-foot { animation: riseIn 0.7s var(--ease-out) both; }
-  .hero-top  { animation-duration: 0.6s; }
+  .hero-label { animation-duration: 0.6s; }
   .hero-title { animation-delay: 0.09s; }
   .hero-foot  { animation-delay: 0.19s; }
 
-  .hero-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1.5rem;
-    margin-bottom: 2.25rem;
-  }
-
-  .hero-meta {
-    font-family: var(--font-display);
-    font-size: var(--text-xs);     /* 11px */
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    line-height: 1.7;
-    color: var(--ink-4);
-    text-align: right;
-    white-space: nowrap;
-  }
+  .hero-label { margin-bottom: 2.25rem; }
 
   .hero-title {
     font-size: clamp(2.625rem, 7.5vw, 5rem);
@@ -288,8 +268,7 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
       padding: 6.75rem 0 3.25rem;
     }
 
-    .hero-top { margin-bottom: 2rem; }
-    .hero-meta { display: none; }
+    .hero-label { margin-bottom: 2rem; }
 
     .hero-title {
       font-size: clamp(2.75rem, 12vw, 3.25rem);
