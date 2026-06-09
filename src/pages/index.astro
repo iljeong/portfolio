@@ -15,7 +15,10 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
   <!-- ═══════════════════════ HERO ═══════════════════════ -->
   <section id="main-content" class="hero">
     <div class="container">
-      <p class="label hero-label">Portfolio</p>
+      <div class="hero-top">
+        <p class="label hero-label">Portfolio</p>
+        <p class="hero-meta">Service · Content Planner<br />Based in Seoul · 2021—</p>
+      </div>
       <h1 class="hero-title">
         문제를 찾고,<br />
         구조를 잡고,<br />
@@ -61,8 +64,8 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
             title: '결과물은 설득 가능해야 합니다',
             desc: '디자인과 제안은 예뻐야 하지만, 왜 이렇게 만들었는지 데이터와 근거로 설명할 수 있어야 합니다.',
           },
-        ].map(a => (
-          <div class="approach-item">
+        ].map((a, i) => (
+          <div class="approach-item" data-reveal style={`--reveal-delay:${i * 70}ms`}>
             <span class="approach-num">{a.num}</span>
             <div class="approach-body">
               <p class="approach-title">{a.title}</p>
@@ -183,14 +186,31 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
     padding: 7rem 0 3rem;
   }
 
-  .hero-label,
+  .hero-top,
   .hero-title,
   .hero-foot { animation: riseIn 0.7s var(--ease-out) both; }
-  .hero-label { animation-duration: 0.6s; }
+  .hero-top  { animation-duration: 0.6s; }
   .hero-title { animation-delay: 0.09s; }
   .hero-foot  { animation-delay: 0.19s; }
 
-  .hero-label { margin-bottom: 2.25rem; }
+  .hero-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .hero-meta {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);     /* 11px */
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+    color: var(--ink-4);
+    text-align: right;
+    white-space: nowrap;
+  }
 
   .hero-title {
     font-size: clamp(2.625rem, 7.5vw, 5rem);
@@ -268,7 +288,8 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
       padding: 6.75rem 0 3.25rem;
     }
 
-    .hero-label { margin-bottom: 2rem; }
+    .hero-top { margin-bottom: 2rem; }
+    .hero-meta { display: none; }
 
     .hero-title {
       font-size: clamp(2.75rem, 12vw, 3.25rem);

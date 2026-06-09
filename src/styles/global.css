@@ -99,6 +99,22 @@ body {
   color: #fff;
 }
 
+/* Whisper-subtle grain for tactile depth (atmosphere, not noise) */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.025;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after { display: none; }
+}
+
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 
@@ -159,6 +175,23 @@ hr.line {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ===== Scroll reveal (progressive enhancement) ===== */
+
+.reveal-on [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity   0.6s var(--ease-out),
+    transform 0.6s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-on [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
 /* ===== Reduced motion ===== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -166,6 +199,7 @@ hr.line {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+  .reveal-on [data-reveal] { opacity: 1 !important; transform: none !important; }
 }
 
 /* ===== Screen-reader only ===== */

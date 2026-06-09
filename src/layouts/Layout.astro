@@ -62,8 +62,26 @@ const ogUrl = ogUrlProp ?? siteUrl;
     />
   </head>
   <body>
+    <script is:inline>
+      // Gate reveal styles on JS so no-JS users see content immediately
+      document.documentElement.classList.add('reveal-on');
+    </script>
     <a href="#main-content" class="skip-link">본문으로 바로가기</a>
     <slot />
+    <script>
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const targets = document.querySelectorAll('[data-reveal]');
+      if (reduce || !('IntersectionObserver' in window)) {
+        targets.forEach(el => el.classList.add('is-in'));
+      } else {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+        targets.forEach(el => io.observe(el));
+      }
+    </script>
   </body>
 </html>
 

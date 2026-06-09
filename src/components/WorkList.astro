@@ -46,7 +46,7 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
               <span class="work-sub-label">{group.label}</span>
             </li>
             {group.projects.map(p => (
-              <li class:list={['work-item', { 'work-item--sub': group.isSub }]} data-slug={p.slug}>
+              <li class:list={['work-item', { 'work-item--sub': group.isSub }]} data-slug={p.slug} data-reveal style={`--reveal-delay:${orderedProjects.indexOf(p) * 55}ms`}>
                 <a href={`${base}/projects/${p.slug}`} class="work-link">
                   <span class="work-num">{String(orderedProjects.indexOf(p) + 1).padStart(2, '0')}</span>
                   <span class="work-main">
