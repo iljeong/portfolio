@@ -66,6 +66,8 @@
   --font: 'Pretendard Variable', Pretendard,
           'Inter', -apple-system, BlinkMacSystemFont,
           'Helvetica Neue', sans-serif;
+  /* Latin display / numerals — Korean falls back to Pretendard */
+  --font-display: 'Bricolage Grotesque', 'Pretendard Variable', Pretendard, sans-serif;
 
   /* ── Layout ──────────────────────────────── */
   --max-w: 1080px;
@@ -111,9 +113,10 @@ img { max-width: 100%; display: block; }
 /* ===== Label ===== */
 
 .label {
+  font-family: var(--font-display);
   font-size: var(--text-xs);     /* 11px */
-  font-weight: 500;
-  letter-spacing: 0.1em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
@@ -147,6 +150,13 @@ hr.line {
 .chip:hover {
   border-color: var(--line-strong);
   color: var(--ink);
+}
+
+/* ===== Entrance motion ===== */
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ===== Reduced motion ===== */

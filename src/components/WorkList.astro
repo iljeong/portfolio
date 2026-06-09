@@ -142,10 +142,11 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
 
   /* Number */
   .work-num {
-    font-size: var(--text-xs);      /* 11px */
-    font-weight: 500;
+    font-family: var(--font-display);
+    font-size: var(--text-base);    /* 14px */
+    font-weight: 600;
     color: var(--ink-4);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
     font-variant-numeric: tabular-nums;
   }
 
@@ -266,9 +267,10 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
   }
 
   .pc-kpi {
+    font-family: var(--font-display);
     font-size: var(--text-4xl);  /* 36px */
-    font-weight: 800;
-    letter-spacing: -0.035em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
     line-height: 1;
     margin-bottom: 0.5rem;
   }
