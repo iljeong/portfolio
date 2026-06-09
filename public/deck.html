@@ -1063,6 +1063,13 @@ function onListBackdrop(event) {
   if (event.target === slideList) closeList();
 }
 
+function onDeckClick(event) {
+  if (event.target.closest('a, button')) return;
+  const rect = deck.getBoundingClientRect();
+  const clickedRightSide = event.clientX >= rect.left + rect.width / 2;
+  if (clickedRightSide) next();
+}
+
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && slideList.classList.contains('open')) { closeList(); return; }
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); next(); }
@@ -1079,6 +1086,7 @@ vp.addEventListener('touchend', e => {
   if (dx > 40) prev();
 }, { passive: true });
 
+deck.addEventListener('click', onDeckClick);
 document.getElementById('btn-download').addEventListener('click', () => window.print());
 
 window.addEventListener('resize', scale);
