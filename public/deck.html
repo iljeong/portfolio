@@ -204,6 +204,10 @@ html:-webkit-full-screen .deck{box-shadow:none;}
 .ct-pct{font-size:11px;font-weight:700;color:var(--blue);text-align:right;}
 .ct-note{font-size:11px;color:var(--muted);grid-column:1 / -1;margin-top:-1px;}
 
+/* Cover strength bullets */
+.cover-pt{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--body);}
+.cover-pt i{width:5px;height:5px;background:var(--blue);display:inline-block;flex-shrink:0;}
+
 /* ── PRINT / PDF: every slide as its own full-bleed page ── */
 @media print {
   @page { size: 1280px 720px; margin: 0; }
@@ -291,11 +295,14 @@ html:-webkit-full-screen .deck{box-shadow:none;}
     <div style="margin-top:22px;font-size:22px;color:var(--body);font-weight:500;line-height:1.5;">
       문제를 찾고, 구조를 잡고, 직접 만드는 기획자, <strong style="color:var(--dark);">서정일</strong>입니다.
     </div>
-    <div style="margin-top:10px;font-size:14px;color:var(--muted);line-height:1.65;">
-      브랜드 운영부터 콘텐츠 기획, 데이터 분석, AI 자동화까지 직접 손대 온 프로젝트를 담았습니다.
+    <div class="divider" style="width:340px;max-width:100%;margin:26px 0 20px;"></div>
+    <div style="display:flex;flex-direction:column;gap:11px;">
+      <div class="cover-pt"><i></i>브랜드 운영 · 콘텐츠 상품 기획</div>
+      <div class="cover-pt"><i></i>데이터 분석 · AI 서비스 기획</div>
+      <div class="cover-pt"><i></i>웹 · 앱 플랫폼 기획</div>
     </div>
     <a href="mailto:seobgak11@naver.com"
-       style="display:inline-block;margin-top:20px;font-size:15px;color:var(--blue);text-decoration:none;font-weight:500;">
+       style="display:inline-block;margin-top:26px;font-size:15px;color:var(--blue);text-decoration:none;font-weight:500;">
       seobgak11@naver.com
     </a>
   </div>
