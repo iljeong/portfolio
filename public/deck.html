@@ -177,7 +177,7 @@ html:-webkit-full-screen .deck{box-shadow:none;}
 /* Project body: title spans top, then [image frame | text].
    All image areas share an identical 4:3 frame for consistency;
    screenshots use contain (no crop), photos use cover. */
-.pbody{flex:1;min-height:0;display:flex;gap:34px;align-items:flex-start;margin-top:20px;}
+.pbody{display:flex;gap:32px;align-items:flex-start;margin-top:22px;}
 .pframe,.pgrid,.prow{flex:0 0 45%;align-self:flex-start;aspect-ratio:4/3;}
 .pframe{border-radius:10px;overflow:hidden;background:#fff;border:1.5px solid var(--border);display:flex;}
 .pframe img{width:100%;height:100%;object-fit:contain;display:block;}
@@ -193,11 +193,11 @@ html:-webkit-full-screen .deck{box-shadow:none;}
 .ptext .check{font-size:14px;line-height:1.62;}
 .flowchip{font-size:11px;font-weight:600;color:var(--blue);padding:3px 9px;background:var(--white);border:1px solid var(--blue);border-radius:6px;white-space:nowrap;}
 .flowarrow{color:var(--muted);font-size:11px;}
-.ptakeaway{display:flex;align-items:baseline;gap:12px;border-top:1px solid var(--border);padding-top:13px;margin-top:18px;}
+.ptakeaway{display:flex;align-items:baseline;gap:12px;border-top:1px solid var(--border);padding-top:14px;margin-top:26px;}
 .tk-label{font-size:11px;font-weight:700;color:var(--blue);letter-spacing:0.06em;flex-shrink:0;}
 .tk-text{font-size:13px;color:var(--body);line-height:1.5;}
 .contrib{display:flex;flex-direction:column;gap:6px;}
-.ct-row{display:grid;grid-template-columns:96px 1fr 38px;gap:10px;align-items:center;}
+.ct-row{display:grid;grid-template-columns:100px 132px 42px;gap:10px;align-items:center;justify-content:start;}
 .ct-name{font-size:12px;color:var(--body);}
 .ct-track{height:6px;background:#E0E0EC;border-radius:3px;overflow:hidden;}
 .ct-track i{display:block;height:100%;background:var(--blue);border-radius:3px;}
@@ -317,7 +317,7 @@ html:-webkit-full-screen .deck{box-shadow:none;}
       <div style="display:flex;flex-direction:column;">
         <div style="font-size:62px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2px;">About<br>Me</div>
         <div class="t-sub">저를 소개합니다</div>
-        <div style="margin-top:auto;padding-top:28px;">
+        <div style="padding-top:26px;">
           <div style="font-size:17px;font-weight:700;color:var(--dark);">서정일 <span style="font-size:13px;font-weight:400;color:var(--muted);">Seo Jeongsil</span></div>
           <div style="font-size:13px;color:var(--body);margin-top:3px;">서비스·콘텐츠 기획자</div>
           <div class="divider" style="margin:14px 0;"></div>
@@ -343,7 +343,7 @@ html:-webkit-full-screen .deck{box-shadow:none;}
       </div>
 
       <!-- Right -->
-      <div style="display:flex;flex-direction:column;justify-content:center;">
+      <div style="display:flex;flex-direction:column;justify-content:flex-start;padding-top:6px;">
         <div style="font-size:34px;font-weight:700;color:var(--blue);line-height:1.3;">브랜드부터<br>데이터까지<br>잇는 기획자</div>
         <div class="divider-blue" style="margin:18px 0 14px;"></div>
         <p style="font-size:14px;color:var(--body);line-height:1.9;">
@@ -360,15 +360,9 @@ html:-webkit-full-screen .deck{box-shadow:none;}
 
 <!-- ══ 3 · AGENDA ══════════════════════════════════════════ -->
 <div class="slide" id="s3">
-  <div class="sc" style="padding-top:56px;flex-direction:row;gap:0;">
-    <!-- Left heading -->
-    <div style="flex:0 0 38%;display:flex;flex-direction:column;justify-content:center;">
-      <div style="font-size:72px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2.5px;">Contents</div>
-      <div class="t-sub">목차</div>
-      <div class="divider-blue" style="margin:22px 0 0;"></div>
-    </div>
-    <!-- Right list -->
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;padding-left:24px;">
+  <div class="sc" style="padding-top:56px;">
+    <!-- List (full width, vertically centered) -->
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;">
       <div style="display:flex;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid var(--border);">
         <div style="font-size:18px;font-weight:800;color:var(--blue);width:36px;">01</div>
         <div style="font-size:19px;font-weight:700;color:var(--dark);">About Me</div>
@@ -389,6 +383,12 @@ html:-webkit-full-screen .deck{box-shadow:none;}
         <div style="font-size:19px;font-weight:700;color:var(--dark);">What I Bring</div>
         <div style="font-size:14px;color:var(--muted);margin-left:auto;">정의 → 구조화 → 실행</div>
       </div>
+    </div>
+    <!-- Heading (rule A — bottom-left) -->
+    <div>
+      <div style="font-size:72px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2.5px;">Contents</div>
+      <div class="t-sub">목차</div>
+      <div class="divider-blue" style="margin:18px 0 0;"></div>
     </div>
   </div>
   <div class="pgnum"></div>
@@ -435,10 +435,10 @@ html:-webkit-full-screen .deck{box-shadow:none;}
       </div>
     </div>
 
-    <!-- Right: Heading -->
-    <div style="flex:0 0 38%;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end;padding-left:32px;padding-bottom:16px;">
-      <div style="font-size:56px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2px;text-align:right;">Career<br>Timeline</div>
-      <div class="t-sub" style="text-align:right;">걸어온 길</div>
+    <!-- Heading (rule A — bottom-left; flex order places it before timeline) -->
+    <div style="order:-1;flex:0 0 38%;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding-right:32px;padding-bottom:16px;">
+      <div style="font-size:56px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2px;">Career<br>Timeline</div>
+      <div class="t-sub">걸어온 길</div>
     </div>
   </div>
   <div class="pgnum"></div>
@@ -448,7 +448,7 @@ html:-webkit-full-screen .deck{box-shadow:none;}
 <div class="slide" id="s5">
   <div class="sc" style="padding-top:52px;">
     <!-- Title block -->
-    <div style="text-align:center;">
+    <div>
       <div style="font-size:62px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2px;">Education &amp; Training</div>
       <div class="t-sub">기획과 데이터 분석의 기반</div>
     </div>
@@ -822,8 +822,69 @@ html:-webkit-full-screen .deck{box-shadow:none;}
   <div class="pgnum"></div>
 </div>
 
-<!-- ══ 11 · PROJECT 06 · PULLSIZE (label right) ════════════ -->
+<!-- ══ 11 · SYSTEM ARCHITECTURE (AI 자동화) ═══════════════ -->
 <div class="slide" id="s11">
+  <div class="sc" style="padding-top:52px;">
+    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;">
+      <div style="font-size:30px;font-weight:800;color:var(--dark);letter-spacing:-0.5px;">AI 콘텐츠 자동화 — 시스템 구조</div>
+      <div style="font-size:14px;color:var(--muted);">Project 05 · 파이프라인 아키텍처</div>
+    </div>
+    <div class="divider" style="margin:14px 0 0;"></div>
+
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px;">
+      <!-- Orchestrator -->
+      <div style="display:flex;justify-content:center;">
+        <div style="border:1.5px solid var(--blue);border-radius:8px;padding:10px 26px;text-align:center;background:#fff;">
+          <div style="font-size:15px;font-weight:700;color:var(--blue);">Claude Code 오케스트레이션</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px;">에이전트 파이프라인 · 단계마다 사람 검수(STOP) 게이트</div>
+        </div>
+      </div>
+
+      <!-- 4 phases -->
+      <div style="display:flex;align-items:stretch;justify-content:center;">
+        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
+          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P01</div>
+          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">자료조사</div>
+          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">브랜드 리서치<br>이미지·자료 수집</div>
+        </div>
+        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
+        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
+          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P02</div>
+          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">전략·카피</div>
+          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">카피 생성<br>qa_check 검수</div>
+        </div>
+        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
+        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
+          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P03</div>
+          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">디자인 적용</div>
+          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">Figma MCP<br>13종 템플릿</div>
+        </div>
+        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
+        <div style="flex:1;max-width:206px;border:1.5px solid var(--blue);border-radius:8px;padding:14px 12px;text-align:center;background:var(--bg);">
+          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P04</div>
+          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">게시·동기화</div>
+          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">@pull_size 게시<br>Sheets 동기화</div>
+        </div>
+      </div>
+
+      <!-- outputs -->
+      <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
+        <span class="flowchip">누적 29개+ 피드</span>
+        <span class="flowchip">제작 시간 83%↓</span>
+        <span class="flowchip">회고 → learnings 반영</span>
+      </div>
+    </div>
+
+    <!-- Loop bar -->
+    <div style="background:var(--blue);color:#fff;border-radius:8px;padding:13px 20px;text-align:center;font-size:14px;font-weight:600;letter-spacing:0.2px;margin-top:6px;">
+      Instagram&nbsp;→&nbsp;블로그 유입&nbsp;→&nbsp;AI 사이즈 추천&nbsp;→&nbsp;구매 전환&nbsp;→&nbsp;수익&nbsp;→&nbsp;콘텐츠 재생산&nbsp;&nbsp;↺&nbsp;&nbsp;무한 루프
+    </div>
+  </div>
+  <div class="pgnum"></div>
+</div>
+
+<!-- ══ 12 · PROJECT 06 · PULLSIZE (label right) ════════════ -->
+<div class="slide" id="s12">
   <div class="sc" style="padding-top:52px;flex-direction:row;gap:28px;align-items:stretch;">
     <!-- Content -->
     <div style="flex:1;min-width:0;display:flex;flex-direction:column;">
@@ -888,75 +949,15 @@ html:-webkit-full-screen .deck{box-shadow:none;}
   <div class="pgnum"></div>
 </div>
 
-<!-- ══ 12 · SYSTEM ARCHITECTURE (AI 자동화) ═══════════════ -->
-<div class="slide" id="s12">
-  <div class="sc" style="padding-top:52px;">
-    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;">
-      <div style="font-size:30px;font-weight:800;color:var(--dark);letter-spacing:-0.5px;">AI 콘텐츠 자동화 — 시스템 구조</div>
-      <div style="font-size:14px;color:var(--muted);">Project 05 · 파이프라인 아키텍처</div>
-    </div>
-    <div class="divider" style="margin:14px 0 0;"></div>
-
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px;">
-      <!-- Orchestrator -->
-      <div style="display:flex;justify-content:center;">
-        <div style="border:1.5px solid var(--blue);border-radius:8px;padding:10px 26px;text-align:center;background:#fff;">
-          <div style="font-size:15px;font-weight:700;color:var(--blue);">Claude Code 오케스트레이션</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:3px;">에이전트 파이프라인 · 단계마다 사람 검수(STOP) 게이트</div>
-        </div>
-      </div>
-
-      <!-- 4 phases -->
-      <div style="display:flex;align-items:stretch;justify-content:center;">
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P01</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">자료조사</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">브랜드 리서치<br>이미지·자료 수집</div>
-        </div>
-        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P02</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">전략·카피</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">카피 생성<br>qa_check 검수</div>
-        </div>
-        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P03</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">디자인 적용</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">Figma MCP<br>13종 템플릿</div>
-        </div>
-        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--blue);border-radius:8px;padding:14px 12px;text-align:center;background:var(--bg);">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P04</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">게시·동기화</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">@pull_size 게시<br>Sheets 동기화</div>
-        </div>
-      </div>
-
-      <!-- outputs -->
-      <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
-        <span class="flowchip">누적 29개+ 피드</span>
-        <span class="flowchip">제작 시간 83%↓</span>
-        <span class="flowchip">회고 → learnings 반영</span>
-      </div>
-    </div>
-
-    <!-- Loop bar -->
-    <div style="background:var(--blue);color:#fff;border-radius:8px;padding:13px 20px;text-align:center;font-size:14px;font-weight:600;letter-spacing:0.2px;margin-top:6px;">
-      Instagram&nbsp;→&nbsp;블로그 유입&nbsp;→&nbsp;AI 사이즈 추천&nbsp;→&nbsp;구매 전환&nbsp;→&nbsp;수익&nbsp;→&nbsp;콘텐츠 재생산&nbsp;&nbsp;↺&nbsp;&nbsp;무한 루프
-    </div>
-  </div>
-  <div class="pgnum"></div>
-</div>
-
 <!-- ══ 13 · CORE SKILLS ════════════════════════════════════ -->
 <div class="slide" id="s13">
   <div class="sc" style="padding-top:48px;">
-    <div style="text-align:center;">
+    <div>
       <div style="font-size:72px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2.5px;">Core Skills</div>
       <div class="t-sub">경험으로 증명한 역량</div>
     </div>
-    <div style="flex:1;display:grid;grid-template-columns:1fr 1px 1fr;margin-top:28px;gap:0;align-items:center;">
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:34px;margin-top:18px;">
+      <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:0;align-items:start;">
       <!-- Left: 기획 역량 -->
       <div style="padding:0 48px 0 8px;display:flex;flex-direction:column;gap:22px;">
         <div style="font-size:16px;font-weight:700;color:var(--dark);">기획 역량</div>
@@ -998,11 +999,12 @@ html:-webkit-full-screen .deck{box-shadow:none;}
         </div>
       </div>
     </div>
-    <!-- Legend -->
-    <div style="display:flex;justify-content:center;gap:24px;margin-top:8px;font-size:11.5px;color:var(--muted);">
-      <span style="display:inline-flex;align-items:center;gap:6px;"><span class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i></span> 실무 경험</span>
-      <span style="display:inline-flex;align-items:center;gap:6px;"><span class="lvl"><i class="on"></i><i class="on"></i><i></i></span> 숙련</span>
-      <span style="display:inline-flex;align-items:center;gap:6px;"><span class="lvl"><i class="on"></i><i></i><i></i></span> 학습</span>
+      <!-- Legend -->
+      <div style="display:flex;justify-content:center;gap:24px;font-size:11.5px;color:var(--muted);">
+        <span style="display:inline-flex;align-items:center;gap:6px;"><span class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i></span> 실무 경험</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;"><span class="lvl"><i class="on"></i><i class="on"></i><i></i></span> 숙련</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;"><span class="lvl"><i class="on"></i><i></i><i></i></span> 학습</span>
+      </div>
     </div>
   </div>
   <div class="pgnum"></div>
