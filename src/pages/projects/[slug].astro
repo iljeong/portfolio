@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Nav from '../../components/Nav.astro';
 import Flow from '../../components/Flow.astro';
+import Architecture from '../../components/Architecture.astro';
 import { projects } from '../../data/projects';
 import type { GetStaticPaths } from 'astro';
 
@@ -146,6 +147,19 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
           </section>
         </>
       ) : null}
+
+      {project.content.architecture && (
+        <>
+          <hr class="line" />
+          <section class="cs-sec">
+            <p class="label label--accent cs-sec-label">{project.content.architecture.title}</p>
+            {project.content.architecture.caption && (
+              <p class="cs-flow-caption">{project.content.architecture.caption}</p>
+            )}
+            <Architecture architecture={project.content.architecture} />
+          </section>
+        </>
+      )}
 
       <hr class="line" />
 

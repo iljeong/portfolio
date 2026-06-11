@@ -24,6 +24,12 @@ export type Project = {
       steps: { label: string; desc?: string }[];
       note?: string;
     };
+    architecture?: {
+      title: string;
+      caption?: string;
+      layers: { name: string; items: string[] }[];
+      loop?: string;
+    };
   };
   screenshots?: { src: string; caption?: string; url?: string; wide?: boolean; cols?: number }[];
 };
@@ -355,6 +361,18 @@ export const projects: Project[] = [
           { label: 'AI 추천', desc: '신체 정보와 상품 치수를 매칭해 사이즈 후보별 적합도·여유도를 산출한다.' },
           { label: '근거 제시', desc: '추천 사이즈와 부위별 핏·여유도, 추천 이유를 한 화면에서 보여준다.' },
         ],
+      },
+      architecture: {
+        title: '서비스 구조',
+        caption: 'Claude Code로 프론트·백엔드를 직접 구현하고 Vercel에 배포한 풀스택 구조.',
+        layers: [
+          { name: '빌드 · 배포', items: ['Claude Code 직접 구현', 'GitHub Actions CI/CD', 'Vercel'] },
+          { name: '프론트엔드', items: ['Next.js 16 / React 19', '추천', '블로그', '어드민'] },
+          { name: 'API', items: ['Vercel Functions', '추천', '이미지 기반 추천', '피드백', '제휴 리다이렉트', '블로그', '어드민'] },
+          { name: '데이터 · AI', items: ['Supabase', 'Gemini 사이즈 추천', 'cheerio 치수 파싱'] },
+          { name: '측정 · 전환', items: ['제휴 → 구매 전환', 'GA 분석'] },
+        ],
+        loop: '인스타(@pullsize) → 블로그 유입 → AI 사이즈 추천 → 구매 전환 → 콘텐츠 재생산 ↺',
       },
       contribution: {
         role: '서비스 기획자 · UX 설계 (AI 도구 기반 직접 구현)',

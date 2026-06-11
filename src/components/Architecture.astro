@@ -1,0 +1,113 @@
+---
+interface Props {
+  architecture: {
+    title: string;
+    caption?: string;
+    layers: { name: string; items: string[] }[];
+    loop?: string;
+  };
+}
+const { architecture } = Astro.props;
+---
+
+<div class="arch">
+  {architecture.layers.map((layer, i) => (
+    <>
+      <div class="arch-layer">
+        <span class="arch-layer-name">{layer.name}</span>
+        <div class="arch-layer-items">
+          {layer.items.map((it) => <span class="arch-chip">{it}</span>)}
+        </div>
+      </div>
+      {i < architecture.layers.length - 1 && <div class="arch-down" aria-hidden="true">↓</div>}
+    </>
+  ))}
+</div>
+
+{architecture.loop && (
+  <div class="arch-loop">
+    <span class="arch-loop-label">성장 루프</span>
+    <span class="arch-loop-text">{architecture.loop}</span>
+  </div>
+)}
+
+<style>
+  .arch { display: flex; flex-direction: column; }
+
+  .arch-layer {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 0 1.1rem;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 0.8rem 1rem;
+  }
+
+  .arch-layer-name {
+    font-size: var(--text-caption);
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    word-break: keep-all;
+  }
+
+  .arch-layer-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .arch-chip {
+    font-size: var(--text-xs);
+    color: var(--ink-2);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--r-full);
+    padding: 0.22em 0.7em;
+    white-space: nowrap;
+  }
+
+  .arch-down {
+    text-align: center;
+    color: var(--ink-4);
+    font-size: var(--text-md);
+    line-height: 1;
+    padding: 0.28rem 0;
+  }
+
+  .arch-loop {
+    margin-top: 1.1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 0.75rem;
+    background: var(--accent-bg);
+    border-radius: var(--r-md);
+    padding: 0.7rem 1rem;
+  }
+
+  .arch-loop-label {
+    font-size: var(--text-2xs);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .arch-loop-text {
+    font-size: var(--text-caption);
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1.5;
+    word-break: keep-all;
+  }
+
+  @media (max-width: 560px) {
+    .arch-layer {
+      grid-template-columns: 1fr;
+      gap: 0.55rem;
+    }
+  }
+</style>
