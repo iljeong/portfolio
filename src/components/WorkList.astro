@@ -8,7 +8,9 @@ const workGroups = [
   },
   {
     label: '프로젝트',
-    projects: projects.filter(p => p.isMain && p.slug !== 'fastcampus'),
+    // 표시 순서 명시 (Work 02→03→04)
+    projects: ['gcar-voc', 'pullsize', 'ai-content-automation']
+      .map(slug => projects.find(p => p.slug === slug)!),
   },
   {
     label: '브랜드·콘텐츠 운영 경험',
