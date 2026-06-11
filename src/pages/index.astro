@@ -41,7 +41,7 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
     <div class="container">
 
       <div class="approach-head">
-        <span class="label">My Approach</span>
+        <h2 class="label">My Approach</h2>
       </div>
 
       <div class="approach-grid">
@@ -65,7 +65,7 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
           <div class="approach-item" data-reveal style={`--reveal-delay:${i * 70}ms`}>
             <span class="approach-num">{a.num}</span>
             <div class="approach-body">
-              <p class="approach-title">{a.title}</p>
+              <h3 class="approach-title">{a.title}</h3>
               <p class="approach-desc">{a.desc}</p>
             </div>
           </div>
@@ -84,7 +84,7 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
           <div class="about-profile">
             <img src={`${basePath}images/profile.jpg`} alt="서정일" class="about-avatar" />
             <div>
-              <p class="label">About</p>
+              <h2 class="label">About</h2>
               <p class="about-name">서정일</p>
             </div>
           </div>
@@ -110,7 +110,7 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
         <div class="about-right">
           <!-- Career -->
           <div class="block-wrap">
-            <p class="label block-label">Career</p>
+            <h3 class="label block-label">Career</h3>
             <ul class="career-list">
               {[
                 { period: '2024.05–12',     company: '패스트캠퍼스 (데이원컴퍼니)', role: '콘텐츠 상품 기획자 · 인턴' },
@@ -130,7 +130,7 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
 
           <!-- Education -->
           <div class="block-wrap">
-            <p class="label block-label">Education</p>
+            <h3 class="label block-label">Education</h3>
             <div class="edu-entry">
               <span class="edu-period">2025.06–11</span>
               <div>

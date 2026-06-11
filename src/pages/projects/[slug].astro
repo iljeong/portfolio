@@ -93,7 +93,7 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
 
       <!-- 01 Problem -->
       <section class="cs-sec">
-        <p class="label label--accent cs-sec-label">01 · Problem</p>
+        <h2 class="label label--accent cs-sec-label">01 · Problem</h2>
         <p class="cs-prose">{project.content.problem}</p>
       </section>
 
@@ -101,13 +101,13 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
 
       <!-- 02 Approach -->
       <section class="cs-sec">
-        <p class="label label--accent cs-sec-label">02 · Approach</p>
+        <h2 class="label label--accent cs-sec-label">02 · Approach</h2>
         <ol class="cs-steps" role="list">
           {project.content.approach.map(a => (
             <li class="cs-step">
               <span class="cs-step-n">{a.num}</span>
               <div class="cs-step-body">
-                <p class="cs-step-title">{a.step}</p>
+                <h3 class="cs-step-title">{a.step}</h3>
                 <p class="cs-step-desc">{a.desc}</p>
               </div>
             </li>
@@ -119,7 +119,7 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
         <>
           <hr class="line" />
           <section class="cs-sec">
-            <p class="label label--accent cs-sec-label">{project.content.flow.title}</p>
+            <h2 class="label label--accent cs-sec-label">{project.content.flow.title}</h2>
             {project.content.flow.caption && (
               <p class="cs-flow-caption">{project.content.flow.caption}</p>
             )}
@@ -132,13 +132,13 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
         <>
           <hr class="line" />
           <section class="cs-sec">
-            <p class="label label--accent cs-sec-label">03 · Key Insight</p>
+            <h2 class="label label--accent cs-sec-label">03 · Key Insight</h2>
             <div class="cs-insights">
               {project.content.insights!.map(ins => (
                 <div class="cs-insight">
                   <span class="cs-insight-num">{ins.num}</span>
                   <div class="cs-insight-body">
-                    <p class="cs-insight-title">{ins.title}</p>
+                    <h3 class="cs-insight-title">{ins.title}</h3>
                     <p class="cs-insight-desc">{ins.body}</p>
                   </div>
                 </div>
@@ -152,7 +152,7 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
         <>
           <hr class="line" />
           <section class="cs-sec">
-            <p class="label label--accent cs-sec-label">{project.content.architecture.title}</p>
+            <h2 class="label label--accent cs-sec-label">{project.content.architecture.title}</h2>
             {project.content.architecture.caption && (
               <p class="cs-flow-caption">{project.content.architecture.caption}</p>
             )}
@@ -165,7 +165,7 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
 
       <!-- Results -->
       <section class="cs-sec">
-        <p class="label label--accent cs-sec-label">{sn(4)} · Results</p>
+        <h2 class="label label--accent cs-sec-label">{sn(4)} · Results</h2>
         <div class="cs-results">
           {project.content.results.map(r => (
             <div class="cs-result">
@@ -180,7 +180,7 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
 
       <!-- Contribution -->
       <section class="cs-sec">
-        <p class="label label--accent cs-sec-label">{sn(5)} · Contribution</p>
+        <h2 class="label label--accent cs-sec-label">{sn(5)} · Contribution</h2>
         <dl class="cs-contrib">
           {[
             { k: 'Role',   v: project.content.contribution.role },
@@ -203,7 +203,7 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
         <>
           <hr class="line" />
           <section class="cs-sec">
-            <p class="label label--accent cs-sec-label">{sn(6)} · 산출물</p>
+            <h2 class="label label--accent cs-sec-label">{sn(6)} · 산출물</h2>
             <div class="cs-shots">
               {project.screenshots.map(s => (
                 <figure class={`cs-shot${s.wide ? ' cs-shot--wide' : ''}`}>

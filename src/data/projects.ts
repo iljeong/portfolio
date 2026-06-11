@@ -76,7 +76,7 @@ export const projects: Project[] = [
     screenshots: [
       { src: '/images/fastcampus/minshortform.png',   caption: '민썸 — 숏폼 영상 기획·편집 실무 강의',    url: 'https://fastcampus.co.kr/dgn_online_minshortform' },
       { src: '/images/fastcampus/memil.png',          caption: '메밀 작가 이모티콘 클래스',               url: 'https://fastcampus.co.kr/dgn_online_memil' },
-      { src: '/images/fastcampus/editman.png',        caption: '편집하는 남자 — 영상 편집 실무 강의',     url: 'https://fastcampus.co.kr/dgn_online_editman' },
+      { src: '/images/fastcampus/editman.webp',        caption: '편집하는 남자 — 영상 편집 실무 강의',     url: 'https://fastcampus.co.kr/dgn_online_editman' },
       { src: '/images/fastcampus/figure.jpg',         caption: '피규어 디자인 클래스',                    url: 'https://fastcampus.co.kr/dgn_online_figure' },
       { src: '/images/fastcampus/cinematicclip.webp', caption: '시네마틱 클립 영상 제작 강의',            url: 'https://fastcampus.co.kr/data_online_cinematicclip' },
       { src: '/images/fastcampus/apeai.jpg',          caption: 'THE APE SQUAD — AI 영상 제작 실무 강의',  url: 'https://fastcampus.co.kr/data_online_apeai' },
@@ -101,7 +101,7 @@ export const projects: Project[] = [
         { num: '02', step: '감정 분류', desc: '사전학습 KoELECTRA-Base-v3 모델 적용, 감정 분류(정확도 0.976 · F1 0.984) 후 SHAP로 부정 감정 유발 핵심 키워드 도출' },
         { num: '03', step: '이슈 구조화', desc: '부정 리뷰를 4개 영역(고객센터·앱오류·반납예약·과금)으로 클러스터링. A지표(전체 리뷰 대비 부정 비율)·B지표(부정 리뷰 내 구성비)로 이중 지표화해 리뷰량 편향을 보정' },
         { num: '04', step: '여정 시각화', desc: '앱오류 → 반납실패 → 과금 이슈 → CS 문의 → 1점 리뷰로 이어지는 실패 여정 맵 작성' },
-        { num: '05', step: '개선안 도출', desc: '여정 기반 4개 우선 개선 방향 제안 (고객센터 IA 재설계 / 반납지 혼잡도 사전 안내 / 과금 사전 경고 / 자동 문의 연결)' },
+        { num: '05', step: '개선안 도출', desc: '여정 기반 4개 우선 개선 방향 제안 (고객센터 IA 재설계 / 반납 장소 혼잡도 사전 안내 / 과금 사전 경고 / 자동 문의 연결)' },
       ],
       insights: [
         { num: '01', title: '가격 경쟁력은 불만을 덮지 못한다', body: '가격 만족도가 높음에도 1★ 리뷰 비율은 Socar(23.9%) 대비 Gcar(31.4%)가 높았고, Mann-Whitney U 검정에서 이 차이는 통계적으로 유의했다(p<0.05). 저렴한 이용료는 오히려 경쟁 우위였지만(카셰어링 차량 선택 기준 1위, 82.7%), 가격이 아닌 반납·패널티·CS 여정이 평점을 낮추는 핵심 변수였다.' },
@@ -114,7 +114,7 @@ export const projects: Project[] = [
         { label: '접근성 격차', desc: '경쟁사 대비 차고지 약 2배(2,300 vs 5,000) · 운영 차량 약 3배(6,700 vs 23,000) · MAU 16.4만 vs 61.4만 — 인프라 열위가 불만의 구조적 배경 (외부 출처 기반)' },
         { label: '분류·추출', desc: 'KoELECTRA-Base-v3로 감정 분류(정확도 0.976 · F1 0.984), SHAP으로 핵심 불만 키워드를 추출. 별점 차이는 Mann-Whitney U 검정으로 유의성 확인(p<0.05)' },
         { label: '구조 발견', desc: '부정 리뷰를 4개 클러스터로 구조화(부정 비율 — 반납·예약 92.9% · 과금 90.7% · 고객센터 87.2% · 앱 79.2%), 실패 여정 맵 작성. 반납·예약 92.86%로 가장 심각해 1순위 개선 영역으로 도출' },
-        { label: '개선안', desc: '고객센터·이용가이드 통합 페이지 재설계(A/B 테스트 제안) / 주차장 혼잡도 사전 예측·안내 / 과금 사전 경고 / 자동 문의 연결 — 4개 우선순위 방향 도출' },
+        { label: '개선안', desc: '고객센터·이용가이드 통합 페이지 재설계(A/B 테스트 제안) / 반납 장소 혼잡도 사전 안내 / 과금 사전 경고 / 자동 문의 연결 — 4개 우선순위 방향 도출' },
         { label: '기대 효과', desc: '개선안 적용 시 기대 평균 평점 3.49 → 3.65, 1점 비율 31.4% → 27.5% (목표치) + 실시간 혼잡도 예측 대시보드 제안' },
       ],
       flow: {
@@ -139,11 +139,11 @@ export const projects: Project[] = [
     screenshots: [
       {
         src: '/images/gcar-voc/slide_tmp_8-08.png',
-        caption: '앱 평점 비교 — Gcar의 평균 평점과 1점 리뷰 비율이 경쟁사 대비 유의하게 낮은 구간 확인',
+        caption: '앱 평점 비교 — Gcar의 평균 평점과 1점 리뷰 비율이 경쟁사 대비 뚜렷하게 낮은 구간 확인',
         wide: true,
       },
       {
-        src: '/images/gcar-voc/slide_tmp_11-11.png',
+        src: '/images/gcar-voc/slide_tmp_11-11.webp',
         caption: '부정 리뷰 키워드 분석 — 고객센터, 앱 오류, 로그인, 반납 관련 불만 키워드가 반복적으로 등장',
         wide: true,
       },
@@ -153,7 +153,7 @@ export const projects: Project[] = [
         wide: true,
       },
       {
-        src: '/images/gcar-voc/slide_tmp_22-22.png',
+        src: '/images/gcar-voc/slide_tmp_22-22.webp',
         caption: '고객센터·이용가이드 재설계 — 문제 상황에서 FAQ와 반납 관련 기능까지 도달하는 시간을 줄이는 IA 개선안',
         wide: true,
       },
@@ -168,7 +168,7 @@ export const projects: Project[] = [
     category: '브랜드 기획 · 패션 MD',
     tags: ['브랜드 기획', 'MD', '영상 편집', 'Premiere Pro', 'Photoshop', '팝업스토어'],
     isMain: false,
-    highlight: '464→863명',
+    highlight: '팔로워 +86%',
     links: [{ label: '브랜드 사이트 보기', url: 'https://www.sixshop.com/salmidollar/home' }],
     content: {
       problem:
@@ -197,14 +197,14 @@ export const projects: Project[] = [
       },
     },
     screenshots: [
-      { src: '/images/salmidalla/location-front.jpg',       caption: '시즌 룩북 촬영 — 브랜드 콘셉트와 제품 스타일링 기획',         wide: true },
-      { src: '/images/salmidalla/quality-check.png',        caption: '의류 검수 현장 — 납품 전 봉제·프린팅 품질 직접 검수' },
+      { src: '/images/salmidalla/location-front.webp',       caption: '시즌 룩북 촬영 — 브랜드 콘셉트와 제품 스타일링 기획',         wide: true },
+      { src: '/images/salmidalla/quality-check.webp',        caption: '의류 검수 현장 — 납품 전 봉제·프린팅 품질 직접 검수' },
       { src: '/images/salmidalla/21ss-product.jpg',         caption: '21SS 상품 — 자체 제작 의류 140벌 완판' },
       { src: '/images/salmidalla/21fw-product-1.gif',       caption: '21FW 컬렉션 — 21SS 완판에 이어 가을/겨울 라인 출시' },
-      { src: '/images/salmidalla/sample-spec.png',          caption: '21SS 샘플 작업의뢰서 — 봉제 스펙·사이즈 그레이딩 직접 작성' },
+      { src: '/images/salmidalla/sample-spec.webp',          caption: '21SS 샘플 작업의뢰서 — 봉제 스펙·사이즈 그레이딩 직접 작성' },
       { src: '/images/salmidalla/22ss-cloth-1.jpg',         caption: '22SS 의류 라인 — 네 종 출시, ACC·굿즈백·키링으로 품목 확장' },
-      { src: '/images/salmidalla/location-lookbook.jpg',    caption: '로케이션 룩북 컷 — 시즌 무드와 그래픽 티셔츠 착장 시각화',   wide: true },
-      { src: '/images/salmidalla/location-graphic-tee.jpg', caption: '브랜드 그래픽 티셔츠 착장 — 상품 기획부터 촬영까지 운영' },
+      { src: '/images/salmidalla/location-lookbook.webp',    caption: '로케이션 룩북 컷 — 시즌 무드와 그래픽 티셔츠 착장 시각화',   wide: true },
+      { src: '/images/salmidalla/location-graphic-tee.webp', caption: '브랜드 그래픽 티셔츠 착장 — 상품 기획부터 촬영까지 운영' },
       { src: '/images/salmidalla/22ss-acc-keyring-1.jpg',   caption: '22SS 키링 ACC — 2종 완판' },
     ],
   },
@@ -249,11 +249,11 @@ export const projects: Project[] = [
       },
     },
     screenshots: [
-      { src: '/images/areun-sai/book-cover.jpg',             caption: '인터뷰집 표지·북 패키지 디자인 — 장기 프로젝트의 핵심 출판물 시각화', wide: true },
+      { src: '/images/areun-sai/book-cover.webp',             caption: '인터뷰집 표지·북 패키지 디자인 — 장기 프로젝트의 핵심 출판물 시각화', wide: true },
       { src: '/images/areun-sai/funding-goods.jpg',          caption: '텀블벅 리워드 패키지 구성 — 도서·굿즈·상세페이지까지 연결한 펀딩 설계' },
-      { src: '/images/areun-sai/interview-shoot.jpg',        caption: '인터뷰 촬영 현장 — 대상 섭외부터 질문 설계·촬영·편집까지 진행' },
-      { src: '/images/areun-sai/question-board.jpg',         caption: '콘텐츠 질문 보드 — 인터뷰 주제와 독자 반응을 수집해 출판 콘텐츠로 확장' },
-      { src: '/images/areun-sai/fulfillment-packaging.jpeg', caption: '리워드 포장·배송 준비 — 펀딩 이후 실물 제작과 발송 운영' },
+      { src: '/images/areun-sai/interview-shoot.webp',        caption: '인터뷰 촬영 현장 — 대상 섭외부터 질문 설계·촬영·편집까지 진행' },
+      { src: '/images/areun-sai/question-board.webp',         caption: '콘텐츠 질문 보드 — 인터뷰 주제와 독자 반응을 수집해 출판 콘텐츠로 확장' },
+      { src: '/images/areun-sai/fulfillment-packaging.webp', caption: '리워드 포장·배송 준비 — 펀딩 이후 실물 제작과 발송 운영' },
     ],
   },
   {
@@ -308,12 +308,12 @@ export const projects: Project[] = [
     },
     screenshots: [
       {
-        src: '/images/ai-content-automation/instagram-feed.png',
+        src: '/images/ai-content-automation/instagram-feed.webp',
         caption: '실제 게시된 인스타그램 피드 — AI가 생성한 카드뉴스가 @pullsize.official 계정에 발행된 결과물',
         wide: true,
       },
       {
-        src: '/images/ai-content-automation/figma-overview.png',
+        src: '/images/ai-content-automation/figma-overview.webp',
         caption: 'Figma 작업 전체 현황 — 스트릿·컨템포러리·캐주얼 3개 카테고리, 29개+ 브랜드 피드를 AI 파이프라인으로 자동 생성한 결과물',
         wide: true,
       },
@@ -332,7 +332,7 @@ export const projects: Project[] = [
     links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
     content: {
       problem:
-        '온라인 의류 구매자는 브랜드마다 다른 실측 기준과 착용감 차이 때문에 사이즈 선택에 불안을 느낀다. 상품 상세페이지의 치수표만으로는 내 체형에 맞는 사이즈와 여유도를 판단하기 어렵고, 이는 구매 망설임과 교환·반품으로 이어질 수 있다.',
+        '살미달라 브랜드를 직접 운영하며 사이즈 문의와 교환 요청을 현장에서 반복적으로 겪었다. 온라인 의류 구매자는 브랜드마다 다른 실측 기준과 착용감 차이 때문에 사이즈 선택에 불안을 느낀다. 상품 상세페이지의 치수표만으로는 내 체형에 맞는 사이즈와 여유도를 판단하기 어렵고, 이는 구매 망설임과 교환·반품으로 이어질 수 있다.',
       approach: [
         { num: '01', step: '입력 흐름 설계', desc: '상품 URL과 키·몸무게·평소 착용 사이즈 등 최소 입력만으로 추천을 시작하는 폼 구성' },
         { num: '02', step: '상품 정보 해석', desc: '상품 페이지의 사이즈 정보와 사용자의 신체 정보를 비교할 수 있도록 추천에 필요한 데이터 구조 정의' },
