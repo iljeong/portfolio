@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Nav from '../../components/Nav.astro';
+import Flow from '../../components/Flow.astro';
 import { projects } from '../../data/projects';
 import type { GetStaticPaths } from 'astro';
 
@@ -113,7 +114,18 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
         </ol>
       </section>
 
-
+      {project.content.flow && (
+        <>
+          <hr class="line" />
+          <section class="cs-sec">
+            <p class="label label--accent cs-sec-label">{project.content.flow.title}</p>
+            {project.content.flow.caption && (
+              <p class="cs-flow-caption">{project.content.flow.caption}</p>
+            )}
+            <Flow flow={project.content.flow} />
+          </section>
+        </>
+      )}
 
       {hasInsights ? (
         <>
@@ -391,6 +403,16 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
   .cs-sec { padding: 2.75rem 0; }
 
   .cs-sec-label { margin-bottom: 1.375rem; }
+
+  .cs-flow-caption {
+    font-size: var(--text-caption);
+    color: var(--ink-3);
+    line-height: 1.65;
+    margin: -0.5rem 0 1.375rem;
+    max-width: 620px;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
 
   /* Prose */
   .cs-prose {

@@ -16,6 +16,14 @@ export type Project = {
     insights?: { num: string; title: string; body: string }[];
     results: { label: string; desc: string }[];
     contribution: { role: string; scope: string; output: string };
+    flow?: {
+      title: string;
+      layout: 'chain' | 'roadmap';
+      tone?: 'negative' | 'process';
+      caption?: string;
+      steps: { label: string; desc?: string }[];
+      note?: string;
+    };
   };
   screenshots?: { src: string; caption?: string; url?: string; wide?: boolean; cols?: number }[];
 };
@@ -103,6 +111,19 @@ export const projects: Project[] = [
         { label: '개선안', desc: '고객센터·이용가이드 통합 페이지 재설계(A/B 테스트 제안) / 주차장 혼잡도 사전 예측·안내 / 과금 사전 경고 / 자동 문의 연결 — 4개 우선순위 방향 도출' },
         { label: '기대 효과', desc: '개선안 적용 시 기대 평균 평점 3.49 → 3.65, 1점 비율 31.4% → 27.5% (목표치) + 실시간 혼잡도 예측 대시보드 제안' },
       ],
+      flow: {
+        title: '실패 여정',
+        layout: 'chain',
+        tone: 'negative',
+        caption: '단일 기능 오류가 아니라 여정 전반에서 누적되는 연쇄 구조였다.',
+        steps: [
+          { label: '앱 오류' },
+          { label: '예약·반납 실패' },
+          { label: '시간 초과·과금' },
+          { label: '고객센터 지연' },
+          { label: '1점 리뷰' },
+        ],
+      },
       contribution: {
         role: '데이터 분석·여정 매핑 담당 (공개 리뷰 데이터 기반 4인 팀 프로젝트)',
         scope: '크롤링·전처리·감정분석·이슈 구조화·여정 맵 작성·개선안 설계 전 과정',
@@ -259,6 +280,20 @@ export const projects: Project[] = [
         { label: '생산성', desc: '29개 이상 피드 자동 생성 완료, 22개 브랜드 커버 (2026.03–05, 약 3개월)' },
         { label: '운영', desc: 'Google Sheets 대시보드로 39개 피드 전수 관리, 캡션 v4 전략 전면 적용' },
       ],
+      flow: {
+        title: '제작 파이프라인',
+        layout: 'chain',
+        tone: 'process',
+        caption: '조사부터 게시까지 4단계 + 단계마다 사람 검수 게이트.',
+        steps: [
+          { label: '자료조사', desc: '브랜드 리서치·이미지 수집' },
+          { label: '전략·카피', desc: '카피 생성·검수 기준' },
+          { label: 'Figma 적용', desc: 'MCP로 디자인 자동 반영' },
+          { label: 'QA', desc: 'fact_check 게이트' },
+          { label: '게시·동기화', desc: '@pullsize 게시·Sheets 연동' },
+        ],
+        note: '게시 후 회고를 다음 제작에 반영하는 반복 루프 ↺',
+      },
       contribution: {
         role: '콘텐츠 기획자 · 파이프라인 구조 설계자 (AI 실행 도구 활용, 1인 프로젝트)',
         scope: '파이프라인 구조 설계·AI 프롬프트 설계·QA 체계·SEO 전략 수립·Claude Code 기반 파이프라인 직접 구현',
@@ -310,6 +345,17 @@ export const projects: Project[] = [
         { label: '확장성', desc: '향후 브랜드별 실측 데이터, 후기 기반 핏 데이터, 개인 선호 핏을 반영할 수 있는 서비스 구조로 정리' },
         { label: '기술 구현', desc: 'Next.js 16 · React 19 · TypeScript · Tailwind 4 · Supabase · Gemini로 직접 구현, cheerio로 상품 페이지 실측 치수 파싱 — Claude Code 기반 프론트·백엔드 단독 개발·배포' },
       ],
+      flow: {
+        title: '서비스 플로우',
+        layout: 'roadmap',
+        caption: '사이즈명이 아니라 판단 근거까지 주는 4단계 추천 흐름.',
+        steps: [
+          { label: '정보 입력', desc: '키·몸무게·평소 사이즈 등 신체 정보와 상품 URL을 최소 입력으로 받는다.' },
+          { label: '데이터 추출', desc: 'cheerio로 상품 페이지의 실측 치수를 파싱하고 비교 가능한 기준으로 정규화한다.' },
+          { label: 'AI 추천', desc: '신체 정보와 상품 치수를 매칭해 사이즈 후보별 적합도·여유도를 산출한다.' },
+          { label: '근거 제시', desc: '추천 사이즈와 부위별 핏·여유도, 추천 이유를 한 화면에서 보여준다.' },
+        ],
+      },
       contribution: {
         role: '서비스 기획자 · UX 설계 (AI 도구 기반 직접 구현)',
         scope: '문제 정의·사용자 입력 플로우·추천 결과 UX·MVP 화면 설계·Claude Code 기반 프론트엔드·백엔드 직접 구현·서비스 배포',
