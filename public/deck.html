@@ -367,42 +367,6 @@ html:-webkit-full-screen .deck{box-shadow:none;}
   <div class="pgnum"></div>
 </div>
 
-<!-- ══ 3 · AGENDA ══════════════════════════════════════════ -->
-<div class="slide" id="s3">
-  <div class="sc" style="padding-top:56px;">
-    <!-- List (full width, top third — title anchors bottom) -->
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-start;gap:0;padding-top:72px;">
-      <div style="display:flex;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid var(--border);">
-        <div style="font-size:18px;font-weight:800;color:var(--blue);width:36px;">01</div>
-        <div style="font-size:19px;font-weight:700;color:var(--dark);">About Me</div>
-        <div style="font-size:14px;color:var(--muted);margin-left:auto;">소개 · 경력 · 학력</div>
-      </div>
-      <div style="display:flex;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid var(--border);">
-        <div style="font-size:18px;font-weight:800;color:var(--blue);width:36px;">02</div>
-        <div style="font-size:19px;font-weight:700;color:var(--dark);">Projects</div>
-        <div style="font-size:14px;color:var(--muted);margin-left:auto;">6개 프로젝트 — 브랜드·PM·콘텐츠·데이터·AI</div>
-      </div>
-      <div style="display:flex;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid var(--border);">
-        <div style="font-size:18px;font-weight:800;color:var(--blue);width:36px;">03</div>
-        <div style="font-size:19px;font-weight:700;color:var(--dark);">Core Skills</div>
-        <div style="font-size:14px;color:var(--muted);margin-left:auto;">기획 · 실행 · 데이터 역량</div>
-      </div>
-      <div style="display:flex;align-items:baseline;gap:20px;padding:14px 0;">
-        <div style="font-size:18px;font-weight:800;color:var(--blue);width:36px;">04</div>
-        <div style="font-size:19px;font-weight:700;color:var(--dark);">What I Bring</div>
-        <div style="font-size:14px;color:var(--muted);margin-left:auto;">정의 → 구조화 → 실행</div>
-      </div>
-    </div>
-    <!-- Heading (rule A — bottom-left) -->
-    <div>
-      <div style="font-size:72px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-2.5px;">Contents</div>
-      <div class="t-sub">목차</div>
-      <div class="divider-blue" style="margin:18px 0 0;"></div>
-    </div>
-  </div>
-  <div class="pgnum"></div>
-</div>
-
 <!-- ══ 4 · CAREER TIMELINE ════════════════════════════════ -->
 <div class="slide" id="s4">
   <div class="sc" style="padding-top:48px;flex-direction:row;gap:0;">
@@ -699,11 +663,11 @@ html:-webkit-full-screen .deck{box-shadow:none;}
               <div class="ct-note">4인 팀 프로젝트 · 분석·여정 매핑 담당</div>
             </div>
           </div>
-          <div class="pmethod">앱 리뷰 <b>37,923건</b> 분석 · KoELECTRA 감정분류 · SHAP으로 부정 키워드 도출</div>
+          <div class="pmethod">앱 리뷰 <b>37,923건</b> 분석 · KoELECTRA 감정분류(정확도 0.976) · SHAP으로 부정 키워드 도출</div>
           <div class="pwin">
             <div class="pwin-label">성과</div>
             <div class="pwin-item"><span><b>4개 불만이 독립이 아닌 ‘연쇄 구조’</b>임을 입증 — 앱 UX를 고치면 예약·반납·페널티·CS 불만이 함께 줄어듦</span></div>
-            <div class="pwin-item"><span><b>반납·예약 부정 92.86%</b>로 가장 심각 (경쟁사 대비 1점 비율 17%p↑) → 개선 우선순위 1순위로 제안</span></div>
+            <div class="pwin-item"><span><b>반납·예약 부정 92.86%</b>로 가장 심각 (경쟁사 대비 1점 비율 7.5%p↑ · 31.4% vs 23.9% · p&lt;0.05) → 개선 우선순위 1순위로 제안</span></div>
           </div>
           <div style="display:flex;gap:7px;flex-wrap:wrap;">
             <span class="pill">Python</span>
@@ -713,6 +677,11 @@ html:-webkit-full-screen .deck{box-shadow:none;}
           </div>
         </div>
         <div class="pframe"><img src="/portfolio/images/gcar-voc/slide_tmp_8-08.png" alt="앱 평점 비교 분석"></div>
+      </div>
+      <!-- Chain bar (climax — 연쇄 구조 시각화) -->
+      <div style="display:flex;align-items:center;gap:12px;background:var(--blue);color:#fff;border-radius:7px;padding:9px 16px;margin-top:13px;">
+        <span style="font-size:11px;font-weight:800;letter-spacing:0.04em;opacity:.85;white-space:nowrap;">연쇄 구조</span>
+        <span style="font-size:12.5px;font-weight:600;letter-spacing:0.2px;">앱 오류&nbsp;→&nbsp;예약·반납 실패&nbsp;→&nbsp;시간 초과·페널티&nbsp;→&nbsp;고객센터 지연&nbsp;→&nbsp;1점 리뷰</span>
       </div>
     </div>
     <!-- Right label -->
@@ -731,186 +700,21 @@ html:-webkit-full-screen .deck{box-shadow:none;}
   <div class="pgnum"></div>
 </div>
 
-<!-- ══ 9b · GCAR VOC PROCESS (분석 흐름 & 개선 방향) ═══════════ -->
-<div class="slide" id="s9b">
-  <div class="sc" style="padding-top:52px;">
-    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;">
-      <div style="font-size:30px;font-weight:800;color:var(--dark);letter-spacing:-0.5px;">Gcar VoC — 분석 흐름 &amp; 개선 방향</div>
-      <div style="font-size:14px;color:var(--muted);">Project 04 · 리뷰 데이터에서 구조적 문제까지</div>
-    </div>
-    <div class="divider" style="margin:14px 0 0;"></div>
-
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px;">
-      <!-- Framing -->
-      <div style="display:flex;justify-content:center;">
-        <div style="border:1.5px solid var(--blue);border-radius:8px;padding:10px 26px;text-align:center;background:#fff;">
-          <div style="font-size:15px;font-weight:700;color:var(--blue);">단순 불만 나열이 아닌 고객 여정 단위 분석</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:3px;">이슈를 기능이 아니라 사용자가 막히는 단계로 재배치</div>
-        </div>
-      </div>
-
-      <!-- 4 phases -->
-      <div style="display:flex;align-items:stretch;justify-content:center;">
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P01</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">데이터 수집</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">Gcar·Socar 리뷰<br>37,923건 전처리</div>
-        </div>
-        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P02</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">감정·이슈 분석</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">KoELECTRA·SHAP<br>4개 이슈 분류</div>
-        </div>
-        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P03</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">구조 진단</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">시계열 추세 검정<br>연쇄 불만 구조 도출</div>
-        </div>
-        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--blue);border-radius:8px;padding:14px 12px;text-align:center;background:var(--bg);">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P04</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">개선 방향</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">앱 UX 개선이<br>하류 불만 해소 출발점</div>
-        </div>
-      </div>
-
-      <!-- key figures -->
-      <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
-        <span class="flowchip">평점 3.49 vs 경쟁 3.73</span>
-        <span class="flowchip">1점 비율 31.4% vs 23.9%</span>
-        <span class="flowchip">반납·예약 부정 92.86%</span>
-      </div>
-    </div>
-
-    <!-- Chain bar (climax) -->
-    <div style="background:var(--blue);color:#fff;border-radius:8px;padding:13px 20px;text-align:center;font-size:14px;font-weight:600;letter-spacing:0.2px;margin-top:6px;">
-      앱 오류&nbsp;→&nbsp;예약·반납 실패&nbsp;→&nbsp;시간 초과·페널티&nbsp;→&nbsp;고객센터 지연&nbsp;→&nbsp;1점 리뷰
-    </div>
-  </div>
-  <div class="pgnum"></div>
-</div>
-
-<!-- ══ 10 · PROJECT 05 · 콘텐츠 제작 자동화 (label left) ═════ -->
+<!-- ══ 10 · PROJECT 05 · PULLSIZE (label left) ═════════════ -->
 <div class="slide" id="s10">
-  <div class="sc" style="padding-top:52px;flex-direction:row;gap:28px;">
+  <div class="sc" style="padding-top:52px;flex-direction:row;gap:28px;align-items:stretch;">
     <!-- Left label -->
     <div style="flex:0 0 172px;display:flex;flex-direction:column;gap:1.5rem;padding-top:8px;">
       <div>
         <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
         <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">05</div>
-        <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">콘텐츠 제작 자동화</div>
+        <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">AI 서비스 기획</div>
       </div>
       <div>
-        <div style="font-size:12px;color:var(--muted);font-weight:500;">2026.03 — 2026.05</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:3px;">사이드 · 1인 프로젝트</div>
+        <div style="font-size:12px;color:var(--muted);font-weight:500;">2026.03 — 현재</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px;">사이드 · AI 서비스 기획</div>
       </div>
     </div>
-    <!-- Content -->
-    <div style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;">
-      <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
-        <div style="font-size:30px;font-weight:800;color:var(--dark);letter-spacing:-0.5px;">콘텐츠 제작 프로세스 자동화</div>
-        <div style="font-size:15px;color:var(--muted);">브랜드 피드마다 조사·카피·Figma·검수가 반복돼 3시간씩 들던 작업</div>
-      </div>
-      <div class="divider" style="margin:14px 0 0;"></div>
-      <div class="pbody">
-        <div class="pframe"><img src="/portfolio/images/ai-content-automation/figma-overview.png" alt="Figma 작업 전체 현황 — 29개+ 피드"></div>
-        <div class="ptext">
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
-            <div class="pill">역할</div>
-            <div style="font-size:14px;color:var(--body);line-height:1.6;">작업 순서 설계 · 프롬프트 정리 · Figma MCP 연동 · QA 기준 작성 · 직접 구현</div>
-          </div>
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:center;">
-            <div class="pill">기여</div>
-            <div class="contrib">
-              <div class="ct-row"><span class="ct-name">전 과정</span><span class="ct-track"><i style="width:100%"></i></span><span class="ct-pct">100%</span></div>
-              <div class="ct-note">1인 프로젝트</div>
-            </div>
-          </div>
-          <div class="pmethod">조사→카피→Figma 반영→QA→게시 <b>5단계 파이프라인</b> 설계·구현 (흐름 상세는 다음 장)</div>
-          <div class="pwin">
-            <div class="pwin-label">성과</div>
-            <div class="pwin-item"><span>제작 시간 <b>브랜드당 3h → 30m (83%↓)</b> — 작업자마다 다르던 흐름을 문서화·표준화</span></div>
-            <div class="pwin-item"><span>22개 브랜드 · 누적 <b>29개+ 피드</b> 생성, 사람이 검수 가능한 흐름 유지</span></div>
-          </div>
-          <div style="display:flex;gap:7px;flex-wrap:wrap;">
-            <span class="pill">Claude AI</span>
-            <span class="pill">Figma MCP</span>
-            <span class="pill">Python</span>
-            <span class="pill">자동화</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="pgnum"></div>
-</div>
-
-<!-- ══ 11 · SYSTEM ARCHITECTURE (AI 자동화) ═══════════════ -->
-<div class="slide" id="s11">
-  <div class="sc" style="padding-top:52px;">
-    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;">
-      <div style="font-size:30px;font-weight:800;color:var(--dark);letter-spacing:-0.5px;">콘텐츠 자동화 — 작업 흐름</div>
-      <div style="font-size:14px;color:var(--muted);">Project 05 · 조사부터 게시까지</div>
-    </div>
-    <div class="divider" style="margin:14px 0 0;"></div>
-
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px;">
-      <!-- Orchestrator -->
-      <div style="display:flex;justify-content:center;">
-        <div style="border:1.5px solid var(--blue);border-radius:8px;padding:10px 26px;text-align:center;background:#fff;">
-          <div style="font-size:15px;font-weight:700;color:var(--blue);">Claude Code 기반 작업 흐름</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:3px;">조사·카피·디자인 반영 단계마다 사람 검수 게이트를 둠</div>
-        </div>
-      </div>
-
-      <!-- 4 phases -->
-      <div style="display:flex;align-items:stretch;justify-content:center;">
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P01</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">자료조사</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">브랜드 리서치<br>이미지·자료 수집</div>
-        </div>
-        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P02</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">전략·카피</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">카피 생성<br>검수 기준 확인</div>
-        </div>
-        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P03</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">디자인 적용</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">Figma MCP<br>13종 템플릿</div>
-        </div>
-        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--blue);border-radius:8px;padding:14px 12px;text-align:center;background:var(--bg);">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P04</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">게시·동기화</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">@pullsize.official 게시<br>Sheets 동기화</div>
-        </div>
-      </div>
-
-      <!-- outputs -->
-      <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
-        <span class="flowchip">누적 29개+ 피드</span>
-        <span class="flowchip">제작 시간 83%↓</span>
-        <span class="flowchip">회고 내용 다음 제작에 반영</span>
-      </div>
-    </div>
-
-    <!-- Loop bar -->
-    <div style="background:var(--blue);color:#fff;border-radius:8px;padding:13px 20px;text-align:center;font-size:14px;font-weight:600;letter-spacing:0.2px;margin-top:6px;">
-      Instagram&nbsp;→&nbsp;블로그 유입&nbsp;→&nbsp;AI 사이즈 추천&nbsp;→&nbsp;구매 판단 보조&nbsp;→&nbsp;콘텐츠 개선&nbsp;&nbsp;↺
-    </div>
-  </div>
-  <div class="pgnum"></div>
-</div>
-
-<!-- ══ 12 · PROJECT 06 · PULLSIZE (label right) ════════════ -->
-<div class="slide" id="s12">
-  <div class="sc" style="padding-top:52px;flex-direction:row;gap:28px;align-items:stretch;">
     <!-- Content -->
     <div style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;">
       <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
@@ -950,78 +754,60 @@ html:-webkit-full-screen .deck{box-shadow:none;}
         </div>
       </div>
     </div>
+  </div>
+  <div class="pgnum"></div>
+</div>
+
+<!-- ══ 12 · PROJECT 06 · 콘텐츠 제작 자동화 (label right) ════ -->
+<div class="slide" id="s12">
+  <div class="sc" style="padding-top:52px;flex-direction:row;gap:28px;align-items:stretch;">
+    <!-- Content -->
+    <div style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;">
+      <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+        <div style="font-size:30px;font-weight:800;color:var(--dark);letter-spacing:-0.5px;">콘텐츠 제작 프로세스 자동화</div>
+        <div style="font-size:15px;color:var(--muted);">브랜드 피드마다 조사·카피·Figma·검수가 반복돼 3시간씩 들던 작업</div>
+      </div>
+      <div class="divider" style="margin:14px 0 0;"></div>
+      <div class="pbody">
+        <div class="ptext">
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start;">
+            <div class="pill">역할</div>
+            <div style="font-size:14px;color:var(--body);line-height:1.6;">작업 순서 설계 · 프롬프트 정리 · Figma MCP 연동 · QA 기준 작성 · 직접 구현</div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:center;">
+            <div class="pill">기여</div>
+            <div class="contrib">
+              <div class="ct-row"><span class="ct-name">전 과정</span><span class="ct-track"><i style="width:100%"></i></span><span class="ct-pct">100%</span></div>
+              <div class="ct-note">1인 프로젝트</div>
+            </div>
+          </div>
+          <div class="pmethod">조사→카피→Figma 반영→QA→게시 <b>5단계 파이프라인</b> 설계·구현 · 단계마다 사람 검수 게이트</div>
+          <div class="pwin">
+            <div class="pwin-label">성과</div>
+            <div class="pwin-item"><span>제작 시간 <b>브랜드당 3h → 30m (83%↓)</b> — 작업자마다 다르던 흐름을 문서화·표준화</span></div>
+            <div class="pwin-item"><span>22개 브랜드 · 누적 <b>29개+ 피드</b> 생성, 사람이 검수 가능한 흐름 유지</span></div>
+          </div>
+          <div style="display:flex;gap:7px;flex-wrap:wrap;">
+            <span class="pill">Claude AI</span>
+            <span class="pill">Figma MCP</span>
+            <span class="pill">Python</span>
+            <span class="pill">자동화</span>
+          </div>
+        </div>
+        <div class="pframe"><img src="/portfolio/images/ai-content-automation/figma-overview.png" alt="Figma 작업 전체 현황 — 29개+ 피드"></div>
+      </div>
+    </div>
     <!-- Right label -->
     <div style="flex:0 0 172px;display:flex;flex-direction:column;align-items:flex-end;gap:1.5rem;padding-top:8px;">
       <div style="text-align:right;">
         <div style="font-size:46px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-1px;">Project</div>
         <div style="font-size:80px;font-weight:800;color:var(--blue);line-height:1.0;letter-spacing:-3px;">06</div>
-        <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">AI 서비스 기획</div>
+        <div style="font-size:18px;font-weight:500;color:var(--blue);margin-top:6px;">콘텐츠 제작 자동화</div>
       </div>
       <div style="text-align:right;">
-        <div style="font-size:12px;color:var(--muted);font-weight:500;">2026.03 — 현재</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:3px;">사이드 · AI 서비스 기획</div>
+        <div style="font-size:12px;color:var(--muted);font-weight:500;">2026.03 — 2026.05</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px;">사이드 · 1인 프로젝트</div>
       </div>
-    </div>
-  </div>
-  <div class="pgnum"></div>
-</div>
-
-<!-- ══ 12b · PULLSIZE PROCESS (서비스 설계 흐름) ═══════════════ -->
-<div class="slide" id="s12b">
-  <div class="sc" style="padding-top:52px;">
-    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;">
-      <div style="font-size:30px;font-weight:800;color:var(--dark);letter-spacing:-0.5px;">Pullsize — 서비스 설계 흐름</div>
-      <div style="font-size:14px;color:var(--muted);">Project 06 · 입력부터 추천 근거까지</div>
-    </div>
-    <div class="divider" style="margin:14px 0 0;"></div>
-
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px;">
-      <!-- Framing -->
-      <div style="display:flex;justify-content:center;">
-        <div style="border:1.5px solid var(--blue);border-radius:8px;padding:10px 26px;text-align:center;background:#fff;">
-          <div style="font-size:15px;font-weight:700;color:var(--blue);">사이즈명이 아니라 ‘판단 근거’를 주는 추천</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:3px;">결과값 하나가 아니라 구매를 결정하는 과정으로 설계</div>
-        </div>
-      </div>
-
-      <!-- 4 phases -->
-      <div style="display:flex;align-items:stretch;justify-content:center;">
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P01</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">정보 입력</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">신체 정보<br>+ 상품 URL</div>
-        </div>
-        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P02</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">데이터 추출</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">상품 실측 치수 파싱<br>기준 정규화</div>
-        </div>
-        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;background:#fff;">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P03</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">AI 추천</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">체형 매칭<br>사이즈·여유도 산출</div>
-        </div>
-        <div style="display:flex;align-items:center;color:var(--blue);font-size:20px;font-weight:700;padding:0 10px;">→</div>
-        <div style="flex:1;max-width:206px;border:1.5px solid var(--blue);border-radius:8px;padding:14px 12px;text-align:center;background:var(--bg);">
-          <div style="font-size:11px;font-weight:800;color:var(--blue);letter-spacing:0.06em;">P04</div>
-          <div style="font-size:15px;font-weight:700;color:var(--dark);margin-top:5px;">근거 제시</div>
-          <div style="font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;">부위별 여유<br>추천 이유 설명</div>
-        </div>
-      </div>
-
-      <!-- key figures -->
-      <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
-        <span class="flowchip">실서비스 배포 · pullsize.kr</span>
-        <span class="flowchip">4단계 추천 플로우</span>
-        <span class="flowchip">추천 근거 함께 제시</span>
-      </div>
-    </div>
-
-    <!-- Principle bar -->
-    <div style="background:var(--blue);color:#fff;border-radius:8px;padding:13px 20px;text-align:center;font-size:14px;font-weight:600;letter-spacing:0.2px;margin-top:6px;">
-      사이즈명만 제시&nbsp;✕&nbsp;&nbsp;→&nbsp;&nbsp;여유도 + 추천 이유까지 제시&nbsp;✓&nbsp;&nbsp;—&nbsp;구매 판단을 돕는 추천
     </div>
   </div>
   <div class="pgnum"></div>
@@ -1089,6 +875,11 @@ html:-webkit-full-screen .deck{box-shadow:none;}
       <span style="font-size:13px;font-weight:600;color:var(--dark);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 16px;">정성·정량을 함께 읽는 기획</span>
       <span style="font-size:13px;font-weight:600;color:var(--dark);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 16px;">기획 → 실행 → 개선 전 과정</span>
       <span style="font-size:13px;font-weight:600;color:var(--dark);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 16px;">직접 만들고 검증</span>
+    </div>
+    <!-- Tools & certifications -->
+    <div style="display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:22px;font-size:11.5px;color:var(--muted);">
+      <span><b style="color:var(--dark);font-weight:700;">툴</b>&nbsp;&nbsp;Python · SQL · Figma · Notion · Premiere Pro · Photoshop · InDesign</span>
+      <span><b style="color:var(--dark);font-weight:700;">자격증</b>&nbsp;&nbsp;OPIc IH · GTQ 그래픽기술자격 1급</span>
     </div>
   </div>
   <div class="pgnum"></div>
@@ -1161,7 +952,7 @@ html:-webkit-full-screen .deck{box-shadow:none;}
 </div><!-- /viewport -->
 
 <script>
-const TOTAL = 17;
+const TOTAL = 13;
 let cur = 1;
 const vp = document.getElementById('viewport');
 const frame = document.getElementById('deck-frame');
@@ -1174,18 +965,14 @@ const slideListItems = document.getElementById('slide-list-items');
 const slideTitles = [
   'Portfolio',
   'About Me',
-  'Contents',
   'Career Timeline',
   'Education & Training',
   '살미달라 패션 브랜드 운영',
   '아른 사이 프로젝트 매니징',
   '패스트캠퍼스 교육 상품 기획',
   'Gcar VoC 분석',
-  'Gcar VoC — 분석 흐름 & 개선 방향',
-  '콘텐츠 제작 프로세스 자동화',
-  '콘텐츠 자동화 작업 흐름',
   'Pullsize — 의류 사이즈 추천 AI',
-  'Pullsize — 서비스 설계 흐름',
+  '콘텐츠 제작 프로세스 자동화',
   'Core Skills',
   'What I Bring',
   'Thank you'
