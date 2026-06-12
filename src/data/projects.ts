@@ -35,6 +35,7 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+
   {
     slug: 'fastcampus',
     name: '패스트캠퍼스 교육 상품 기획',
@@ -160,6 +161,136 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: 'pullsize',
+    name: 'Pullsize',
+    title: '신체 정보와 상품 URL로 의류 사이즈를 추천하는 서비스를 만들었다',
+    subtitle: '온라인 쇼핑 사이즈 불안을 줄이는 AI 추천 MVP',
+    period: '2026.03 — 현재',
+    category: 'AI 서비스 기획 · MVP',
+    tags: ['AI 서비스', 'MVP', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계', 'Next.js', 'Supabase', 'Gemini'],
+    isMain: true,
+    highlight: '사이즈 불안을 추천 근거로 해소',
+    links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
+    content: {
+      problem:
+        '살미달라 브랜드를 직접 운영하며 사이즈 문의와 교환 요청을 현장에서 반복적으로 겪었다. 온라인 의류 구매자는 브랜드마다 다른 실측 기준과 착용감 차이 때문에 사이즈 선택에 불안을 느낀다. 상품 상세페이지의 치수표만으로는 내 체형에 맞는 사이즈와 여유도를 판단하기 어렵고, 이는 구매 망설임과 교환·반품으로 이어질 수 있다.',
+      approach: [
+        { num: '01', step: '입력 흐름 설계', desc: '상품 URL과 키·몸무게·평소 착용 사이즈 등 최소 입력만으로 추천을 시작하는 폼 구성' },
+        { num: '02', step: '상품 정보 해석', desc: '상품 페이지의 사이즈 정보와 사용자의 신체 정보를 비교할 수 있도록 추천에 필요한 데이터 구조 정의' },
+        { num: '03', step: '추천 로직 설계', desc: '사이즈 후보별 적합도와 여유도를 계산해 추천 사이즈와 판단 근거를 함께 제공하는 흐름 설계' },
+        { num: '04', step: '결과 UI 구현', desc: '추천 사이즈, 여유도, 신체 부위별 핏 정보를 한 화면에서 이해할 수 있도록 시각화' },
+        { num: '05', step: 'MVP 검증', desc: '실제 쇼핑 상황에서 사용자가 입력 → 추천 → 판단까지 이어질 수 있는 최소 기능 제품으로 구현' },
+      ],
+      insights: [
+        { num: '01', title: '문제는 사이즈표가 없는 게 아니라 연결 기준이 없는 것이다', body: '대부분의 쇼핑몰이 사이즈표를 제공하지만, 내 치수와 상품 치수를 연결하는 방법이 없어 사용자는 여전히 불확실함을 느꼈다.' },
+        { num: '02', title: '추천 신뢰도의 핵심은 결과가 아니라 근거다', body: '"그냥 M 추천"보다 "어깨 너비 기준으로 M을 추천하는 이유"가 있을 때 구매 결정이 빨라졌다. 설명 가능한 추천 구조가 필요했다.' },
+        { num: '03', title: 'MVP는 기능 수보다 흐름의 완결성이다', body: '사이즈 입력 → 상품 분석 → 추천 결과 → 근거 제시의 4단계 흐름이 끊기지 않아야 신뢰가 생긴다. 기능 수보다 흐름 완결을 우선했다.' },
+      ],
+      results: [
+        { label: 'MVP', desc: '상품 URL 입력, 신체 정보 입력, AI 사이즈 추천 결과까지 이어지는 핵심 사용자 플로우 구현' },
+        { label: 'UX', desc: '단순 사이즈명 추천이 아니라 여유도와 판단 근거를 함께 보여줘 사용자가 추천을 납득할 수 있도록 설계' },
+        { label: '확장성', desc: '향후 브랜드별 실측 데이터, 후기 기반 핏 데이터, 개인 선호 핏을 반영할 수 있는 서비스 구조로 정리' },
+        { label: '기술 구현', desc: 'Next.js 16 · React 19 · TypeScript · Tailwind 4 · Supabase · Gemini로 직접 구현, cheerio로 상품 페이지 실측 치수 파싱 — Claude Code 기반 프론트·백엔드 단독 개발·배포' },
+      ],
+      flow: {
+        title: '서비스 플로우',
+        layout: 'roadmap',
+        caption: '사이즈명이 아니라 판단 근거까지 주는 4단계 추천 흐름.',
+        steps: [
+          { label: '정보 입력', desc: '키·몸무게·평소 사이즈 등 신체 정보와 상품 URL을 최소 입력으로 받는다.' },
+          { label: '데이터 추출', desc: 'cheerio로 상품 페이지의 실측 치수를 파싱하고 비교 가능한 기준으로 정규화한다.' },
+          { label: 'AI 추천', desc: '신체 정보와 상품 치수를 매칭해 사이즈 후보별 적합도·여유도를 산출한다.' },
+          { label: '근거 제시', desc: '추천 사이즈와 부위별 핏·여유도, 추천 이유를 한 화면에서 보여준다.' },
+        ],
+      },
+      architecture: {
+        title: '서비스 구조',
+        caption: 'Claude Code로 프론트·백엔드를 직접 구현하고 Vercel에 배포한 풀스택 구조.',
+        layers: [
+          { name: '빌드 · 배포', items: ['Claude Code 직접 구현', 'GitHub Actions CI/CD', 'Vercel'] },
+          { name: '프론트엔드', items: ['Next.js 16 / React 19', '추천', '블로그', '어드민'] },
+          { name: 'API', items: ['Vercel Functions', '추천', '이미지 기반 추천', '피드백', '제휴 리다이렉트', '블로그', '어드민'] },
+          { name: '데이터 · AI', items: ['Supabase', 'Gemini 사이즈 추천', 'cheerio 치수 파싱'] },
+          { name: '측정 · 전환', items: ['제휴 → 구매 전환', 'GA 분석'] },
+        ],
+        loop: '인스타(@pullsize) → 블로그 유입 → AI 사이즈 추천 → 구매 전환 → 콘텐츠 재생산 ↺',
+      },
+      contribution: {
+        role: '서비스 기획자 · UX 설계 (AI 도구 기반 직접 구현)',
+        scope: '문제 정의·사용자 입력 플로우·추천 결과 UX·MVP 화면 설계·Claude Code 기반 프론트엔드·백엔드 직접 구현·서비스 배포',
+        output: '실서비스 배포 (pullsize.kr), AI 추천 결과 화면, 메인 입력 화면',
+      },
+    },
+    screenshots: [
+      { src: '/images/pullsize/service-main.png', caption: '서비스 메인 화면 — 상품 URL 입력 및 신체 정보 입력 UI' },
+      { src: '/images/pullsize/service-result.png', caption: '추천 결과 화면 — AI 사이즈 추천 및 여유도 시각화' },
+    ],
+  },
+
+  {
+    slug: 'ai-content-automation',
+    name: 'AI 콘텐츠 생성 자동화',
+    title: 'AI 파이프라인으로 콘텐츠 제작 시간을 83% 단축했다',
+    subtitle: 'Claude AI + Figma MCP 연동 → 29개 피드 자동 생성',
+    period: '2026.03 — 2026.05',
+    category: 'AI 자동화 · 콘텐츠 기획',
+    tags: ['Claude AI', 'Figma MCP', 'Python', 'Google Sheets', '자동화', '콘텐츠 기획'],
+    isMain: true,
+    highlight: '3시간 → 30분',
+    content: {
+      problem:
+        '패션 브랜드 인스타그램 피드를 자료조사 → 전략 수립 → 카피 작성 → 디자인 적용 순서로 수작업 시 브랜드당 평균 3시간 이상 소요됐다. 품질 일관성도 담당자에 따라 편차가 컸다.',
+      approach: [
+        { num: '01', step: '파이프라인 설계', desc: '자료조사 → 전략 → 카피 생성 → 디자인 자동 적용 4단계 구성. 각 단계 입출력 스펙 정의' },
+        { num: '02', step: 'AI 연동', desc: '브랜드 분석 기준·카피 포맷 설계 후 Claude AI로 실행, Figma MCP로 디자인 자동 반영 (수동 Figma 작업 제거)' },
+        { num: '03', step: '품질 게이트', desc: 'fact_check·QA 체크리스트 자동화로 게시 전 오류 검증 (인물 권리·브랜드 정보 정확도 포함)' },
+        { num: '04', step: '대시보드 구축', desc: 'Google Sheets로 39개 피드 진행 현황·캡션·발행 상태 통합 관리' },
+        { num: '05', step: 'SEO 전략', desc: '캡션 v4 포맷 + 3-Tier 해시태그 전략 설계·적용 (발행 피드 전수 적용 완료)' },
+      ],
+      insights: [
+        { num: '01', title: '병목은 이미지 선정이 아니라 브랜드별 규칙 재설계의 반복이었다', body: '매 피드마다 브랜드 톤·캡션 포맷·이미지 크롭 기준을 처음부터 결정하는 것이 진짜 시간 낭비였다. 기준을 한 번 설계하면 AI가 반복할 수 있다.' },
+        { num: '02', title: 'AI 실행 전에 인간의 설계 레이어가 있어야 품질이 안정된다', body: 'Claude API에 그냥 위임하면 결과가 들쑥날쑥하다. 브랜드 분석 기준·캡션 구조·출력 포맷을 먼저 설계한 뒤 AI를 실행했을 때 일관성이 생겼다.' },
+        { num: '03', title: '자동화의 진짜 효과는 속도보다 담당자 의존도 제거다', body: '3시간 → 30분 단축보다 중요한 건, 누가 하더라도 같은 품질이 나온다는 것. 이 프로젝트의 목표는 속도가 아니라 재현 가능한 프로세스 설계였다.' },
+      ],
+      results: [
+        { label: '시간 절감', desc: '브랜드당 평균 제작 시간 3시간 → 30분 이내, 약 83% 단축 (29개 브랜드 평균 기준)' },
+        { label: '생산성', desc: '29개 이상 피드 자동 생성 완료, 22개 브랜드 커버 (2026.03–05, 약 3개월)' },
+        { label: '운영', desc: 'Google Sheets 대시보드로 39개 피드 전수 관리, 캡션 v4 전략 전면 적용' },
+      ],
+      flow: {
+        title: '제작 파이프라인',
+        layout: 'chain',
+        tone: 'process',
+        caption: '조사부터 게시까지 4단계 + 단계마다 사람 검수 게이트.',
+        steps: [
+          { label: '자료조사', desc: '브랜드 리서치·이미지 수집' },
+          { label: '전략·카피', desc: '카피 생성·검수 기준' },
+          { label: 'Figma 적용', desc: 'MCP로 디자인 자동 반영' },
+          { label: 'QA', desc: 'fact_check 게이트' },
+          { label: '게시·동기화', desc: '@pullsize 게시·Sheets 연동' },
+        ],
+        note: '게시 후 회고를 다음 제작에 반영하는 반복 루프 ↺',
+      },
+      contribution: {
+        role: '콘텐츠 기획자 · 파이프라인 구조 설계자 (AI 실행 도구 활용, 1인 프로젝트)',
+        scope: '파이프라인 구조 설계·AI 프롬프트 설계·QA 체계·SEO 전략 수립·Claude Code 기반 파이프라인 직접 구현',
+        output: '29개+ 피드 자동 생성 파이프라인, 캡션 v4 전략 문서, 운영 대시보드',
+      },
+    },
+    screenshots: [
+      {
+        src: '/images/ai-content-automation/instagram-feed.webp',
+        caption: '실제 게시된 인스타그램 피드 — AI가 생성한 카드뉴스가 @pullsize.official 계정에 발행된 결과물',
+        wide: true,
+      },
+      {
+        src: '/images/ai-content-automation/figma-overview.webp',
+        caption: 'Figma 작업 전체 현황 — 스트릿·컨템포러리·캐주얼 3개 카테고리, 29개+ 브랜드 피드를 AI 파이프라인으로 자동 생성한 결과물',
+        wide: true,
+      },
+    ],
+  },
+  {
     slug: 'salmidalla',
     name: '살미달라',
     title: '패션 브랜드를 창업하고 3시즌을 출시했다',
@@ -255,134 +386,4 @@ export const projects: Project[] = [
       { src: '/images/areun-sai/question-board.webp',         caption: '콘텐츠 질문 보드 — 인터뷰 주제와 독자 반응을 수집해 출판 콘텐츠로 확장' },
       { src: '/images/areun-sai/fulfillment-packaging.webp', caption: '리워드 포장·배송 준비 — 펀딩 이후 실물 제작과 발송 운영' },
     ],
-  },
-  {
-    slug: 'ai-content-automation',
-    name: 'AI 콘텐츠 생성 자동화',
-    title: 'AI 파이프라인으로 콘텐츠 제작 시간을 83% 단축했다',
-    subtitle: 'Claude AI + Figma MCP 연동 → 29개 피드 자동 생성',
-    period: '2026.03 — 2026.05',
-    category: 'AI 자동화 · 콘텐츠 기획',
-    tags: ['Claude AI', 'Figma MCP', 'Python', 'Google Sheets', '자동화', '콘텐츠 기획'],
-    isMain: true,
-    highlight: '3시간 → 30분',
-    content: {
-      problem:
-        '패션 브랜드 인스타그램 피드를 자료조사 → 전략 수립 → 카피 작성 → 디자인 적용 순서로 수작업 시 브랜드당 평균 3시간 이상 소요됐다. 품질 일관성도 담당자에 따라 편차가 컸다.',
-      approach: [
-        { num: '01', step: '파이프라인 설계', desc: '자료조사 → 전략 → 카피 생성 → 디자인 자동 적용 4단계 구성. 각 단계 입출력 스펙 정의' },
-        { num: '02', step: 'AI 연동', desc: '브랜드 분석 기준·카피 포맷 설계 후 Claude AI로 실행, Figma MCP로 디자인 자동 반영 (수동 Figma 작업 제거)' },
-        { num: '03', step: '품질 게이트', desc: 'fact_check·QA 체크리스트 자동화로 게시 전 오류 검증 (인물 권리·브랜드 정보 정확도 포함)' },
-        { num: '04', step: '대시보드 구축', desc: 'Google Sheets로 39개 피드 진행 현황·캡션·발행 상태 통합 관리' },
-        { num: '05', step: 'SEO 전략', desc: '캡션 v4 포맷 + 3-Tier 해시태그 전략 설계·적용 (발행 피드 전수 적용 완료)' },
-      ],
-      insights: [
-        { num: '01', title: '병목은 이미지 선정이 아니라 브랜드별 규칙 재설계의 반복이었다', body: '매 피드마다 브랜드 톤·캡션 포맷·이미지 크롭 기준을 처음부터 결정하는 것이 진짜 시간 낭비였다. 기준을 한 번 설계하면 AI가 반복할 수 있다.' },
-        { num: '02', title: 'AI 실행 전에 인간의 설계 레이어가 있어야 품질이 안정된다', body: 'Claude API에 그냥 위임하면 결과가 들쑥날쑥하다. 브랜드 분석 기준·캡션 구조·출력 포맷을 먼저 설계한 뒤 AI를 실행했을 때 일관성이 생겼다.' },
-        { num: '03', title: '자동화의 진짜 효과는 속도보다 담당자 의존도 제거다', body: '3시간 → 30분 단축보다 중요한 건, 누가 하더라도 같은 품질이 나온다는 것. 이 프로젝트의 목표는 속도가 아니라 재현 가능한 프로세스 설계였다.' },
-      ],
-      results: [
-        { label: '시간 절감', desc: '브랜드당 평균 제작 시간 3시간 → 30분 이내, 약 83% 단축 (29개 브랜드 평균 기준)' },
-        { label: '생산성', desc: '29개 이상 피드 자동 생성 완료, 22개 브랜드 커버 (2026.03–05, 약 3개월)' },
-        { label: '운영', desc: 'Google Sheets 대시보드로 39개 피드 전수 관리, 캡션 v4 전략 전면 적용' },
-      ],
-      flow: {
-        title: '제작 파이프라인',
-        layout: 'chain',
-        tone: 'process',
-        caption: '조사부터 게시까지 4단계 + 단계마다 사람 검수 게이트.',
-        steps: [
-          { label: '자료조사', desc: '브랜드 리서치·이미지 수집' },
-          { label: '전략·카피', desc: '카피 생성·검수 기준' },
-          { label: 'Figma 적용', desc: 'MCP로 디자인 자동 반영' },
-          { label: 'QA', desc: 'fact_check 게이트' },
-          { label: '게시·동기화', desc: '@pullsize 게시·Sheets 연동' },
-        ],
-        note: '게시 후 회고를 다음 제작에 반영하는 반복 루프 ↺',
-      },
-      contribution: {
-        role: '콘텐츠 기획자 · 파이프라인 구조 설계자 (AI 실행 도구 활용, 1인 프로젝트)',
-        scope: '파이프라인 구조 설계·AI 프롬프트 설계·QA 체계·SEO 전략 수립·Claude Code 기반 파이프라인 직접 구현',
-        output: '29개+ 피드 자동 생성 파이프라인, 캡션 v4 전략 문서, 운영 대시보드',
-      },
-    },
-    screenshots: [
-      {
-        src: '/images/ai-content-automation/instagram-feed.webp',
-        caption: '실제 게시된 인스타그램 피드 — AI가 생성한 카드뉴스가 @pullsize.official 계정에 발행된 결과물',
-        wide: true,
-      },
-      {
-        src: '/images/ai-content-automation/figma-overview.webp',
-        caption: 'Figma 작업 전체 현황 — 스트릿·컨템포러리·캐주얼 3개 카테고리, 29개+ 브랜드 피드를 AI 파이프라인으로 자동 생성한 결과물',
-        wide: true,
-      },
-    ],
-  },
-  {
-    slug: 'pullsize',
-    name: 'Pullsize',
-    title: '신체 정보와 상품 URL로 의류 사이즈를 추천하는 서비스를 만들었다',
-    subtitle: '온라인 쇼핑 사이즈 불안을 줄이는 AI 추천 MVP',
-    period: '2026.03 — 현재',
-    category: 'AI 서비스 기획 · MVP',
-    tags: ['AI 서비스', 'MVP', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계', 'Next.js', 'Supabase', 'Gemini'],
-    isMain: true,
-    highlight: '사이즈 불안을 추천 근거로 해소',
-    links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
-    content: {
-      problem:
-        '살미달라 브랜드를 직접 운영하며 사이즈 문의와 교환 요청을 현장에서 반복적으로 겪었다. 온라인 의류 구매자는 브랜드마다 다른 실측 기준과 착용감 차이 때문에 사이즈 선택에 불안을 느낀다. 상품 상세페이지의 치수표만으로는 내 체형에 맞는 사이즈와 여유도를 판단하기 어렵고, 이는 구매 망설임과 교환·반품으로 이어질 수 있다.',
-      approach: [
-        { num: '01', step: '입력 흐름 설계', desc: '상품 URL과 키·몸무게·평소 착용 사이즈 등 최소 입력만으로 추천을 시작하는 폼 구성' },
-        { num: '02', step: '상품 정보 해석', desc: '상품 페이지의 사이즈 정보와 사용자의 신체 정보를 비교할 수 있도록 추천에 필요한 데이터 구조 정의' },
-        { num: '03', step: '추천 로직 설계', desc: '사이즈 후보별 적합도와 여유도를 계산해 추천 사이즈와 판단 근거를 함께 제공하는 흐름 설계' },
-        { num: '04', step: '결과 UI 구현', desc: '추천 사이즈, 여유도, 신체 부위별 핏 정보를 한 화면에서 이해할 수 있도록 시각화' },
-        { num: '05', step: 'MVP 검증', desc: '실제 쇼핑 상황에서 사용자가 입력 → 추천 → 판단까지 이어질 수 있는 최소 기능 제품으로 구현' },
-      ],
-      insights: [
-        { num: '01', title: '문제는 사이즈표가 없는 게 아니라 연결 기준이 없는 것이다', body: '대부분의 쇼핑몰이 사이즈표를 제공하지만, 내 치수와 상품 치수를 연결하는 방법이 없어 사용자는 여전히 불확실함을 느꼈다.' },
-        { num: '02', title: '추천 신뢰도의 핵심은 결과가 아니라 근거다', body: '"그냥 M 추천"보다 "어깨 너비 기준으로 M을 추천하는 이유"가 있을 때 구매 결정이 빨라졌다. 설명 가능한 추천 구조가 필요했다.' },
-        { num: '03', title: 'MVP는 기능 수보다 흐름의 완결성이다', body: '사이즈 입력 → 상품 분석 → 추천 결과 → 근거 제시의 4단계 흐름이 끊기지 않아야 신뢰가 생긴다. 기능 수보다 흐름 완결을 우선했다.' },
-      ],
-      results: [
-        { label: 'MVP', desc: '상품 URL 입력, 신체 정보 입력, AI 사이즈 추천 결과까지 이어지는 핵심 사용자 플로우 구현' },
-        { label: 'UX', desc: '단순 사이즈명 추천이 아니라 여유도와 판단 근거를 함께 보여줘 사용자가 추천을 납득할 수 있도록 설계' },
-        { label: '확장성', desc: '향후 브랜드별 실측 데이터, 후기 기반 핏 데이터, 개인 선호 핏을 반영할 수 있는 서비스 구조로 정리' },
-        { label: '기술 구현', desc: 'Next.js 16 · React 19 · TypeScript · Tailwind 4 · Supabase · Gemini로 직접 구현, cheerio로 상품 페이지 실측 치수 파싱 — Claude Code 기반 프론트·백엔드 단독 개발·배포' },
-      ],
-      flow: {
-        title: '서비스 플로우',
-        layout: 'roadmap',
-        caption: '사이즈명이 아니라 판단 근거까지 주는 4단계 추천 흐름.',
-        steps: [
-          { label: '정보 입력', desc: '키·몸무게·평소 사이즈 등 신체 정보와 상품 URL을 최소 입력으로 받는다.' },
-          { label: '데이터 추출', desc: 'cheerio로 상품 페이지의 실측 치수를 파싱하고 비교 가능한 기준으로 정규화한다.' },
-          { label: 'AI 추천', desc: '신체 정보와 상품 치수를 매칭해 사이즈 후보별 적합도·여유도를 산출한다.' },
-          { label: '근거 제시', desc: '추천 사이즈와 부위별 핏·여유도, 추천 이유를 한 화면에서 보여준다.' },
-        ],
-      },
-      architecture: {
-        title: '서비스 구조',
-        caption: 'Claude Code로 프론트·백엔드를 직접 구현하고 Vercel에 배포한 풀스택 구조.',
-        layers: [
-          { name: '빌드 · 배포', items: ['Claude Code 직접 구현', 'GitHub Actions CI/CD', 'Vercel'] },
-          { name: '프론트엔드', items: ['Next.js 16 / React 19', '추천', '블로그', '어드민'] },
-          { name: 'API', items: ['Vercel Functions', '추천', '이미지 기반 추천', '피드백', '제휴 리다이렉트', '블로그', '어드민'] },
-          { name: '데이터 · AI', items: ['Supabase', 'Gemini 사이즈 추천', 'cheerio 치수 파싱'] },
-          { name: '측정 · 전환', items: ['제휴 → 구매 전환', 'GA 분석'] },
-        ],
-        loop: '인스타(@pullsize) → 블로그 유입 → AI 사이즈 추천 → 구매 전환 → 콘텐츠 재생산 ↺',
-      },
-      contribution: {
-        role: '서비스 기획자 · UX 설계 (AI 도구 기반 직접 구현)',
-        scope: '문제 정의·사용자 입력 플로우·추천 결과 UX·MVP 화면 설계·Claude Code 기반 프론트엔드·백엔드 직접 구현·서비스 배포',
-        output: '실서비스 배포 (pullsize.kr), AI 추천 결과 화면, 메인 입력 화면',
-      },
-    },
-    screenshots: [
-      { src: '/images/pullsize/service-main.png', caption: '서비스 메인 화면 — 상품 URL 입력 및 신체 정보 입력 UI' },
-      { src: '/images/pullsize/service-result.png', caption: '추천 결과 화면 — AI 사이즈 추천 및 여유도 시각화' },
-    ],
-  },
-];
+  },];
