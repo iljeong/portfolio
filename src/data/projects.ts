@@ -75,12 +75,12 @@ export const projects: Project[] = [
       },
     },
     screenshots: [
-      { src: '/images/fastcampus/minshortform.png',   caption: '민썸 — 숏폼 영상 기획·편집 실무 강의',    url: 'https://fastcampus.co.kr/dgn_online_minshortform' },
-      { src: '/images/fastcampus/memil.png',          caption: '메밀 작가 이모티콘 클래스',               url: 'https://fastcampus.co.kr/dgn_online_memil' },
+      { src: '/images/fastcampus/minshortform.webp',   caption: '민썸 — 숏폼 영상 기획·편집 실무 강의',    url: 'https://fastcampus.co.kr/dgn_online_minshortform' },
+      { src: '/images/fastcampus/memil.webp',          caption: '메밀 작가 이모티콘 클래스',               url: 'https://fastcampus.co.kr/dgn_online_memil' },
       { src: '/images/fastcampus/editman.webp',        caption: '편집하는 남자 — 영상 편집 실무 강의',     url: 'https://fastcampus.co.kr/dgn_online_editman' },
-      { src: '/images/fastcampus/figure.jpg',         caption: '피규어 디자인 클래스',                    url: 'https://fastcampus.co.kr/dgn_online_figure' },
+      { src: '/images/fastcampus/figure.webp',         caption: '피규어 디자인 클래스',                    url: 'https://fastcampus.co.kr/dgn_online_figure' },
       { src: '/images/fastcampus/cinematicclip.webp', caption: '시네마틱 클립 영상 제작 강의',            url: 'https://fastcampus.co.kr/data_online_cinematicclip' },
-      { src: '/images/fastcampus/apeai.jpg',          caption: 'THE APE SQUAD — AI 영상 제작 실무 강의',  url: 'https://fastcampus.co.kr/data_online_apeai' },
+      { src: '/images/fastcampus/apeai.webp',          caption: 'THE APE SQUAD — AI 영상 제작 실무 강의',  url: 'https://fastcampus.co.kr/data_online_apeai' },
     ],
   },
   {
@@ -149,7 +149,7 @@ export const projects: Project[] = [
         wide: true,
       },
       {
-        src: '/images/gcar-voc/slide_tmp_21-21.png',
+        src: '/images/gcar-voc/slide_tmp_21-21.webp',
         caption: '반납 장소 혼잡도 사전 안내 제안 — 시간대별 혼잡도 예측으로 반납 실패와 CS 문의를 줄이는 흐름',
         wide: true,
       },
@@ -170,6 +170,7 @@ export const projects: Project[] = [
     tags: ['AI 서비스', 'MVP', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계', 'Next.js', 'Supabase', 'Gemini'],
     isMain: true,
     highlight: '사이즈 불안을 추천 근거로 해소',
+    kpi: 'AI 사이즈 추천',
     links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
     content: {
       problem:
@@ -222,8 +223,8 @@ export const projects: Project[] = [
       },
     },
     screenshots: [
-      { src: '/images/pullsize/service-main.png', caption: '서비스 메인 화면 — 상품 URL 입력 및 신체 정보 입력 UI' },
-      { src: '/images/pullsize/service-result.png', caption: '추천 결과 화면 — AI 사이즈 추천 및 여유도 시각화' },
+      { src: '/images/pullsize/service-main.webp', caption: '서비스 메인 화면 — 상품 URL 입력 및 신체 정보 입력 UI' },
+      { src: '/images/pullsize/service-result.webp', caption: '추천 결과 화면 — AI 사이즈 추천 및 여유도 시각화' },
     ],
   },
 
@@ -333,7 +334,7 @@ export const projects: Project[] = [
       { src: '/images/salmidalla/21ss-product.jpg',         caption: '21SS 상품 — 자체 제작 의류 140벌 완판' },
       { src: '/images/salmidalla/21fw-product-1.gif',       caption: '21FW 컬렉션 — 21SS 완판에 이어 가을/겨울 라인 출시' },
       { src: '/images/salmidalla/sample-spec.webp',          caption: '21SS 샘플 작업의뢰서 — 봉제 스펙·사이즈 그레이딩 직접 작성' },
-      { src: '/images/salmidalla/22ss-cloth-1.jpg',         caption: '22SS 의류 라인 — 네 종 출시, ACC·굿즈백·키링으로 품목 확장' },
+      { src: '/images/salmidalla/22ss-cloth-1.webp',         caption: '22SS 의류 라인 — 네 종 출시, ACC·굿즈백·키링으로 품목 확장' },
       { src: '/images/salmidalla/location-lookbook.webp',    caption: '로케이션 룩북 컷 — 시즌 무드와 그래픽 티셔츠 착장 시각화',   wide: true },
       { src: '/images/salmidalla/location-graphic-tee.webp', caption: '브랜드 그래픽 티셔츠 착장 — 상품 기획부터 촬영까지 운영' },
       { src: '/images/salmidalla/22ss-acc-keyring-1.jpg',   caption: '22SS 키링 ACC — 2종 완판' },
@@ -381,7 +382,7 @@ export const projects: Project[] = [
     },
     screenshots: [
       { src: '/images/areun-sai/book-cover.webp',             caption: '인터뷰집 표지·북 패키지 디자인 — 장기 프로젝트의 핵심 출판물 시각화', wide: true },
-      { src: '/images/areun-sai/funding-goods.jpg',          caption: '텀블벅 리워드 패키지 구성 — 도서·굿즈·상세페이지까지 연결한 펀딩 설계' },
+      { src: '/images/areun-sai/funding-goods.webp',          caption: '텀블벅 리워드 패키지 구성 — 도서·굿즈·상세페이지까지 연결한 펀딩 설계' },
       { src: '/images/areun-sai/interview-shoot.webp',        caption: '인터뷰 촬영 현장 — 대상 섭외부터 질문 설계·촬영·편집까지 진행' },
       { src: '/images/areun-sai/question-board.webp',         caption: '콘텐츠 질문 보드 — 인터뷰 주제와 독자 반응을 수집해 출판 콘텐츠로 확장' },
       { src: '/images/areun-sai/fulfillment-packaging.webp', caption: '리워드 포장·배송 준비 — 펀딩 이후 실물 제작과 발송 운영' },
