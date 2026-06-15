@@ -238,6 +238,7 @@ export const projects: Project[] = [
     tags: ['Claude AI', 'Figma MCP', 'Python', 'Google Sheets', '자동화', '콘텐츠 기획'],
     isMain: true,
     highlight: '3시간 → 30분',
+    links: [{ label: '실제 계정 보기', url: 'https://www.instagram.com/pullsize.official/' }],
     content: {
       problem:
         '패션 브랜드 인스타그램 피드를 자료조사 → 전략 수립 → 카피 작성 → 디자인 적용 순서로 수작업 시 브랜드당 평균 3시간 이상 소요됐다. 품질 일관성도 담당자에 따라 편차가 컸다.',
