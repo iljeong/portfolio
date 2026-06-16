@@ -17,7 +17,7 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
     <div class="container">
       <p class="label hero-label">Portfolio</p>
       <h1 class="hero-title">
-        수치에서 원인을 찾고,<br />
+        수치에서<br class="hero-br-mobile" /> 원인을 찾고,<br />
         <em>직접 만들어 증명합니다.</em>
       </h1>
       <div class="hero-foot">
@@ -226,6 +226,7 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
   }
 
   .hero-sub-mobile-break { display: none; }
+  .hero-br-mobile { display: none; }
 
   .hero-scroll {
     display: flex;
@@ -277,6 +278,7 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
     }
 
     .hero-sub-mobile-break { display: block; }
+    .hero-br-mobile { display: inline; }
   }
 
   /* ── ABOUT ──────────────────────────────────── */
