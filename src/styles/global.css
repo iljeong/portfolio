@@ -151,6 +151,7 @@ hr.line {
 .chip {
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
   font-size: var(--text-sm);     /* 12px */
   font-weight: 400;
   color: var(--ink-2);

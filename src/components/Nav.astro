@@ -97,6 +97,15 @@ const base = import.meta.env.BASE_URL;
   }
 
   @media (max-width: 480px) {
+    .nav {
+      position: sticky;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border-color: var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+
     .nav-right { gap: 1rem; }
     .nav-link  { font-size: var(--text-sm); }
   }
