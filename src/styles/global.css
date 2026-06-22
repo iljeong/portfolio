@@ -175,7 +175,7 @@ hr.line {
   border-radius: var(--r-full);
   padding: 0.2em 0.75em;
   white-space: nowrap;
-  background: transparent;
+  background: var(--surface);
   transition: border-color var(--dur-fast) var(--ease),
               color var(--dur-fast) var(--ease);
 }

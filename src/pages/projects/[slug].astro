@@ -622,6 +622,13 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
     border-radius: var(--r-lg);
     overflow: hidden;
     background: var(--surface);
+    transition: box-shadow var(--dur) var(--ease),
+                border-color var(--dur) var(--ease);
+  }
+
+  .cs-shot:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--line-strong);
   }
 
   .cs-shot--wide {
