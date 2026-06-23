@@ -1,97 +1,84 @@
 ---
 import { projects } from '../data/projects';
 const base = import.meta.env.BASE_URL;
-const workGroups = [
-  {
-    label: '실무 경험',
-    projects: projects.filter(p => p.slug === 'fastcampus'),
-  },
-  {
-    label: '프로젝트',
-    // 표시 순서 명시 (Work 02→03→04)
-    projects: ['gcar-voc', 'pullsize', 'ai-content-automation']
-      .map(slug => projects.find(p => p.slug === slug)!),
-  },
-  {
-    label: '브랜드·콘텐츠 운영 경험',
-    projects: projects.filter(p => !p.isMain),
-    isSub: true,
-  },
-];
-const orderedProjects = workGroups.flatMap(group => group.projects);
+const basePath = base.endsWith('/') ? base : `${base}/`;
+const asset = (s: string) => `${basePath}${s.replace(/^\/+/, '')}`;
 
-const previewStyles: Record<string, { bg: string; accent: string }> = {
-  'gcar-voc':   { bg: '#10203E', accent: '#93B8F5' },
-  'fastcampus': { bg: '#3B1506', accent: '#F5A86E' },
-  'ai-content-automation': { bg: '#0C0F1F', accent: '#A5B4FC' },
-  'pullsize':   { bg: '#0E2A2F', accent: '#7DD3C7' },
-  'areun-sai':  { bg: '#1A2613', accent: '#A3D48A' },
-  'salmidalla': { bg: '#231108', accent: '#E8C9A8' },
-};
+// 강약: 대표 3개(직무중립 — 일하는 방식이 드러나는 프로젝트)는 산출물 이미지 카드로,
+// 나머지는 컴팩트 리스트로.
+const featuredSlugs = ['fastcampus', 'gcar-voc', 'pullsize'];
+const restSlugs = ['ai-content-automation', 'salmidalla', 'areun-sai'];
+const featured = featuredSlugs.map(slug => projects.find(p => p.slug === slug)!);
+const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
 ---
 
 <section id="work" class="work-section">
   <div class="container">
 
     <div class="work-head">
-      <h2 class="label">Work</h2>
+      <h2 class="label">Selected Work</h2>
       <span class="label work-range">2021 — 현재</span>
     </div>
 
-    <div class="work-layout">
-
-      <!-- Project list -->
-      <ul class="work-list" role="list">
-        {workGroups.map(group => (
-          <>
-            <li class="work-sub-head" aria-hidden="true">
-              <h3 class="work-sub-label">{group.label}</h3>
-            </li>
-            {group.projects.map(p => (
-              <li class:list={['work-item', { 'work-item--sub': group.isSub }]} data-slug={p.slug} data-reveal style={`--reveal-delay:${orderedProjects.indexOf(p) * 55}ms`}>
-                <a href={`${base}/projects/${p.slug}`} class="work-link">
-                  <span class="work-num">{String(orderedProjects.indexOf(p) + 1).padStart(2, '0')}</span>
-                  <span class="work-main">
-                    <span class="work-name">{p.name}</span>
-                    <span class="work-meta-row">
-                      <span class="work-cat">{p.category.split('·')[0].trim()}</span>
-                      <span class="work-sep">·</span>
-                      <span class="work-kpi">{p.highlight}</span>
-                      <span class="work-sep work-period-sep">·</span>
-                      <span class="work-period-meta">{p.period.replace(' — ', '–')}</span>
-                    </span>
-                  </span>
-                  <span class="work-period">{p.period.replace(' — ', '–')}</span>
-                  <span class="work-arrow" aria-hidden="true">→</span>
-                </a>
-              </li>
-            ))}
-          </>
-        ))}
-      </ul>
-
-      <!-- Hover preview panel (desktop only) -->
-      <aside class="work-preview" aria-hidden="true">
-        {orderedProjects.map(p => {
-          const s = previewStyles[p.slug] ?? { bg: '#1A1A1A', accent: '#E0E0E0' };
-          return (
-            <div class="preview-card" data-for={p.slug} style={`background:${s.bg}`}>
-              <p class="pc-cat" style={`color:${s.accent}`}>{p.category}</p>
-              <p class="pc-kpi" style={`color:${s.accent}`}>{p.highlight}</p>
-              <p class="pc-sub" style={`color:${s.accent};opacity:.65`}>{p.subtitle}</p>
-              <div class="pc-chips">
-                {p.tags.slice(0, 3).map(t => (
-                  <span class="pc-chip" style={`border-color:${s.accent}30;color:${s.accent};opacity:.8`}>
-                    {t}
-                  </span>
-                ))}
-              </div>
+    <!-- 대표 프로젝트: 산출물 이미지 + 수치 오버레이 카드 -->
+    <div class="feat-grid">
+      {featured.map((p, i) => (
+        <a
+          href={`${base}/projects/${p.slug}`}
+          class="feat-card"
+          data-reveal
+          style={`--reveal-delay:${i * 80}ms`}
+        >
+          <div class="feat-media">
+            <img
+              src={asset(p.cover!.src)}
+              alt={`${p.name} 산출물`}
+              loading="lazy"
+              style={`object-position:${p.cover!.pos ?? 'center'}`}
+            />
+            <div class="feat-scrim"></div>
+            <div class="feat-overlay">
+              <span class="feat-stat">{p.cover!.stat}</span>
+              <span class="feat-stat-label">{p.cover!.statLabel}</span>
             </div>
-          );
-        })}
-      </aside>
-
+          </div>
+          <div class="feat-foot">
+            <div class="feat-foot-text">
+              <span class="feat-name">{p.name}</span>
+              <span class="feat-cat">{p.category}</span>
+            </div>
+            <span class="feat-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
+      ))}
     </div>
+
+    <!-- 그 외 작업: 컴팩트 리스트 -->
+    <div class="more-head">
+      <h3 class="more-label">그 외 작업</h3>
+    </div>
+    <ul class="work-list" role="list">
+      {rest.map((p, i) => (
+        <li class="work-item" data-slug={p.slug} data-reveal style={`--reveal-delay:${i * 55}ms`}>
+          <a href={`${base}/projects/${p.slug}`} class="work-link">
+            <span class="work-num">{String(i + 4).padStart(2, '0')}</span>
+            <span class="work-main">
+              <span class="work-name">{p.name}</span>
+              <span class="work-meta-row">
+                <span class="work-cat">{p.category.split('·')[0].trim()}</span>
+                <span class="work-sep">·</span>
+                <span class="work-kpi">{p.highlight}</span>
+                <span class="work-sep work-period-sep">·</span>
+                <span class="work-period-meta">{p.period.replace(' — ', '–')}</span>
+              </span>
+            </span>
+            <span class="work-period">{p.period.replace(' — ', '–')}</span>
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
   </div>
 </section>
 
@@ -103,20 +90,165 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 0.625rem;
+    margin-bottom: 1.5rem;
   }
 
   .work-range { color: var(--ink-3); }
 
-  /* Grid: list + sticky preview */
-  .work-layout {
+  /* ── Featured cover cards ── */
+  .feat-grid {
     display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 2.5rem;
-    align-items: start;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 3.25rem;
   }
 
-  /* ── List ── */
+  .feat-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    background: var(--surface);
+    transition:
+      box-shadow var(--dur) var(--ease),
+      border-color var(--dur) var(--ease),
+      transform var(--dur) var(--ease);
+  }
+
+  .feat-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--line-strong);
+    transform: translateY(-3px);
+  }
+
+  .feat-media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .feat-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--dur-slow) var(--ease);
+  }
+
+  .feat-card:hover .feat-media img { transform: scale(1.04); }
+
+  /* Restrained gradient — legibility without an "ad" look */
+  .feat-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.72) 0%,
+      rgba(0, 0, 0, 0.32) 32%,
+      rgba(0, 0, 0, 0) 60%
+    );
+  }
+
+  .feat-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.125rem 1.125rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .feat-stat {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.4vw, 1.875rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+    line-height: 1.05;
+  }
+
+  .feat-stat-label {
+    font-size: var(--text-sm);      /* 12px */
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.4;
+    word-break: keep-all;
+  }
+
+  .feat-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.875rem 1.125rem;
+  }
+
+  .feat-foot-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+
+  .feat-name {
+    font-size: var(--text-body);    /* 15px */
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .feat-card:hover .feat-name { color: var(--accent); }
+
+  .feat-cat {
+    font-size: var(--text-sm);      /* 12px */
+    color: var(--ink-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .feat-arrow {
+    font-size: var(--text-md);
+    color: var(--ink-4);
+    flex-shrink: 0;
+    transition:
+      transform var(--dur-fast) var(--ease-spring),
+      color var(--dur-fast) var(--ease);
+  }
+
+  .feat-card:hover .feat-arrow {
+    transform: translate(2px, -2px);
+    color: var(--accent);
+  }
+
+  @media (max-width: 760px) {
+    .feat-grid {
+      grid-template-columns: 1fr;
+      gap: 0.625rem;
+    }
+    .feat-media { aspect-ratio: 16 / 9; }
+  }
+
+  /* ── "그 외" compact list ── */
+  .more-head {
+    margin-bottom: 0.625rem;
+    padding: 0 0.5rem;
+  }
+
+  .more-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
   .work-list {
     display: flex;
     flex-direction: column;
@@ -142,17 +274,15 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
     padding: 1.125rem 0.75rem;
   }
 
-  /* Number */
   .work-num {
     font-family: var(--font-display);
     font-size: var(--text-base);    /* 14px */
     font-weight: 600;
-    color: var(--ink-3);
+    color: var(--ink-4);
     letter-spacing: 0.02em;
     font-variant-numeric: tabular-nums;
   }
 
-  /* Name + meta */
   .work-main {
     display: flex;
     flex-direction: column;
@@ -164,7 +294,7 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
     font-size: var(--text-subhead);  /* 17px */
     font-weight: 600;
     letter-spacing: -0.02em;
-    color: var(--ink);
+    color: var(--ink-2);
     transition: color var(--dur-fast) var(--ease);
     white-space: nowrap;
     overflow: hidden;
@@ -173,7 +303,7 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
 
   .work-item:hover .work-name { color: var(--accent); }
 
-.work-meta-row {
+  .work-meta-row {
     display: flex;
     align-items: center;
     gap: 0.375rem;
@@ -198,7 +328,6 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
     white-space: nowrap;
   }
 
-  /* Period */
   .work-period {
     font-size: var(--text-xs);       /* 11px */
     color: var(--ink-3);
@@ -207,7 +336,6 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
     letter-spacing: 0.01em;
   }
 
-  /* Arrow */
   .work-arrow {
     font-size: var(--text-md);
     color: var(--ink-4);
@@ -221,110 +349,9 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
     color: var(--accent);
   }
 
-  /* ── Preview panel ── */
-  .work-preview {
-    position: sticky;
-    top: 5rem;
-    height: 320px;
-    border-radius: var(--r-xl);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-  }
-
-  .preview-idle { display: none; }
-
-  .preview-card {
-    position: absolute;
-    inset: 0;
-    padding: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 0;
-    opacity: 0;
-    transform: translateY(6px);
-    transition:
-      opacity   var(--dur)      var(--ease-out),
-      transform var(--dur)      var(--ease-out);
-    pointer-events: none;
-  }
-
-  .preview-card.is-default {
-    opacity: 0.52;
-    transform: translateY(0);
-  }
-
-  .preview-card.is-active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  .pc-cat {
-    font-size: var(--text-xs);   /* 11px */
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.875rem;
-  }
-
-  .pc-kpi {
-    font-family: var(--font-display);
-    font-size: var(--text-4xl);  /* 36px */
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }
-
-  .pc-sub {
-    font-size: var(--text-caption);  /* 13px */
-    line-height: 1.5;
-    margin-bottom: 1rem;
-  }
-
-  .pc-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.375rem;
-  }
-
-  .pc-chip {
-    font-size: var(--text-2xs);   /* 10px */
-    border: 1px solid;
-    border-radius: var(--r-full);
-    padding: 0.2em 0.6em;
-    letter-spacing: 0.02em;
-  }
-
-  /* StyleSeed: separate list groups with spacing, not repeated dividers. */
-  .work-sub-head {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-    padding: 0.125rem 0.5rem;
-  }
-
-  .work-sub-head:first-child { margin-top: 0; }
-
-  .work-sub-label {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-  }
-
-  .work-item--sub .work-name { color: var(--ink-2); }
-  .work-item--sub:hover .work-name { color: var(--accent); }
-  .work-item--sub .work-num { opacity: 0.6; }
-
-  /* period-meta: hidden on desktop, shown on mobile inside meta row */
   .work-period-sep,
   .work-period-meta { display: none; }
 
-  /* Mobile: hide preview */
   @media (max-width: 860px) {
     .work-name {
       white-space: normal;
@@ -332,8 +359,6 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
       word-break: keep-all;
       overflow-wrap: anywhere;
     }
-    .work-layout { grid-template-columns: 1fr; }
-    .work-preview { display: none; }
     .work-link {
       grid-template-columns: 2rem 1fr auto;
       gap: 0.75rem;
@@ -361,31 +386,3 @@ const previewStyles: Record<string, { bg: string; accent: string }> = {
     }
   }
 </style>
-
-<script>
-  const items = document.querySelectorAll<HTMLElement>('.work-item');
-  const cards = document.querySelectorAll<HTMLElement>('.preview-card');
-
-  const firstSlug = items[0]?.dataset.slug ?? '';
-
-  function activate(slug: string) {
-    cards.forEach(c => {
-      c.classList.remove('is-default');
-      c.classList.toggle('is-active', c.dataset.for === slug);
-    });
-  }
-
-  function reset() {
-    cards.forEach(c => {
-      c.classList.remove('is-active');
-      c.classList.toggle('is-default', c.dataset.for === firstSlug);
-    });
-  }
-
-  reset();
-
-  items.forEach(item => {
-    item.addEventListener('mouseenter', () => activate(item.dataset.slug!));
-    item.addEventListener('mouseleave', reset);
-  });
-</script>

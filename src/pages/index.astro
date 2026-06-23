@@ -17,9 +17,23 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
     <div class="container">
       <p class="label hero-label">Portfolio</p>
       <h1 class="hero-title">
-        문제를 숫자로 좁히고,<br />
+        문제를 숫자로<br class="hero-br-mobile" /> 좁히고,<br />
         <em>직접 만들어 확인합니다.</em>
       </h1>
+
+      <dl class="hero-metrics" data-reveal>
+        {[
+          { num: '37,923건', label: '앱 리뷰 분석으로 이탈 구조 발견' },
+          { num: '83%↓', label: '콘텐츠 제작 시간 단축 (3시간→30분)' },
+          { num: 'AI 추천', label: '사이즈 추천 서비스 직접 배포' },
+        ].map(m => (
+          <div class="hero-metric">
+            <dt class="hero-metric-num">{m.num}</dt>
+            <dd class="hero-metric-label">{m.label}</dd>
+          </div>
+        ))}
+      </dl>
+
       <div class="hero-foot">
         <p class="hero-sub">
           데이터 분석 · 콘텐츠 기획 · AI 자동화
@@ -198,7 +212,7 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
     letter-spacing: -0.04em;
     line-height: 1.1;
     color: var(--ink);
-    margin-bottom: 2.75rem;
+    margin-bottom: 2rem;
     word-break: keep-all;
     overflow-wrap: anywhere;
   }
@@ -206,6 +220,54 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
   .hero-title em {
     font-style: normal;
     color: var(--accent);
+  }
+
+  /* ── HERO METRICS (수치 먼저) ─────────────── */
+  .hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2.75rem;
+    animation: riseIn 0.7s var(--ease-out) both;
+    animation-delay: 0.15s;
+  }
+
+  .hero-metric {
+    padding: 1.125rem 1.25rem;
+    background: var(--surface);
+    border-radius: var(--r-lg);
+  }
+
+  .hero-metric-num {
+    font-family: var(--font-display);
+    font-size: clamp(1.375rem, 2.6vw, 1.75rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    line-height: 1.05;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-metric-label {
+    font-size: var(--text-sm);      /* 12px */
+    color: var(--ink-3);
+    line-height: 1.45;
+    word-break: keep-all;
+  }
+
+  @media (max-width: 680px) {
+    .hero-metrics {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      margin-bottom: 2.25rem;
+    }
+    .hero-metric {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+    }
+    .hero-metric-num { margin-bottom: 0; min-width: 5.5rem; }
   }
 
   .hero-foot {
