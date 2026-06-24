@@ -66,8 +66,8 @@
   --font: 'Pretendard Variable', Pretendard,
           'Inter', -apple-system, BlinkMacSystemFont,
           'Helvetica Neue', sans-serif;
-  /* Latin display / numerals — Korean falls back to Pretendard */
-  --font-display: 'Bricolage Grotesque', 'Pretendard Variable', Pretendard, sans-serif;
+  /* display/numerals = Pretendard (Bricolage 제거, 전면 통일) */
+  --font-display: var(--font);
 
   /* ── Layout ──────────────────────────────── */
   --max-w: 1080px;
