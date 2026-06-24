@@ -20,8 +20,6 @@ const siteUrl = 'https://iljeong.github.io/portfolio';
 const pageOgUrl = `${siteUrl}/projects/${project.slug}`;
 const problemShort = project.content.problem.split('. ')[0] + '.';
 const hasInsights = (project.content.insights ?? []).length > 0;
-const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
-// sn(3)→'03'/'02', sn(4)→'04'/'03', sn(5)→'05'/'04', sn(6)→'06'/'05'
 ---
 
 <Layout
@@ -165,7 +163,7 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
 
       <!-- Results -->
       <section class="cs-sec">
-        <h2 class="label label--accent cs-sec-label">{sn(4)} · Results</h2>
+        <h2 class="label label--accent cs-sec-label">04 · Results</h2>
         <div class="cs-results">
           {project.content.results.map(r => (
             <div class="cs-result">
@@ -180,7 +178,7 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
 
       <!-- Contribution -->
       <section class="cs-sec">
-        <h2 class="label label--accent cs-sec-label">{sn(5)} · Contribution</h2>
+        <h2 class="label label--accent cs-sec-label">05 · Contribution</h2>
         <dl class="cs-contrib">
           {[
             { k: 'Role',   v: project.content.contribution.role },
@@ -203,7 +201,7 @@ const sn = (n: number) => String(hasInsights ? n : n - 1).padStart(2, '0');
         <>
           <hr class="line" />
           <section class="cs-sec">
-            <h2 class="label label--accent cs-sec-label">{sn(6)} · 산출물</h2>
+            <h2 class="label label--accent cs-sec-label">06 · 산출물</h2>
             <div class="cs-shots">
               {project.screenshots.map(s => (
                 <figure class={`cs-shot${s.wide ? ' cs-shot--wide' : ''}`}>

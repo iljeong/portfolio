@@ -1,9 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
+import ShortProfile from '../components/ShortProfile.astro';
+import Experience from '../components/Experience.astro';
 import WorkList from '../components/WorkList.astro';
 const base = import.meta.env.BASE_URL;
 const basePath = base.endsWith('/') ? base : `${base}/`;
+
+// Journey — 경력·교육을 하나의 흐름으로 (종료일 기준 최신순). type가 정보를 인코딩
+const journey = [
+  { type: '교육', period: '2025.06–11', title: '멋쟁이사자처럼 데이터분석 부트캠프 6기', desc: 'Python · 데이터 분석 · 머신러닝 기초 수료' },
+  { type: '경력', period: '2023.04–2025.06', title: '아른 사이 · 프로젝트 매니저', desc: '9명 팀 2년 2개월 리드, 텀블벅 펀딩 177% 달성', img: 'images/areun-sai/book-cover.webp' },
+  { type: '교육', period: '~2025.02', title: '한림대학교', desc: '사학 전공 · 광고홍보학과 복수전공 졸업' },
+  { type: '경력', period: '2024.05–12', title: '패스트캠퍼스(데이원컴퍼니) · 콘텐츠 상품 기획 인턴', desc: '신규 교육 상품 6개 기획·런칭', img: 'images/fastcampus/minshortform.webp' },
+  { type: '경력', period: '2021.01–2023.04', title: '살미달라 · 패션 브랜드 대표 · MD', desc: '3인 창업, 3시즌 출시 · 팝업 3회 운영', img: 'images/salmidalla/21ss-product.jpg' },
+];
 ---
 
 <Layout
@@ -14,156 +25,99 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
 
   <!-- ═══════════════════════ HERO ═══════════════════════ -->
   <section id="main-content" class="hero">
-    <div class="container">
-      <p class="label hero-label">Portfolio</p>
-      <h1 class="hero-title">
-        문제를 숫자로<br class="hero-br-mobile" /> 좁히고,<br />
-        <em>직접 만들어 확인합니다.</em>
-      </h1>
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <p class="label hero-eyebrow">서정일 · 데이터 · 콘텐츠 · AI 자동화 기획자</p>
+        <h1 class="hero-title">
+          문제를 숫자로 좁히고,<br />
+          <em>직접 만들어 확인합니다.</em>
+        </h1>
+        <p class="hero-bio">
+          사용자 행동과 콘텐츠 데이터에서 막히는 지점을 찾고,
+          화면 흐름과 운영 방식으로 풀어 실제 산출물로 검증하는 기획자입니다.
+        </p>
+        <div class="hero-chips">
+          {['서비스 기획', '콘텐츠 기획', '데이터 분석', 'AI 자동화'].map(t => (
+            <span class="chip">{t}</span>
+          ))}
+        </div>
+        <div class="hero-actions">
+          <a href={`${basePath}deck.html`} class="hero-cv">이력서·PPT 보기 <span class="hero-cv-arrow">→</span></a>
+          <div class="hero-socials">
+            <a href="mailto:seobgak11@naver.com" class="hero-social" aria-label="이메일">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </a>
+            <a href="https://github.com/iljeong" target="_blank" rel="noopener noreferrer" class="hero-social" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.95.68 1.91l-.01 2.83c0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
 
-      <dl class="hero-metrics" data-reveal>
+      <div class="hero-portrait" data-reveal>
+        <div class="hero-portrait-frame">
+          <img src={`${basePath}images/profile.jpg`} alt="서정일" />
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <dl class="hero-stats" data-reveal>
         {[
-          { num: '37,923건', label: '앱 리뷰 분석으로 이탈 구조 발견' },
-          { num: '83%↓', label: '콘텐츠 제작 시간 단축 (3시간→30분)' },
-          { num: 'AI 추천', label: '사이즈 추천 서비스 직접 배포' },
-        ].map(m => (
-          <div class="hero-metric">
-            <dt class="hero-metric-num">{m.num}</dt>
-            <dd class="hero-metric-label">{m.label}</dd>
+          { num: '37,923건', label: '앱 리뷰 감정 분석' },
+          { num: '6개', label: '신규 교육 상품 런칭' },
+          { num: 'AI 추천', label: '사이즈 서비스 직접 배포' },
+        ].map(s => (
+          <div class="hero-stat">
+            <dt class="hero-stat-num">{s.num}</dt>
+            <dd class="hero-stat-label">{s.label}</dd>
           </div>
         ))}
       </dl>
-
-      <div class="hero-foot">
-        <p class="hero-sub">
-          데이터 분석 · 콘텐츠 기획 · AI 자동화
-        </p>
-        <a href="#work" class="hero-scroll">
-          Work 보기 <span class="scroll-arrow">↓</span>
-        </a>
-      </div>
     </div>
   </section>
+
+  <!-- ═══════════════════ SHORT PROFILE ═══════════════════ -->
+  <ShortProfile />
+
+  <!-- ═══════════════════════ EXPERIENCE ═══════════════════ -->
+  <Experience />
 
   <!-- ═══════════════════════ WORK ═══════════════════════ -->
   <WorkList />
 
-  <!-- ══════════════════════ APPROACH ═══════════════════════ -->
-  <section class="approach-section">
+  <!-- ═══════════════════════ JOURNEY ══════════════════════ -->
+  <section id="about" class="journey-section">
     <div class="container">
+      <div class="journey-grid">
 
-      <div class="approach-head">
-        <h2 class="label">My Approach</h2>
-      </div>
-
-      <div class="approach-grid">
-        {[
-          {
-            num: '01',
-            title: '먼저 막히는 지점을 찾습니다',
-            desc: '데이터와 사용자 발화에서 반복되는 불편을 찾고, 단일 기능이 아닌 여정 단위로 재정의합니다.',
-          },
-          {
-            num: '02',
-            title: '화면보다 사용 순서를 먼저 봅니다',
-            desc: '어느 단계에서 사용자가 막히는지 확인한 뒤, 흐름을 고치는 방향으로 기능과 화면을 설계합니다.',
-          },
-          {
-            num: '03',
-            title: '왜 그렇게 만들었는지 설명할 수 있어야 합니다',
-            desc: '디자인과 제안은 예뻐야 하지만, 왜 이렇게 만들었는지 데이터와 근거로 설명할 수 있어야 합니다.',
-          },
-        ].map((a, i) => (
-          <div class="approach-item" data-reveal style={`--reveal-delay:${i * 70}ms`}>
-            <span class="approach-num">{a.num}</span>
-            <div class="approach-body">
-              <h3 class="approach-title">{a.title}</h3>
-              <p class="approach-desc">{a.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══════════════════════ ABOUT ══════════════════════ -->
-  <section id="about" class="about-section">
-    <div class="container">
-      <div class="about-grid">
-
-        <div class="about-left" data-reveal style="--reveal-delay:0ms">
-          <div class="about-profile">
-            <img src={`${basePath}images/profile.jpg`} alt="서정일" class="about-avatar" />
-            <div>
-              <h2 class="label">About</h2>
-              <p class="about-name">서정일</p>
-            </div>
-          </div>
-          <p class="about-bio">
-            사용자 행동과 콘텐츠 데이터를 보며 막히는 지점을 찾고,
-            화면 흐름이나 운영 방식으로 풀어보는 기획자입니다.
+        <div class="journey-intro" data-reveal>
+          <h2 class="label journey-label">Journey</h2>
+          <p class="journey-lead">
+            패션 브랜드 운영에서 콘텐츠 기획, 데이터 분석, AI 서비스로.
+            분야를 옮기며 쌓은 경력과 학습입니다.
           </p>
-          <p class="about-bio" style="margin-top:0.875rem">
-            패스트캠퍼스 신규 교육 상품 6개 기획, 앱 리뷰 37,923건 분석,
-            콘텐츠 제작 시간 3시간 → 30분 단축 프로젝트를 진행했습니다.
-          </p>
-          <div class="about-chips">
-            {['서비스 기획', '콘텐츠 기획', '데이터 분석', 'AI 자동화', 'UX·화면 설계'].map(t => (
-              <span class="chip">{t}</span>
-            ))}
-          </div>
-          <div class="about-cta">
-            <a href="mailto:seobgak11@naver.com" class="about-cta-btn">이메일 보내기 ↗</a>
-            <a href={`${basePath}deck.html`} class="about-cta-btn">카드 버전 보기 ↗</a>
-            <a href="https://github.com/iljeong" target="_blank" rel="noopener noreferrer" class="about-cta-btn">GitHub ↗</a>
+          <div class="journey-certs">
+            <span class="chip">OPIc IH</span>
+            <span class="chip">GTQ 1급</span>
           </div>
         </div>
 
-        <div class="about-right" data-reveal style="--reveal-delay:80ms">
-          <!-- Career -->
-          <div class="block-wrap">
-            <h3 class="label block-label">Career</h3>
-            <ul class="career-list">
-              {[
-                { period: '2024.05–12',     company: '패스트캠퍼스 (데이원컴퍼니)', role: '콘텐츠 상품 기획자 · 인턴' },
-                { period: '2023.04–2025.06',  company: '아른 사이',                   role: '프로젝트 매니저' },
-                { period: '2021.01–2023.04',  company: '살미달라',                    role: '패션 브랜드 대표 · MD' },
-              ].map(c => (
-                <li class="career-item">
-                  <span class="career-period">{c.period}</span>
-                  <div>
-                    <p class="career-company">{c.company}</p>
-                    <p class="career-role">{c.role}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <!-- Education -->
-          <div class="block-wrap">
-            <h3 class="label block-label">Education</h3>
-            <div class="edu-entry">
-              <span class="edu-period">2025.06–11</span>
-              <div>
-                <p class="edu-school">멋쟁이사자처럼 데이터분석 부트캠프 6기</p>
-                <p class="edu-dept">Python · 데이터 분석 · 머신러닝 기초 수료</p>
+        <ol class="jr-thread" data-reveal style="--reveal-delay:80ms">
+          {journey.map(j => (
+            <li class="jr-item">
+              <span class={`jr-node ${j.type === '교육' ? 'is-edu' : 'is-career'}`}></span>
+              <div class="jr-body">
+                <div class="jr-meta">
+                  <span class={`jr-tag ${j.type === '교육' ? 'is-edu' : 'is-career'}`}>{j.type}</span>
+                  <span class="jr-period">{j.period}</span>
+                </div>
+                <p class="jr-title">{j.title}</p>
+                <p class="jr-desc">{j.desc}</p>
               </div>
-            </div>
-            <div class="edu-entry">
-              <span class="edu-period">~2025.02</span>
-              <div>
-                <p class="edu-school">한림대학교</p>
-                <p class="edu-dept">사학전공 · 광고홍보학과 복수전공 졸업</p>
-              </div>
-            </div>
-            <div class="edu-chips">
-              <span class="chip">OPIc IH</span>
-              <span class="chip">GTQ 1급</span>
-            </div>
-          </div>
-        </div>
+            </li>
+          ))}
+        </ol>
 
       </div>
     </div>
@@ -193,379 +147,218 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
 <style>
   /* ── HERO ───────────────────────────────────── */
 
-  .hero {
-    padding: 7rem 0 3rem;
+  .hero { position: relative; padding: 7rem 0 4rem; }
+  .hero > .container { position: relative; z-index: 1; }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    z-index: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 58px 58px;
+    -webkit-mask-image: radial-gradient(115% 75% at 72% 12%, #000 0%, transparent 62%);
+    mask-image: radial-gradient(115% 75% at 72% 12%, #000 0%, transparent 62%);
+    opacity: 0.55;
+    pointer-events: none;
   }
 
-  .hero-label,
-  .hero-title,
-  .hero-foot { animation: riseIn 0.7s var(--ease-out) both; }
-  .hero-label { animation-duration: 0.6s; }
-  .hero-title { animation-delay: 0.09s; }
-  .hero-foot  { animation-delay: 0.19s; }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 3.5rem;
+  }
 
-  .hero-label { margin-bottom: 2.25rem; }
+  .hero-text { min-width: 0; animation: riseIn 0.7s var(--ease-out) both; }
+  .hero-eyebrow { margin-bottom: 1.5rem; }
+  .hero-chips { max-width: 100%; }
 
   .hero-title {
-    font-size: clamp(2.625rem, 7.5vw, 5rem);
+    font-size: clamp(2.375rem, 4.9vw, 3.875rem);
     font-weight: 800;
     letter-spacing: -0.04em;
-    line-height: 1.1;
+    line-height: 1.18;
     color: var(--ink);
-    margin-bottom: 2rem;
+    margin-bottom: 1.875rem;
     word-break: keep-all;
-    overflow-wrap: anywhere;
+  }
+  .hero-title em { font-style: normal; color: var(--accent); }
+
+  .hero-bio {
+    font-size: var(--text-body);
+    color: var(--ink-2);
+    line-height: 1.75;
+    max-width: 42ch;
+    margin-bottom: 1.5rem;
+    word-break: keep-all;
   }
 
-  .hero-title em {
-    font-style: normal;
-    color: var(--accent);
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
+
+  .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+
+  .hero-cv {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.75rem 1.375rem;
+    background: var(--ink); color: #fff;
+    border-radius: var(--r-full);
+    font-size: var(--text-base); font-weight: 600;
+    transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .hero-cv:hover { background: var(--accent); transform: translateY(-2px); }
+  .hero-cv-arrow { transition: transform var(--dur) var(--ease); }
+  .hero-cv:hover .hero-cv-arrow { transform: translateX(3px); }
+
+  .hero-socials { display: flex; gap: 0.5rem; }
+  .hero-social {
+    display: grid; place-items: center;
+    width: 42px; height: 42px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-full);
+    color: var(--ink-2);
+    transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .hero-social:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  /* Portrait */
+  .hero-portrait {
+    display: flex; justify-content: center;
+    animation: riseIn 0.8s var(--ease-out) both;
+    animation-delay: 0.12s;
+  }
+  .hero-portrait-frame {
+    position: relative;
+    width: min(340px, 82%);
+    aspect-ratio: 1;
+    border-radius: var(--r-full);
+    padding: 12px;
+    background: var(--accent-bg);
+    box-shadow: var(--shadow-lg);
+  }
+  .hero-portrait-frame::before {
+    content: '';
+    position: absolute; inset: -7px;
+    border-radius: var(--r-full);
+    border: 1.5px dashed color-mix(in srgb, var(--accent) 50%, transparent);
+  }
+  .hero-portrait-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+    border-radius: var(--r-full);
+    border: 1px solid var(--line);
   }
 
-  /* ── HERO METRICS (수치 먼저) ─────────────── */
-  .hero-metrics {
+  /* Stats row */
+  .hero-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-    margin-bottom: 2.75rem;
-    animation: riseIn 0.7s var(--ease-out) both;
-    animation-delay: 0.15s;
-  }
-
-  .hero-metric {
-    padding: 1.125rem 1.25rem;
-    background: var(--surface);
-    border-radius: var(--r-lg);
-  }
-
-  .hero-metric-num {
-    font-family: var(--font-display);
-    font-size: clamp(1.375rem, 2.6vw, 1.75rem);
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    color: var(--ink);
-    line-height: 1.05;
-    margin-bottom: 0.4rem;
-  }
-
-  .hero-metric-label {
-    font-size: var(--text-sm);      /* 12px */
-    color: var(--ink-3);
-    line-height: 1.45;
-    word-break: keep-all;
-  }
-
-  @media (max-width: 680px) {
-    .hero-metrics {
-      grid-template-columns: 1fr;
-      gap: 0.5rem;
-      margin-bottom: 2.25rem;
-    }
-    .hero-metric {
-      display: flex;
-      align-items: baseline;
-      gap: 0.75rem;
-      padding: 0.875rem 1rem;
-    }
-    .hero-metric-num { margin-bottom: 0; min-width: 5.5rem; }
-  }
-
-  .hero-foot {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 2rem;
+    gap: 1.5rem;
     border-top: 1px solid var(--line);
-    padding-top: 1.375rem;
+    padding-top: 1.75rem;
+    animation: riseIn 0.7s var(--ease-out) both;
+    animation-delay: 0.2s;
   }
-
-  .hero-sub {
-    font-size: var(--text-body);   /* 15px */
-    color: var(--ink-2);
-    line-height: 1.65;
-    max-width: 100%;
-    min-width: 0;
-    word-break: keep-all;
-    overflow-wrap: anywhere;
+  .hero-stat { display: flex; align-items: baseline; gap: 0.75rem; }
+  .hero-stat-num {
+    font-family: var(--font-display);
+    font-size: clamp(1.875rem, 3.4vw, 2.75rem);
+    font-weight: 700; letter-spacing: -0.03em;
+    color: var(--ink); line-height: 1;
+    font-variant-numeric: tabular-nums; flex-shrink: 0;
   }
-
-  .hero-sub-mobile-break { display: none; }
-  .hero-br-mobile { display: none; }
-
-  .hero-scroll {
-    display: flex;
-    align-items: center;
-    gap: 0.375rem;
-    font-size: var(--text-caption);  /* 13px */
-    color: var(--ink-3);
-    white-space: nowrap;
-    transition: color var(--dur-fast) var(--ease);
-  }
-
-  .hero-scroll:hover { color: var(--ink); }
-
-  .scroll-arrow {
-    display: inline-block;
-    animation: bob 2s var(--ease-out) infinite;
-  }
-
-  @keyframes bob {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(5px); }
+  .hero-stat-label {
+    font-size: var(--text-caption); color: var(--ink-3);
+    line-height: 1.4; word-break: keep-all; padding-top: 0.2rem;
   }
 
   @media (max-width: 860px) {
-    .hero-foot {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.75rem;
-      min-width: 0;
-    }
-    .hero-sub {
-      width: 100%;
-      word-break: keep-all;
-      overflow-wrap: anywhere;
-    }
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 2.75rem; }
+    .hero-portrait { order: -1; justify-content: flex-start; }
+    .hero-portrait-frame { width: 150px; padding: 7px; }
   }
 
-  @media (max-width: 520px) {
-    .hero {
-      padding: 6.75rem 0 3.25rem;
-    }
-
-    .hero-label { margin-bottom: 2rem; }
-
-    .hero-title {
-      font-size: clamp(2.75rem, 12vw, 3.25rem);
-      line-height: 1.1;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-sub-mobile-break { display: block; }
-    .hero-br-mobile { display: inline; }
+  @media (max-width: 560px) {
+    .hero { padding: 6rem 0 3rem; }
+    .hero-title { font-size: clamp(1.75rem, 7.2vw, 2.375rem); }
+    .hero-stats { grid-template-columns: 1fr; gap: 1rem; }
+    .hero-stat-num { min-width: 6rem; }
   }
 
-  /* ── ABOUT ──────────────────────────────────── */
+  /* ── ABOUT / JOURNEY ────────────────────────── */
 
-  .about-section {
-    padding: 5rem 0 6rem;
+  .journey-section {
+    padding: 5.5rem 0 6rem;
     border-top: 1px solid var(--line);
     scroll-margin-top: 4rem;
   }
 
-  .about-grid {
+  .journey-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 4rem;
   }
 
-  .about-profile {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.75rem;
-  }
-
-  .about-avatar {
-    width: 72px;
-    height: 72px;
-    border-radius: var(--r-full);
-    object-fit: cover;
-    object-position: center top;
-    border: 1px solid var(--line);
-    flex-shrink: 0;
-  }
-
-  .about-name {
-    font-size: var(--text-lg);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin-top: 0.375rem;
-  }
-
-  .about-bio {
-    font-size: var(--text-body);   /* 15px */
+  .journey-intro { align-self: start; position: sticky; top: 5rem; }
+  .journey-label { margin-bottom: 1rem; }
+  .journey-lead {
+    font-size: var(--text-body);
     color: var(--ink-2);
     line-height: 1.75;
-    max-width: 400px;
+    max-width: 34ch;
+    word-break: keep-all;
   }
-
-  .about-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 1.5rem;
-  }
-
-  /* Career */
-  .block-wrap  { margin-bottom: 2.25rem; }
-  .block-label { margin-bottom: 0.875rem; }
-
-  .career-list {
-    list-style: none;
-    border-top: 1px solid var(--line);
-  }
-
-  .career-item {
-    display: flex;
-    gap: 1.125rem;
-    padding: 0.875rem 0;
-    border-bottom: 1px solid var(--line);
-    align-items: baseline;
-  }
-
-  .career-period {
-    font-family: var(--font-display);
-    font-size: var(--text-xs);      /* 11px */
-    color: var(--ink-3);
-    min-width: 7.5rem;
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.01em;
-    padding-top: 0.1em;
-  }
-
-  .career-company {
-    font-size: var(--text-body);    /* 15px */
-    font-weight: 600;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-    margin-bottom: 0.15rem;
-  }
-
-  .career-role {
-    font-size: var(--text-caption); /* 13px */
-    color: var(--ink-3);
-  }
-
-  /* Education */
-  .edu-entry {
-    display: flex;
-    gap: 1.125rem;
-    align-items: baseline;
-    margin-bottom: 1rem;
-  }
-
-  .edu-period {
-    font-family: var(--font-display);
-    font-size: var(--text-xs);      /* 11px */
-    color: var(--ink-3);
-    min-width: 7.5rem;
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.01em;
-    padding-top: 0.1em;
-  }
-
-  .edu-school {
-    font-size: var(--text-body);    /* 15px */
-    font-weight: 600;
-    letter-spacing: -0.015em;
-    margin-bottom: 0.15rem;
-  }
-
-  .edu-dept {
-    font-size: var(--text-caption); /* 13px */
-    color: var(--ink-3);
-  }
-
-  .edu-chips { display: flex; gap: 0.4rem; margin-top: 1.25rem; }
-
-  /* About CTA */
-  .about-cta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .about-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.625rem 1rem;
-    border: 1px solid var(--line);
-    border-radius: var(--r-sm);
-    font-size: var(--text-caption);
-    font-weight: 600;
-    color: var(--ink);
-    background: var(--surface);
-    transition:
-      border-color var(--dur-fast) var(--ease),
-      background   var(--dur-fast) var(--ease),
-      color        var(--dur-fast) var(--ease);
-  }
-
-  .about-cta-btn:hover {
-    border-color: var(--ink);
-    background: var(--ink);
-    color: #fff;
-  }
+  .journey-certs { display: flex; gap: 0.4rem; margin-top: 1.5rem; }
 
   @media (max-width: 760px) {
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .career-period,
-    .edu-period { min-width: 6rem; }
+    .journey-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .journey-intro { position: static; }
   }
 
-  /* ── APPROACH ───────────────────────────────── */
-
-  .approach-section {
-    padding: 3rem 0 5rem;
+  /* ── Journey timeline (thread 시그니처 재사용) ── */
+  .jr-thread { position: relative; list-style: none; margin-top: 0.25rem; }
+  .jr-thread::before {
+    content: '';
+    position: absolute;
+    left: 5px; top: 6px; bottom: 10px;
+    width: 2px;
+    background: linear-gradient(var(--line-strong), var(--line));
   }
-
-  .approach-head {
-    margin-bottom: 0.75rem;
-  }
-
-  .approach-grid {
+  .jr-item {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.625rem;
+    grid-template-columns: 12px 1fr;
+    gap: 1.125rem;
+    padding-bottom: 1.625rem;
   }
-
-  .approach-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    padding: 1.5rem;
-    background: var(--surface);
-    border-radius: var(--r-lg);
+  .jr-item:last-child { padding-bottom: 0.625rem; }
+  .jr-node {
+    position: relative; z-index: 1;
+    width: 12px; height: 12px; margin-top: 0.3rem;
+    border-radius: var(--r-full);
+    background: #fff;
+    box-shadow: 0 0 0 3px #fff;
   }
-
-  .approach-num {
-    font-family: var(--font-display);
-    font-size: var(--text-base);
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 0.04em;
-    font-variant-numeric: tabular-nums;
+  .jr-node.is-career { border: 3px solid var(--accent); }
+  .jr-node.is-edu { border: 3px solid var(--ink-4); }
+  .jr-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem; }
+  .jr-tag {
+    font-size: var(--text-2xs); font-weight: 700; letter-spacing: 0.02em;
+    padding: 0.12rem 0.45rem; border-radius: var(--r-sm); line-height: 1.5;
   }
-
-  .approach-title {
-    font-size: var(--text-subhead);
-    font-weight: 700;
-    color: var(--ink);
-    letter-spacing: -0.02em;
-    line-height: 1.3;
-    margin-bottom: 0.375rem;
+  .jr-tag.is-career { color: var(--accent); background: var(--accent-bg); }
+  .jr-tag.is-edu { color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); }
+  .jr-period {
+    font-family: var(--font-display); font-size: var(--text-xs); color: var(--ink-3);
+    font-variant-numeric: tabular-nums; letter-spacing: 0.01em;
   }
-
-  .approach-desc {
-    font-size: var(--text-caption);
-    color: var(--ink-3);
-    line-height: 1.75;
+  .jr-title {
+    font-size: var(--text-body); font-weight: 600; letter-spacing: -0.015em;
+    color: var(--ink); line-height: 1.4; margin-bottom: 0.2rem; word-break: keep-all;
   }
-
-  @media (max-width: 680px) {
-    .approach-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .approach-item { padding: 1.25rem; }
-  }
-
+  .jr-desc { font-size: var(--text-caption); color: var(--ink-3); line-height: 1.55; word-break: keep-all; }
   /* ── FOOTER ─────────────────────────────────── */
 
   .footer {
