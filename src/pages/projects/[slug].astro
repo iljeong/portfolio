@@ -20,8 +20,7 @@ const siteUrl = 'https://iljeong.github.io/portfolio';
 const pageOgUrl = `${siteUrl}/projects/${project.slug}`;
 const problemShort = project.content.problem.split('. ')[0] + '.';
 const hasInsights = (project.content.insights ?? []).length > 0;
-const leadShot = project.screenshots?.[0];
-const remainingShots = project.screenshots?.slice(1) ?? [];
+const shots = project.screenshots ?? [];
 ---
 
 <Layout
@@ -91,25 +90,27 @@ const remainingShots = project.screenshots?.slice(1) ?? [];
     <!-- Body -->
     <div class="container cs-body">
 
-      {leadShot && (
-        <section class="cs-sec cs-feature-sec">
-          <h2 class="label label--accent cs-sec-label">대표 산출물</h2>
-          <figure class="cs-feature-shot">
-            {leadShot.url ? (
-              <a href={leadShot.url} target="_blank" rel="noopener noreferrer" class="cs-feature-shot-inner">
-                <img src={assetPath(leadShot.src)} alt={leadShot.caption ?? ''} loading="eager" />
-              </a>
-            ) : (
-              <div class="cs-feature-shot-inner">
-                <img src={assetPath(leadShot.src)} alt={leadShot.caption ?? ''} loading="eager" />
-              </div>
-            )}
-            {leadShot.caption && (
-              <figcaption class="cs-feature-caption">
-                {leadShot.caption}{leadShot.url ? ' ↗' : ''}
-              </figcaption>
-            )}
-          </figure>
+      {shots.length > 0 && (
+        <section class="cs-sec cs-gallery-sec">
+          <h2 class="label label--accent cs-sec-label">산출물</h2>
+          <div class="cs-gallery">
+            {shots.map((s, i) => (
+              <figure class="cs-gallery-item">
+                {s.url ? (
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" class="cs-shot-inner">
+                    <img src={assetPath(s.src)} alt={s.caption ?? ''} loading={i === 0 ? 'eager' : 'lazy'} />
+                    {s.caption && <div class="cs-shot-overlay"><span>{s.caption} ↗</span></div>}
+                  </a>
+                ) : (
+                  <div class="cs-shot-inner">
+                    <img src={assetPath(s.src)} alt={s.caption ?? ''} loading={i === 0 ? 'eager' : 'lazy'} />
+                    {s.caption && <div class="cs-shot-overlay"><span>{s.caption}</span></div>}
+                  </div>
+                )}
+              </figure>
+            ))}
+          </div>
+          <p class="cs-gallery-hint">← 좌우로 넘기고, 이미지에 올리면 설명이 보입니다 →</p>
         </section>
       )}
 
@@ -219,33 +220,6 @@ const remainingShots = project.screenshots?.slice(1) ?? [];
           ))}
         </dl>
       </section>
-
-      <!-- 05 Screenshots -->
-      {remainingShots.length > 0 && (
-        <>
-          <hr class="line" />
-          <section class="cs-sec">
-            <h2 class="label label--accent cs-sec-label">06 · 산출물</h2>
-            <div class="cs-shots">
-              {remainingShots.map(s => (
-                <figure class={`cs-shot${s.wide ? ' cs-shot--wide' : ''}`}>
-                  {s.url ? (
-                    <a href={s.url} target="_blank" rel="noopener noreferrer" class="cs-shot-inner">
-                      <img src={assetPath(s.src)} alt={s.caption ?? ''} loading="lazy" />
-                      {s.caption && <div class="cs-shot-overlay"><span>{s.caption} ↗</span></div>}
-                    </a>
-                  ) : (
-                    <div class="cs-shot-inner">
-                      <img src={assetPath(s.src)} alt={s.caption ?? ''} loading="lazy" />
-                      {s.caption && <div class="cs-shot-overlay"><span>{s.caption}</span></div>}
-                    </div>
-                  )}
-                </figure>
-              ))}
-            </div>
-          </section>
-        </>
-      )}
 
     </div>
 
@@ -443,35 +417,52 @@ const remainingShots = project.screenshots?.slice(1) ?? [];
 
   .cs-sec-label { margin-bottom: 1.375rem; }
 
-  .cs-feature-sec { padding-top: 3rem; }
-
-  .cs-feature-shot {
+  /* ── 산출물 가로 스크롤 갤러리 ── */
+  .cs-gallery-sec { padding-top: 3rem; }
+  .cs-gallery {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.875rem;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+  .cs-gallery-item {
+    position: relative;
+    flex: 0 0 auto;
+    height: 320px;
     border: 1px solid var(--line);
     border-radius: var(--r-lg);
     overflow: hidden;
     background: var(--surface);
-    box-shadow: var(--shadow-md);
+    scroll-snap-align: start;
+    transition: box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
   }
-
-  .cs-feature-shot-inner {
-    display: block;
-    background: var(--surface);
+  .cs-gallery-item:hover { box-shadow: var(--shadow-lg); border-color: var(--line-strong); }
+  .cs-gallery-item .cs-shot-inner { height: 100%; }
+  .cs-gallery-item .cs-shot-inner img {
+    height: 100%;
+    width: auto;
+    max-width: none;
   }
-
-  .cs-feature-shot-inner img {
-    width: 100%;
-    height: auto;
-    display: block;
+  .cs-gallery-item:hover .cs-shot-inner img { transform: scale(1.03); }
+  .cs-gallery-item:hover .cs-shot-overlay,
+  .cs-gallery-item:focus-within .cs-shot-overlay { opacity: 1; }
+  .cs-gallery-hint {
+    margin-top: 0.625rem;
+    font-size: var(--text-xs);
+    color: var(--ink-4);
+    letter-spacing: 0.01em;
   }
-
-  .cs-feature-caption {
-    padding: 0.875rem 1rem;
-    border-top: 1px solid var(--line);
-    font-size: var(--text-caption);
-    color: var(--ink-3);
-    line-height: 1.55;
-    word-break: keep-all;
-    overflow-wrap: anywhere;
+  /* 터치 기기: hover 불가 → 캡션 상시 노출 */
+  @media (hover: none) {
+    .cs-gallery-item .cs-shot-overlay { opacity: 1; }
+  }
+  @media (max-width: 640px) {
+    .cs-gallery-item { height: 240px; }
   }
 
   .cs-flow-caption {
@@ -663,36 +654,6 @@ const remainingShots = project.screenshots?.slice(1) ?? [];
   }
 
   /* Screenshots */
-  .cs-shots {
-    columns: 2;
-    column-gap: 0.75rem;
-  }
-
-  .cs-shot {
-    break-inside: avoid;
-    margin-bottom: 0.75rem;
-    border: 1px solid var(--line);
-    border-radius: var(--r-lg);
-    overflow: hidden;
-    background: var(--surface);
-    transition: box-shadow var(--dur) var(--ease),
-                border-color var(--dur) var(--ease);
-  }
-
-  .cs-shot:hover {
-    box-shadow: var(--shadow-lg);
-    border-color: var(--line-strong);
-  }
-
-  .cs-shot--wide {
-    column-span: all;
-    margin-bottom: 0.75rem;
-  }
-
-  @media (max-width: 640px) {
-    .cs-shots { columns: 1; }
-  }
-
   .cs-shot-inner {
     display: block;
     position: relative;
@@ -706,8 +667,6 @@ const remainingShots = project.screenshots?.slice(1) ?? [];
     transition: transform var(--dur) var(--ease);
   }
 
-  .cs-shot:hover .cs-shot-inner img { transform: scale(1.03); }
-
   .cs-shot-overlay {
     position: absolute;
     inset: 0;
@@ -718,8 +677,6 @@ const remainingShots = project.screenshots?.slice(1) ?? [];
     opacity: 0;
     transition: opacity var(--dur-fast) var(--ease);
   }
-
-  .cs-shot:hover .cs-shot-overlay { opacity: 1; }
 
   .cs-shot-overlay span {
     font-size: var(--text-caption);
