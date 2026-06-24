@@ -7,7 +7,7 @@ const asset = (s: string) => `${basePath}${s.replace(/^\/+/, '')}`;
 // 강약: 대표 3개(직무중립 — 일하는 방식이 드러나는 프로젝트)는 산출물 이미지 카드로,
 // 나머지는 컴팩트 리스트로.
 const featuredSlugs = ['fastcampus', 'gcar-voc', 'pullsize'];
-const restSlugs = ['ai-content-automation', 'salmidalla', 'areun-sai'];
+const restSlugs = ['salmidalla', 'ai-content-automation', 'areun-sai'];
 const featured = featuredSlugs.map(slug => projects.find(p => p.slug === slug)!);
 const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
 ---
@@ -38,6 +38,7 @@ const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
             />
             <div class="feat-scrim"></div>
             <div class="feat-overlay">
+              {p.cover!.badge && <span class="feat-badge">{p.cover!.badge}</span>}
               <span class="feat-stat">{p.cover!.stat}</span>
               <span class="feat-stat-label">{p.cover!.statLabel}</span>
             </div>
@@ -160,6 +161,19 @@ const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
+  }
+
+  .feat-badge {
+    align-self: flex-start;
+    margin-bottom: 0.35rem;
+    padding: 0.22rem 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: var(--r-sm);
+    background: rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.88);
+    font-size: var(--text-2xs);
+    font-weight: 700;
+    letter-spacing: 0.04em;
   }
 
   .feat-stat {

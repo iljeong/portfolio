@@ -20,6 +20,8 @@ const siteUrl = 'https://iljeong.github.io/portfolio';
 const pageOgUrl = `${siteUrl}/projects/${project.slug}`;
 const problemShort = project.content.problem.split('. ')[0] + '.';
 const hasInsights = (project.content.insights ?? []).length > 0;
+const leadShot = project.screenshots?.[0];
+const remainingShots = project.screenshots?.slice(1) ?? [];
 ---
 
 <Layout
@@ -64,7 +66,7 @@ const hasInsights = (project.content.insights ?? []).length > 0;
     <div class="cs-stat-bar">
       <div class="container cs-stat-inner">
         <span class="cs-stat-num">{project.kpi ?? project.highlight}</span>
-        <span class="cs-stat-label">핵심 성과</span>
+        <span class="cs-stat-label">{project.kpiLabel ?? '핵심 성과'}</span>
       </div>
     </div>
 
@@ -89,17 +91,54 @@ const hasInsights = (project.content.insights ?? []).length > 0;
     <!-- Body -->
     <div class="container cs-body">
 
-      <!-- 01 Problem -->
+      {leadShot && (
+        <section class="cs-sec cs-feature-sec">
+          <h2 class="label label--accent cs-sec-label">대표 산출물</h2>
+          <figure class="cs-feature-shot">
+            {leadShot.url ? (
+              <a href={leadShot.url} target="_blank" rel="noopener noreferrer" class="cs-feature-shot-inner">
+                <img src={assetPath(leadShot.src)} alt={leadShot.caption ?? ''} loading="eager" />
+              </a>
+            ) : (
+              <div class="cs-feature-shot-inner">
+                <img src={assetPath(leadShot.src)} alt={leadShot.caption ?? ''} loading="eager" />
+              </div>
+            )}
+            {leadShot.caption && (
+              <figcaption class="cs-feature-caption">
+                {leadShot.caption}{leadShot.url ? ' ↗' : ''}
+              </figcaption>
+            )}
+          </figure>
+        </section>
+      )}
+
+      <!-- 01 Results -->
       <section class="cs-sec">
-        <h2 class="label label--accent cs-sec-label">01 · Problem</h2>
+        <h2 class="label label--accent cs-sec-label">01 · Results</h2>
+        <div class="cs-results">
+          {project.content.results.map(r => (
+            <div class="cs-result">
+              <p class="cs-result-label">{r.label}</p>
+              <p class="cs-result-val">{r.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <hr class="line" />
+
+      <!-- 02 Problem -->
+      <section class="cs-sec">
+        <h2 class="label label--accent cs-sec-label">02 · Problem</h2>
         <p class="cs-prose">{project.content.problem}</p>
       </section>
 
       <hr class="line" />
 
-      <!-- 02 Approach -->
+      <!-- 03 Approach -->
       <section class="cs-sec">
-        <h2 class="label label--accent cs-sec-label">02 · Approach</h2>
+        <h2 class="label label--accent cs-sec-label">03 · Approach</h2>
         <ol class="cs-steps" role="list">
           {project.content.approach.map(a => (
             <li class="cs-step">
@@ -130,7 +169,7 @@ const hasInsights = (project.content.insights ?? []).length > 0;
         <>
           <hr class="line" />
           <section class="cs-sec">
-            <h2 class="label label--accent cs-sec-label">03 · Key Insight</h2>
+            <h2 class="label label--accent cs-sec-label">04 · Key Insight</h2>
             <div class="cs-insights">
               {project.content.insights!.map(ins => (
                 <div class="cs-insight">
@@ -161,21 +200,6 @@ const hasInsights = (project.content.insights ?? []).length > 0;
 
       <hr class="line" />
 
-      <!-- Results -->
-      <section class="cs-sec">
-        <h2 class="label label--accent cs-sec-label">04 · Results</h2>
-        <div class="cs-results">
-          {project.content.results.map(r => (
-            <div class="cs-result">
-              <p class="cs-result-label">{r.label}</p>
-              <p class="cs-result-val">{r.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <hr class="line" />
-
       <!-- Contribution -->
       <section class="cs-sec">
         <h2 class="label label--accent cs-sec-label">05 · Contribution</h2>
@@ -197,13 +221,13 @@ const hasInsights = (project.content.insights ?? []).length > 0;
       </section>
 
       <!-- 05 Screenshots -->
-      {project.screenshots && project.screenshots.length > 0 && (
+      {remainingShots.length > 0 && (
         <>
           <hr class="line" />
           <section class="cs-sec">
             <h2 class="label label--accent cs-sec-label">06 · 산출물</h2>
             <div class="cs-shots">
-              {project.screenshots.map(s => (
+              {remainingShots.map(s => (
                 <figure class={`cs-shot${s.wide ? ' cs-shot--wide' : ''}`}>
                   {s.url ? (
                     <a href={s.url} target="_blank" rel="noopener noreferrer" class="cs-shot-inner">
@@ -418,6 +442,37 @@ const hasInsights = (project.content.insights ?? []).length > 0;
   .cs-sec { padding: 2.75rem 0; }
 
   .cs-sec-label { margin-bottom: 1.375rem; }
+
+  .cs-feature-sec { padding-top: 3rem; }
+
+  .cs-feature-shot {
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+  }
+
+  .cs-feature-shot-inner {
+    display: block;
+    background: var(--surface);
+  }
+
+  .cs-feature-shot-inner img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .cs-feature-caption {
+    padding: 0.875rem 1rem;
+    border-top: 1px solid var(--line);
+    font-size: var(--text-caption);
+    color: var(--ink-3);
+    line-height: 1.55;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
 
   .cs-flow-caption {
     font-size: var(--text-caption);
