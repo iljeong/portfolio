@@ -97,17 +97,18 @@ const shots = project.screenshots ?? [];
             <div class="cs-gallery" data-gallery>
               {shots.map((s, i) => (
                 <figure class="cs-gallery-item">
-                  {s.url ? (
-                    <a href={s.url} target="_blank" rel="noopener noreferrer" class="cs-shot-inner">
-                      <img src={assetPath(s.src)} alt={s.caption ?? ''} loading={i === 0 ? 'eager' : 'lazy'} />
-                      {s.caption && <div class="cs-shot-overlay"><span>{s.caption} ↗</span></div>}
-                    </a>
-                  ) : (
-                    <div class="cs-shot-inner">
-                      <img src={assetPath(s.src)} alt={s.caption ?? ''} loading={i === 0 ? 'eager' : 'lazy'} />
-                      {s.caption && <div class="cs-shot-overlay"><span>{s.caption}</span></div>}
-                    </div>
-                  )}
+                  <button
+                    type="button"
+                    class="cs-shot-inner"
+                    data-shot
+                    data-src={assetPath(s.src)}
+                    data-caption={s.caption ?? ''}
+                    data-url={s.url ?? ''}
+                    aria-label={`${s.caption ?? '산출물'} 크게 보기`}
+                  >
+                    <img src={assetPath(s.src)} alt={s.caption ?? ''} loading={i === 0 ? 'eager' : 'lazy'} />
+                    {s.caption && <div class="cs-shot-overlay"><span>{s.caption}</span></div>}
+                  </button>
                 </figure>
               ))}
             </div>
@@ -242,6 +243,20 @@ const shots = project.screenshots ?? [];
       </div>
     </div>
 
+    <!-- Lightbox -->
+    <div class="cs-lightbox" data-lightbox hidden role="dialog" aria-modal="true" aria-label="산출물 크게 보기">
+      <button type="button" class="cs-lightbox-close" data-lightbox-close aria-label="닫기">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <figure class="cs-lightbox-fig">
+        <img data-lightbox-img alt="" />
+        <figcaption class="cs-lightbox-cap">
+          <span data-lightbox-cap></span>
+          <a data-lightbox-link target="_blank" rel="noopener noreferrer" hidden>원본 보기 ↗</a>
+        </figcaption>
+      </figure>
+    </div>
+
   </main>
 </Layout>
 
@@ -265,6 +280,41 @@ const shots = project.screenshots ?? [];
     window.addEventListener('resize', update);
     update();
   });
+
+  // Lightbox — 산출물 이미지 크게 보기
+  const lb = document.querySelector('[data-lightbox]');
+  if (lb instanceof HTMLElement) {
+    const lbImg = lb.querySelector('[data-lightbox-img]');
+    const lbCap = lb.querySelector('[data-lightbox-cap]');
+    const lbLink = lb.querySelector('[data-lightbox-link]');
+    const closeBtn = lb.querySelector('[data-lightbox-close]');
+    let lastFocused = null;
+    const open = (src, caption, url) => {
+      if (lbImg) { lbImg.setAttribute('src', src); lbImg.setAttribute('alt', caption || ''); }
+      if (lbCap) lbCap.textContent = caption || '';
+      if (lbLink instanceof HTMLAnchorElement) {
+        if (url) { lbLink.href = url; lbLink.hidden = false; } else { lbLink.hidden = true; }
+      }
+      lastFocused = document.activeElement;
+      lb.hidden = false;
+      document.body.style.overflow = 'hidden';
+      if (closeBtn instanceof HTMLElement) closeBtn.focus();
+    };
+    const close = () => {
+      lb.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocused instanceof HTMLElement) lastFocused.focus();
+    };
+    document.querySelectorAll('[data-shot]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const el = btn;
+        open(el.getAttribute('data-src') || '', el.getAttribute('data-caption') || '', el.getAttribute('data-url') || '');
+      });
+    });
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', (e) => { if (!lb.hidden && e.key === 'Escape') close(); });
+  }
 </script>
 
 <style>
@@ -711,6 +761,16 @@ const shots = project.screenshots ?? [];
     display: block;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
   }
 
   .cs-shot-inner img {
@@ -737,6 +797,75 @@ const shots = project.screenshots ?? [];
     line-height: 1.5;
     letter-spacing: 0.01em;
   }
+
+  /* ── Lightbox (산출물 크게 보기) ── */
+  .cs-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 4vw, 3rem);
+    background: rgba(10, 10, 14, 0.92);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
+  .cs-lightbox[hidden] { display: none; }
+  .cs-lightbox-fig {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.875rem;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+  }
+  .cs-lightbox-fig img {
+    max-width: min(1100px, 92vw);
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--r-md);
+    box-shadow: 0 12px 44px rgba(0, 0, 0, 0.5);
+  }
+  .cs-lightbox-cap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    max-width: 60ch;
+    text-align: center;
+    font-size: var(--text-caption);
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.55;
+    word-break: keep-all;
+  }
+  .cs-lightbox-cap a {
+    color: #fff;
+    font-weight: 600;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  }
+  .cs-lightbox-close {
+    position: absolute;
+    top: clamp(0.75rem, 2vw, 1.5rem);
+    right: clamp(0.75rem, 2vw, 1.5rem);
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: var(--r-full);
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    cursor: pointer;
+    transition: background var(--dur) var(--ease);
+  }
+  .cs-lightbox-close:hover { background: rgba(255, 255, 255, 0.24); }
 
   /* Next project */
   .cs-next {
