@@ -93,24 +93,32 @@ const shots = project.screenshots ?? [];
       {shots.length > 0 && (
         <section class="cs-sec cs-gallery-sec">
           <h2 class="label label--accent cs-sec-label">산출물</h2>
-          <div class="cs-gallery">
-            {shots.map((s, i) => (
-              <figure class="cs-gallery-item">
-                {s.url ? (
-                  <a href={s.url} target="_blank" rel="noopener noreferrer" class="cs-shot-inner">
-                    <img src={assetPath(s.src)} alt={s.caption ?? ''} loading={i === 0 ? 'eager' : 'lazy'} />
-                    {s.caption && <div class="cs-shot-overlay"><span>{s.caption} ↗</span></div>}
-                  </a>
-                ) : (
-                  <div class="cs-shot-inner">
-                    <img src={assetPath(s.src)} alt={s.caption ?? ''} loading={i === 0 ? 'eager' : 'lazy'} />
-                    {s.caption && <div class="cs-shot-overlay"><span>{s.caption}</span></div>}
-                  </div>
-                )}
-              </figure>
-            ))}
+          <div class="cs-gallery-wrap at-start">
+            <div class="cs-gallery" data-gallery>
+              {shots.map((s, i) => (
+                <figure class="cs-gallery-item">
+                  {s.url ? (
+                    <a href={s.url} target="_blank" rel="noopener noreferrer" class="cs-shot-inner">
+                      <img src={assetPath(s.src)} alt={s.caption ?? ''} loading={i === 0 ? 'eager' : 'lazy'} />
+                      {s.caption && <div class="cs-shot-overlay"><span>{s.caption} ↗</span></div>}
+                    </a>
+                  ) : (
+                    <div class="cs-shot-inner">
+                      <img src={assetPath(s.src)} alt={s.caption ?? ''} loading={i === 0 ? 'eager' : 'lazy'} />
+                      {s.caption && <div class="cs-shot-overlay"><span>{s.caption}</span></div>}
+                    </div>
+                  )}
+                </figure>
+              ))}
+            </div>
+            <button type="button" class="cs-gallery-nav is-prev" data-dir="-1" aria-label="이전 산출물">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button type="button" class="cs-gallery-nav is-next" data-dir="1" aria-label="다음 산출물">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </div>
-          <p class="cs-gallery-hint">← 좌우로 넘기고, 이미지에 올리면 설명이 보입니다 →</p>
+          <p class="cs-gallery-hint">좌우로 넘기거나 화살표로 더 볼 수 있어요.</p>
         </section>
       )}
 
@@ -236,6 +244,28 @@ const shots = project.screenshots ?? [];
 
   </main>
 </Layout>
+
+<script>
+  document.querySelectorAll('.cs-gallery-wrap').forEach((wrap) => {
+    const gallery = wrap.querySelector('[data-gallery]');
+    if (!gallery) return;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const update = () => {
+      const max = gallery.scrollWidth - gallery.clientWidth - 1;
+      wrap.classList.toggle('at-start', gallery.scrollLeft <= 0);
+      wrap.classList.toggle('at-end', gallery.scrollLeft >= max);
+    };
+    wrap.querySelectorAll('.cs-gallery-nav').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const dir = Number(btn.getAttribute('data-dir'));
+        gallery.scrollBy({ left: dir * Math.min(gallery.clientWidth * 0.85, 420), behavior: reduce ? 'auto' : 'smooth' });
+      });
+    });
+    gallery.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
+</script>
 
 <style>
   .cs { padding-top: 3.25rem; }
@@ -419,6 +449,28 @@ const shots = project.screenshots ?? [];
 
   /* ── 산출물 가로 스크롤 갤러리 ── */
   .cs-gallery-sec { padding-top: 3rem; }
+  .cs-gallery-wrap { position: relative; }
+  .cs-gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px; height: 40px;
+    display: grid; place-items: center;
+    border-radius: var(--r-full);
+    background: #fff;
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    z-index: 2;
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+                opacity var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .cs-gallery-nav:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .cs-gallery-nav.is-prev { left: 8px; }
+  .cs-gallery-nav.is-next { right: 8px; }
+  .cs-gallery-wrap.at-start .cs-gallery-nav.is-prev,
+  .cs-gallery-wrap.at-end .cs-gallery-nav.is-next { opacity: 0; pointer-events: none; }
   .cs-gallery {
     display: flex;
     gap: 0.75rem;
@@ -454,12 +506,13 @@ const shots = project.screenshots ?? [];
   .cs-gallery-hint {
     margin-top: 0.625rem;
     font-size: var(--text-xs);
-    color: var(--ink-4);
+    color: var(--ink-3);
     letter-spacing: 0.01em;
   }
-  /* 터치 기기: hover 불가 → 캡션 상시 노출 */
+  /* 터치 기기: hover 불가 → 캡션 상시 노출, 화살표 숨김(스와이프) */
   @media (hover: none) {
     .cs-gallery-item .cs-shot-overlay { opacity: 1; }
+    .cs-gallery-nav { display: none; }
   }
   @media (max-width: 640px) {
     .cs-gallery-item { height: 240px; }
