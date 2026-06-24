@@ -177,7 +177,7 @@ export const projects: Project[] = [
     highlight: '사이즈 불안을 추천 근거로 해소',
     kpi: 'AI 사이즈 추천',
     kpiLabel: '제작 산출물',
-    cover: { src: '/images/pullsize/service-result.webp', stat: 'AI 추천', statLabel: '사이즈 추천 서비스 직접 배포', pos: 'center 24%', badge: '서비스 구현' },
+    cover: { src: '/images/pullsize/service-result.webp', stat: 'pullsize.kr', statLabel: '직접 만들어 배포한 AI 사이즈 추천 서비스', pos: 'center 24%', badge: '서비스 구현' },
     links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
     content: {
       problem:
