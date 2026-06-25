@@ -11,7 +11,7 @@ export type Project = {
   kpi?: string;
   kpiLabel?: string;
   links?: { label: string; url: string }[];
-  cover?: { src: string; stat: string; statLabel: string; pos?: string; badge?: string };
+  cover?: { src?: string; stat: string; statLabel: string; pos?: string; badge?: string; art?: 'modules' | 'data' };
   content: {
     problem: string;
     approach: { num: string; step: string; desc: string }[];
@@ -50,7 +50,7 @@ export const projects: Project[] = [
     highlight: '강사 의존 제작→표준 프로세스 구축',
     kpi: '신규 강의 6개',
     kpiLabel: '실무 산출물',
-    cover: { src: '/images/fastcampus/minshortform.webp', stat: '6개', statLabel: '신규 교육 상품 기획·런칭', pos: 'center', badge: '실무 상품화' },
+    cover: { art: 'modules', stat: '6개', statLabel: '신규 교육 상품 기획·런칭', badge: '실무 상품화' },
     content: {
       problem:
         '새로운 강사 영입 시 콘텐츠 방향, 타겟, 커리큘럼 구성, 페이지 기획이 담당자 경험에만 의존하고 있었다. 제작 프로세스가 문서화되지 않아 일정 지연과 품질 편차가 반복됐다.',
@@ -100,7 +100,7 @@ export const projects: Project[] = [
     highlight: '이탈 원인을 고객 여정으로 재정의',
     kpi: '37,923건',
     kpiLabel: '분석 규모',
-    cover: { src: '/images/gcar-voc/slide_tmp_8-08.png', stat: '37,923건', statLabel: '리뷰에서 이탈 구조 발견', pos: 'center', badge: '데이터 구조화' },
+    cover: { art: 'data', stat: '37,923건', statLabel: '리뷰에서 이탈 구조 발견', badge: '데이터 구조화' },
     content: {
       problem:
         'Gcar 앱의 부정 리뷰가 반복되고 있었으나, 어떤 문제가 핵심 이탈을 유발하는지 구조적으로 파악된 데이터가 없었다. 개별 이슈 대응에 그칠 뿐, 근본 원인을 고객 여정 관점으로 정의한 시도가 없었다.',

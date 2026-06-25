@@ -30,12 +30,48 @@ const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
           style={`--reveal-delay:${i * 80}ms`}
         >
           <div class="feat-media">
-            <img
-              src={asset(p.cover!.src)}
-              alt={`${p.name} 산출물`}
-              loading="lazy"
-              style={`object-position:${p.cover!.pos ?? 'center'}`}
-            />
+            {p.cover!.art ? (
+              <div class={`feat-code-cover feat-code-cover--${p.cover!.art}`} aria-hidden="true">
+                {p.cover!.art === 'modules' ? (
+                  <svg class="feat-motif feat-motif--modules" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="24" y="24" width="92" height="72" rx="16" />
+                      <rect x="134" y="24" width="92" height="72" rx="16" />
+                      <rect x="244" y="24" width="92" height="72" rx="16" />
+                      <rect x="24" y="124" width="92" height="72" rx="16" />
+                      <rect x="134" y="124" width="92" height="72" rx="16" />
+                      <rect x="244" y="124" width="92" height="72" rx="16" />
+                      <path d="M48 54H82" />
+                      <path d="M158 54H192" />
+                      <path d="M268 54H302" />
+                      <path d="M48 154H82" />
+                      <path d="M158 154H192" />
+                      <path d="M268 154H302" />
+                    </g>
+                  </svg>
+                ) : (
+                  <svg class="feat-motif feat-motif--data" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="currentColor">
+                      <rect x="44" y="132" width="22" height="54" rx="8" />
+                      <rect x="82" y="112" width="22" height="74" rx="8" />
+                      <rect x="120" y="148" width="22" height="38" rx="8" />
+                      <rect x="158" y="82" width="22" height="104" rx="8" />
+                      <rect x="196" y="102" width="22" height="84" rx="8" />
+                      <rect x="234" y="58" width="22" height="128" rx="8" />
+                      <rect x="272" y="126" width="22" height="60" rx="8" />
+                    </g>
+                    <path d="M36 186H318" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                  </svg>
+                )}
+              </div>
+            ) : (
+              <img
+                src={asset(p.cover!.src!)}
+                alt={`${p.name} 산출물`}
+                loading="lazy"
+                style={`object-position:${p.cover!.pos ?? 'center'}`}
+              />
+            )}
             <div class="feat-scrim"></div>
             <div class="feat-overlay">
               {p.cover!.badge && <span class="feat-badge">{p.cover!.badge}</span>}
@@ -139,6 +175,60 @@ const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
   }
 
   .feat-card:hover .feat-media img { transform: scale(1.04); }
+
+  .feat-code-cover {
+    position: absolute;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 16%, rgba(255, 255, 255, 0.18), transparent 30%),
+      radial-gradient(circle at 84% 12%, rgba(43, 92, 230, 0.26), transparent 34%),
+      linear-gradient(135deg, var(--accent) 0%, #151a28 54%, var(--ink) 100%);
+  }
+
+  .feat-code-cover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(120deg, rgba(255, 255, 255, 0.08), transparent 42%),
+      radial-gradient(circle at 72% 76%, rgba(255, 255, 255, 0.1), transparent 38%);
+  }
+
+  .feat-code-cover--data {
+    background:
+      radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.14), transparent 28%),
+      radial-gradient(circle at 82% 18%, rgba(43, 92, 230, 0.24), transparent 34%),
+      linear-gradient(135deg, #1f4fba 0%, #171717 52%, var(--ink) 100%);
+  }
+
+  .feat-motif {
+    position: absolute;
+    left: 9%;
+    top: 12%;
+    width: 82%;
+    height: 72%;
+    color: #fff;
+    opacity: 0.14;
+    transform-origin: center;
+    transition:
+      transform var(--dur-slow) var(--ease),
+      opacity var(--dur-slow) var(--ease);
+  }
+
+  .feat-motif--data {
+    left: 10%;
+    top: 13%;
+    width: 80%;
+    height: 70%;
+    opacity: 0.13;
+  }
+
+  .feat-card:hover .feat-motif {
+    transform: scale(1.025);
+    opacity: 0.16;
+  }
 
   /* Restrained gradient — legibility without an "ad" look */
   .feat-scrim {
@@ -248,7 +338,7 @@ const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
       grid-template-columns: 1fr;
       gap: 0.625rem;
     }
-    .feat-media { aspect-ratio: 16 / 9; }
+    .feat-media { aspect-ratio: 16 / 10; }
   }
 
   /* ── "그 외" compact list ── */
