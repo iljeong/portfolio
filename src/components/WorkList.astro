@@ -32,7 +32,7 @@ const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
           <div class="feat-media">
             {p.cover!.art ? (
               <div class={`feat-code-cover feat-code-cover--${p.cover!.art}`} aria-hidden="true">
-                {p.cover!.art === 'modules' ? (
+                {p.cover!.art === 'modules' && (
                   <svg class="feat-motif feat-motif--modules" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                       <rect x="24" y="24" width="92" height="72" rx="16" />
@@ -49,7 +49,8 @@ const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
                       <path d="M268 154H302" />
                     </g>
                   </svg>
-                ) : (
+                )}
+                {p.cover!.art === 'data' && (
                   <svg class="feat-motif feat-motif--data" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g fill="currentColor">
                       <rect x="44" y="132" width="22" height="54" rx="8" />
@@ -61,6 +62,23 @@ const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
                       <rect x="272" y="126" width="22" height="60" rx="8" />
                     </g>
                     <path d="M36 186H318" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                  </svg>
+                )}
+                {p.cover!.art === 'tshirt' && (
+                  <svg class="feat-motif feat-motif--tshirt" viewBox="180 58 300 252" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M282 88L246 101C238 104 232 110 228 118L204 167L240 184L255 153V280C255 286 260 292 266 292H374C380 292 385 286 385 280V153L400 184L436 167L412 118C408 110 402 104 394 101L358 88C353 107 338 120 320 120C302 120 287 107 282 88Z" stroke-width="4" />
+                      <path d="M298 94C304 104 336 104 342 94" stroke-width="4" />
+                      <path d="M218 116H384" stroke-width="3" />
+                      <path d="M218 108V124" stroke-width="3" />
+                      <path d="M384 108V124" stroke-width="3" />
+                      <path d="M229 184H411" stroke-width="3" />
+                      <path d="M229 176V192" stroke-width="3" />
+                      <path d="M411 176V192" stroke-width="3" />
+                      <path d="M412 78H450C457.7 78 464 84.3 464 92V108C464 115.7 457.7 122 450 122H412C404.3 122 398 115.7 398 108V106L386 114L398 116V92C398 84.3 404.3 78 412 78Z" stroke-width="3" />
+                      <path d="M446 95L451 100L460 90" stroke-width="3" />
+                    </g>
+                    <text x="424" y="111" text-anchor="middle" font-family="Pretendard, system-ui, -apple-system, sans-serif" font-size="27" font-weight="700" fill="currentColor">L</text>
                   </svg>
                 )}
               </div>
@@ -223,6 +241,14 @@ const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
     width: 80%;
     height: 70%;
     opacity: 0.13;
+  }
+
+  .feat-motif--tshirt {
+    left: 20%;
+    top: 12%;
+    width: 60%;
+    height: 76%;
+    opacity: 0.16;
   }
 
   .feat-card:hover .feat-motif {
