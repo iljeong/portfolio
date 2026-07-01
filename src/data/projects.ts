@@ -172,12 +172,12 @@ export const projects: Project[] = [
     subtitle: '온라인 쇼핑 사이즈 불안을 줄이는 AI 추천 MVP',
     period: '2026.03 — 현재',
     category: 'AI 서비스 기획 · MVP',
-    tags: ['AI 서비스', 'MVP', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계', 'Next.js', 'Supabase', 'Gemini'],
+    tags: ['AI 서비스', 'MVP', '2인 협업', 'UX 기획', '사이즈 추천', '이커머스', 'Next.js', 'Supabase', 'Gemini'],
     isMain: true,
     highlight: '사이즈 불안을 추천 근거로 해소',
     kpi: 'AI 사이즈 추천',
     kpiLabel: '제작 산출물',
-    cover: { art: 'tshirt', stat: 'pullsize.kr', statLabel: '직접 만들어 배포한 AI 사이즈 추천 서비스', badge: '서비스 구현' },
+    cover: { art: 'tshirt', stat: 'pullsize.kr', statLabel: '2인 팀으로 만들어 배포한 AI 사이즈 추천 서비스', badge: '2인 협업' },
     links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
     content: {
       problem:
@@ -197,7 +197,7 @@ export const projects: Project[] = [
       results: [
         { label: '제작 성과', desc: '상품 URL 입력부터 신체 정보 입력, AI 추천 결과까지 이어지는 핵심 플로우를 구현하고 pullsize.kr에 배포했습니다.' },
         { label: '설계 성과', desc: '추천 사이즈만 제시하지 않고 부위별 핏, 여유도, 판단 근거를 함께 보여주는 구조로 설계했습니다.' },
-        { label: '기술 구현', desc: 'Next.js 16 · React 19 · TypeScript · Supabase · Gemini로 직접 구현했고, cheerio로 상품 페이지 실측 치수를 파싱했습니다.' },
+        { label: '기술 구현', desc: 'Next.js 16 · React 19 · TypeScript · Supabase · Gemini로 인호와 2인이 함께 구현했고, cheerio로 상품 페이지 실측 치수를 파싱했습니다.' },
         { label: '검증 한계', desc: '서비스 배포 단계이며 사용자 수, 전환율, 추천 정확도는 추가 검증이 필요합니다. GA 이벤트와 추천 피드백을 기준으로 확인할 예정입니다.' },
       ],
       flow: {
@@ -213,9 +213,9 @@ export const projects: Project[] = [
       },
       architecture: {
         title: '서비스 구조',
-        caption: 'Claude Code로 프론트·백엔드를 직접 구현하고 Vercel에 배포한 풀스택 구조.',
+        caption: 'Claude Code로 프론트·백엔드를 2인이 공동 구현하고 Vercel에 배포한 풀스택 구조.',
         layers: [
-          { name: '빌드 · 배포', items: ['Claude Code 직접 구현', 'GitHub Actions CI/CD', 'Vercel'] },
+          { name: '빌드 · 배포', items: ['Claude Code 기반 2인 공동 구현', 'GitHub Actions CI/CD', 'Vercel'] },
           { name: '프론트엔드', items: ['Next.js 16 / React 19', '추천', '블로그', '어드민'] },
           { name: 'API', items: ['Vercel Functions', '추천', '이미지 기반 추천', '피드백', '제휴 리다이렉트', '블로그', '어드민'] },
           { name: '데이터 · AI', items: ['Supabase', 'Gemini 사이즈 추천', 'cheerio 치수 파싱'] },
@@ -224,9 +224,9 @@ export const projects: Project[] = [
         loop: '인스타(@pullsize) → 블로그 유입 → AI 사이즈 추천 → 구매 전환 → 콘텐츠 재생산 ↺',
       },
       contribution: {
-        role: '서비스 기획자 · UX 설계 (AI 도구 기반 직접 구현)',
-        scope: '문제 정의·사용자 입력 플로우·추천 결과 UX·MVP 화면 설계·Claude Code 기반 프론트엔드·백엔드 직접 구현·서비스 배포',
-        output: '실서비스 배포 (pullsize.kr), AI 추천 결과 화면, 메인 입력 화면',
+        role: '공동 개발 (2인 팀) · 서비스 기획 · 풀스택 구현',
+        scope: '문제 정의·사용자 입력 플로우·추천 결과 UX·MVP 화면 설계부터 프론트엔드·백엔드·배포까지 인호와 2인이 풀스택으로 공동 구현 (Claude Code 활용)',
+        output: '2인 공동 개발 · 실서비스 배포 (pullsize.kr), AI 추천 결과 화면, 메인 입력 화면',
       },
     },
     screenshots: [
