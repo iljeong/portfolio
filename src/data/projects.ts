@@ -60,7 +60,7 @@ export const projects: readonly Project[] = [
     cover: { art: 'modules', stat: '6개', statLabel: '신규 교육 상품 기획·런칭', badge: '실무 상품화' },
     content: {
       problem:
-        '새 강사를 영입할 때마다 콘텐츠 방향, 타겟, 커리큘럼, 상세페이지 기획이 담당자 경험에 의존하고 있었다. 제작 기준이 문서화되지 않아 일정 지연과 품질 편차도 반복됐다.',
+        '새 강사를 영입할 때마다 콘텐츠 방향, 타겟, 커리큘럼, 상세페이지 기획이 담당자 경험에 의존하고 있었다. 제작 기준이 문서화되지 않아 일정 지연과 품질 편차도 반복됐다. 8개월 인턴 기간 동안 기획부터 런칭까지의 전 주기를 6회 반복한, 이 포트폴리오의 유일한 실무 경험이자 출발점이다.',
       approach: [
         { num: '01', step: '강사·타겟 분석', desc: '강사 콘텐츠 히스토리와 SNS 반응을 보고 경쟁 강의와 비교해 차별화 포지션을 도출' },
         { num: '02', step: '커리큘럼 설계', desc: '학습 목표를 정의하고 차시 구조와 난이도 흐름을 강사와 함께 설계' },
@@ -109,7 +109,7 @@ export const projects: readonly Project[] = [
     cover: { art: 'data', stat: '37,923건', statLabel: '리뷰에서 이탈 구조 발견', badge: '데이터 구조화' },
     content: {
       problem:
-        'Gcar 앱에는 부정 리뷰가 반복되고 있었지만, 어떤 문제가 이탈을 키우는지 구조적으로 정리된 데이터가 없었다. 개별 이슈 대응에 그치지 않고 고객 여정 관점에서 원인을 다시 정의할 필요가 있었다.',
+        'Gcar 앱에는 부정 리뷰가 반복되고 있었지만, 어떤 문제가 핵심 이탈을 유발하는지 구조적으로 정리된 데이터가 없었다. 개별 이슈 대응에 그치지 않고 고객 여정 관점에서 원인을 다시 정의해야 했다. 패스트캠퍼스에서 데이터로 기획 방향을 수정했던 방식을, 분석 도구를 갖춰 3.8만 건 규모로 확장한 프로젝트다.',
       approach: [
         { num: '01', step: '데이터 수집', desc: 'Google Play · App Store에서 Gcar·경쟁사 앱 리뷰 37,923건 크롤링 및 전처리 (수집 기간: 2021–2025)' },
         { num: '02', step: '감정 분류', desc: '사전학습 KoELECTRA-Base-v3 모델 적용, 감정 분류(정확도 0.976 · F1 0.984) 후 SHAP로 부정 감정 유발 핵심 키워드 도출' },
@@ -178,11 +178,11 @@ export const projects: readonly Project[] = [
     subtitle: '온라인 쇼핑 사이즈 불안을 줄이는 AI 추천 MVP',
     period: '2026.03 — 현재',
     category: 'AI 서비스 기획 · MVP',
-    tags: ['AI 서비스', 'MVP', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계', 'Next.js', 'Supabase', 'Gemini'],
+    tags: ['AI 서비스', 'MVP', '2인 협업', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계', 'Next.js', 'Supabase', 'Gemini'],
     highlight: '사이즈 불안을 추천 근거로 해소',
     kpi: 'AI 사이즈 추천',
     kpiLabel: '제작 산출물',
-    cover: { art: 'tshirt', stat: 'pullsize.kr', statLabel: 'AI 사이즈 추천 서비스', badge: '서비스 구현' },
+    cover: { art: 'tshirt', stat: 'pullsize.kr', statLabel: '2인 팀으로 만들어 배포한 AI 사이즈 추천 서비스', badge: '2인 협업' },
     links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
     content: {
       problem:
@@ -198,12 +198,13 @@ export const projects: readonly Project[] = [
         { num: '01', title: '사이즈표는 있는데, 내 치수와 연결할 길이 없었다', body: '대부분의 쇼핑몰이 사이즈표를 제공하지만, 내 치수와 상품 치수를 연결하는 방법은 부족했다. 사용자는 숫자를 보고도 여전히 불확실함을 느꼈다.' },
         { num: '02', title: "'왜 M인지'를 보여줘야 추천을 믿을 수 있었다", body: '"그냥 M 추천"보다 "어깨 너비 기준으로 M을 추천하는 이유"가 있을 때 판단이 빨라졌다. 추천값보다 설명 가능한 근거 구조가 더 중요했다.' },
         { num: '03', title: 'AI 추천은 검증 기준이 있어야 안정됐다', body: 'AI가 빠르게 결과를 만들더라도, 무엇이 맞는지 판단하는 기준은 사람이 세워야 했다. 한 번은 파서가 국제 사이즈 환산표를 실제 치수로 착각해 어깨 44, 가슴 5 같은 값을 추천으로 내보냈고, 이후 검증 장치를 붙여 같은 오류가 반복되지 않게 했다.' },
+        { num: '04', title: '배포는 끝이 아니라 계측의 시작이다', body: '배포 직후 가장 먼저 한 일은 기능 추가가 아니라 GA 이벤트 설계였다. 추천 실행(recommend_submit/success)과 제휴 클릭(cta_click)을 이벤트로 심어, 어느 단계에서 사용자가 이탈하는지 보이는 상태를 먼저 만들었다.' },
       ],
       results: [
-        { label: '제작 성과', desc: '상품 URL 입력부터 신체 정보 입력, AI 추천 결과까지 이어지는 핵심 플로우를 구현하고 pullsize.kr에 배포했습니다.' },
-        { label: '설계 성과', desc: '추천 사이즈만 제시하지 않고 부위별 핏, 여유도, 판단 근거를 함께 보여주는 구조로 설계했습니다.' },
-        { label: '기술 구현', desc: 'Next.js 16 · React 19 · TypeScript · Supabase · Gemini로 직접 구현했고, cheerio로 상품 페이지 실측 치수를 파싱했습니다.' },
-        { label: '검증 한계', desc: '서비스 배포 단계이며 사용자 수, 전환율, 추천 정확도는 추가 검증이 필요합니다. GA 이벤트와 추천 피드백을 기준으로 확인할 예정입니다.' },
+        { label: '제작 성과', desc: '신체 정보 + 상품 URL → 추천 → 근거 확인으로 이어지는 4단계 플로우를 실서비스(pullsize.kr)로 구현·운영 중입니다.' },
+        { label: '검증 단계', desc: "'추천 근거 제시가 구매 판단 속도를 높인다'는 가설을 사용자 피드백으로 검증하는 단계입니다." },
+        { label: '기술 구현', desc: 'Next.js 16 · React 19 · TypeScript · Supabase · Gemini로 인호와 2인이 함께 구현했고, cheerio로 상품 페이지 실측 치수를 파싱했습니다.' },
+        { label: '검증 지표', desc: '추천 실행 수 · 제휴 링크 클릭 · 정확도 피드백을 GA 이벤트로 계측 설계 완료했습니다. 사용자 수·전환율 등 절대 지표는 추가 검증이 필요합니다.' },
       ],
       flow: {
         title: '서비스 플로우',
@@ -218,20 +219,20 @@ export const projects: readonly Project[] = [
       },
       architecture: {
         title: '서비스 구조',
-        caption: 'Claude Code로 프론트·백엔드를 직접 구현하고 Vercel에 배포한 풀스택 구조.',
+        caption: 'Claude Code로 프론트·백엔드를 2인이 공동 구현하고 Vercel에 배포한 풀스택 구조.',
         layers: [
-          { name: '빌드 · 배포', items: ['Claude Code 직접 구현', 'GitHub Actions CI/CD', 'Vercel'] },
+          { name: '빌드 · 배포', items: ['Claude Code 기반 2인 공동 구현', 'GitHub Actions CI/CD', 'Vercel'] },
           { name: '프론트엔드', items: ['Next.js 16 / React 19', '추천', '블로그', '어드민'] },
           { name: 'API', items: ['Vercel Functions', '추천', '이미지 기반 추천', '피드백', '제휴 리다이렉트', '블로그', '어드민'] },
           { name: '데이터 · AI', items: ['Supabase', 'Gemini 사이즈 추천', 'cheerio 치수 파싱'] },
           { name: '측정 · 전환', items: ['제휴 → 구매 전환', 'GA 분석'] },
         ],
-        loop: '인스타(@pullsize) → 블로그 유입 → AI 사이즈 추천 → 구매 전환 → 콘텐츠 재생산',
+        loop: '인스타(@pullsize.official) → 블로그 유입 → AI 사이즈 추천 → 구매 전환 → 콘텐츠 재생산',
       },
       contribution: {
-        role: '서비스 기획자 · UX 설계 (AI 도구 기반 직접 구현)',
-        scope: '문제 정의·사용자 입력 플로우·추천 결과 UX·MVP 화면 설계·Claude Code 기반 프론트엔드·백엔드 직접 구현·서비스 배포',
-        output: '실서비스 배포 (pullsize.kr), AI 추천 결과 화면, 메인 입력 화면',
+        role: '공동 개발 (2인 팀) · 서비스 기획 · 풀스택 구현',
+        scope: '문제 정의·사용자 입력 플로우·추천 결과 UX·MVP 화면 설계부터 프론트엔드·백엔드·배포까지 인호와 2인이 풀스택으로 공동 구현 (Claude Code 활용)',
+        output: '2인 공동 개발 · 실서비스 배포 (pullsize.kr), AI 추천 결과 화면, 메인 입력 화면',
       },
     },
     screenshots: [
@@ -268,7 +269,7 @@ export const projects: readonly Project[] = [
         { num: '03', title: "속도보다 중요한 건 '누가 해도 같은 품질'이었다", body: '3시간 → 30분 단축보다 중요한 건 누가 하더라도 같은 품질이 나오는 구조였다. 이 프로젝트의 목표는 빠른 제작이 아니라 재현 가능한 프로세스를 만드는 일이었다.' },
       ],
       results: [
-        { label: '생산성 성과', desc: '브랜드당 평균 제작 시간을 3시간에서 30분 이내로 줄여 약 83% 단축했습니다. (22개 브랜드 평균 기준)' },
+        { label: '생산성 성과', desc: '기준 문서화로 재현 가능한 제작 프로세스를 구축해, 브랜드당 평균 제작 시간을 3시간에서 30분 이내로 줄였습니다(약 83% 단축). 측정 기준: 자동화 전후 동일 범위(조사~게시) 작업 시간을 피드 단위로 기록·비교(29개 피드 평균).' },
         { label: '제작 산출물', desc: '22개 브랜드를 다루며 29개 이상 피드를 자동 생성했고, 39개 피드를 Google Sheets 대시보드로 관리했습니다.' },
         { label: '운영 성과', desc: '캡션 v4 포맷과 3-Tier 해시태그 전략을 적용해 조사, 카피, 디자인, 게시 상태를 한 흐름으로 묶었습니다.' },
         { label: '검증 한계', desc: '제작 시간과 생산량은 확인했지만, 게시 후 도달·전환 성과는 별도 지표로 공개하지 않았습니다.' },
@@ -283,7 +284,7 @@ export const projects: readonly Project[] = [
           { label: '전략·카피', desc: '카피 생성·검수 기준' },
           { label: 'Figma 적용', desc: 'MCP로 디자인 자동 반영' },
           { label: 'QA', desc: 'fact_check 게이트' },
-          { label: '게시·동기화', desc: '@pullsize 게시·Sheets 연동' },
+          { label: '게시·동기화', desc: '@pullsize.official 게시·Sheets 연동' },
         ],
         note: '게시 후 회고를 다음 제작에 반영하는 반복 루프 ↺',
       },
@@ -314,9 +315,9 @@ export const projects: readonly Project[] = [
     period: '2021.01 — 2023.04',
     category: '브랜드 기획 · 패션 MD',
     tags: ['브랜드 기획', 'MD', '영상 편집', 'Premiere Pro', 'Photoshop', '팝업스토어'],
-    highlight: '팔로워 +86%',
-    kpi: '+86%',
-    kpiLabel: '운영 성과',
+    highlight: '3시즌 출시',
+    kpi: '3시즌',
+    kpiLabel: '브랜드 출시·운영',
     links: [{ label: '브랜드 사이트 보기', url: 'https://www.sixshop.com/salmidollar/home' }],
     content: {
       problem:
@@ -334,9 +335,9 @@ export const projects: readonly Project[] = [
         { num: '03', title: '온라인만으로는 부족해 판매 채널을 넓혔다', body: '팝업스토어 3회(카페 위탁·대학 축제·서울 플리마켓)로 오프라인 접점을 만들고 ACC·굿즈백·키링으로 품목을 확장했다. 한 채널에 기대지 않는 판매 구조를 실험했다.' },
       ],
       results: [
-        { label: '운영 성과', desc: '첫 시즌 자체 제작 의류 140벌을 완판했고, 이후 21FW · 22SS까지 3시즌을 이어갔습니다.' },
-        { label: '채널 성과', desc: '인스타그램 팔로워 464 → 863명(+86%), 유튜브 조회수 총 2.4만+를 만들고 팝업스토어 3회를 운영했습니다.' },
-        { label: '산출물', desc: '의류 라인, ACC·굿즈백·키링, 룩북, 유튜브 브이로그 27편과 숏츠 23편을 직접 기획·제작했습니다.' },
+        { label: '운영 성과', desc: '한정 140벌을 기획·생산해 시즌 내 완판했고, 리뷰·DM 피드백을 사이즈 그레이딩 재설계로 반영해 21FW · 22SS로 연속 출시했습니다.' },
+        { label: '채널 성과', desc: '팝업스토어 3회(카페 위탁·대학 축제·플리마켓)와 온라인 판매를 병행해 단일 채널에 의존하지 않는 판매 구조를 운영했습니다.' },
+        { label: '산출물', desc: '의류 라인, ACC·굿즈백·키링, 룩북, 유튜브 브이로그 27편과 숏츠 23편을 직접 기획·제작했습니다. (인스타 팔로워 464→863명, 유튜브 누적 조회 2.4만+)' },
         { label: '검증 한계', desc: '3인 창업 브랜드의 운영 사례이며 매출·이익 지표는 공개하지 않고, 판매 수량과 채널 성장 중심으로 정리했습니다.' },
       ],
       contribution: {
@@ -348,7 +349,7 @@ export const projects: readonly Project[] = [
     screenshots: [
       { src: '/images/salmidalla/location-front.webp',       caption: '시즌 룩북 촬영 — 브랜드 콘셉트와 제품 스타일링 기획',         wide: true },
       { src: '/images/salmidalla/quality-check.webp',        caption: '의류 검수 현장 — 납품 전 봉제·프린팅 품질 직접 검수' },
-      { src: '/images/salmidalla/21ss-product.jpg',         caption: '21SS 상품 — 자체 제작 의류 140벌 완판' },
+      { src: '/images/salmidalla/21ss-product.jpg',         caption: '21SS 상품 — 한정 140벌 기획·생산, 시즌 내 완판' },
       { src: '/images/salmidalla/21fw-product-1.gif',       caption: '21FW 컬렉션 — 21SS 완판에 이어 가을/겨울 라인 출시' },
       { src: '/images/salmidalla/sample-spec.webp',          caption: '21SS 샘플 작업의뢰서 — 봉제 스펙·사이즈 그레이딩 직접 작성' },
       { src: '/images/salmidalla/22ss-cloth-1.webp',         caption: '22SS 의류 라인 — 네 종 출시, ACC·굿즈백·키링으로 품목 확장' },
@@ -388,8 +389,8 @@ export const projects: readonly Project[] = [
         { num: '03', title: '9명 팀의 흐름을 끊기지 않게 잇는 게 PM의 일이었다', body: '편집제작·마케팅·디자인 9명 팀의 일정과 자료 흐름을 2년 2개월간 조율했다. 핵심 산출물은 팀 공동 제작이었고, 제 역할은 각 팀의 일이 다음 단계로 이어지게 만드는 것이었다.' },
       ],
       results: [
-        { label: '펀딩 성과', desc: '텀블벅 목표 금액 대비 177%를 달성했습니다. (2024, 캠페인 종료 기준)' },
-        { label: '제작 산출물', desc: '인터뷰집 애\'Say / 처음은 아니지만 2권을 출판하고 전시·굿즈·리워드 패키지로 확장했습니다.' },
+        { label: '펀딩 성과', desc: '텀블벅 목표 금액 대비 177%(889,000원)를 달성했습니다. 후원자 36명. (2024, 캠페인 종료 기준)' },
+        { label: '제작 산출물', desc: '인터뷰집 애\'Say / 처음은 아니지만 2권을 출판하고, 전시·굿즈·리워드 패키지로 확장했습니다.' },
         { label: '운영 성과', desc: '편집제작·마케팅·디자인 9명 팀을 2년 2개월간 조율하며 기획·제작·마케팅 흐름을 관리했습니다.' },
         { label: '기여 범위', desc: '팀 공동 산출물이며, 개인 역할은 프로젝트 매니저로서 인터뷰 기획, 편집, 펀딩 운영, 일정 조율을 맡았습니다.' },
       ],
