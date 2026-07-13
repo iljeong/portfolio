@@ -1,10 +1,10 @@
 ---
 interface Props {
-  architecture: {
-    title: string;
-    caption?: string;
-    layers: { name: string; items: string[] }[];
-    loop?: string;
+  readonly architecture: {
+    readonly title: string;
+    readonly caption?: string;
+    readonly layers: readonly { readonly name: string; readonly items: readonly string[] }[];
+    readonly loop?: string;
   };
 }
 const { architecture } = Astro.props;

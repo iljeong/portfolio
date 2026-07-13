@@ -1,75 +1,82 @@
+type ProjectCover = {
+  readonly stat: string;
+  readonly statLabel: string;
+  readonly badge?: string;
+} & (
+  | { readonly src: string; readonly pos?: string; readonly art?: never }
+  | { readonly art: 'modules' | 'data' | 'tshirt'; readonly src?: never; readonly pos?: never }
+);
+
 export type Project = {
-  slug: string;
-  name: string;       // short name for list view
-  title: string;
-  subtitle: string;
-  period: string;
-  category: string;
-  tags: string[];
-  isMain: boolean;
-  highlight: string;
-  kpi?: string;
-  kpiLabel?: string;
-  links?: { label: string; url: string }[];
-  cover?: { src?: string; stat: string; statLabel: string; pos?: string; badge?: string; art?: 'modules' | 'data' | 'tshirt' };
-  content: {
-    problem: string;
-    approach: { num: string; step: string; desc: string }[];
-    insights?: { num: string; title: string; body: string }[];
-    results: { label: string; desc: string }[];
-    contribution: { role: string; scope: string; output: string };
-    flow?: {
-      title: string;
-      layout: 'chain' | 'roadmap';
-      tone?: 'negative' | 'process';
-      caption?: string;
-      steps: { label: string; desc?: string }[];
-      note?: string;
+  readonly slug: string;
+  readonly name: string;       // short name for list view
+  readonly title: string;
+  readonly subtitle: string;
+  readonly period: string;
+  readonly category: string;
+  readonly tags: readonly string[];
+  readonly highlight: string;
+  readonly kpi?: string;
+  readonly kpiLabel?: string;
+  readonly links?: readonly { readonly label: string; readonly url: string }[];
+  readonly cover?: ProjectCover;
+  readonly content: {
+    readonly problem: string;
+    readonly approach: readonly { readonly num: string; readonly step: string; readonly desc: string }[];
+    readonly insights?: readonly { readonly num: string; readonly title: string; readonly body: string }[];
+    readonly results: readonly { readonly label: string; readonly desc: string }[];
+    readonly contribution: { readonly role: string; readonly scope: string; readonly output: string };
+    readonly flow?: {
+      readonly title: string;
+      readonly layout: 'chain' | 'roadmap';
+      readonly tone?: 'negative' | 'process';
+      readonly caption?: string;
+      readonly steps: readonly { readonly label: string; readonly desc?: string }[];
+      readonly note?: string;
     };
-    architecture?: {
-      title: string;
-      caption?: string;
-      layers: { name: string; items: string[] }[];
-      loop?: string;
+    readonly architecture?: {
+      readonly title: string;
+      readonly caption?: string;
+      readonly layers: readonly { readonly name: string; readonly items: readonly string[] }[];
+      readonly loop?: string;
     };
   };
-  screenshots?: { src: string; caption?: string; url?: string; wide?: boolean; cols?: number }[];
+  readonly screenshots?: readonly { readonly src: string; readonly caption?: string; readonly url?: string; readonly wide?: boolean; readonly cols?: number }[];
 };
 
-export const projects: Project[] = [
+export const projects: readonly Project[] = [
 
   {
     slug: 'fastcampus',
     name: '패스트캠퍼스 교육 상품 기획',
-    title: '강사 분석부터 런칭 매니징까지, 신규 교육 상품 6개를 기획했다',
+    title: '강사 분석부터 런칭까지, 신규 교육 상품 6개를 기획했다',
     subtitle: '강사 분석 → 커리큘럼 설계 → 상세페이지 구성 → 런칭 매니징',
     period: '2024.05 — 2024.12',
     category: '콘텐츠 상품 기획',
     tags: ['상품 기획', '상세페이지 기획', '커리큘럼 설계', 'Notion', 'Figma'],
-    isMain: true,
     highlight: '강사 의존 제작→표준 프로세스 구축',
     kpi: '신규 강의 6개',
     kpiLabel: '실무 산출물',
     cover: { art: 'modules', stat: '6개', statLabel: '신규 교육 상품 기획·런칭', badge: '실무 상품화' },
     content: {
       problem:
-        '새로운 강사 영입 시 콘텐츠 방향, 타겟, 커리큘럼 구성, 페이지 기획이 담당자 경험에만 의존하고 있었다. 제작 프로세스가 문서화되지 않아 일정 지연과 품질 편차가 반복됐다.',
+        '새 강사를 영입할 때마다 콘텐츠 방향, 타겟, 커리큘럼, 상세페이지 기획이 담당자 경험에 의존하고 있었다. 제작 기준이 문서화되지 않아 일정 지연과 품질 편차도 반복됐다.',
       approach: [
-        { num: '01', step: '강사·타겟 분석', desc: '강사 콘텐츠 히스토리·SNS 분석 + 경쟁 강의 비교를 통한 차별화 포지션 도출' },
-        { num: '02', step: '커리큘럼 설계', desc: '학습 목표 정의 → 차시 구조화 → 난이도 흐름 설계 (강사 협업)' },
-        { num: '03', step: '상세페이지 구성', desc: '기존 구매 페이지 클릭 흐름 분석 → 경쟁사 벤치마킹 → 콘텐츠 이해도 우선으로 상세페이지 재구성' },
+        { num: '01', step: '강사·타겟 분석', desc: '강사 콘텐츠 히스토리와 SNS 반응을 보고 경쟁 강의와 비교해 차별화 포지션을 도출' },
+        { num: '02', step: '커리큘럼 설계', desc: '학습 목표를 정의하고 차시 구조와 난이도 흐름을 강사와 함께 설계' },
+        { num: '03', step: '상세페이지 구성', desc: '구매 페이지 클릭 흐름과 경쟁사 페이지를 분석해 강의 가치를 이해하는 순서로 재구성' },
         { num: '04', step: '제작 협업', desc: '촬영·디자인·편집팀과 마일스톤 기반 일정 관리, 품질 체크리스트 운영' },
-        { num: '05', step: '프로세스 문서화', desc: '전 과정을 Notion 기반 표준 템플릿으로 정리, 후임자 인수인계 완료' },
+        { num: '05', step: '프로세스 문서화', desc: '강사 분석부터 런칭까지의 기준을 Notion 표준 템플릿으로 정리하고 인수인계' },
       ],
       insights: [
-        { num: '01', title: '강사의 강점과 수강생이 원하는 건 달랐다', body: '초기엔 강사의 강점인 "심미적 영상미"를 강의 핵심 소구점으로 잡았다. 그런데 강사 채널의 조회수·댓글·팔로워 반응을 분석하니 실제 니즈는 "최소 공수로 조회수를 만드는 실전 숏폼 전략"에 가까웠다. 주관적 판단 대신 데이터가 가리키는 방향으로 기획을 전면 수정했다.' },
-        { num: '02', title: '담당자 경험에 의존하던 제작을 문서로 표준화했다', body: '콘텐츠 방향·타겟·커리큘럼·페이지 기획이 담당자 경험에만 의존해 일정 지연과 품질 편차가 반복됐다. 강사 분석부터 런칭까지를 Notion 표준 템플릿으로 문서화하자, 누가 맡아도 같은 품질이 나오고 온보딩 시간이 줄었다.' },
-        { num: '03', title: "상세페이지를 '이해 순서'대로 다시 짰다", body: '기존 구매 페이지의 클릭 흐름을 분석하고 경쟁사를 벤치마킹해, 기능을 나열하는 대신 수강생이 강의 가치를 이해하는 순서로 상세페이지를 재구성했다.' },
+        { num: '01', title: '강사의 강점과 수강생의 니즈는 달랐다', body: '처음에는 강사의 강점인 "심미적 영상미"를 핵심 소구점으로 잡았다. 하지만 채널 조회수·댓글·팔로워 반응을 보니 실제 니즈는 "최소 공수로 조회수를 만드는 실전 숏폼 전략"에 가까웠다. 이후 데이터가 가리키는 방향으로 기획을 수정했다.' },
+        { num: '02', title: '담당자 경험에 기대던 제작을 문서로 표준화했다', body: '콘텐츠 방향·타겟·커리큘럼·페이지 기획이 담당자 경험에 의존해 일정 지연과 품질 편차가 반복됐다. 강사 분석부터 런칭까지를 Notion 표준 템플릿으로 문서화해, 다음 담당자가 같은 기준으로 이어받을 수 있게 했다.' },
+        { num: '03', title: "상세페이지를 '이해 순서'로 다시 짰다", body: '기존 구매 페이지의 클릭 흐름을 분석하고 경쟁사를 벤치마킹했다. 기능을 나열하기보다 수강생이 강의 가치를 이해하는 순서로 상세페이지를 재구성했다.' },
         { num: '04', title: '기획과 런칭 매니징은 다른 근육이다', body: '신규 6개 중 4개는 직접 기획하고 2개는 PM으로 촬영·디자인·편집팀의 일정과 품질을 조율했다. 0→1로 만드는 일과, 여러 팀을 굴려 출시까지 가져가는 일은 서로 다른 역량이었다.' },
       ],
       results: [
         { label: '제작 성과', desc: '신규 강의 6개를 기획·출시했습니다. 4개는 직접 기획했고 2개는 PM으로 진행했습니다. (2024.05–12)' },
-        { label: '운영 성과', desc: '강사 분석, 커리큘럼 설계, 상세페이지 구성, 런칭 매니징까지 이어지는 제작 흐름을 맡았습니다.' },
+        { label: '운영 성과', desc: '강사 분석, 커리큘럼 설계, 상세페이지 구성, 런칭까지 이어지는 제작 흐름을 맡았습니다.' },
         { label: '산출물', desc: '공개 강의 페이지 6개와 Notion 기반 표준 제작 프로세스를 남겼습니다.' },
         { label: '검증 한계', desc: '매출·수강 전환 같은 내부 지표는 공개하지 않고, 공개 가능한 출시 산출물과 프로세스 중심으로 정리했습니다.' },
       ],
@@ -91,29 +98,28 @@ export const projects: Project[] = [
   {
     slug: 'gcar-voc',
     name: 'Gcar VoC 분석',
-    title: '37,923건의 리뷰에서 이탈 구조를 찾았다',
+    title: '37,923건의 리뷰에서 이탈이 생기는 과정을 찾았다',
     subtitle: '앱 리뷰 감정 분석 → 고객 여정 기반 서비스 개선안 설계',
     period: '2025.11',
     category: '데이터 분석 · 서비스 기획',
     tags: ['Python', 'KoELECTRA', 'SHAP', 'SQL', '사용자 여정', '데이터 분석'],
-    isMain: true,
     highlight: '이탈 원인을 고객 여정으로 재정의',
     kpi: '37,923건',
     kpiLabel: '분석 규모',
     cover: { art: 'data', stat: '37,923건', statLabel: '리뷰에서 이탈 구조 발견', badge: '데이터 구조화' },
     content: {
       problem:
-        'Gcar 앱의 부정 리뷰가 반복되고 있었으나, 어떤 문제가 핵심 이탈을 유발하는지 구조적으로 파악된 데이터가 없었다. 개별 이슈 대응에 그칠 뿐, 근본 원인을 고객 여정 관점으로 정의한 시도가 없었다.',
+        'Gcar 앱에는 부정 리뷰가 반복되고 있었지만, 어떤 문제가 이탈을 키우는지 구조적으로 정리된 데이터가 없었다. 개별 이슈 대응에 그치지 않고 고객 여정 관점에서 원인을 다시 정의할 필요가 있었다.',
       approach: [
         { num: '01', step: '데이터 수집', desc: 'Google Play · App Store에서 Gcar·경쟁사 앱 리뷰 37,923건 크롤링 및 전처리 (수집 기간: 2021–2025)' },
         { num: '02', step: '감정 분류', desc: '사전학습 KoELECTRA-Base-v3 모델 적용, 감정 분류(정확도 0.976 · F1 0.984) 후 SHAP로 부정 감정 유발 핵심 키워드 도출' },
-        { num: '03', step: '이슈 구조화', desc: '부정 리뷰를 4개 영역(고객센터·앱오류·반납예약·과금)으로 클러스터링. A지표(전체 리뷰 대비 부정 비율)·B지표(부정 리뷰 내 구성비)로 이중 지표화해 리뷰량 편향을 보정' },
+        { num: '03', step: '이슈 구조화', desc: '부정 리뷰를 고객센터·앱오류·반납예약·과금 4개 영역으로 묶고, A지표(전체 리뷰 대비 부정 비율)·B지표(부정 리뷰 내 구성비)로 리뷰량 편향을 보정' },
         { num: '04', step: '여정 시각화', desc: '앱오류 → 반납실패 → 과금 이슈 → CS 문의 → 1점 리뷰로 이어지는 실패 여정 맵 작성' },
         { num: '05', step: '개선안 도출', desc: '여정 기반 4개 우선 개선 방향 제안 (고객센터 정보 구조 재설계 / 반납 장소 혼잡도 사전 안내 / 과금 사전 경고 / 자동 문의 연결)' },
       ],
       insights: [
-        { num: '01', title: '가격 경쟁력은 불만을 덮지 못한다', body: '가격 만족도가 높음에도 1★ 리뷰 비율은 Socar(23.9%) 대비 Gcar(31.4%)가 높았고, Mann-Whitney U 검정에서 이 차이는 통계적으로 유의했다(p<0.05). 저렴한 이용료는 오히려 경쟁 우위였지만(카셰어링 차량 선택 기준 1위, 82.7%), 가격이 아닌 반납·패널티·CS 여정이 평점을 낮추는 핵심 변수였다.' },
-        { num: '02', title: '앱 오류부터 CS 지연까지, 불만은 단계마다 쌓였다', body: '앱 오류 → 반납 실패 → 패널티 → CS 지연으로 이어지며 불만이 증폭됐다. 기능 하나가 아니라 단계 전체의 불확실성을 줄여야 했다.' },
+        { num: '01', title: '가격 경쟁력만으로 불만은 줄지 않았다', body: '가격 만족도가 높음에도 1★ 리뷰 비율은 Socar(23.9%)보다 Gcar(31.4%)가 높았고, Mann-Whitney U 검정에서도 차이가 유의했다(p<0.05). 저렴한 이용료는 경쟁 우위였지만(카셰어링 차량 선택 기준 1위, 82.7%), 평점을 낮춘 변수는 가격보다 반납·패널티·CS 여정이었다.' },
+        { num: '02', title: '앱 오류부터 CS 지연까지, 불만은 단계마다 쌓였다', body: '앱 오류 → 반납 실패 → 패널티 → CS 지연으로 이어지며 불만이 커졌다. 기능 하나를 고치는 것보다 단계마다 생기는 불확실성을 줄이는 일이 먼저였다.' },
         { num: '03', title: '공지 중심 CS를 문제 상황별 FAQ로 재배치했다', body: '사용자는 문제 발생 후 해결 방법을 빠르게 찾지 못했다. 공지사항 중심 구조를 문제 상황별 FAQ 구조로 재배치하는 방향을 잡았다.' },
         { num: '04', title: '개선이 통계적으로 입증된 영역은 고객센터뿐이다', body: '분기별 시계열 추세 검정(OLS+Newey–West) 결과 고객센터 부정 비율만 유의하게 감소했고(연 −1.90%p, p<0.05), 앱·반납예약·페널티는 감소 추세가 확인되지 않았다(p>0.28). 단일 기능 패치가 아니라 여정 전체의 통합 개선이 필요한 근거다.' },
       ],
@@ -168,31 +174,30 @@ export const projects: Project[] = [
   {
     slug: 'pullsize',
     name: 'Pullsize',
-    title: '신체 정보와 상품 URL로 의류 사이즈를 추천하는 서비스를 만들었다',
+    title: '상품 URL과 신체 정보로 맞는 의류 사이즈를 추천하는 서비스를 만들었다',
     subtitle: '온라인 쇼핑 사이즈 불안을 줄이는 AI 추천 MVP',
     period: '2026.03 — 현재',
     category: 'AI 서비스 기획 · MVP',
     tags: ['AI 서비스', 'MVP', 'UX 기획', '사이즈 추천', '이커머스', '서비스 설계', 'Next.js', 'Supabase', 'Gemini'],
-    isMain: true,
     highlight: '사이즈 불안을 추천 근거로 해소',
     kpi: 'AI 사이즈 추천',
     kpiLabel: '제작 산출물',
-    cover: { art: 'tshirt', stat: 'pullsize.kr', statLabel: '직접 만들어 배포한 AI 사이즈 추천 서비스', badge: '서비스 구현' },
+    cover: { art: 'tshirt', stat: 'pullsize.kr', statLabel: 'AI 사이즈 추천 서비스', badge: '서비스 구현' },
     links: [{ label: '서비스 사용해보기', url: 'https://www.pullsize.kr/recommend' }],
     content: {
       problem:
-        '살미달라 브랜드를 직접 운영하며 사이즈 문의와 교환 요청을 현장에서 반복적으로 겪었다. 온라인 의류 구매자는 브랜드마다 다른 실측 기준과 착용감 차이 때문에 사이즈 선택에 불안을 느낀다. 상품 상세페이지의 치수표만으로는 내 체형에 맞는 사이즈와 여유도를 판단하기 어렵고, 이는 구매 망설임과 교환·반품으로 이어질 수 있다.',
+        '살미달라를 운영하며 사이즈 문의와 교환 요청을 반복적으로 겪었다. 온라인 의류 구매자는 브랜드마다 다른 실측 기준과 착용감 때문에 사이즈 선택을 확신하기 어렵다. 상품 상세페이지의 치수표만으로는 내 체형에 맞는 사이즈와 여유도를 판단하기 어렵고, 이는 구매 망설임과 교환·반품으로 이어질 수 있다.',
       approach: [
         { num: '01', step: '입력 흐름 설계', desc: '상품 URL과 키·몸무게·평소 착용 사이즈 등 최소 입력만으로 추천을 시작하는 폼 구성' },
-        { num: '02', step: '상품 정보 해석', desc: '상품 페이지의 사이즈 정보와 사용자의 신체 정보를 비교할 수 있도록 추천에 필요한 데이터 구조 정의' },
-        { num: '03', step: '추천 로직 설계', desc: '사이즈 후보별 적합도와 여유도를 계산해 추천 사이즈와 판단 근거를 함께 제공하는 흐름 설계' },
+        { num: '02', step: '상품 정보 해석', desc: '상품 페이지의 실측 치수와 사용자의 신체 정보를 비교할 수 있도록 데이터 구조 정의' },
+        { num: '03', step: '추천 기준 설계', desc: '사이즈 후보별 적합도와 여유도를 계산하고 추천 이유까지 보여주는 기준 설계' },
         { num: '04', step: '결과 UI 구현', desc: '추천 사이즈, 여유도, 신체 부위별 핏 정보를 한 화면에서 이해할 수 있도록 시각화' },
         { num: '05', step: 'MVP 검증', desc: '실제 쇼핑 상황에서 사용자가 입력 → 추천 → 판단까지 이어질 수 있는 최소 기능 제품으로 구현' },
       ],
       insights: [
-        { num: '01', title: '사이즈표는 있는데, 내 치수와 연결할 길이 없었다', body: '대부분의 쇼핑몰이 사이즈표를 제공하지만, 내 치수와 상품 치수를 연결하는 방법이 없어 사용자는 여전히 불확실함을 느꼈다.' },
-        { num: '02', title: "'왜 M인지'를 보여주자 구매 결정이 빨라졌다", body: '"그냥 M 추천"보다 "어깨 너비 기준으로 M을 추천하는 이유"가 있을 때 구매 결정이 빨라졌다. 설명 가능한 추천 구조가 필요했다.' },
-        { num: '03', title: '기능을 늘리기보다 흐름이 끊기지 않게 했다', body: '사이즈 입력 → 상품 분석 → 추천 결과 → 근거 제시의 4단계 흐름이 끊기지 않아야 신뢰가 생긴다. 기능 수보다 흐름 완결을 우선했다.' },
+        { num: '01', title: '사이즈표는 있는데, 내 치수와 연결할 길이 없었다', body: '대부분의 쇼핑몰이 사이즈표를 제공하지만, 내 치수와 상품 치수를 연결하는 방법은 부족했다. 사용자는 숫자를 보고도 여전히 불확실함을 느꼈다.' },
+        { num: '02', title: "'왜 M인지'를 보여줘야 추천을 믿을 수 있었다", body: '"그냥 M 추천"보다 "어깨 너비 기준으로 M을 추천하는 이유"가 있을 때 판단이 빨라졌다. 추천값보다 설명 가능한 근거 구조가 더 중요했다.' },
+        { num: '03', title: 'AI 추천은 검증 기준이 있어야 안정됐다', body: 'AI가 빠르게 결과를 만들더라도, 무엇이 맞는지 판단하는 기준은 사람이 세워야 했다. 한 번은 파서가 국제 사이즈 환산표를 실제 치수로 착각해 어깨 44, 가슴 5 같은 값을 추천으로 내보냈고, 이후 검증 장치를 붙여 같은 오류가 반복되지 않게 했다.' },
       ],
       results: [
         { label: '제작 성과', desc: '상품 URL 입력부터 신체 정보 입력, AI 추천 결과까지 이어지는 핵심 플로우를 구현하고 pullsize.kr에 배포했습니다.' },
@@ -221,7 +226,7 @@ export const projects: Project[] = [
           { name: '데이터 · AI', items: ['Supabase', 'Gemini 사이즈 추천', 'cheerio 치수 파싱'] },
           { name: '측정 · 전환', items: ['제휴 → 구매 전환', 'GA 분석'] },
         ],
-        loop: '인스타(@pullsize) → 블로그 유입 → AI 사이즈 추천 → 구매 전환 → 콘텐츠 재생산 ↺',
+        loop: '인스타(@pullsize) → 블로그 유입 → AI 사이즈 추천 → 구매 전환 → 콘텐츠 재생산',
       },
       contribution: {
         role: '서비스 기획자 · UX 설계 (AI 도구 기반 직접 구현)',
@@ -238,34 +243,33 @@ export const projects: Project[] = [
   {
     slug: 'ai-content-automation',
     name: 'AI 콘텐츠 생성 자동화',
-    title: 'AI 파이프라인으로 콘텐츠 제작 시간을 83% 단축했다',
+    title: 'AI 파이프라인으로 콘텐츠 제작 시간을 3시간에서 30분으로 줄였다',
     subtitle: 'Claude AI + Figma MCP 연동 → 29개 피드 자동 생성',
     period: '2026.03 — 2026.05',
     category: 'AI 자동화 · 콘텐츠 기획',
     tags: ['Claude AI', 'Figma MCP', 'Python', 'Google Sheets', '자동화', '콘텐츠 기획'],
-    isMain: true,
     highlight: '3시간 → 30분',
     kpi: '83%↓',
     kpiLabel: '생산성 개선',
     links: [{ label: '실제 계정 보기', url: 'https://www.instagram.com/pullsize.official/' }],
     content: {
       problem:
-        '패션 브랜드 인스타그램 피드를 자료조사 → 전략 수립 → 카피 작성 → 디자인 적용 순서로 수작업 시 브랜드당 평균 3시간 이상 소요됐다. 품질 일관성도 담당자에 따라 편차가 컸다.',
+        '패션 브랜드 인스타그램 피드를 자료조사 → 전략 수립 → 카피 작성 → 디자인 적용 순서로 만들면 브랜드당 평균 3시간 이상 걸렸다. 품질도 담당자마다 달라져 반복 제작 기준이 필요했다.',
       approach: [
-        { num: '01', step: '파이프라인 설계', desc: '자료조사 → 전략 → 카피 생성 → 디자인 자동 적용 4단계 구성. 각 단계 입출력 스펙 정의' },
-        { num: '02', step: 'AI 연동', desc: '브랜드 분석 기준·카피 포맷 설계 후 Claude AI로 실행, Figma MCP로 디자인 자동 반영 (수동 Figma 작업 제거)' },
-        { num: '03', step: '품질 게이트', desc: 'fact_check·QA 체크리스트 자동화로 게시 전 오류 검증 (인물 권리·브랜드 정보 정확도 포함)' },
+        { num: '01', step: '파이프라인 설계', desc: '자료조사 → 전략 → 카피 생성 → 디자인 적용 4단계로 나누고 각 단계의 입출력 기준 정의' },
+        { num: '02', step: 'AI 연동', desc: '브랜드 분석 기준과 카피 포맷을 먼저 설계한 뒤 Claude AI로 실행, Figma MCP로 디자인 자동 반영' },
+        { num: '03', step: '품질 게이트', desc: 'fact_check·QA 체크리스트로 게시 전 오류 검증 (인물 권리·브랜드 정보 정확도 포함)' },
         { num: '04', step: '대시보드 구축', desc: 'Google Sheets로 39개 피드 진행 현황·캡션·발행 상태 통합 관리' },
         { num: '05', step: 'SEO 전략', desc: '캡션 v4 포맷 + 3-Tier 해시태그 전략 설계·적용 (발행 피드 전수 적용 완료)' },
       ],
       insights: [
-        { num: '01', title: '진짜 시간을 잡아먹은 건 매번 브랜드 규칙을 새로 짜는 일이었다', body: '매 피드마다 브랜드 톤·캡션 포맷·이미지 크롭 기준을 처음부터 결정하는 것이 진짜 시간 낭비였다. 기준을 한 번 설계하면 AI가 반복할 수 있다.' },
-        { num: '02', title: '기준을 먼저 설계해야 AI 결과가 안정됐다', body: 'Claude API에 그냥 위임하면 결과가 들쑥날쑥하다. 브랜드 분석 기준·캡션 구조·출력 포맷을 먼저 설계한 뒤 AI를 실행했을 때 일관성이 생겼다.' },
-        { num: '03', title: "속도보다 중요한 건 '누가 해도 같은 품질'이었다", body: '3시간 → 30분 단축보다 중요한 건, 누가 하더라도 같은 품질이 나온다는 것. 이 프로젝트의 목표는 속도가 아니라 재현 가능한 프로세스 설계였다.' },
+        { num: '01', title: '시간을 잡아먹은 건 브랜드 규칙을 매번 다시 정하는 일이었다', body: '매 피드마다 브랜드 톤, 캡션 포맷, 이미지 크롭 기준을 새로 결정하는 데 시간이 많이 들었다. 기준을 한 번 설계하면 AI가 같은 방식으로 반복할 수 있었다.' },
+        { num: '02', title: '기준을 먼저 설계해야 AI 결과가 안정됐다', body: 'Claude AI에 바로 맡기면 결과가 들쑥날쑥했다. 브랜드 분석 기준·캡션 구조·출력 포맷을 먼저 정한 뒤 실행했을 때 결과가 일정해졌다.' },
+        { num: '03', title: "속도보다 중요한 건 '누가 해도 같은 품질'이었다", body: '3시간 → 30분 단축보다 중요한 건 누가 하더라도 같은 품질이 나오는 구조였다. 이 프로젝트의 목표는 빠른 제작이 아니라 재현 가능한 프로세스를 만드는 일이었다.' },
       ],
       results: [
         { label: '생산성 성과', desc: '브랜드당 평균 제작 시간을 3시간에서 30분 이내로 줄여 약 83% 단축했습니다. (22개 브랜드 평균 기준)' },
-        { label: '제작 산출물', desc: '22개 브랜드를 커버하며 29개 이상 피드를 자동 생성했고, 39개 피드를 Google Sheets 대시보드로 관리했습니다.' },
+        { label: '제작 산출물', desc: '22개 브랜드를 다루며 29개 이상 피드를 자동 생성했고, 39개 피드를 Google Sheets 대시보드로 관리했습니다.' },
         { label: '운영 성과', desc: '캡션 v4 포맷과 3-Tier 해시태그 전략을 적용해 조사, 카피, 디자인, 게시 상태를 한 흐름으로 묶었습니다.' },
         { label: '검증 한계', desc: '제작 시간과 생산량은 확인했지만, 게시 후 도달·전환 성과는 별도 지표로 공개하지 않았습니다.' },
       ],
@@ -305,30 +309,29 @@ export const projects: Project[] = [
   {
     slug: 'salmidalla',
     name: '살미달라',
-    title: '패션 브랜드를 창업하고 3시즌을 출시했다',
+    title: '패션 브랜드를 창업해 3시즌을 출시했다',
     subtitle: '컨셉부터 판매까지, 브랜드 전 과정 운영',
     period: '2021.01 — 2023.04',
     category: '브랜드 기획 · 패션 MD',
     tags: ['브랜드 기획', 'MD', '영상 편집', 'Premiere Pro', 'Photoshop', '팝업스토어'],
-    isMain: false,
     highlight: '팔로워 +86%',
     kpi: '+86%',
     kpiLabel: '운영 성과',
     links: [{ label: '브랜드 사이트 보기', url: 'https://www.sixshop.com/salmidollar/home' }],
     content: {
       problem:
-        '3인 팀으로 패션 브랜드를 처음 창업해 원단 선정부터 샘플·생산·판매·마케팅까지 MD 전 과정을 직접 맡아야 했다. 시즌마다 사이즈·원단 품질 피드백을 반영해 상품과 프로세스를 개선해야 했다.',
+        '3인 팀으로 패션 브랜드를 창업해 원단 선정부터 샘플·생산·판매·마케팅까지 MD 전 과정을 맡았다. 시즌마다 고객의 사이즈·원단 피드백을 반영해 상품과 제작 기준을 개선해야 했다.',
       approach: [
         { num: '01', step: '상품 기획', desc: '시즌별 컨셉 → 트렌드 조사 → 원단 선정 → 샘플·피팅 → 생산 관리' },
         { num: '02', step: '품질 관리', desc: '봉제·프린팅 공장 품질 검수 및 납기 관리' },
         { num: '03', step: '콘텐츠 마케팅', desc: '유튜브 브이로그 27편 + 숏츠 23편 직접 기획·촬영·편집' },
         { num: '04', step: '오프라인 판매', desc: '팝업스토어 3회 (카페위탁 / 대학축제 / 서울플리마켓) 기획·운영' },
-        { num: '05', step: '피드백 반영', desc: '고객 리뷰·DM 수집 → 차기 시즌 상품 개선 반영 (사이즈 그레이딩 재설계 포함)' },
+        { num: '05', step: '피드백 반영', desc: '고객 리뷰·DM을 모아 다음 시즌 상품 개선에 반영 (사이즈 그레이딩 재설계 포함)' },
       ],
       insights: [
-        { num: '01', title: '한 시즌 완판에서 멈추지 않고 다음 시즌으로 이었다', body: '21SS 140벌 완판에 멈추지 않고 고객 리뷰·DM을 모아 사이즈·원단을 다음 시즌에 반영하며 21FW·22SS로 이어갔다. 운영의 핵심은 피드백을 다음 시즌 상품으로 되돌리는 루프였다(사이즈 그레이딩 재설계 포함).' },
-        { num: '02', title: '콘텐츠 자체가 브랜드의 유통 채널이었다', body: '유튜브 브이로그 27편·숏츠 23편을 직접 기획·촬영·편집해 2년간 조회수 2.4만+를 만들고 팔로워를 464→863명(+86%)으로 키웠다. 광고가 아니라 제작 과정 자체가 도달을 만들었다.' },
-        { num: '03', title: '온라인만으로는 부족해 채널을 다각화했다', body: '팝업스토어 3회(카페 위탁·대학 축제·서울 플리마켓)로 오프라인 접점을 만들고 ACC·굿즈백·키링으로 품목을 확장하며, 한 채널에 의존하지 않는 판매 구조를 시도했다.' },
+        { num: '01', title: '한 시즌 완판에서 멈추지 않고 다음 시즌으로 이었다', body: '21SS 140벌 완판 이후 고객 리뷰·DM을 모아 사이즈와 원단 피드백을 21FW·22SS에 반영했다. 운영의 핵심은 판매 결과를 다음 시즌 상품으로 되돌리는 일이었다(사이즈 그레이딩 재설계 포함).' },
+        { num: '02', title: '제작 과정 자체가 브랜드 콘텐츠가 됐다', body: '유튜브 브이로그 27편·숏츠 23편을 직접 기획·촬영·편집해 2년간 조회수 2.4만+를 만들고 팔로워를 464→863명(+86%)으로 키웠다. 광고 소재보다 실제 제작 과정이 도달을 만들었다.' },
+        { num: '03', title: '온라인만으로는 부족해 판매 채널을 넓혔다', body: '팝업스토어 3회(카페 위탁·대학 축제·서울 플리마켓)로 오프라인 접점을 만들고 ACC·굿즈백·키링으로 품목을 확장했다. 한 채널에 기대지 않는 판매 구조를 실험했다.' },
       ],
       results: [
         { label: '운영 성과', desc: '첫 시즌 자체 제작 의류 140벌을 완판했고, 이후 21FW · 22SS까지 3시즌을 이어갔습니다.' },
@@ -357,12 +360,11 @@ export const projects: Project[] = [
   {
     slug: 'areun-sai',
     name: '아른 사이',
-    title: '텀블벅 177% 달성 — 인터뷰 콘텐츠를 도서로 만들었다',
+    title: '인터뷰 콘텐츠를 도서와 전시로 확장해 텀블벅 177%를 달성했다',
     subtitle: '창업동아리 PM · 영상 제작 · 출판 · 전시 · 크라우드펀딩',
     period: '2023.04 — 2025.06',
     category: '콘텐츠 기획 · PM',
     tags: ['PM', '출판', '전시', 'InDesign', '크라우드펀딩', '영상 편집', '콘텐츠 기획'],
-    isMain: false,
     highlight: '텀블벅 177%',
     kpi: '177%',
     kpiLabel: '펀딩 성과',
@@ -372,22 +374,22 @@ export const projects: Project[] = [
     ],
     content: {
       problem:
-        '창업동아리 인터뷰 콘텐츠가 영상 단독으로만 소비되고 있었다. 인터뷰 데이터를 더 많은 포맷으로 확장해 더 넓은 독자에게 도달하는 방법이 필요했다.',
+        '창업동아리 인터뷰 콘텐츠가 영상으로만 소비되고 있었다. 인터뷰를 도서·전시·굿즈로 확장해 더 넓은 독자에게 도달하는 방법이 필요했다.',
       approach: [
         { num: '01', step: '인터뷰 기획', desc: '대상 섭외·질문 설계·촬영·편집' },
-        { num: '02', step: '콘텐츠 확장', desc: '인터뷰 원천 콘텐츠를 출판·전시·굿즈로 확장, 인스타그램 운영 병행' },
+        { num: '02', step: '콘텐츠 확장', desc: '인터뷰 원천 콘텐츠를 출판·전시·굿즈로 확장하고 인스타그램 운영 병행' },
         { num: '03', step: '도서 제작', desc: 'InDesign으로 인터뷰집 편집·출판 (2권)' },
         { num: '04', step: '크라우드펀딩', desc: '텀블벅 캠페인 기획·운영 — 목표 금액 대비 177% 달성' },
         { num: '05', step: '팀 PM', desc: '편집제작팀·마케팅팀·디자인팀 9명 조율 (2023.04–2025.06, 2년 2개월)' },
       ],
       insights: [
-        { num: '01', title: '하나의 원천 콘텐츠를 여러 포맷으로 확장했다', body: '영상으로만 소비되던 인터뷰를 인터뷰집·전시·굿즈로 확장해 더 넓은 독자에게 도달했다. 콘텐츠의 가치는 같은 원천을 포맷으로 늘릴수록 커졌다.' },
-        { num: '02', title: '크라우드펀딩의 성패는 리워드 설계에 있었다', body: '도서·굿즈·상세페이지를 하나의 리워드 패키지로 묶어 텀블벅 목표 대비 177%를 달성했다. 결국 무엇을 어떻게 묶어 주느냐가 모금 결과를 갈랐다.' },
-        { num: '03', title: '9명 팀의 흐름이 끊기지 않게 잇는 게 PM의 일이었다', body: '편집제작·마케팅·디자인 9명 팀의 일정과 자료 흐름을 2년 2개월간 조율했다. 핵심 산출물은 팀 공동 제작이었고, 내 역할은 흐름이 끊기지 않게 연결하는 것이었다.' },
+        { num: '01', title: '하나의 인터뷰를 여러 포맷으로 확장했다', body: '영상으로만 소비되던 인터뷰를 인터뷰집·전시·굿즈로 확장했다. 같은 원천 콘텐츠라도 포맷을 바꾸면 만나는 독자와 사용 장면이 달라졌다.' },
+        { num: '02', title: '크라우드펀딩의 성패는 리워드 설계에 있었다', body: '도서·굿즈·상세페이지를 하나의 리워드 패키지로 묶어 텀블벅 목표 대비 177%를 달성했다. 단순히 책을 파는 것이 아니라 어떤 경험으로 묶어 보여줄지가 중요했다.' },
+        { num: '03', title: '9명 팀의 흐름을 끊기지 않게 잇는 게 PM의 일이었다', body: '편집제작·마케팅·디자인 9명 팀의 일정과 자료 흐름을 2년 2개월간 조율했다. 핵심 산출물은 팀 공동 제작이었고, 제 역할은 각 팀의 일이 다음 단계로 이어지게 만드는 것이었다.' },
       ],
       results: [
         { label: '펀딩 성과', desc: '텀블벅 목표 금액 대비 177%를 달성했습니다. (2024, 캠페인 종료 기준)' },
-        { label: '제작 산출물', desc: '인터뷰집 애\'Say / 처음은 아니지만 2권을 출판하고, 전시·굿즈·리워드 패키지로 확장했습니다.' },
+        { label: '제작 산출물', desc: '인터뷰집 애\'Say / 처음은 아니지만 2권을 출판하고 전시·굿즈·리워드 패키지로 확장했습니다.' },
         { label: '운영 성과', desc: '편집제작·마케팅·디자인 9명 팀을 2년 2개월간 조율하며 기획·제작·마케팅 흐름을 관리했습니다.' },
         { label: '기여 범위', desc: '팀 공동 산출물이며, 개인 역할은 프로젝트 매니저로서 인터뷰 기획, 편집, 펀딩 운영, 일정 조율을 맡았습니다.' },
       ],

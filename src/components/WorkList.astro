@@ -1,15 +1,26 @@
 ---
 import { projects } from '../data/projects';
+import type { Project } from '../data/projects';
 const base = import.meta.env.BASE_URL;
 const basePath = base.endsWith('/') ? base : `${base}/`;
 const asset = (s: string) => `${basePath}${s.replace(/^\/+/, '')}`;
+type ProjectWithCover = Project & { cover: NonNullable<Project['cover']> };
 
 // 강약: 대표 3개(직무중립 — 일하는 방식이 드러나는 프로젝트)는 산출물 이미지 카드로,
 // 나머지는 컴팩트 리스트로.
 const featuredSlugs = ['fastcampus', 'gcar-voc', 'pullsize'];
 const restSlugs = ['salmidalla', 'ai-content-automation', 'areun-sai'];
-const featured = featuredSlugs.map(slug => projects.find(p => p.slug === slug)!);
-const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
+const pickProjects = (slugs: string[]): Project[] => slugs.map((slug) => {
+  const project = projects.find((p) => p.slug === slug);
+  if (!project) throw new Error(`Missing project: ${slug}`);
+  return project;
+});
+const requireCover = (project: Project): ProjectWithCover => {
+  if (!project.cover) throw new Error(`Missing cover data: ${project.slug}`);
+  return { ...project, cover: project.cover };
+};
+const featured = pickProjects(featuredSlugs).map(requireCover);
+const rest = pickProjects(restSlugs);
 ---
 
 <section id="work" class="work-section">
@@ -30,9 +41,9 @@ const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
           style={`--reveal-delay:${i * 80}ms`}
         >
           <div class="feat-media">
-            {p.cover!.art ? (
-              <div class={`feat-code-cover feat-code-cover--${p.cover!.art}`} aria-hidden="true">
-                {p.cover!.art === 'modules' && (
+            {'art' in p.cover ? (
+              <div class={`feat-code-cover feat-code-cover--${p.cover.art}`} aria-hidden="true">
+                {p.cover.art === 'modules' && (
                   <svg class="feat-motif feat-motif--modules" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                       <rect x="24" y="24" width="92" height="72" rx="16" />
@@ -50,7 +61,7 @@ const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
                     </g>
                   </svg>
                 )}
-                {p.cover!.art === 'data' && (
+                {p.cover.art === 'data' && (
                   <svg class="feat-motif feat-motif--data" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g fill="currentColor">
                       <rect x="44" y="132" width="22" height="54" rx="8" />
@@ -64,7 +75,7 @@ const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
                     <path d="M36 186H318" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
                   </svg>
                 )}
-                {p.cover!.art === 'tshirt' && (
+                {p.cover.art === 'tshirt' && (
                   <svg class="feat-motif feat-motif--tshirt" viewBox="180 58 300 252" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M282 88L246 101C238 104 232 110 228 118L204 167L240 184L255 153V280C255 286 260 292 266 292H374C380 292 385 286 385 280V153L400 184L436 167L412 118C408 110 402 104 394 101L358 88C353 107 338 120 320 120C302 120 287 107 282 88Z" stroke-width="4" />
@@ -84,17 +95,18 @@ const rest = restSlugs.map(slug => projects.find(p => p.slug === slug)!);
               </div>
             ) : (
               <img
-                src={asset(p.cover!.src!)}
+                src={asset(p.cover.src)}
                 alt={`${p.name} 산출물`}
                 loading="lazy"
-                style={`object-position:${p.cover!.pos ?? 'center'}`}
+                decoding="async"
+                style={`object-position:${p.cover.pos ?? 'center'}`}
               />
             )}
             <div class="feat-scrim"></div>
             <div class="feat-overlay">
-              {p.cover!.badge && <span class="feat-badge">{p.cover!.badge}</span>}
-              <span class="feat-stat">{p.cover!.stat}</span>
-              <span class="feat-stat-label">{p.cover!.statLabel}</span>
+              {p.cover.badge && <span class="feat-badge">{p.cover.badge}</span>}
+              <span class="feat-stat">{p.cover.stat}</span>
+              <span class="feat-stat-label">{p.cover.statLabel}</span>
             </div>
           </div>
           <div class="feat-foot">

@@ -1,13 +1,13 @@
 ---
-type Step = { label: string; desc?: string };
+type Step = { readonly label: string; readonly desc?: string };
 interface Props {
-  flow: {
-    title: string;
-    layout: 'chain' | 'roadmap';
-    tone?: 'negative' | 'process';
-    caption?: string;
-    steps: Step[];
-    note?: string;
+  readonly flow: {
+    readonly title: string;
+    readonly layout: 'chain' | 'roadmap';
+    readonly tone?: 'negative' | 'process';
+    readonly caption?: string;
+    readonly steps: readonly Step[];
+    readonly note?: string;
   };
 }
 const { flow } = Astro.props;
