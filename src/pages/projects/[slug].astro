@@ -17,7 +17,7 @@ const assetPath = (src: string) => `${basePath}${src.replace(/^\/+/, '')}`;
 const idx  = projects.findIndex(p => p.slug === project.slug);
 const next = projects[(idx + 1) % projects.length];
 const siteUrl = 'https://iljeong.github.io/portfolio';
-const pageOgUrl = `${siteUrl}/projects/${project.slug}`;
+const pageOgUrl = `${siteUrl}/projects/${project.slug}/`;
 const problemShort = project.content.problem.split('. ')[0] + '.';
 const hasInsights = (project.content.insights ?? []).length > 0;
 const shots = project.screenshots ?? [];

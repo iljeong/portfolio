@@ -14,7 +14,8 @@ const {
 const base = import.meta.env.BASE_URL;
 const siteUrl = 'https://iljeong.github.io/portfolio';
 const ogImage = ogImageProp ?? `${siteUrl}/images/og-card.png`;
-const ogUrl = ogUrlProp ?? siteUrl;
+// 서빙 주소는 항상 trailing slash로 리다이렉트되므로 canonical/og:url도 슬래시로 일치시킴
+const ogUrl = ogUrlProp ?? `${siteUrl}/`;
 ---
 
 <!doctype html>
