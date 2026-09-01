@@ -31,6 +31,7 @@ Editorial minimal portfolio for a service/content planner. The surface should fe
 - `feat-card`: selected work card with media, badge, stat, and metadata.
 - `work-item`: compact project list row.
 - `cs-gallery`: horizontally scrollable proof gallery.
+- `cs-evidence`: case-study 상단에서 핵심 수치와 작은 막대/단계 시각화를 묶어 보여주는 증거 스트립.
 - `cs-result`, `cs-step`, `cs-insight`: case-study evidence blocks.
 - `flow` and `architecture`: process and system diagrams.
 
@@ -38,6 +39,7 @@ Editorial minimal portfolio for a service/content planner. The surface should fe
 
 - Links and cards use color, border, shadow, or small `translateY` changes.
 - Motion must signal affordance or reveal content; no decorative animation.
+- Project evidence numbers may count up once on viewport entry; evidence bars may reveal from zero to their measured value. Reduced motion shows the final value immediately.
 - `prefers-reduced-motion` keeps content visible and reduces transitions.
 - Keyboard focus uses the global `:focus-visible` ring.
 
