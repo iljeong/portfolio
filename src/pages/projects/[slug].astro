@@ -539,7 +539,6 @@ const evidence = evidenceBySlug[project.slug];
       document.querySelector('.nav'),
       ...document.querySelectorAll('.cs > :not(.cs-lightbox)'),
     ].filter((el): el is HTMLElement => el instanceof HTMLElement);
-    const backgroundState = new Map<HTMLElement, { inert: boolean; ariaHidden: string | null }>();
     const getFocusable = () => {
       return [...lb.querySelectorAll(focusableSelector)].filter((el): el is HTMLElement => {
         if (!(el instanceof HTMLElement)) return false;
@@ -550,28 +549,13 @@ const evidence = evidenceBySlug[project.slug];
     };
     const setBackgroundDisabled = (disabled: boolean) => {
       backgroundTargets.forEach((el) => {
+        el.inert = disabled;
         if (disabled) {
-          if (!backgroundState.has(el)) {
-            backgroundState.set(el, {
-              inert: el.inert,
-              ariaHidden: el.getAttribute('aria-hidden'),
-            });
-          }
-          el.inert = true;
           el.setAttribute('aria-hidden', 'true');
-          return;
-        }
-
-        const previous = backgroundState.get(el);
-        if (!previous) return;
-        el.inert = previous.inert;
-        if (previous.ariaHidden === null) {
-          el.removeAttribute('aria-hidden');
         } else {
-          el.setAttribute('aria-hidden', previous.ariaHidden);
+          el.removeAttribute('aria-hidden');
         }
       });
-      if (!disabled) backgroundState.clear();
     };
     const open = (src: string, caption: string, url: string, opener: HTMLElement | null = null) => {
       if (lbImg) { lbImg.setAttribute('src', src); lbImg.setAttribute('alt', caption || ''); }
@@ -590,14 +574,7 @@ const evidence = evidenceBySlug[project.slug];
       lb.hidden = true;
       setBackgroundDisabled(false);
       document.body.style.overflow = '';
-      if (restoreFocus) {
-        restoreFocus.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-        restoreFocus.focus();
-        window.setTimeout(() => {
-          restoreFocus.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-          restoreFocus.focus();
-        }, 80);
-      }
+      restoreFocus?.focus();
     };
     document.querySelectorAll('[data-shot]').forEach((btn) => {
       if (!(btn instanceof HTMLElement)) return;
