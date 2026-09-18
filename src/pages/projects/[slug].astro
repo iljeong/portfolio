@@ -83,29 +83,26 @@ const evidenceBySlug: Record<string, EvidencePanel> = {
     stages: ['정보 입력', '데이터 추출', 'AI 추천', '근거 제시'],
   },
   'ai-content-automation': {
-    title: '자동화 전후 제작 시간',
-    caption: '동일 범위의 조사·카피·디자인·게시 작업 시간을 피드 단위로 기록해 비교했습니다.',
+    title: '같은 기준으로 만든 콘텐츠 파이프라인',
+    caption: '브랜드 리서치부터 게시 전 QA까지 같은 입력·출력 기준으로 관리한 산출물입니다.',
     metrics: [
-      { value: '3시간→30분', label: '브랜드당 평균 제작 시간' },
-      { value: '83%↓', label: '제작 시간 단축', countTo: 83, suffix: '%↓' },
+      { value: '22개', label: '브랜드 리서치', countTo: 22, suffix: '개' },
       { value: '29개+', label: '자동 생성 피드', countTo: 29, suffix: '개+' },
+      { value: '39개', label: 'Google Sheets 관리 피드', countTo: 39, suffix: '개' },
     ],
-    bars: [
-      { label: '자동화 전', value: 100, display: '180분' },
-      { label: '자동화 후', value: 17, display: '30분' },
-    ],
+    stages: ['브랜드 리서치', '카피 작성', '디자인 적용', 'QA', '게시·동기화'],
   },
   salmidalla: {
     title: '판매 이후 다음 시즌으로 돌린 신호',
     caption: '판매 수량, 채널 성장, 오프라인 접점을 다음 시즌 상품 개선의 근거로 삼았습니다.',
     metrics: [
       { value: '140벌', label: '21SS 한정 수량 완판', countTo: 140, suffix: '벌' },
-      { value: '464→863명', label: '인스타 팔로워' },
+      { value: '464→863명', label: '학교 축제 팝업 3일간 팔로워' },
       { value: '3회', label: '팝업스토어 운영', countTo: 3, suffix: '회' },
     ],
     bars: [
-      { label: '초기 팔로워', value: 54, display: '464명' },
-      { label: '성장 후', value: 100, display: '863명' },
+      { label: '팝업 시작', value: 54, display: '464명' },
+      { label: '팝업 이후', value: 100, display: '863명' },
     ],
   },
   'areun-sai': {
@@ -113,8 +110,8 @@ const evidenceBySlug: Record<string, EvidencePanel> = {
     caption: '인터뷰 원천 콘텐츠를 도서·전시·굿즈 리워드로 묶어 후원 전환까지 연결했습니다.',
     metrics: [
       { value: '177%', label: '텀블벅 목표 대비 달성률', countTo: 177, suffix: '%' },
+      { value: '889,000원', label: '최종 후원 금액', countTo: 889000, suffix: '원' },
       { value: '36명', label: '후원자', countTo: 36, suffix: '명' },
-      { value: '9명', label: '운영 팀', countTo: 9, suffix: '명' },
     ],
     bars: [
       { label: '펀딩 목표', value: 56, display: '100%' },
