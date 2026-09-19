@@ -259,7 +259,7 @@ export const projects: readonly Project[] = [
       approach: [
         { num: '01', step: '파이프라인 설계', desc: '브랜드 리서치 → 카피 작성 → 디자인 적용 → QA → 게시·동기화 5단계로 나누고 각 단계의 입출력 기준 정의' },
         { num: '02', step: 'AI 연동', desc: '브랜드 분석 기준과 카피 포맷을 먼저 설계한 뒤 Claude AI로 실행, Figma MCP로 디자인 자동 반영' },
-        { num: '03', step: '품질 게이트', desc: 'fact_check·QA 체크리스트로 게시 전 오류 검증 (인물 권리·브랜드 정보 정확도 포함)' },
+        { num: '03', step: '품질 게이트', desc: 'fact_check·QA 체크리스트로 게시 전 오류 검증 (인물 정보·브랜드 정보 정확도 포함)' },
         { num: '04', step: '대시보드 구축', desc: 'Google Sheets로 39개 피드 진행 현황·캡션·발행 상태 통합 관리' },
         { num: '05', step: 'SEO 전략', desc: '캡션 v4 포맷 + 3-Tier 해시태그 전략 설계·적용 (발행 피드 전수 적용 완료)' },
       ],
