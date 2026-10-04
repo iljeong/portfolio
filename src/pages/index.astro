@@ -7,18 +7,30 @@ import WorkList from '../components/WorkList.astro';
 const base = import.meta.env.BASE_URL;
 const basePath = base.endsWith('/') ? base : `${base}/`;
 
-// Hero 텍스트 — 상품기획자/콘텐츠기획자 뷰 변형 (같은 사실, 다른 강조)
+// Hero 텍스트 — 서비스기획/상품기획/콘텐츠기획 3단 뷰 변형 (같은 사실, 다른 강조)
 const heroByView = {
-  product: {
+  service: {
     eyebrow: '서정일 · 서비스 흐름을 만드는 기획자',
     titleLine1: '문제를 숫자로 좁히고',
     titleLine2: '직접 만들어 확인합니다.',
-    bio: '사용자 행동과 콘텐츠 데이터에서 막히는 지점을 찾습니다. 콘텐츠·서비스·운영 흐름을 고쳐 출시까지 연결합니다.',
-    chips: ['서비스 기획', '콘텐츠 기획', '데이터 분석', 'AI 자동화'],
+    bio: '사용자 행동 데이터에서 막히는 지점을 찾습니다. 서비스·운영 흐름을 고쳐 출시까지 연결합니다.',
+    chips: ['서비스 기획', '데이터 분석', 'UX 설계', 'AI 자동화'],
     stats: [
+      { num: '37,923건', label: '앱 리뷰 이탈 구조 분석', href: `${basePath}projects/gcar-voc` },
       { num: '29개+', label: 'AI 자동 생성 피드', href: `${basePath}projects/ai-content-automation` },
-      { num: '6개', label: '신규 교육 상품 런칭', href: `${basePath}projects/fastcampus` },
       { num: 'pullsize.kr', label: '공동 개발한 AI 서비스', href: 'https://www.pullsize.kr/recommend', ext: true },
+    ],
+  },
+  product: {
+    eyebrow: '서정일 · 상품을 기획하고 운영하는 기획자',
+    titleLine1: '상품을 숫자로 검증하고',
+    titleLine2: '직접 만들어 운영합니다.',
+    bio: '시장 반응과 판매 데이터에서 다음 상품의 방향을 찾습니다. 기획한 상품을 생산·운영까지 직접 맡아 출시로 연결합니다.',
+    chips: ['상품 기획', 'MD', '커리큘럼 설계', '생산 관리'],
+    stats: [
+      { num: '6개', label: '신규 교육 상품 기획·런칭', href: `${basePath}projects/fastcampus` },
+      { num: '3시즌', label: '패션 브랜드 출시·운영', href: `${basePath}projects/salmidalla` },
+      { num: '140벌', label: '한정 생산 전량 완판', href: `${basePath}projects/salmidalla` },
     ],
   },
   content: {
@@ -30,7 +42,7 @@ const heroByView = {
     stats: [
       { num: '29개+', label: 'AI 자동 생성 피드', href: `${basePath}projects/ai-content-automation` },
       { num: '177%', label: '텀블벅 크라우드펀딩 달성', href: `${basePath}projects/areun-sai` },
-      { num: '3시즌', label: '패션 브랜드 출시·운영', href: `${basePath}projects/salmidalla` },
+      { num: '50편', label: '영상 기획·촬영·편집', href: `${basePath}projects/salmidalla` },
     ],
   },
 } as const;
@@ -184,7 +196,8 @@ const journey = [
 
   <script is:inline>
     document.getElementById('view-toggle')?.addEventListener('click', () => {
-      const next = document.documentElement.dataset.view === 'content' ? 'product' : 'content';
+      const order = ['service', 'product', 'content'];
+      const next = order[(order.indexOf(document.documentElement.dataset.view) + 1) % order.length];
       document.documentElement.dataset.view = next;
       localStorage.setItem('view', next);
     });

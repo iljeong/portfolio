@@ -964,6 +964,10 @@ document.addEventListener('fullscreenchange', scale);
 buildList();
 scale();
 goto(1);
+
+// ?view=service|product|content로 들어오면 해당 역할 대표 슬라이드에서 시작
+const startSlide = { service: 6, product: 4, content: 7 }[new URLSearchParams(location.search).get('view')];
+if (startSlide) goto(startSlide);
 </script>
 </body>
 </html>

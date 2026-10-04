@@ -6,11 +6,12 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
 const asset = (s: string) => `${basePath}${s.replace(/^\/+/, '')}`;
 type ProjectWithCover = Project & { cover: NonNullable<Project['cover']> };
 
-// 강약: 대표 3개는 산출물 이미지 카드로, 나머지는 컴팩트 리스트로.
-// 상품기획자/콘텐츠기획자 뷰에 따라 어느 3개를 대표로 보여줄지만 다르고, 두 그룹 모두 같은 6개 프로젝트다.
+// 강약: 대표 2개는 산출물 이미지 카드로, 나머지는 컴팩트 리스트로.
+// 서비스/상품/콘텐츠 뷰에 따라 어느 2개를 대표로 보여줄지만 다르고, 세 그룹 모두 같은 6개 프로젝트다.
 const views = {
-  product: { featuredSlugs: ['fastcampus', 'gcar-voc', 'pullsize'], restSlugs: ['salmidalla', 'ai-content-automation', 'areun-sai'] },
-  content: { featuredSlugs: ['ai-content-automation', 'areun-sai', 'salmidalla'], restSlugs: ['fastcampus', 'gcar-voc', 'pullsize'] },
+  service: { featuredSlugs: ['gcar-voc', 'pullsize'], restSlugs: ['fastcampus', 'salmidalla', 'ai-content-automation', 'areun-sai'] },
+  product: { featuredSlugs: ['fastcampus', 'salmidalla'], restSlugs: ['gcar-voc', 'pullsize', 'ai-content-automation', 'areun-sai'] },
+  content: { featuredSlugs: ['ai-content-automation', 'areun-sai'], restSlugs: ['fastcampus', 'salmidalla', 'gcar-voc', 'pullsize'] },
 } as const;
 const pickProjects = (slugs: readonly string[]): Project[] => slugs.map((slug) => {
   const project = projects.find((p) => p.slug === slug);
@@ -157,7 +158,7 @@ const groups = Object.entries(views).map(([view, slugs]) => ({
       {g.rest.map((p, i) => (
         <li class="work-item" data-slug={p.slug} data-reveal style={`--reveal-delay:${i * 55}ms`}>
           <a href={`${base}/projects/${p.slug}`} class="work-link">
-            <span class="work-num">{String(i + 4).padStart(2, '0')}</span>
+            <span class="work-num">{String(g.featured.length + i + 1).padStart(2, '0')}</span>
             <span class="work-main">
               <span class="work-name">{p.name}</span>
               <span class="work-meta-row">
@@ -195,7 +196,7 @@ const groups = Object.entries(views).map(([view, slugs]) => ({
   /* ── Featured cover cards ── */
   .feat-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
     margin-bottom: 3.25rem;
   }

@@ -18,8 +18,11 @@ const idx  = projects.findIndex(p => p.slug === project.slug);
 const next = projects[(idx + 1) % projects.length];
 const siteUrl = 'https://iljeong.github.io/portfolio';
 const pageOgUrl = `${siteUrl}/projects/${project.slug}/`;
-const problemShort = project.content.problem.split('. ')[0] + '.';
-const hasInsights = (project.content.insights ?? []).length > 0;
+// SSR이라 방문자 역할을 빌드 시점엔 모른다 — 3버전 다 내보내고 vp-* 클래스로 CSS 토글(홈과 동일 패턴).
+// 메타 설명(description)만 역할 분기가 안 되므로 service(기본값) 버전으로 고정.
+const byView = project.content.byView;
+const views = Object.entries(byView) as [keyof typeof byView, typeof byView[keyof typeof byView]][];
+const metaDescription = byView.service.subtitle;
 const shots = project.screenshots ?? [];
 
 type EvidenceMetric = {
@@ -124,7 +127,7 @@ const evidence = evidenceBySlug[project.slug];
 
 <Layout
   title={`${project.name} — 서정일`}
-  description={project.subtitle}
+  description={metaDescription}
   ogUrl={pageOgUrl}
 >
   <Nav />
@@ -142,8 +145,12 @@ const evidence = evidenceBySlug[project.slug];
           <span class="label">{project.period}</span>
         </div>
 
-        <h1 class="cs-title">{project.title}</h1>
-        <p class="cs-sub">{project.subtitle}</p>
+        {views.map(([view, v]) => (
+          <div class={`vp-${view}`}>
+            <h1 class="cs-title">{v.title}</h1>
+            <p class="cs-sub">{v.subtitle}</p>
+          </div>
+        ))}
 
         <div class="cs-tag-row">
           {project.tags.map(t => <span class="chip">{t}</span>)}
@@ -169,22 +176,24 @@ const evidence = evidenceBySlug[project.slug];
     </div>
 
     <!-- TL;DR -->
-    <div class="cs-tldr">
-      <div class="container cs-tldr-inner">
-        <div class="cs-tldr-item">
-          <p class="label label--accent cs-tldr-label">문제</p>
-          <p class="cs-tldr-text">{problemShort}</p>
-        </div>
-        <div class="cs-tldr-item">
-          <p class="label label--accent cs-tldr-label">역할</p>
-          <p class="cs-tldr-text">{project.content.contribution.role}</p>
-        </div>
-        <div class="cs-tldr-item">
-          <p class="label label--accent cs-tldr-label">결과</p>
-          <p class="cs-tldr-text">{project.content.results[0]?.desc}</p>
+    {views.map(([view, v]) => (
+      <div class={`cs-tldr vp-${view}`}>
+        <div class="container cs-tldr-inner">
+          <div class="cs-tldr-item">
+            <p class="label label--accent cs-tldr-label">문제</p>
+            <p class="cs-tldr-text">{v.problem.split('. ')[0] + '.'}</p>
+          </div>
+          <div class="cs-tldr-item">
+            <p class="label label--accent cs-tldr-label">역할</p>
+            <p class="cs-tldr-text">{project.content.contribution.role}</p>
+          </div>
+          <div class="cs-tldr-item">
+            <p class="label label--accent cs-tldr-label">결과</p>
+            <p class="cs-tldr-text">{v.results[0]?.desc}</p>
+          </div>
         </div>
       </div>
-    </div>
+    ))}
 
     <!-- Body -->
     <div class="container cs-body">
@@ -286,14 +295,16 @@ const evidence = evidenceBySlug[project.slug];
       <!-- 01 Results -->
       <section class="cs-sec">
         <h2 class="label label--accent cs-sec-label">01 · Results</h2>
-        <div class="cs-results">
-          {project.content.results.map(r => (
-            <div class="cs-result">
-              <p class="cs-result-label">{r.label}</p>
-              <p class="cs-result-val">{r.desc}</p>
-            </div>
-          ))}
-        </div>
+        {views.map(([view, v]) => (
+          <div class={`cs-results vp-${view}`}>
+            {v.results.map(r => (
+              <div class="cs-result">
+                <p class="cs-result-label">{r.label}</p>
+                <p class="cs-result-val">{r.desc}</p>
+              </div>
+            ))}
+          </div>
+        ))}
       </section>
 
       <hr class="line" />
@@ -301,7 +312,9 @@ const evidence = evidenceBySlug[project.slug];
       <!-- 02 Problem -->
       <section class="cs-sec">
         <h2 class="label label--accent cs-sec-label">02 · Problem</h2>
-        <p class="cs-prose">{project.content.problem}</p>
+        {views.map(([view, v]) => (
+          <p class={`cs-prose vp-${view}`}>{v.problem}</p>
+        ))}
       </section>
 
       <hr class="line" />
@@ -335,25 +348,27 @@ const evidence = evidenceBySlug[project.slug];
         </>
       )}
 
-      {hasInsights ? (
+      {views.some(([, v]) => (v.insights ?? []).length > 0) && (
         <>
           <hr class="line" />
           <section class="cs-sec">
             <h2 class="label label--accent cs-sec-label">04 · Key Insight</h2>
-            <div class="cs-insights">
-              {project.content.insights?.map(ins => (
-                <div class="cs-insight">
-                  <span class="cs-insight-num">{ins.num}</span>
-                  <div class="cs-insight-body">
-                    <h3 class="cs-insight-title">{ins.title}</h3>
-                    <p class="cs-insight-desc">{ins.body}</p>
+            {views.map(([view, v]) => (
+              <div class={`cs-insights vp-${view}`}>
+                {v.insights?.map(ins => (
+                  <div class="cs-insight">
+                    <span class="cs-insight-num">{ins.num}</span>
+                    <div class="cs-insight-body">
+                      <h3 class="cs-insight-title">{ins.title}</h3>
+                      <p class="cs-insight-desc">{ins.body}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ))}
           </section>
         </>
-      ) : null}
+      )}
 
       {project.content.architecture && (
         <>
