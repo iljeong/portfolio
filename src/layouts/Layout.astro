@@ -59,7 +59,13 @@ const ogUrl = ogUrlProp ?? `${siteUrl}/`;
     <script is:inline>
       // Gate reveal styles on JS so no-JS users see content immediately
       document.documentElement.classList.add('reveal-on');
-      document.documentElement.dataset.view = localStorage.getItem('view') === 'content' ? 'content' : 'product';
+      // ?view=product|content는 공유 링크로 뷰를 고정하기 위한 것 — 있으면 우선 적용하고 localStorage에도 반영
+      const queryView = new URLSearchParams(location.search).get('view');
+      const view = queryView === 'content' || queryView === 'product'
+        ? queryView
+        : (localStorage.getItem('view') === 'content' ? 'content' : 'product');
+      if (queryView === 'content' || queryView === 'product') localStorage.setItem('view', view);
+      document.documentElement.dataset.view = view;
     </script>
     <a href="#main-content" class="skip-link">본문으로 바로가기</a>
     <slot />
