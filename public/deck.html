@@ -303,10 +303,10 @@ html:-webkit-full-screen .deck{box-shadow:none;}
 <div class="slide active" id="s1">
   <div class="sc" style="justify-content:flex-end;padding-bottom:84px;">
     <div style="font-size:14px;font-weight:700;letter-spacing:0.14em;color:var(--muted);margin-bottom:24px;">PORTFOLIO · 서정일</div>
-    <div style="font-size:58px;font-weight:800;line-height:1.14;letter-spacing:-2px;color:var(--dark);">
+    <div id="cover-title" style="font-size:58px;font-weight:800;line-height:1.14;letter-spacing:-2px;color:var(--dark);">
       문제를 숫자로 좁히고,<br><span style="color:var(--blue);">직접 만들어 확인합니다.</span>
     </div>
-    <div style="margin-top:22px;font-size:19px;color:var(--body);font-weight:500;line-height:1.6;max-width:820px;">
+    <div id="cover-body" style="margin-top:22px;font-size:19px;color:var(--body);font-weight:500;line-height:1.6;max-width:820px;">
       서비스 흐름을 만드는 기획자입니다. 콘텐츠·데이터·AI를 넘나들며 <strong style="color:var(--dark);font-weight:700;">직접 만들고 검증</strong>합니다.
     </div>
     <div class="divider" style="width:340px;max-width:100%;margin:28px 0 18px;"></div>
@@ -965,9 +965,22 @@ buildList();
 scale();
 goto(1);
 
-// ?view=service|product|content로 들어오면 해당 역할 대표 슬라이드에서 시작
-const startSlide = { service: 6, product: 4, content: 7 }[new URLSearchParams(location.search).get('view')];
-if (startSlide) goto(startSlide);
+// ?view=service|product|content로 들어오면 표지 헤드라인·서브텍스트만 사이트 히어로 카피에 맞춰 교체(슬라이드 순서는 그대로)
+const coverByView = {
+  product: {
+    title: '상품을 숫자로 검증하고,<br><span style="color:var(--blue);">직접 만들어 운영합니다.</span>',
+    body: '상품을 기획하고 운영하는 기획자입니다. 시장 반응과 판매 데이터에서 다음 상품의 방향을 찾아 <strong style="color:var(--dark);font-weight:700;">생산·운영까지 직접</strong> 맡습니다.',
+  },
+  content: {
+    title: '콘텐츠를 기획하고,<br><span style="color:var(--blue);">직접 만들어 확장합니다.</span>',
+    body: '콘텐츠를 만들고 운영하는 기획자입니다. 독자·수강생 반응 데이터에서 다음 콘텐츠의 방향을 찾아 <strong style="color:var(--dark);font-weight:700;">영상·출판·AI 파이프라인으로</strong> 확장합니다.',
+  },
+};
+const cover = coverByView[new URLSearchParams(location.search).get('view')];
+if (cover) {
+  document.getElementById('cover-title').innerHTML = cover.title;
+  document.getElementById('cover-body').innerHTML = cover.body;
+}
 </script>
 </body>
 </html>
