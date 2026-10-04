@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="페이지를 찾을 수 없습니다 — 서정일 포트폴리오"
+  description="요청하신 페이지가 없습니다. 홈으로 돌아가거나 주요 프로젝트를 확인해 보세요."
+>
+  <Nav />
+
+  <main id="main-content">
+    <section class="nf">
+      <div class="container nf-inner">
+        <p class="label nf-eyebrow">404</p>
+        <h1 class="nf-title">이 페이지는 없습니다.</h1>
+        <p class="nf-body">
+          주소가 바뀌었거나 더 이상 존재하지 않는 페이지예요.
+        </p>
+        <div class="nf-actions">
+          <a href={base} class="nf-cta">홈으로 돌아가기</a>
+          <a href={`${base}#work`} class="nf-link">Work 보기 →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-name">서정일</p>
+        <p class="footer-tag">
+          데이터로 문제를 좁히고<br />직접 만들어 검증하는 기획자
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:seobgak11@naver.com" class="footer-link">seobgak11@naver.com ↗</a>
+        <a href="https://github.com/iljeong" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="container">
+      <p class="footer-copy">© 2026 서정일</p>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .nf {
+    min-height: calc(100dvh - 3.25rem - 11rem);
+    display: flex;
+    align-items: center;
+  }
+
+  .nf-inner { padding: 7rem 0; }
+
+  .nf-eyebrow { margin-bottom: 1.25rem; }
+
+  .nf-title {
+    font-size: clamp(1.875rem, 4vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 0.875rem;
+    word-break: keep-all;
+  }
+
+  .nf-body {
+    font-size: var(--text-body);
+    color: var(--ink-2);
+    line-height: 1.7;
+    max-width: 38ch;
+    margin-bottom: 2rem;
+    word-break: keep-all;
+  }
+
+  .nf-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .nf-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.375rem;
+    background: var(--ink);
+    color: #fff;
+    border-radius: var(--r-full);
+    font-size: var(--text-base);
+    font-weight: 600;
+    transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .nf-cta:hover { background: var(--accent); transform: translateY(-2px); }
+
+  .nf-link {
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--accent);
+    transition: opacity var(--dur-fast) var(--ease);
+  }
+  .nf-link:hover { opacity: 0.7; }
+
+  .footer {
+    border-top: 1px solid var(--line);
+    padding: 3rem 0 2rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-name {
+    font-size: var(--text-body);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.375rem;
+  }
+
+  .footer-tag {
+    font-size: var(--text-caption);
+    color: var(--ink-3);
+    line-height: 1.65;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.375rem;
+  }
+
+  .footer-link {
+    font-size: var(--text-base);
+    color: var(--accent);
+    transition: opacity var(--dur-fast) var(--ease);
+  }
+
+  .footer-link:hover { opacity: 0.7; }
+
+  .footer-copy {
+    font-size: var(--text-xs);
+    color: var(--ink-3);
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 600px) {
+    .footer-inner { flex-direction: column; }
+    .footer-links { align-items: flex-start; }
+  }
+</style>
