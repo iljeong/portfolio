@@ -59,6 +59,7 @@ const ogUrl = ogUrlProp ?? `${siteUrl}/`;
     <script is:inline>
       // Gate reveal styles on JS so no-JS users see content immediately
       document.documentElement.classList.add('reveal-on');
+      document.documentElement.dataset.view = localStorage.getItem('view') === 'content' ? 'content' : 'product';
     </script>
     <a href="#main-content" class="skip-link">본문으로 바로가기</a>
     <slot />

@@ -4,7 +4,7 @@ type ProjectCover = {
   readonly badge?: string;
 } & (
   | { readonly src: string; readonly pos?: string; readonly art?: never }
-  | { readonly art: 'modules' | 'data' | 'tshirt'; readonly src?: never; readonly pos?: never }
+  | { readonly art: 'modules' | 'data' | 'tshirt' | 'hanger' | 'book'; readonly src?: never; readonly pos?: never }
 );
 
 export type Project = {
@@ -256,6 +256,7 @@ export const projects: readonly Project[] = [
     highlight: '22개 브랜드 · 피드 29개 자동 생성',
     kpi: '22개 브랜드 · 29개 피드',
     kpiLabel: '핵심 성과',
+    cover: { art: 'modules', stat: '29개+', statLabel: '22개 브랜드의 피드를 같은 기준으로 자동 생성', badge: 'AI 파이프라인' },
     links: [{ label: '실제 계정 보기', url: 'https://www.instagram.com/pullsize.official/' }],
     content: {
       problem:
@@ -321,6 +322,7 @@ export const projects: readonly Project[] = [
     highlight: '3시즌 출시',
     kpi: '3시즌',
     kpiLabel: '브랜드 출시·운영',
+    cover: { art: 'hanger', stat: '3시즌', statLabel: '패션 브랜드 창업·운영, 영상 50편 제작', badge: '브랜드 기획' },
     links: [{ label: '브랜드 사이트 보기', url: 'https://www.sixshop.com/salmidollar/home' }],
     content: {
       problem:
@@ -372,6 +374,7 @@ export const projects: readonly Project[] = [
     highlight: '텀블벅 177%',
     kpi: '177%',
     kpiLabel: '펀딩 성과',
+    cover: { art: 'book', stat: '177%', statLabel: '텀블벅 크라우드펀딩 목표 대비 달성', badge: '콘텐츠 확장' },
     links: [
       { label: '텀블벅 페이지 보기', url: 'https://tumblbug.com/areunsight' },
       { label: '아른 사이 링크 모음', url: 'https://litt.ly/areun.sight' },

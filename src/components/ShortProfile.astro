@@ -2,18 +2,34 @@
 // Short Profile — 비대칭 bento + "흐름 thread" 시그니처 (라이트 테마, StyleSeed 토큰)
 
 // 3축 = 실제 일하는 순서(흐름) → 번호+thread가 정보(순서)를 인코딩
-const axes = [
-  { num: '01', title: '문제를 숫자로 좁힙니다', proof: '강사 채널 데이터를 근거로 기획 방향을 수정해 신규 강의 6개 런칭' },
-  { num: '02', title: '흐름과 구조로 해석합니다', proof: '앱 리뷰 37,923건에서 이탈 구조를 고객 여정으로 재정의' },
-  { num: '03', title: '직접 만들어 검증합니다', proof: '기획에서 멈추지 않고 직접 구현해 사용 환경에서 작동을 확인' },
-];
+// 상품기획자/콘텐츠기획자 뷰에 따라 같은 사실을 다른 증거로 강조한다 (숫자 재사용, 신규 수치 없음)
+const axesByView = {
+  product: [
+    { num: '01', title: '문제를 숫자로 좁힙니다', proof: '강사 채널 데이터를 근거로 기획 방향을 수정해 신규 강의 6개 런칭' },
+    { num: '02', title: '흐름과 구조로 해석합니다', proof: '앱 리뷰 37,923건에서 이탈 구조를 고객 여정으로 재정의' },
+    { num: '03', title: '직접 만들어 검증합니다', proof: '기획에서 멈추지 않고 직접 구현해 사용 환경에서 작동을 확인' },
+  ],
+  content: [
+    { num: '01', title: '콘텐츠를 반복 가능한 프로세스로 만듭니다', proof: 'AI 파이프라인을 설계해 22개 브랜드의 피드 29개를 같은 기준으로 생성' },
+    { num: '02', title: '원천 콘텐츠를 여러 포맷으로 확장합니다', proof: '인터뷰를 도서·전시·굿즈로 확장해 텀블벅 목표 대비 177% 달성' },
+    { num: '03', title: '반응을 보고 기획을 다시 씁니다', proof: '강사의 강점이 아닌 수강생 반응 데이터를 기준으로 커리큘럼 방향 수정' },
+  ],
+} as const;
 
-const metrics = [
-  { num: '29개+', label: 'AI 자동 생성 피드' },
-  { num: '6개', label: '신규 교육 상품 런칭' },
-  { num: '37,923건', label: '앱 리뷰 감정 분석' },
-  { num: '3시즌', label: '브랜드 출시·운영' },
-];
+const metricsByView = {
+  product: [
+    { num: '29개+', label: 'AI 자동 생성 피드' },
+    { num: '6개', label: '신규 교육 상품 런칭' },
+    { num: '37,923건', label: '앱 리뷰 감정 분석' },
+    { num: '3시즌', label: '브랜드 출시·운영' },
+  ],
+  content: [
+    { num: '29개+', label: 'AI 자동 생성 피드' },
+    { num: '177%', label: '텀블벅 크라우드펀딩 달성' },
+    { num: '6개', label: '신규 교육 상품 기획' },
+    { num: '50편', label: '영상 기획·촬영·편집' },
+  ],
+} as const;
 ---
 
 <section class="sp-section">
@@ -59,32 +75,36 @@ const metrics = [
         </div>
       </article>
 
-      <!-- 3축 프로세스: 하나의 카드 안에서 thread로 연결 -->
-      <article class="sp-card sp-axes" data-reveal style="--reveal-delay:90ms">
-        <ol class="sp-thread">
-          {axes.map(a => (
-            <li class="sp-step">
-              <span class="sp-step-node">{a.num}</span>
-              <div class="sp-step-body">
-                <h3 class="sp-step-title">{a.title}</h3>
-                <p class="sp-step-proof">{a.proof}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </article>
+      <!-- 3축 프로세스: 하나의 카드 안에서 thread로 연결 (뷰별 증거 변형) -->
+      {Object.entries(axesByView).map(([view, axes]) => (
+        <article class={`sp-card sp-axes vp-${view}`} data-reveal style="--reveal-delay:90ms">
+          <ol class="sp-thread">
+            {axes.map(a => (
+              <li class="sp-step">
+                <span class="sp-step-node">{a.num}</span>
+                <div class="sp-step-body">
+                  <h3 class="sp-step-title">{a.title}</h3>
+                  <p class="sp-step-proof">{a.proof}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </article>
+      ))}
 
-      <!-- 수치: 액센트 틴트로 변화 -->
-      <article class="sp-card sp-metrics" data-reveal style="--reveal-delay:180ms">
-        <dl class="sp-metric-list">
-          {metrics.map(m => (
-            <div class="sp-metric">
-              <dt class="sp-metric-num">{m.num}</dt>
-              <dd class="sp-metric-label">{m.label}</dd>
-            </div>
-          ))}
-        </dl>
-      </article>
+      <!-- 수치: 액센트 틴트로 변화 (뷰별 강조 변형) -->
+      {Object.entries(metricsByView).map(([view, metrics]) => (
+        <article class={`sp-card sp-metrics vp-${view}`} data-reveal style="--reveal-delay:180ms">
+          <dl class="sp-metric-list">
+            {metrics.map(m => (
+              <div class="sp-metric">
+                <dt class="sp-metric-num">{m.num}</dt>
+                <dd class="sp-metric-label">{m.label}</dd>
+              </div>
+            ))}
+          </dl>
+        </article>
+      ))}
 
     </div>
   </div>

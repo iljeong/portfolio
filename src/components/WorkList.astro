@@ -6,11 +6,13 @@ const basePath = base.endsWith('/') ? base : `${base}/`;
 const asset = (s: string) => `${basePath}${s.replace(/^\/+/, '')}`;
 type ProjectWithCover = Project & { cover: NonNullable<Project['cover']> };
 
-// 강약: 대표 3개(직무중립 — 일하는 방식이 드러나는 프로젝트)는 산출물 이미지 카드로,
-// 나머지는 컴팩트 리스트로.
-const featuredSlugs = ['fastcampus', 'gcar-voc', 'pullsize'];
-const restSlugs = ['salmidalla', 'ai-content-automation', 'areun-sai'];
-const pickProjects = (slugs: string[]): Project[] => slugs.map((slug) => {
+// 강약: 대표 3개는 산출물 이미지 카드로, 나머지는 컴팩트 리스트로.
+// 상품기획자/콘텐츠기획자 뷰에 따라 어느 3개를 대표로 보여줄지만 다르고, 두 그룹 모두 같은 6개 프로젝트다.
+const views = {
+  product: { featuredSlugs: ['fastcampus', 'gcar-voc', 'pullsize'], restSlugs: ['salmidalla', 'ai-content-automation', 'areun-sai'] },
+  content: { featuredSlugs: ['ai-content-automation', 'areun-sai', 'salmidalla'], restSlugs: ['fastcampus', 'gcar-voc', 'pullsize'] },
+} as const;
+const pickProjects = (slugs: readonly string[]): Project[] => slugs.map((slug) => {
   const project = projects.find((p) => p.slug === slug);
   if (!project) throw new Error(`Missing project: ${slug}`);
   return project;
@@ -19,8 +21,11 @@ const requireCover = (project: Project): ProjectWithCover => {
   if (!project.cover) throw new Error(`Missing cover data: ${project.slug}`);
   return { ...project, cover: project.cover };
 };
-const featured = pickProjects(featuredSlugs).map(requireCover);
-const rest = pickProjects(restSlugs);
+const groups = Object.entries(views).map(([view, slugs]) => ({
+  view,
+  featured: pickProjects(slugs.featuredSlugs).map(requireCover),
+  rest: pickProjects(slugs.restSlugs),
+}));
 ---
 
 <section id="work" class="work-section">
@@ -31,9 +36,10 @@ const rest = pickProjects(restSlugs);
       <span class="label work-range">2021 — 현재</span>
     </div>
 
-    <!-- 대표 프로젝트: 산출물 이미지 + 수치 오버레이 카드 -->
-    <div class="feat-grid">
-      {featured.map((p, i) => (
+    <!-- 대표 프로젝트: 산출물 이미지 + 수치 오버레이 카드 (상품기획자/콘텐츠기획자 뷰별로 다른 3개) -->
+    {groups.map((g) => (<>
+    <div class={`feat-grid vp-${g.view}`}>
+      {g.featured.map((p, i) => (
         <a
           href={`${base}/projects/${p.slug}`}
           class="feat-card"
@@ -73,6 +79,29 @@ const rest = pickProjects(restSlugs);
                       <rect x="272" y="126" width="22" height="60" rx="8" />
                     </g>
                     <path d="M36 186H318" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                  </svg>
+                )}
+                {p.cover.art === 'hanger' && (
+                  <svg class="feat-motif" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M180 36c-16 0-28 11-28 25 0 10 6 18 15 22L45 158c-12 7-19 19-19 33v5h308v-5c0-14-7-26-19-33L193 83c9-4 15-12 15-22 0-14-12-25-28-25Z" />
+                      <path d="M150 196h60" />
+                    </g>
+                  </svg>
+                )}
+                {p.cover.art === 'book' && (
+                  <svg class="feat-motif" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M180 70c-18-14-54-22-100-22-8 0-14 6-14 14v102c0 8 6 14 14 14 42 0 76 8 100 24" />
+                      <path d="M180 70c18-14 54-22 100-22 8 0 14 6 14 14v102c0 8-6 14-14 14-42 0-76 8-100 24" />
+                      <path d="M180 70v126" />
+                      <path d="M92 92h56" opacity="0.5" />
+                      <path d="M92 116h56" opacity="0.5" />
+                      <path d="M92 140h40" opacity="0.5" />
+                      <path d="M212 92h56" opacity="0.5" />
+                      <path d="M212 116h56" opacity="0.5" />
+                      <path d="M212 140h40" opacity="0.5" />
+                    </g>
                   </svg>
                 )}
                 {p.cover.art === 'tshirt' && (
@@ -121,11 +150,11 @@ const rest = pickProjects(restSlugs);
     </div>
 
     <!-- 그 외 작업: 컴팩트 리스트 -->
-    <div class="more-head">
+    <div class={`more-head vp-${g.view}`}>
       <h3 class="more-label">그 외 작업</h3>
     </div>
-    <ul class="work-list" role="list">
-      {rest.map((p, i) => (
+    <ul class={`work-list vp-${g.view}`} role="list">
+      {g.rest.map((p, i) => (
         <li class="work-item" data-slug={p.slug} data-reveal style={`--reveal-delay:${i * 55}ms`}>
           <a href={`${base}/projects/${p.slug}`} class="work-link">
             <span class="work-num">{String(i + 4).padStart(2, '0')}</span>
@@ -145,6 +174,7 @@ const rest = pickProjects(restSlugs);
         </li>
       ))}
     </ul>
+    </>))}
 
   </div>
 </section>

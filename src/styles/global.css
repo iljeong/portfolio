@@ -210,6 +210,11 @@ hr.line {
   .reveal-on [data-reveal] { opacity: 1 !important; transform: none !important; }
 }
 
+/* ===== Role view toggle (상품기획자 ↔ 콘텐츠기획자) ===== */
+
+:root[data-view="content"] .vp-product { display: none; }
+:root:not([data-view="content"]) .vp-content { display: none; }
+
 /* ===== Screen-reader only ===== */
 
 .sr-only {
