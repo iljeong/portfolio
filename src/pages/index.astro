@@ -67,39 +67,59 @@ const journey = [
 
   <!-- ═══════════════════════ HERO ═══════════════════════ -->
   <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-text">
-        {Object.entries(heroByView).map(([view, h]) => (
-          <div class={`vp-${view}`}>
-            <p class="label hero-eyebrow">{h.eyebrow}</p>
-            <h1 class="hero-title">
-              {h.titleLine1}<br />
-              <em>{h.titleLine2}</em>
-            </h1>
-            <p class="hero-bio">{h.bio}</p>
-            <div class="hero-chips">
-              {h.chips.map(t => (
-                <span class="chip">{t}</span>
-              ))}
+    <div class="container">
+      <div class="hero-card">
+        <div class="hero-card-glow" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <div class="hero-text">
+            {Object.entries(heroByView).map(([view, h]) => (
+              <div class={`vp-${view}`}>
+                <p class="label hero-eyebrow">{h.eyebrow}</p>
+                <h1 class="hero-title">
+                  {h.titleLine1}<br />
+                  <em>{h.titleLine2}</em>
+                </h1>
+                <p class="hero-bio">{h.bio}</p>
+                <div class="hero-chips">
+                  {h.chips.map(t => (
+                    <span class="chip">{t}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+            <div class="hero-actions">
+              <a href={`${basePath}deck.html`} class="hero-cv" data-deck-link>PPT 보기 <span class="hero-cv-arrow">→</span></a>
+              <div class="hero-socials">
+                <a href="mailto:seobgak11@naver.com" class="hero-social" aria-label="이메일">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                </a>
+                <a href="https://github.com/iljeong" target="_blank" rel="noopener noreferrer" class="hero-social" aria-label="GitHub">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.95.68 1.91l-.01 2.83c0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="hero-facts">
+              <div class="hero-fact">
+                <span class="hero-fact-label">전공</span>
+                <span class="hero-fact-value">사학 · 광고홍보</span>
+              </div>
+              <div class="hero-fact">
+                <span class="hero-fact-label">영어</span>
+                <span class="hero-fact-value">OPIc IH</span>
+              </div>
+              <div class="hero-fact">
+                <span class="hero-fact-label">최근 교육</span>
+                <span class="hero-fact-value">데이터분석 부트캠프 6기</span>
+              </div>
             </div>
           </div>
-        ))}
-        <div class="hero-actions">
-          <a href={`${basePath}deck.html`} class="hero-cv" data-deck-link>PPT 보기 <span class="hero-cv-arrow">→</span></a>
-          <div class="hero-socials">
-            <a href="mailto:seobgak11@naver.com" class="hero-social" aria-label="이메일">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            </a>
-            <a href="https://github.com/iljeong" target="_blank" rel="noopener noreferrer" class="hero-social" aria-label="GitHub">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.95.68 1.91l-.01 2.83c0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
 
-      <div class="hero-portrait" data-reveal>
-        <div class="hero-portrait-frame">
-          <img src={`${basePath}images/profile.jpg`} alt="서정일" decoding="async" />
+          <div class="hero-portrait" data-reveal>
+            <div class="hero-portrait-glow" aria-hidden="true"></div>
+            <div class="hero-portrait-frame">
+              <img src={`${basePath}images/profile.jpg`} alt="서정일" decoding="async" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -208,7 +228,7 @@ const journey = [
 <style>
   /* ── HERO ───────────────────────────────────── */
 
-  .hero { position: relative; padding: 7rem 0 4rem; }
+  .hero { position: relative; padding: 6rem 0 3rem; background: var(--surface); }
   .hero > .container { position: relative; z-index: 1; }
   .hero::before {
     content: '';
@@ -224,16 +244,46 @@ const journey = [
     pointer-events: none;
   }
 
+  .hero-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+    border-radius: var(--r-3xl);
+    box-shadow: var(--shadow-lg);
+    padding: 3rem 3.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .hero-card-glow {
+    position: absolute;
+    top: -25%; right: -12%;
+    width: 58%;
+    aspect-ratio: 1;
+    border-radius: var(--r-full);
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 20%, transparent), transparent 70%);
+    filter: blur(50px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
   .hero-inner {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-template-columns: 1.4fr 0.6fr;
     align-items: center;
     gap: 4rem;
-    margin-bottom: 3.5rem;
   }
 
   .hero-text { min-width: 0; animation: riseIn 0.7s var(--ease-out) both; }
-  .hero-eyebrow { margin-bottom: 1.5rem; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: inline-block;
+    width: 14px; height: 2px;
+    background: var(--accent);
+  }
   .hero-chips { max-width: 100%; }
 
   .hero-title {
@@ -275,7 +325,7 @@ const journey = [
   .hero-socials { display: flex; gap: 0.5rem; }
   .hero-social {
     display: grid; place-items: center;
-    width: 42px; height: 42px;
+    width: 44px; height: 44px;
     border: 1px solid var(--line-strong);
     border-radius: var(--r-full);
     color: var(--ink-2);
@@ -283,14 +333,51 @@ const journey = [
   }
   .hero-social:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
+  .hero-facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.625rem;
+    max-width: 30rem;
+    margin-top: 2rem;
+  }
+  .hero-fact {
+    display: flex; flex-direction: column; gap: 0.2rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 0.6rem 0.85rem;
+  }
+  .hero-fact-label {
+    font-size: var(--text-2xs); font-weight: 600;
+    letter-spacing: 0.04em; color: var(--ink-3);
+  }
+  .hero-fact-value {
+    font-size: var(--text-caption); font-weight: 600; color: var(--ink-2);
+  }
+
   /* Portrait */
   .hero-portrait {
+    position: relative;
     display: flex; justify-content: center;
     animation: riseIn 0.8s var(--ease-out) both;
     animation-delay: 0.12s;
   }
+  .hero-portrait-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: min(460px, 110%);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: var(--r-full);
+    background:
+      radial-gradient(circle at 38% 32%, color-mix(in srgb, var(--accent) 30%, transparent), transparent 62%),
+      radial-gradient(circle at 68% 70%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%);
+    filter: blur(28px);
+    z-index: 0;
+  }
   .hero-portrait-frame {
     position: relative;
+    z-index: 1;
     width: min(340px, 82%);
     aspect-ratio: 1;
     border-radius: var(--r-full);
@@ -301,8 +388,8 @@ const journey = [
     object-position: center 18%;
     border-radius: var(--r-full);
     box-shadow:
-      0 0 0 1px color-mix(in srgb, var(--accent) 20%, var(--line)),
-      0 0 0 10px var(--accent-bg),
+      0 0 0 10px #fff,
+      0 0 0 11px var(--line),
       var(--shadow-lg);
   }
 
@@ -344,13 +431,18 @@ const journey = [
   .hero-stat-link:hover .hero-stat-arrow { transform: translate(0.12em, 0.02em); }
 
   @media (max-width: 860px) {
-    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 2.75rem; }
+    .hero-card { padding: 2.75rem 1.75rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .hero-portrait { order: -1; justify-content: flex-start; }
     .hero-portrait-frame { width: 150px; }
+    .hero-facts { max-width: 100%; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-facts { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 560px) {
-    .hero { padding: 6rem 0 3rem; }
     .hero-title { font-size: clamp(1.75rem, 7.2vw, 2.375rem); }
     .hero-stats { grid-template-columns: 1fr 1fr; gap: 1.25rem 1rem; }
   }
@@ -480,12 +572,18 @@ const journey = [
 
   /* 역할 뷰 전환 — 라벨 없이, 알아보는 사람만 쓰는 용도 */
   .view-toggle {
+    position: relative;
     width: 1.5rem;
     height: 1.5rem;
     color: var(--ink-4);
     opacity: 0.3;
     font-size: var(--text-xs);
     line-height: 1;
+  }
+  .view-toggle::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
   }
   .view-toggle:hover,
   .view-toggle:focus-visible { opacity: 0.8; }
