@@ -785,7 +785,7 @@ html:-webkit-full-screen .deck{box-shadow:none;}
 <div class="slide" id="s15">
   <div class="sc" style="justify-content:flex-end;padding-bottom:88px;">
     <div style="font-size:50px;font-weight:800;color:var(--blue);line-height:1.05;letter-spacing:-2px;">감사합니다</div>
-    <div style="margin-top:22px;font-size:19px;color:var(--body);font-weight:500;line-height:1.6;">
+    <div id="closing-body" style="margin-top:22px;font-size:19px;color:var(--body);font-weight:500;line-height:1.6;">
       끝까지 봐주셔서 감사합니다. 질문이나 협업 제안은 아래 연락처로 편하게 알려주세요.
     </div>
     <a href="mailto:seobgak11@naver.com"
@@ -996,6 +996,16 @@ if (strengths) {
   document.getElementById('strengths-pillars').innerHTML = strengths.pillars
     .map((p) => `<span style="font-size:13px;font-weight:600;color:var(--dark);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 16px;">${p}</span>`)
     .join('');
+}
+
+// 감사합니다(마지막 슬라이드) — 문구 톤은 공유, 역할 한 단어만 역할별로
+const closingByView = {
+  product: '상품 기획자로서 끝까지 봐주셔서 감사합니다. 질문이나 협업 제안은 아래 연락처로 편하게 알려주세요.',
+  content: '콘텐츠 기획자로서 끝까지 봐주셔서 감사합니다. 질문이나 협업 제안은 아래 연락처로 편하게 알려주세요.',
+};
+const closingBody = closingByView[view];
+if (closingBody) {
+  document.getElementById('closing-body').textContent = closingBody;
 }
 
 </script>
