@@ -220,6 +220,10 @@ const journey = [
       const next = order[(order.indexOf(document.documentElement.dataset.view) + 1) % order.length];
       document.documentElement.dataset.view = next;
       localStorage.setItem('view', next);
+      window.syncDeckLinks?.();
+      const url = new URL(location.href);
+      url.searchParams.set('view', next);
+      history.replaceState(null, '', url);
     });
   </script>
 

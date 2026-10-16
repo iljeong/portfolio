@@ -255,7 +255,7 @@ html:-webkit-full-screen .deck{box-shadow:none;}
 
 <!-- TOOLBAR -->
 <div class="toolbar">
-  <a href="/portfolio" class="tb-back">
+  <a href="/portfolio" class="tb-back" id="btn-home">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
     포트폴리오
   </a>
@@ -815,6 +815,11 @@ const btnPrev = document.getElementById('btn-prev');
 const btnNext = document.getElementById('btn-next');
 const slideList = document.getElementById('slide-list');
 const slideListItems = document.getElementById('slide-list-items');
+let lastFocusedBeforeList = null;
+function getFocusable(container) {
+  return Array.from(container.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])'))
+    .filter(el => !el.disabled && el.offsetParent !== null);
+}
 const slideTitles = [
   'Portfolio',
   '일하는 방식',
@@ -893,14 +898,17 @@ function updateListState() {
 }
 
 function openList() {
+  lastFocusedBeforeList = document.activeElement;
   slideList.classList.add('open');
   slideList.setAttribute('aria-hidden', 'false');
   updateListState();
+  slideList.querySelector('.slide-list-close')?.focus();
 }
 
 function closeList() {
   slideList.classList.remove('open');
   slideList.setAttribute('aria-hidden', 'true');
+  if (lastFocusedBeforeList instanceof HTMLElement) lastFocusedBeforeList.focus();
 }
 
 function toggleList() {
@@ -918,7 +926,21 @@ function onDeckClick(event) {
 }
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && slideList.classList.contains('open')) { closeList(); return; }
+  if (slideList.classList.contains('open')) {
+    if (e.key === 'Escape') { closeList(); return; }
+    if (e.key === 'Tab') {
+      const panel = slideList.querySelector('.slide-list-panel');
+      const focusables = getFocusable(panel);
+      if (focusables.length) {
+        const first = focusables[0], last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+    return; // 목록이 열려 있을 때는 슬라이드 이동 단축키를 무시한다
+  }
+  // 버튼·링크·입력 요소에 포커스가 있을 때는 그 요소의 기본 동작(클릭 등)을 우선한다
+  if (e.target instanceof Element && e.target.closest('button, a, input, textarea, select, [contenteditable]')) return;
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); next(); }
   if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prev(); }
   if (e.key === 'Home') goto(1);
@@ -973,6 +995,10 @@ const coverByView = {
   },
 };
 const view = new URLSearchParams(location.search).get('view');
+// 공유받은 역할별 덱(?view=product 등)에서 홈으로 돌아가도 같은 역할 뷰가 유지되게
+if (view) {
+  document.getElementById('btn-home').href = `/portfolio?view=${view}`;
+}
 const cover = coverByView[view];
 if (cover) {
   document.getElementById('cover-title').innerHTML = cover.title;
